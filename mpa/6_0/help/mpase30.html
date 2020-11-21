@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Log de Atividades</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 305--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap2.html" >next</a>] [<a 
+href="mpase29.html" >prev</a>] [<a 
+href="mpase29.html#tailmpase29.html" >prev-tail</a>] [<a 
+href="mpach11.html#tailmpase30.html">tail</a>] [<a 
+href="mpase30.html#mpase34.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">11.6   </span> <a 
+ id="x97-14500011.6"></a>Log de Atividades</h3>
+<!--l. 308--><p class="noindent" >O servidor de execução permite a geração de arquivos de registro de atividades (arquivos de <span 
+class="cmti-10">log</span>). Para permitir a geração dessas
+mensagens é necessário utilizar o parâmetro de configuração <span 
+class="cmss-10">logflags</span>. O valor desse parâmetro consiste de uma
+seqüência de símbolos separados por vírgulas que definem quais informações devem ser armazenadas nesse registro.
+A seguir, é feita uma descrição dos símbolos utilizados para definir o conteúdo do registro de informações de
+monitoramento.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">m</span> </dt><dd 
+class="description">Registra as mensagens de acompanhamento definidas explicitamente na elaboração dos diagramas de controle.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">l</span> </dt><dd 
+class="description">Registra as mensagens que informam a execução dos comandos dos diagramas de controle. Essas mensagens descrevem
+     o algoritmo executado pelos diagramas de controle utilizando uma notação similar à sintaxe da linguagem Lua.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">p</span> </dt><dd 
+class="description">Registra a leitura e escrita dos pontos de controle do supervisório pelos diagramas de controle.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">t</span> </dt><dd 
+class="description">Registra as trocas de contexto das diferentes linhas de execução, permitindo diferenciar as mensagens de uma linha de
+     execução concorrente de outra.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">c</span> </dt><dd 
+class="description">Registra o carregamento de classes e de funções de pré-configurações no servidor.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">e</span> </dt><dd 
+class="description">Registra  as  informações  relativas  à  máquina  de  execução  do  MPA  como  criação  de  contexto  para  diagramas  e
+     tratamento de erros.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">r</span> </dt><dd 
+class="description">Registra mensagens relacionadas à replicação de servidores MPA como eleição de líder e identificação de queda.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">o</span> </dt><dd 
+class="description">Registra todas as informações relacionadas a comunicação da ponte OPC com o servidor OPC. Alternativamnte é possível
+     ativar símbolos que registram apenas informações sobre alguns aspectos da comunicação OPC, conforme descrito
+     abaixo:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">opcserver</span> </dt><dd 
+class="description">Símbolo que agrupa os seguintes símbolos:
+             <dl class="description"><dt class="description">
+         <span 
+class="cmbx-10">opcadd</span> </dt><dd 
+class="description">Registra a adição de tags ao Grupo OPC (observação).
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcread</span> </dt><dd 
+class="description">Registra leitura síncrona de tags.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcwrite</span> </dt><dd 
+class="description">Registra escrita síncrona de tags.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcupdate</span> </dt><dd 
+class="description">Registra notificação de alteração de tags.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcignored</span> </dt><dd 
+class="description">Registra notificação de alteração de tags que são ignoradas.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcerror</span> </dt><dd 
+class="description">Registra erros na comunicação com o OPC.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcqualflags</span> </dt><dd 
+class="description">Registra descrições dos códigos de qualidade OPC.</dd></dl>
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">opcmanage</span> </dt><dd 
+class="description">Símbolo que agrupa os seguintes símbolos:
+             <dl class="description"><dt class="description">
+         <span 
+class="cmbx-10">opcsetup</span> </dt><dd 
+class="description">Registra informações sobre a forma de comunicação OPC.
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opccache</span> </dt><dd 
+class="description">Registra leituras feitas a partir do cache interno.
+                                                                                                    
+                                                                                                    
+             </dd><dt class="description">
+         <span 
+class="cmbx-10">opcstats</span> </dt><dd 
+class="description">Registra estatísticas de uso ao fechar uma ponte.</dd></dl>
+         </dd></dl>
+     </dd></dl>
+<!--l. 360--><p class="indent" >   O parâmetro de configuração <span 
+class="cmss-10">logfile </span>permite definir o nome do arquivo de registro de informações. Se nenhum arquivo de
+registro for definido as mensagems são geradas na tela de execução do servidor do MPA.
+<!--l. 363--><p class="indent" >   Por exemplo, se quisermos armazenar todos os registros no arquivo <span 
+class="cmss-10">log.txt</span>, habilitando todas as informações de
+monitoramento, devemos adicionar ao arquivo de parâmetros de configuração o seguinte:
+<!--l. 365--><p class="indent" >   <span 
+class="cmss-10">LOGFILE = &#8221;log.txt&#8221;;</span>
+<!--l. 367--><p class="indent" >   <span 
+class="cmss-10">LOGFLAGS = &#8221;m,l,p,t&#8221;;</span>
+                                                                                                    
+                                                                                                    
+   <!--l. 369--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap2.html" >next</a>] [<a 
+href="mpase29.html" >prev</a>] [<a 
+href="mpase29.html#tailmpase29.html" >prev-tail</a>] [<a 
+href="mpase30.html" >front</a>] [<a 
+href="mpase30.html#mpase34.html" >up</a>] </p></div>
+<!--l. 369--><p class="indent" >   <a 
+ id="tailmpase30.html"></a>  
+</body></html> 

@@ -1,0 +1,580 @@
+-- =============================================================================
+-- Arquivo gerado pelo programa MPA-Lua
+-- Copyright (C) 2003-2017 Tecgraf/PUC-Rio,PETROBRAS 
+-- mpa@tecgraf.puc-rio.br 
+-- Versão : 5.0.1 
+-- Caminho: C:\Users\Gustavo Kerezi\Desktop\Curso MPA Thaise\MPA\ufsc_exemplo\app/exported.mpaa
+-- 05/22/18 17:49:19
+-- =============================================================================
+plant = { --[[table: 09CED830]]
+  [1] = { --[[table: 09CF1160]]
+    values = { --[[table: 09CF10C0]]
+      [1] = { --[[table: 09CF1278]]
+        attributes = { --[[table: 09CF0C88]]
+          [1] = { --[[table: 09CF14A8]]
+            _anyval = { --[[table: 09CF1570]]
+              name = "ufsc.ALFA",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [2] = { --[[table: 09CF1390]]
+            _anytype = null,
+          },
+          [3] = { --[[table: 09CF1458]]
+            _anytype = null,
+          },
+          [4] = { --[[table: 09CF13E0]]
+            _anytype = null,
+          },
+          [5] = { --[[table: 09CF15E8]]
+            _anyval = { --[[table: 09CF12F0]]
+              name = "ufsc.KPcontrolador",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [6] = { --[[table: 09CF1340]]
+            _anytype = null,
+          },
+          [7] = { --[[table: 09CF1548]]
+            _anytype = null,
+          },
+          [8] = { --[[table: 09CF1368]]
+            _anytype = null,
+          },
+          [9] = { --[[table: 09CF1610]]
+            _anytype = null,
+          },
+          [10] = { --[[table: 09CF13B8]]
+            _anytype = null,
+          },
+          [11] = { --[[table: 09CF14D0]]
+            _anytype = null,
+          },
+          n = 11,
+        },
+        id = "controlador",
+      },
+      n = 1,
+    },
+    class = "meucontrolador",
+  },
+  [2] = { --[[table: 099326D8]]
+    values = { --[[table: 09CF14F8]]
+      [1] = { --[[table: 09932138]]
+        attributes = { --[[table: 09CF1638]]
+          [1] = { --[[table: 09CF12A0]]
+            _anyval = 1,
+            _anytype = double,
+          },
+          [2] = { --[[table: 09CF12C8]]
+            _anytype = null,
+          },
+          [3] = { --[[table: 099320E8]]
+            _anytype = null,
+          },
+          n = 3,
+        },
+        id = "ufsc.KPcontrolador",
+      },
+      [2] = { --[[table: 09932818]]
+        attributes = { --[[table: 099323B8]]
+          [1] = { --[[table: 099322C8]]
+            _anyval = 1,
+            _anytype = double,
+          },
+          [2] = { --[[table: 09932340]]
+            _anytype = null,
+          },
+          [3] = { --[[table: 09932250]]
+            _anytype = null,
+          },
+          n = 3,
+        },
+        id = "ufsc.ALFA",
+      },
+      n = 2,
+    },
+    class = "REAL_POINT",
+  },
+  [3] = { --[[table: 09932728]]
+    values = { --[[table: 09932958]]
+      [1] = { --[[table: 099327F0]]
+        attributes = { --[[table: 09932980]]
+          [1] = { --[[table: 099328B8]]
+            _anyval = 1,
+            _anytype = double,
+          },
+          [2] = { --[[table: 099326B0]]
+            _anytype = null,
+          },
+          [3] = { --[[table: 09932A48]]
+            _anytype = null,
+          },
+          n = 3,
+        },
+        id = "ufsc.v1_abertura",
+      },
+      [2] = { --[[table: 09932610]]
+        attributes = { --[[table: 09932868]]
+          [1] = { --[[table: 09932688]]
+            _anyval = 1,
+            _anytype = double,
+          },
+          [2] = { --[[table: 099325E8]]
+            _anytype = null,
+          },
+          [3] = { --[[table: 099328E0]]
+            _anytype = null,
+          },
+          n = 3,
+        },
+        id = "ufsc.v2_abertura",
+      },
+      n = 2,
+    },
+    class = "REAL_POINT",
+  },
+  [4] = { --[[table: 09933240]]
+    values = { --[[table: 09932D68]]
+      [1] = { --[[table: 09932B38]]
+        attributes = { --[[table: 09932D90]]
+          [1] = { --[[table: 09932BD8]]
+            _anyval = { --[[table: 09932C50]]
+              name = "ufsc.v1_abertura",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [2] = { --[[table: 09932DE0]]
+            _anyval = { --[[table: 09932C78]]
+              name = "ufsc.v1_abertura",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [3] = { --[[table: 09932CA0]]
+            _anyval = { --[[table: 09932E08]]
+              name = "controlador",
+              type = "meucontrolador",
+            },
+            _anytype = TypedName,
+          },
+          [4] = { --[[table: 09932E80]]
+            _anytype = null,
+          },
+          [5] = { --[[table: 09932EF8]]
+            _anytype = null,
+          },
+          n = 5,
+        },
+        id = "ValvulaControle_1",
+      },
+      [2] = { --[[table: 09933038]]
+        attributes = { --[[table: 09932B60]]
+          [1] = { --[[table: 099330D8]]
+            _anyval = { --[[table: 099330B0]]
+              name = "ufsc.v2_abertura",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [2] = { --[[table: 09933100]]
+            _anyval = { --[[table: 09933448]]
+              name = "ufsc.v2_abertura",
+              type = "REAL_POINT",
+            },
+            _anytype = TypedName,
+          },
+          [3] = { --[[table: 099333D0]]
+            _anyval = { --[[table: 09933178]]
+              name = "controlador",
+              type = "meucontrolador",
+            },
+            _anytype = TypedName,
+          },
+          [4] = { --[[table: 09932FE8]]
+            _anytype = null,
+          },
+          [5] = { --[[table: 099331A0]]
+            _anytype = null,
+          },
+          n = 5,
+        },
+        id = "ValvulaControle_2",
+      },
+      n = 2,
+    },
+    class = "ValvulaControle",
+  },
+  n = 4,
+}
+diagrams = { --[[table: 099352C0]]
+  [1] = { --[[table: 099356A8]]
+    results = { --[[table: 09935BD0]]
+      n = 0,
+    },
+    parameters = { --[[table: 09935C48]]
+      n = 0,
+    },
+    globals = { --[[table: 099355B8]]
+      n = 0,
+    },
+    haltDiagram = "",
+    description = "",
+    name = "Abrir Valvulas",
+    body = { --[[table: 099358B0]]
+      _field = "flow",
+      _switch = "Flow",
+      _value = { --[[table: 09935BF8]]
+        elements = { --[[table: 09935798]]
+          [1] = { --[[table: 09935B80]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09935810]]
+              after = "",
+              action = { --[[table: 09935B58]]
+                _field = "objectcall_val",
+                _switch = "OBJECTCALL",
+                _value = { --[[table: 09935978]]
+                  objname = "valvula",
+                  variables = { --[[table: 09935AE0]]
+                    n = 0,
+                  },
+                  expressions = { --[[table: 09935A90]]
+                    [1] = "abertura + 0.1",
+                    n = 1,
+                  },
+                  operation = "write",
+                  member = "comandoPosicao",
+                },
+              },
+              before = "",
+              next = 3,
+            },
+          },
+          [2] = { --[[table: 09935D88]]
+            _field = "foreach_val",
+            _switch = "Foreach",
+            _value = { --[[table: 09935CE8]]
+              next = 0,
+              action = { --[[table: 09935D10]]
+                _field = "classiteration_val",
+                _switch = "CLASSITERATION",
+                _value = { --[[table: 09935F68]]
+                  classid = "ValvulaControle",
+                  variable = "valvula",
+                  index = "i",
+                },
+              },
+              iteration = 5,
+            },
+          },
+          [3] = { --[[table: 09935D60]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09935FE0]]
+              after = "",
+              action = { --[[table: 099360A8]]
+                _field = "functioncall_val",
+                _switch = "FUNCTIONCALL",
+                _value = { --[[table: 09935E28]]
+                  functionid = "sleep",
+                  variables = { --[[table: 09935EC8]]
+                    n = 0,
+                  },
+                  expressions = { --[[table: 09936148]]
+                    [1] = "1",
+                    n = 1,
+                  },
+                },
+              },
+              before = "",
+              next = 4,
+            },
+          },
+          [4] = { --[[table: 099361C0]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 099363F0]]
+              after = "",
+              action = { --[[table: 099362B0]]
+                _field = "objectcall_val",
+                _switch = "OBJECTCALL",
+                _value = { --[[table: 09936530]]
+                  objname = "valvula",
+                  variables = { --[[table: 099365F8]]
+                    [1] = "abertura",
+                    n = 1,
+                  },
+                  expressions = { --[[table: 09936210]]
+                    n = 0,
+                  },
+                  operation = "read",
+                  member = "indicacaoPosicao",
+                },
+              },
+              before = "",
+              next = 1,
+            },
+          },
+          [5] = { --[[table: 09936508]]
+            _field = "fork_val",
+            _switch = "Fork",
+            _value = { --[[table: 099367B0]]
+              waits = { --[[table: 09936B20]]
+                n = 0,
+              },
+              sync = 0,
+              paths = { --[[table: 09936AF8]]
+                [1] = 4,
+                n = 1,
+              },
+            },
+          },
+          n = 5,
+        },
+        start = 2,
+      },
+    },
+    id = "Abrir Valvulas",
+    errorFunction = "",
+    isApplication = true,
+  },
+  [2] = { --[[table: 09936198]]
+    results = { --[[table: 099367D8]]
+      n = 0,
+    },
+    parameters = { --[[table: 09936850]]
+      n = 0,
+    },
+    globals = { --[[table: 09936760]]
+      n = 0,
+    },
+    haltDiagram = "",
+    description = "",
+    name = "Controle Valvulas",
+    body = { --[[table: 09937020]]
+      _field = "flow",
+      _switch = "Flow",
+      _value = { --[[table: 09936E68]]
+        elements = { --[[table: 09936EB8]]
+          [1] = { --[[table: 09936BE8]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09936D28]]
+              after = '"Abertura da valvula "..i.. " = "..abertura',
+              action = { --[[table: 09936B98]]
+                _field = "objectcall_val",
+                _switch = "OBJECTCALL",
+                _value = { --[[table: 09936F30]]
+                  objname = "valvula",
+                  variables = { --[[table: 09936C88]]
+                    [1] = "abertura",
+                    n = 1,
+                  },
+                  expressions = { --[[table: 09936C10]]
+                    n = 0,
+                  },
+                  operation = "read",
+                  member = "indicacaoPosicao",
+                },
+              },
+              before = "",
+              next = 3,
+            },
+          },
+          [2] = { --[[table: 099372F0]]
+            _field = "foreach_val",
+            _switch = "Foreach",
+            _value = { --[[table: 09937200]]
+              next = 6,
+              action = { --[[table: 09937318]]
+                _field = "classiteration_val",
+                _switch = "CLASSITERATION",
+                _value = { --[[table: 09937138]]
+                  classid = "ValvulaControle",
+                  variable = "valvula",
+                  index = "i",
+                },
+              },
+              iteration = 1,
+            },
+          },
+          [3] = { --[[table: 09937A70]]
+            _field = "choice_val",
+            _switch = "Choice",
+            _value = { --[[table: 099378E0]]
+              action = { --[[table: 099376B0]]
+                _field = "expression_val",
+                _switch = "EXPRESSION",
+                _value = { --[[table: 09937598]]
+                  variables = { --[[table: 09937638]]
+                    n = 0,
+                  },
+                  expressions = { --[[table: 09937908]]
+                    [1] = "abertura > 0.8",
+                    n = 1,
+                  },
+                },
+              },
+              success = 4,
+              after = "",
+              failure = 5,
+              before = "",
+            },
+          },
+          [4] = { --[[table: 09937750]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09937930]]
+              after = "",
+              action = { --[[table: 099379A8]]
+                _field = "functioncall_val",
+                _switch = "FUNCTIONCALL",
+                _value = { --[[table: 099377F0]]
+                  functionid = "sleep",
+                  variables = { --[[table: 09937EF8]]
+                    n = 0,
+                  },
+                  expressions = { --[[table: 09937ED0]]
+                    [1] = "1",
+                    n = 1,
+                  },
+                },
+              },
+              before = '"Aten\231\227o para abertura de v\225lvula"',
+              next = 0,
+            },
+          },
+          [5] = { --[[table: 09937B88]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09937F20]]
+              after = "",
+              action = { --[[table: 09937D18]]
+                _field = "functioncall_val",
+                _switch = "FUNCTIONCALL",
+                _value = { --[[table: 09937EA8]]
+                  functionid = "sleep",
+                  variables = { --[[table: 09937B38]]
+                    n = 0,
+                  },
+                  expressions = { --[[table: 09937D68]]
+                    [1] = "3",
+                    n = 1,
+                  },
+                },
+              },
+              before = "",
+              next = 1,
+            },
+          },
+          [6] = { --[[table: 09937980]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 099383A8]]
+              after = "",
+              action = { --[[table: 09938038]]
+                _field = "diagramcall_val",
+                _switch = "DIAGRAMCALL",
+                _value = { --[[table: 099380D8]]
+                  variables = { --[[table: 09938150]]
+                    n = 0,
+                  },
+                  diagramid = "Abrir Valvulas",
+                  expressions = { --[[table: 09938420]]
+                    n = 0,
+                  },
+                  operation = "stop",
+                },
+              },
+              before = "",
+              next = 0,
+            },
+          },
+          n = 6,
+        },
+        start = 2,
+      },
+    },
+    id = "Controle Valvulas",
+    errorFunction = "avisar",
+    isApplication = true,
+  },
+  [3] = { --[[table: 09938268]]
+    results = { --[[table: 09938560]]
+      n = 0,
+    },
+    parameters = { --[[table: 099386C8]]
+      n = 0,
+    },
+    globals = { --[[table: 09938808]]
+      n = 0,
+    },
+    haltDiagram = "",
+    description = "",
+    name = "[Inicia]",
+    body = { --[[table: 099384E8]]
+      _field = "flow",
+      _switch = "Flow",
+      _value = { --[[table: 099384C0]]
+        elements = { --[[table: 099385B0]]
+          [1] = { --[[table: 099387B8]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09938790]]
+              after = "",
+              action = { --[[table: 099385D8]]
+                _field = "diagramcall_val",
+                _switch = "DIAGRAMCALL",
+                _value = { --[[table: 099386F0]]
+                  variables = { --[[table: 09938970]]
+                    n = 0,
+                  },
+                  diagramid = "Abrir Valvulas",
+                  expressions = { --[[table: 099388A8]]
+                    n = 0,
+                  },
+                  operation = "execute",
+                },
+              },
+              before = "",
+              next = 2,
+            },
+          },
+          [2] = { --[[table: 099386A0]]
+            _field = "command_val",
+            _switch = "Command",
+            _value = { --[[table: 09938718]]
+              after = "",
+              action = { --[[table: 09938740]]
+                _field = "diagramcall_val",
+                _switch = "DIAGRAMCALL",
+                _value = { --[[table: 09938CE0]]
+                  variables = { --[[table: 09938A88]]
+                    n = 0,
+                  },
+                  diagramid = "Controle Valvulas",
+                  expressions = { --[[table: 09938A60]]
+                    n = 0,
+                  },
+                  operation = "execute",
+                },
+              },
+              before = "",
+              next = 0,
+            },
+          },
+          n = 2,
+        },
+        start = 1,
+      },
+    },
+    id = "[Inicia]",
+    errorFunction = "",
+    isApplication = true,
+  },
+  n = 3,
+}

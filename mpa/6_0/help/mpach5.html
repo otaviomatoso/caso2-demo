@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>5 Configuraes de Plantas</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 5--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach6.html" >next</a>] [<a 
+href="mpach4.html" >prev</a>] [<a 
+href="mpach4.html#tailmpach4.html" >prev-tail</a>] [<a 
+href="#tailmpach5.html">tail</a>] [<a 
+href="mpapa2.html#mpach5.html" >up</a>] </p></div>
+   <h2 class="chapterHead"><span class="titlemark">Capítulo&#x00A0;5</span><br /><a 
+ id="x28-470005"></a>Configurações de Plantas</h2>
+<!--l. 8--><p class="noindent" >A edição de uma configuração de planta tem como objetivo definir os elementos do ambiente de automação a serem manipulados
+no projeto de aplicação do MPA. Esses elementos podem ser tanto equipamentos físicos, como válvulas e sensores; quanto
+elementos virtuais, como campos de uma tela de operação do sistema supervisório.
+<!--l. 11--><p class="indent" >   Uma configuração de planta consiste na definição de um conjunto de pontos de controle e equipamentos, que são chamados
+genericamente de <span 
+class="cmbx-10">inst</span><span 
+class="cmbx-10">âncias</span>. Cada instância apresenta um conjunto de atributos que definem suas características assim como
+seus relacionamentos com outras instâncias.
+<!--l. 14--><p class="indent" >   Um <span 
+class="cmbx-10">ponto de controle </span>é uma instância associada a um elemento no <span 
+class="cmbx-10">sistema supervis</span><span 
+class="cmbx-10">ório </span>através de um identificador
+único denominado <span 
+class="cmbx-10">tag</span>. Por sua vez, esse elemento no sistema supervisório está associado a uma variável de processo da planta,
+como um sensor ou um atuador. O MPA tem quatro classes de ponto de controle pré-definidas, uma para cada tipo de
+valor que um desses pontos pode assumir. As classes de ponto do MPA são: <span 
+class="cmbx-10">Pontos L</span><span 
+class="cmbx-10">ógicos</span>, <span 
+class="cmbx-10">Pontos Inteiros</span>,
+<span 
+class="cmbx-10">Pontos Reais </span>e <span 
+class="cmbx-10">Pontos Textuais</span>. Cada uma dessas classes possui um conjunto de atributos que podem ser
+definidos para uma instância daquela classe. Em particular, <span 
+class="cmbx-10">Pontos Inteiros </span>e <span 
+class="cmbx-10">Pontos Reais </span>podem definir os
+atributos <span 
+class="cmbx-10">fator </span>e <span 
+class="cmbx-10">offset </span>que são utilizados pelo MPA para ajustar os valores que são recebidos e enviados para o
+supervisório.
+<!--l. 21--><p class="indent" >   Um <span 
+class="cmbx-10">equipamento </span>é um elemento abstrato que tipicamente representa um agregado de pontos de controle
+interrelacionados. Diferente das classes de pontos, as classes de equipamentos devem ser definidas em uma das bibliotecas de
+modelos carregada no projeto de aplicação. Cada atributo de uma classe de equipamento pode ser definido com
+valores de um único tipo. Entretanto, esse valor pode ser de um tipo básico, uma instância de classe ou uma
+lista.
+<!--l. 26--><p class="indent" >   Um equipamento de uma certa classe que tenha como atributo uma classe de ponto, ou outra classe de equipamento, precisa
+fazer referências a instâncias de outras classes. Essas referências têm que ser válidas para garantir que as operações sobre esses
+equipamentos não resultem em erros. Sendo assim, os pontos ou equipamentos referidos devem existir no momento que a
+aplicação é exportada em arquivo ou enviada para o <span 
+class="cmbx-10">executor </span>(veja mais detalhes sobre exportação da aplicação na
+seção&#x00A0;<a 
+href="mpase6.html#x14-130003.2">3.2<!--tex4ht:ref: sec: menudecomandos --></a>).
+<!--l. 30--><p class="indent" >   O editor de plantas facilita a manutenção dessas referências e realiza a verificação dos valores definidos para
+os atributos de pontos e equipamentos. Em particular, há uma configuração do editor de plantas para avisar
+durante a configuração de um equipamento que o ponto referido não foi configurado para planta (Menu <span 
+class="cmss-10">Editar</span>,
+<span 
+class="cmss-10">Prefer</span><span 
+class="cmss-10">ências... </span>na seção <a 
+href="mpasu2.html#x16-250003.2.2">3.2.2<!--tex4ht:ref: sec: menueditar --></a>). A partir do aviso o usuário escolhe como proceder: criando o ponto, ignorando o
+aviso ou desfazendo a configuração que gerou o aviso. Outro recurso é a visualização de uma configuração, com
+seus relacionamentos, por meio de <span 
+class="cmbx-10">grafos de liga</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>para acompanhar o desenvolvimento do seu <span 
+class="cmbx-10">projeto de</span>
+<span 
+class="cmbx-10">planta</span>.
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >5.1 <a 
+href="mpase11.html#x29-480005.1">Arquivo de Planta</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.1.1 <a 
+href="mpasu9.html#x30-490005.1.1">Gerenciando Classes</a></span>
+<br />   &#x00A0;<span class="sectionToc" >5.2 <a 
+href="mpase12.html#x31-500005.2">Editor de Configurações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.1 <a 
+href="mpasu10.html#x32-530005.2.1">Renomeando uma configuração de uma classe</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.2 <a 
+href="mpasu11.html#x33-540005.2.2">Removendo configurações de uma classe</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.3 <a 
+href="mpasu12.html#x34-550005.2.3">Alterando valores de atributos de configurações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.4 <a 
+href="mpasu13.html#x35-570005.2.4">Ordenando configurações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.5 <a 
+href="mpasu14.html#x36-580005.2.5">Trabalhando com arquivos CSV</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.6 <a 
+href="mpasu15.html#x37-590005.2.6">Lendo e atribuindo valores a pontos</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.7 <a 
+href="mpasu16.html#x38-600005.2.7">Painel Contextual</a></span>
+   </div>
+
+                                                                                                    
+                                                                                                    
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach6.html" >next</a>] [<a 
+href="mpach4.html" >prev</a>] [<a 
+href="mpach4.html#tailmpach4.html" >prev-tail</a>] [<a 
+href="mpach5.html" >front</a>] [<a 
+href="mpapa2.html#mpach5.html" >up</a>] </p></div>
+<!--l. 1--><p class="indent" >   <a 
+ id="tailmpach5.html"></a>  
+</body></html> 

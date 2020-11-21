@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Expresses</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 223--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu21.html" >prev</a>] [<a 
+href="mpasu21.html#tailmpasu21.html" >prev-tail</a>] [<a 
+href="mpasu21.html#tailmpasu22.html">tail</a>] [<a 
+href="mpase14.html#mpase15.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.2.5   </span> <a 
+ id="x48-700006.2.5"></a>Expressões</h4>
+<!--l. 226--><p class="noindent" >Vários elementos de composição dos diagramas utilizam expressões para definição de valores. As expressões no MPA podem
+conter números na forma decimal, os valores lógicos <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">true</span></span></span> e <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">false</span></span></span> e também textuais que devem ser envolvidos por aspas simples
+ou duplas, como em <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">"texto"</span></span></span> e <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">&#8217;texto&#8217;</span></span></span>. Também é possível utilizar operadores aritméticos (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">+</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">-</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">*</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">/</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">^</span></span></span>), lógicos (<span 
+class="cmss-10">and</span>, <span 
+class="cmss-10">or</span>, <span 
+class="cmss-10">not</span>) e
+relacionais (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">&#x003E;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">&#x003C;</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">&#x003E;=</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">&#x003C;=</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">==</span></span></span>, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">~=</span></span></span>) nessas expressões. Além disso, as funções matemáticas descritas em <a 
+href="mpasu48.html#x119-170000C.5.1">C.5.1<!--tex4ht:ref: sec: mathfuncs --></a> também podem ser
+utilizadas nas expressões.
+<!--l. 231--><p class="indent" >   Uma expressão também pode criar listas de valores, para tanto deve-se utilizar chaves em torno da sequência de valores, que
+devem ser separados por vírgula ou ponto-e-vírgula, como em <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{1,2,3}</span></span></span>. Inclusive, é possível utilizar como elementos da lista
+expressões complexas, como em <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{</span><span 
+class="cmtt-10">&#x00A0;1.234^2,</span><span 
+class="cmtt-10">&#x00A0;sin(3.14),</span><span 
+class="cmtt-10">&#x00A0;atan(1.57)+7.8</span><span 
+class="cmtt-10">&#x00A0;}</span></span></span>. Para criar uma lista vazia utilize
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{}</span></span></span>.
+<!--l. 235--><p class="indent" >   As expressões também podem conter variáveis definidas no diagrama ou criadas pelo elementos de composição do diagrama,
+como será apresentado mais adiante. Quando uma variável contém uma lista, é possível referenciar um elemento específico da
+lista através da indexação de usa posição na lista. Por exemplo, se <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">primos</span></span></span> é uma lista com os 10 menores números primos, é
+possível obter o terceiro número através da expressão <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">primos[3]</span></span></span>. Esse tipo de indexação pode ser utilizada em
+expressões mais complexas, como por exemplo como o parâmetro de uma função matemática ou em conjunto com
+operadores.
+<!--l. 240--><p class="indent" >   Para obter o número de elementos numa lista, utilize a função <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">length</span></span></span> que recebe uma lista como parâmetro e devolve o
+número de elementos na lista.
+                                                                                                    
+                                                                                                    
+   <!--l. 242--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu21.html" >prev</a>] [<a 
+href="mpasu21.html#tailmpasu21.html" >prev-tail</a>] [<a 
+href="mpasu22.html" >front</a>] [<a 
+href="mpase14.html#mpase15.html" >up</a>] </p></div>
+<!--l. 242--><p class="indent" >   <a 
+ id="tailmpasu22.html"></a>  
+</body></html> 

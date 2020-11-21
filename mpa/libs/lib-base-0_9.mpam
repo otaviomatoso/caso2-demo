@@ -1,0 +1,5633 @@
+func{ id = "habilitar_estatisticas", name = "Habilitar Estatísticas",
+	description = [[Função para habilitar as estatíticas na ponte de comunicação padrão.]],
+	parameters = {},
+	results = {},
+	code = [=[ function ()
+		local bridge = getbridge()
+		bridge:enablestats()
+	end]=],
+}
+func{ id = "imprimir_estatisticas", name = "Imprimir Estatísticas",
+	description = [[Função para imprimir na tela as estatíticas na ponte de comunicação padrão.]],
+	parameters = {},
+	results = {},
+	code = [=[ function ()
+		local bridge = getbridge()
+		print(bridge:reportstats())
+	end]=],
+}
+func{ id = "sum", name = "Somatório",
+	description = [[Função que recebe lista de valores reais e retorna o somatório desses valores.]],
+	parameters = { {name = "Lista", type = "REAL[]" }, },
+	results = { {name = "Somatório", type = "REAL" }, },
+	code = [=[ function (l)
+		local n = #l
+		local m = 0
+		for i = 1, n do
+			m = m + l[i]
+		end
+		return m
+	end]=],
+}
+func{ id = "average", name = "Média",
+	description = [[Função que recebe lista de valores reais e retorna a média desses valores.]],
+	parameters = { {name = "Lista", type = "REAL[]" }, },
+	results = { {name = "Média", type = "REAL" }, },
+	code = [=[ function (l)
+		local n = #l
+		if n == 0 then
+			return 0
+		end
+		local m = sum(l)
+		m = m / n
+		return m
+	end]=],
+}
+func{ id = "devsq", name = "Desvio Padrão",
+	description = [[Função que recebe lista de valores reais, calcula a média e retorna o desvio padrão para os valores.]],
+	parameters = { {name = "Lista", type = "REAL[]" }, },
+	results = { {name = "Desvio Padrão", type = "REAL" }, },
+	code = [=[ function (l)
+		local n = #l
+		local m = average(l)
+		local q = 0
+		for i = 1, n do
+			q = q + (l[i] - m) ^ 2
+		end
+		return math.sqrt(q/n)
+	end]=],
+}
+func{ id = "covar", name = "Co-Variância",
+	description = [[Função que recebe duas listas de valores reais, e calcula a co-variância entre os valores.]],
+	parameters = { {name = "Lista", type = "REAL[]" }, },
+	results = { {name = "Desvio Padrão", type = "REAL" }, },
+	code = [=[ function (l1, l2)
+		assert(#l1 == #l2,"lists need to have the same number of elements")
+		local n = #l1
+
+		local m1 = average(l1)
+		local m2 = average(l2)
+
+		local c = 0
+		for i = 1, n do
+			c = c + (l1[i] - m1) * (l2[i] - m2)
+		end
+		return c / n
+	end]=],
+}
+func{ id = "slope", name = "Slope",
+	description = [[Função que recebe duas listas de valores reais, e calcula a co-variância entre os valores.]],
+	parameters = { {name = "Lista 1", type = "REAL[]" }, {name = "Lista 2", type = "REAL[]" }, },
+	results = { {name = "Slope", type = "REAL" }, },
+	code = [=[ function (l1, l2)
+		local covar_12 = covar(l1,l2)
+		local q = devsq(l2)/#l1
+		return (q == 0) and 0 or covar_12/q
+	end]=],
+}
+func{ id = "ramp", name = "Rampa",
+	description = [[Função que calcula o valor atual a ser aplicado em uma rampa.]],
+	parameters = {
+		{name = "Valor Inicial", type = "REAL" },
+		{name = "Valor Final", type = "REAL" },
+		{name = "Tempo Inicial", type = "REAL" },
+		{name = "Tempo Final", type = "REAL" },
+	},
+	results = {
+		{name = "Valor Atual", type = "REAL" },
+	},
+	code = [=[ function (v1, v2, t1, t2)
+		local t = time()
+		if t > t2 then
+			return v2
+		else
+			local a = (v2-v1)/(t2-t1)
+			local b = v1-a*t1
+			return a*t+b
+		end
+	end]=],
+}
+func{ id = "dround", name = "Arredondar para Casa Decimal",
+	description = [[Arredonda um número real para o número de casas decimais informado.
+Se nenhum parâmetro for passado, o valor será arredondado para um número inteiro.]],
+	parameters = {
+		{name = "Valor", type = "REAL" },
+		{name = "Casas Decimais", type = "INTEGER" },
+	},
+	results = {
+		{name = "Valor Arredondado", type = "REAL" },
+	},
+	code = [=[ function (v, n)
+		local neg = (v < 0) and -1 or 1
+		local dec = 10^(n or 0)
+		local upped = math.abs(v*dec)
+		local round = math.ceil(upped-0.5)
+		return neg*round/dec
+	end]=],
+}
+
+
+
+code = (code or "") .. [=[
+
+-- Relatório para mensagens do fluxo
+_MPALOGID = "MPALOG"
+_MPALOGS = {}
+
+-- Watchdog interno de Fluxogramas
+_FLOW_WATCHDOG = {}
+
+--------------------------------------------------------------------------------
+-- Funções bitwise test/set/clear operations
+-- De: http://ricilake.blogspot.com/2007/10/iterating-bits-in-lua.html
+-- Por: Rici Lake
+-- Editado para ser b-based
+--
+
+function bit(n, b)
+	return 2 ^ (n - (b or 0))  --b-based indexing
+end
+
+-- Typical call:  if hasbit(x, bit(3, b)) then ...
+function hasbit(x, p)
+	return x % (p + p) >= p
+end
+
+function setbit(x, p)
+	return hasbit(x, p) and x or x + p
+end
+
+function clearbit(x, p)
+	return hasbit(x, p) and x - p or x
+end
+
+-- Fim de bitwise
+--------------------------------------------------------------------------------
+
+]=]
+
+func{ id = "mpa_informar_data", name = "MPA informar data",
+	description = [[Retorna o tempo do sistema. O formato fornecido pode incluir:
+%Y - ano com 4 dígitos
+%y - ano com 2 dígitos
+%m - mês com 2 dígitos
+%d - dia com 2 dígitos
+%H - hora com 2 dígitos
+%M - minuto com 2 dígitos
+%S - segundo com 2 dígitos
+%c - data e hora em formato padrão do sistema]],
+	parameters = {
+		{ name = "Formato", type = "STRING" },
+	},
+	results = {
+		{ name = "Tempo do sistema.", type = "STRING" },
+	},
+	code = [==================================================================[
+				 function(format)
+					return os.date(format)
+				 end
+				 ]==================================================================],
+}
+func{ id = "mpa_registrar", name = "MPA registrar",
+	description = [[Adiciona uma mensagem ao arquivo de registros principal.
+É necessário chamar a função 'MPA definir arquivo registros' antes para definir
+o arquivo onde as mensagens serão gravadas.]],
+	parameters = {
+		{ name = "Mensagem", type = "STRING" },
+	},
+	results = {
+	},
+	code = [===[ function(m)
+					local f = assert(io.open(_MPALOGS[#_MPALOGS], "a+"))
+					f:write( os.date("[%Y/%m/%d %H:%M:%S] %%s\n"):format(m))
+					f:close()
+				end ]===],
+}
+func{ id = "mpa_arquivo_registros", name = "MPA definir arquivo registros",
+	description = [[Define o arquivo de registros principal.
+O número de arquivos de registros mantidos é especificado pelo parâmetro
+"Limite".]],
+	parameters = {
+		{ name = "Identificador", type = "STRING" },
+		{ name = "Limite", type = "INTEGER" },
+	},
+	results = {
+	},
+	code = [===[ function(id, limit)
+						-- define nome do arquivo
+						local filename = os.date(id.."_%Y%m%d%H%M%S.LOG")
+
+						-- abre arquivo
+						local f = io.open(filename, "a+")
+
+						if f then
+							_MPALOGS[#_MPALOGS+1] = filename
+							f:write("Novo arquivo de registro definido.\n")
+						else
+							mpa_avisar("Erro ao abrir arquivo de log para escrita: "..filename)
+						end
+
+						-- remove versões anteriores
+						while #_MPALOGS > limit do os.delete(table.remove(_MPALOGS,1)) end
+
+						f:close()
+					end ]===],
+}
+func{ id = "mpa_avisar", name = "MPA avisar",
+	description = [[Exibe uma mensagem ao operador.
+Os avisos podem ser gravados no arquivo de registros principal. Porém,
+para isso, é necessário configurar primeiramente o arquivo, através da
+função 'MPA definir arquivo registros'.]],
+	parameters = {
+		{ name = "Mensagem a ser exibida", type = "STRING" },
+		{ name = "Registrar aviso", type = "BOOLEAN" },
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(message, register)
+					local first, next
+					for id, linha in instancesof("linha_mensagem") do
+						if UltimaLinha == nil or linha.id > UltimaLinha then
+							if next == nil or linha.id < next.id then
+								next = linha
+							end
+						else
+							if first == nil or linha.id < first.id then
+								first = linha
+							end
+						end
+					end
+					if next == nil then next = first end
+					if next ~= nil then
+						next.linha_texto:write(message)
+						UltimaLinha = next.id
+					else
+						print("ERRO: Nenhuma linha_mensagem encontrada para exibir a mensagem '" .. message .. "'")
+					end
+					if register then mpa_registrar("AVISO;"..message) end
+				 end
+				 ]==================================================================],
+}
+func{ id = "informar_erro", name = "Informar erro no console",
+	description = [[Imprime uma mensagem de erro no console]],
+	parameters = {
+		{ name = "Mensagem", type = "STRING" },
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(mensagem)
+					print(os.date("%Y.%m.%d-%H:%M:%S").." ERRO: ", mensagem)
+				 end
+				 ]==================================================================],
+}
+func{ id = "mpa_alarmar", name = "MPA alarmar",
+	description = [[Gera uma mensagem de alarme para o operador, retornando o alarme escolhido.
+Se nenhum alarme estiver disponível essa função retorna nil.
+Utilizando o parâmetro Registrar o alarmes é armazenado no arquivo de registros principal, porém,
+para isso, é necessário configurar primeiramente o arquivo, através da função 'MPA definir arquivo registros'.]],
+	parameters = {
+		{ name = "Mensagem de alarme a ser exibida", type = "STRING" },
+		{ name = "Registrar alarme", type = "BOOLEAN" },
+	},
+	results = {
+		{ name = "Alarme Escolhido", type = "alarme_mensagem" },
+	},
+	code = [==================================================================[
+				 function(message, register, force)
+					if mpa_alarmar_use_timestamp then
+						message = os.date(mpa_alarmar_date_format)..message
+					end
+					local choosen
+					for id, alarme in instancesof("alarme_mensagem") do
+						if
+							 not alarme.alarme:read()
+							 and (choosen == nil or alarme.id < choosen.id)
+						then
+							choosen = alarme
+						end
+					end
+					if not choosen then
+						if force then
+							local alarmes = {}
+							for id, alarme in instancesof("alarme_mensagem") do
+								alarmes[#alarmes+1] = alarme
+							end
+							table.sort(alarmes, function(a,b)
+									local ts_a = a._timestamp
+									local ts_b = b._timestamp
+
+									if ts_a and ts_b then
+										return ts_a < ts_b
+									elseif ts_a then
+										return false
+									else
+										return true
+									end
+								end)
+							choosen = alarmes[1]
+						end
+					end
+					if choosen then choosen:alarmar(message) end
+					if register then mpa_registrar((choosen and "ALARME;" or "ALARME n/d;")..message) end
+					return choosen
+				 end
+				 ]==================================================================],
+}
+func{ id = "mpa_esperar", name = "MPA esperar",
+	description = [[Faz uma pausa na execução do fluxo]],
+	parameters = {
+		{ name = "Tempo em segundos para a espera do fluxo", type = "REAL" },
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(time)
+					-- TODO: check it with Cassino.
+					sleep(time)
+				 end
+				 ]==================================================================],
+}
+func{ id = "informar_tempo", name = "Informar tempo",
+	description = [[Retorna o tempo (em segundos) desde a inicialização do sistema.]],
+	parameters = {
+	},
+	results = {
+		{ name = "Tempo", type = "REAL" },
+	},
+	code = [==================================================================[
+				 function()
+					return time()
+				 end
+				 ]==================================================================],
+}
+func{ id = "limitar_valor", name = "Limitar Valor",
+	description = [[Retorna o valor dentro do limite informado por parâmetro.
+Se um dos limites não for informado, este não será considerado.]],
+	parameters = {
+		{ name = "Valor", type = "REAL" },
+		{ name = "Valor Mínimo", type = "REAL" },
+		{ name = "Valor Máximo", type = "REAL" },
+	},
+	results = {
+		{ name = "Valor Limitado", type = "REAL" },
+	},
+	code = [==================================================================[
+				 function(val, min, max)
+						if max and (val > max) then
+							return max
+						elseif min and (val < min) then
+							return min
+						else
+							return val
+						end
+				 end
+				 ]==================================================================],
+}
+func{ id = "informar_mensagem", name = "Informar mensagem no Console",
+	description = [[Imprime uma mensagem no console]],
+	parameters = {
+		{ name = "Mensagem", type = "STRING" },
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(mensagem)
+					print(mensagem)
+				 end
+				 ]==================================================================],
+}
+func{ id = "enable_bridge", name = "Habilita Ponte de Comunicação",
+	description = [[Chama o método 'enable' com o parâmetro 'true' para desabilitar as pontes que suportem.
+O parâmetro 'tag' deve ser usado para indicar qual ponte deve ser habilitada em casos com múltiplas pontes de comunicação.]],
+	parameters = {
+		{name = "Tag (opcional)", type = "STRING"},
+	},
+	results = {
+		{name = "Sucesso", type = "BOOLEAN"},
+	},
+	code = [=[ function (tag)
+		local bridge = getbridge(tag)
+		local ret, err = pcall(bridge.enable, bridge, true)
+		return ret
+	end ]=],
+}
+func{ id = "disable_bridge", name = "Desabilita Ponte de Comunicação",
+	description = [[Chama o método 'enable' com o parâmetro 'false' para desabilitar pontes que suportem.
+O parâmetro 'tag' deve ser usado para indicar um tag da ponte deve ser desabilitada em casos com múltiplas pontes de comunicação.]],
+	parameters = {
+		{name = "Tag (opcional)", type = "STRING"},
+	},
+	results = {
+		{name = "Sucesso", type = "BOOLEAN"},
+	},
+	code = [=[ function (tag)
+		local bridge = getbridge(tag)
+		local ret, err = pcall(bridge.enable, bridge, false)
+		if not ret then
+			return false
+		else
+			return true
+		end
+	end ]=],
+}
+func{ id = "calcular_media_ponderada", name = "Calcular média ponderada",
+	description = [[Calcular o valor intermediário entre dois valores.
+Se um peso não for definido retorna a média entre os dois valores.
+A função considera peso entre 0 e 1 e irá sinalizar um erro se este for definido fora desses limites.]],
+	parameters = {
+		{name="Valor A", type="REAL"},
+		{name="Valor B", type="REAL"},
+		{name="Peso A", type="REAL"},
+	},
+	results = {
+		{name="Média Ponderada", type="REAL"},
+	},
+	code = [==================================================================[
+		function(a, b, w)
+			if w == nil then
+				w = 0.5
+			else
+				assert(w>=0 and w<=1, "peso definido fora dos limites esperados [0;1]: "..w)
+			end
+
+			return a*w + b*(1-w)
+		end
+		]==================================================================],
+}
+func{ id = "fluxo_informar_executando", name = "Fluxo informar executando",
+	description = [[Retorna verdadeiro se o fluxo está sendo executado.]],
+	parameters = {
+		{ name = "Nome do fluxo", type = "STRING" },
+	},
+	results = {
+		{ name = "Fluxo executando", type = "BOOLEAN" },
+	},
+	code = [==================================================================[
+				 function(fluxo)
+					return diagramstatus(fluxo) == "executing"
+				 end
+				 ]==================================================================],
+}
+func{ id = "registrar_estatisticas_ponte", name = "Registrar estatísticas da ponte OPC",
+	description = [[Escreve no arquivo de registro as estatística de leitura e escrita armazenadas na ponte]],
+	parameters = {
+		{name="Padrão",type="STRING"},
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(pattern)
+					local bridge = getbridge(pattern)
+					local stat_str = table.concat(
+						{
+							"read-stats (n,min,avg,max)",
+							bridge.readcount,
+							bridge.readmin,
+							bridge.readcount and bridge.readsum/bridge.readcount,
+							bridge.readmax,
+						},";")
+					mpa_registrar( stat_str )
+					stat_str = table.concat(
+						{
+							"write-stats (n,min,avg,max)",
+							bridge.writecount,
+							bridge.writemin,
+							bridge.writecount and bridge.writesum/bridge.writecount,
+							bridge.writemax,
+						},";")
+					mpa_registrar( stat_str )
+				 end
+				 ]==================================================================],
+}
+func{ id = "zerar_estatisticas_ponte", name = "Zerar estatísticas da ponte OPC",
+	parameters = {
+		{name="Padrão",type="STRING"},
+	},
+	results = {
+	},
+	code = [==================================================================[
+				 function(pattern)
+					local bridge = getbridge(pattern)
+					bridge.readcount = nil
+					bridge.readmin = nil
+					bridge.readsum = nil
+					bridge.readmax = nil
+					bridge.writecount = nil
+					bridge.writemin = nil
+					bridge.writesum = nil
+					bridge.writemax = nil
+				 end
+				 ]==================================================================],
+}
+func{ id = "atualizar_ponte", name = "Atualiza ponte",
+	description = [[Atualiza uma ponte.
+A atualização é necessária em pontes que fazem cache dos valores, ao invés
+de trocá-los diretamente com o servidor externo. Nesse caso, a atualização
+faz com que os valores escritos desde a última atualização sejam efetivamente
+escritos no servidor externo. Os valores mantidos na cache são apagados na
+sincronização, para que novas leituras recebam valores atualizados.
+
+A atualização de uma ponte que não usa cache não realiza nada.
+
+Caso o padrão de identificação da ponte não seja fornecido, é atualizada a
+ponte padrão.]],
+	parameters = {
+		{name="Padrão", type="STRING"},
+	},
+	results = {
+	},
+	code = [==================================================================[
+		function(pattern)
+			local bridge = getbridge(pattern)
+			if bridge and bridge.update then
+				bridge:update()
+			end
+		end
+		]==================================================================],
+}
+
+func{ id = "reiniciar_ponte", name = "Reinicializa ponte",
+	description = [[Tenta reinicializar a pointe de comunicação a partir de um TAG.]],
+	parameters = {
+		{name="Padrão", type="STRING"},
+	},
+	results = {
+	},
+	code = [==================================================================[
+		function(pattern)
+			local bridge = getbridge(pattern)
+			if bridge and bridge.bridge.restart then
+				bridge.bridge:restart()
+			end
+		end
+		]==================================================================],
+}
+func{ id = "executar_comando", name = "Executar Comando",
+	description = [[Executa um comando no prompt do sistema.]],
+	parameters = {
+		{name="Comando", type="STRING"},
+	},
+	results = {
+	},
+	code = [=[	function(cmd)
+			local os = require "os"
+			os.execute(cmd)
+	end	]=],
+}
+
+func{ id = "atualiza_timeout_fluxograma", name = "Timeout de Fluxograma - Atualiza",
+	description = [[Atualiza o tempo no qual o watchdog do fluxograma deverá atuar.]],
+	parameters = {
+		{name="Nome do Fluxo", type="STRING"},
+		{name="Intervalo", type="REAL"},
+	},
+	results = {
+	},
+	code = [=[ function(flowid, t)
+		_FLOW_WATCHDOG[flowid] = time() + t
+	end	]=],
+}
+func{ id = "verifica_timeout_fluxograma", name = "Timeout de Fluxograma - Verifica",
+	description = [[Verifica na lista de fluxogramas com watchdog os fluxogramas que estão inativos
+além do tempo que deveriam atuar.]],
+	parameters = {
+	},
+	results = {
+		{name="Watchdog de Fluxogramas Atuados", type="STRING[]"},
+	},
+	code = [=[ function()
+		local flowids = {}
+		local now = time()
+		for flowid, limit in pairs(_FLOW_WATCHDOG) do
+			if now > limit then
+				flowids[#flowids+1] = flowid
+			end
+		end
+		for _, flowid in ipairs(flowids) do
+			_FLOW_WATCHDOG[flowid] = nil
+		end
+		return flowids
+	end	]=],
+}
+
+func{ id = "inicia_fluxograma", name = "Inicia Fluxograma",
+	description = [[Inicia Fluxograma com o identificador informado.]],
+	parameters = {
+		{name = "Identificador do Fluxograma", type="STRING"},
+	},
+	results = {
+	},
+	code = [=[ function(flowid)
+		startflow(flowid)
+	end	]=],
+}
+func{ id = "interrompe_fluxograma", name = "Interrompe Fluxograma",
+	description = [[Interrompe Fluxograma com o identificador informado.]],
+	parameters = {
+		{name="Identificador do Fluxogrma", type="STRING"},
+	},
+	results = {
+	},
+	code = [=[ function(flowid)
+		stopflow(flowid)
+	end	]=],
+}
+
+class{ id = "lista_persistente", name = "Lista Persistente", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[Equipamento para armazenar uma lista de valores textuais em disco para que possam ser carregados em uma nova sessão.
+A lista é carregada automaticamente ao inicilaizar a instância da classe e salva ao inserir ou remover um elemento.]],
+	attributes = {
+	},
+	methods = {
+		{ id = "inserir",
+			name        = "Inserir",
+			description = [[Insere um novo elemento no final da lista.
+			Os valores são armazenados como texto.]],
+			parameters = {
+				{ name = "Novo Valor", type = "STRING" },
+			},
+			results = {
+			},
+			code = [===[ function(self, valor)
+				table.insert(self._valores, valor)
+				self:save()
+			end ]===],
+		},
+		{ id = "remover",
+			name        = "Remover",
+			description = [[Remove o elemento na posição informada e retorna.
+Se nenhuma posição for informada, o primeiro elemento da lista será removido.]],
+			parameters = {
+				{ name = "Posição", type = "INTEGER" },
+			},
+			results = {
+			},
+			code = [===[ function(self, posicao)
+				local ret =  table.remove(self._valores, posicao or 1)
+				self:save()
+				return ret
+			end ]===],
+		},
+		{ id = "informar",
+			name        = "Informar",
+			description = [[Informa o valor de determinada posição da lista.
+Se nenhuma posição for passada, indica o valor na última posição.]],
+			parameters = {
+				{ name = "Posição", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor", type = "STRING" },
+			},
+			code = [===[ function(self, posicao)
+				return self._valores[posicao or #self._valores]
+			end ]===],
+		},
+		{ id = "informar_tamanho",
+			name        = "Informar Tamanho",
+			description = [[Informa o tamanho da lsita.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Tamanho", type = "INTEGER" },
+			},
+			code = [===[ function(self)
+				return #self._valores
+			end ]===],
+		},
+	},
+	code = [==[
+		function _CLASS:load()
+			local ret, val = pcall(loadfile,self._filename)
+			self._valores = ret and val() or {}
+		end
+
+		function _CLASS:save()
+			local file = io.open(self._filename, "w")
+			file:write("return {\n")
+			for i, elem in ipairs(self._valores) do file:write(string.format("%q,\n",elem)) end
+			file:write("}\n")
+			file:close()
+		end
+
+		function _CLASS:init()
+			self._filename = tostring(self)..".lua"
+			self:load()
+		end
+	]==]
+}
+class{ id = "filtro_primeira_ordem", name = "Filtro de Primeira Ordem", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "t",
+			name   = "T",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor da constante de tempo do processo.]],
+		},
+		{ id = "k",
+			name   = "K",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor da constante do processo.]],
+		},
+		{ id = "valor_inicial",
+			name   = "Valor Inicial",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor do filtro em sua primeira execução.]],
+		},
+	},
+	methods = {
+		{ id = "rastrear",
+			name        = "Rastrear",
+			description = [[Informa o valor do filtro na última execução.]],
+			parameters = {
+				{ name = "Valor do Processo", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, x)
+						 	self:atualizar_tempos()
+						 	self.y_1 = x
+						 end
+						 ]==============================================================],
+		},
+		{ id = "zerar_filtro",
+			name        = "Zerar Filtro",
+			description = [[Zera os ifnormações do cálculo do filtro.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.y_1 = nil
+							self.t_0 = nil
+							self.t_1 = nil
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_filtrado",
+			name        = "Informar Valor Filtrado",
+			description = [[Informa o valor do filtro na última execução.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Valor filtrado", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self.y_1 or self.valor_inicial
+						 end
+						 ]==============================================================],
+		},
+		{ id = "executar_filtro",
+			name        = "Executar Filtro",
+			description = [[Executa o filtro sobre o valor do processo.
+O filtro de primeira ordem calcula a seguinte equação sobre o valor do processo:
+
+	f(x) = (K*x*dt+T*f[-1])/(T+dt)
+
+Onde K é a constante de ganho adimensional do processo, dt é a diferença de
+tempo, em segundos, entre a avaliação anterior e a atual, T é a constante de
+tempo do processo em segundos e f[-1] é o valor do filtro calculado na
+avaliação anterior.
+Se o valor inicial for nulo, o filtro retorna o próprio valor na primeira vez
+que é executado.]],
+			parameters = {
+				{ name = "Valor do Processo", type = "REAL" },
+			},
+			results = {
+				{ name = "Valor Filtrado", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, x)
+							self:atualizar_tempos()
+							local y
+							if (self.y_1 == nil) then -- primeira execução
+								if (self.valor_inicial) then
+									y = self.valor_inicial
+								else
+									y = x
+								end
+							else
+								local K = self.k
+								local T = self.t
+								local dt = self.t_0 - self.t_1
+								y = (K*x*dt+T*self.y_1)/(T+dt)
+							end
+							self.y_1 = y
+
+							return y
+						 end
+						 ]==============================================================],
+		},
+		{ id = "atualizar_tempos",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.t_1 = self.t_0
+							self.t_0 = time()
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "rampa", name = "Rampa", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[Atua linearmente sobre um ponto para levá-lo ao objetivo no tempo especificado.]],
+	attributes = {
+		{ id = "ponto_atuacao",
+			name   = "Ponto Atuação",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[O ponto a ser alterado em rampa.]],
+		},
+		{ id = "valor_objetivo",
+			name   = "Valor Objetivo",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[O valor final da rampa.]],
+		},
+		{ id = "duracao_rampa",
+			name   = "Duração Rampa",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Duração total da rampa levando o valor inicial até o valor final, incluindo intervalos em patamares.]],
+		},
+		{ id = "intervalo_patamar",
+			name   = "Duração Patamar",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Intervalo de tempo em que o valor do patamar deve ser mantido até a próxima rampa.]],
+		},
+		{ id = "patamares",
+			name   = "Patamares",
+			type   = "INTEGER_POINT",
+			access = "rw",
+			description = [[Número de patamares intermediários entre rampas.]],
+		},
+		{ id = "habilitada",
+			name   = "Habilitada",
+			type   = "BOOLEAN_POINT",
+			access = "grw",
+			description = [[Indica que a rempa pode aplicar um novo valor.
+	Ao atingir o valor objetivo, a própria rampa desabilita essa indicação.]],
+		},
+	},
+	methods = {
+		{ id = "reset",
+			name        = "Reset",
+			description = [[Apaga parâmetros internos da rampa, forçando um reinício.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+				function(self)
+					self.t1 = nil
+					self.v1 = nil
+					self.t2 = nil
+					self.v2 = nil
+
+					self._passo = nil
+					self._valor = nil
+				end
+				]==============================================================],
+		},
+		{ id = "iniciar_rampa",
+			name        = "Iniciar Rampa",
+			description = [[Inicia a rampa, registrando o valor corrente do ponto e o tempo de ínicio.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+				function(self)
+					self.t1 = time()
+					self.v1 = self.ponto_atuacao:read()
+					self.t2 = self.t1+self.duracao_rampa:read()
+					self.v2 = self.valor_objetivo:read()
+				end
+				]==============================================================],
+		},
+		{ id = "iniciar_passo",
+			name        = "Iniciar Passo",
+			description = [[Inicia um passo, registrando os valores e tempos corrente objetivo.]],
+			parameters = {
+				{	name = "Passo", type = "INTEGER" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+				function(self, p)
+					-- passos pares são patamares, impares são rampas
+					local patamar = (math.mod(p,2) == 0)
+
+					local np = self.patamares:read()
+					local nr = np+1
+					local tt = self.duracao_rampa:read()
+					local tp = self.intervalo_patamar:read()
+
+					local tr = (tt - tp*np)/nr
+
+					self.t1 = time()
+					self.v1 = self.ponto_atuacao:read()
+
+					if p == 1 then
+						self._np = np
+						self._nr = nr
+						self._tt = tt
+						self._tp = tp
+						self._tr = tr
+						self._delta_patamar = (self.valor_objetivo:read() - self.v1) / nr
+					elseif
+						(self._np ~= np) or
+						(self._nr ~= nr) or
+						(self._tt ~= tt) or
+						(self._tp ~= tp) or
+						(self._tr ~= tr)
+					then
+						self:reset()
+						return
+					end
+
+					self.t2 = self.t1 + (patamar and tp or tr)
+					self.v2 = self.v1 + (patamar and 0 or self._delta_patamar)
+				end
+				]==============================================================],
+		},
+		{ id = "executar_rampa",
+			name        = "Executar Rampa",
+			description = [[Atualiza o ponto com o valor corrente da rampa em direção ao objetivo.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicação de término", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+				function(self)
+					if not (self.t1 and self.v1 and self.t2 and self.v2) then
+						return true
+					end
+					local t = time()
+					if t >= self.t2 then
+						self._valor = self.v2
+						self.ponto_atuacao:write(self._valor)
+						self.t1 = nil
+						self.v1 = nil
+						self.t2 = nil
+						self.v2 = nil
+						return true
+					end
+					self._valor = ramp(self.v1, self.v2, self.t1, self.t2)
+					self.ponto_atuacao:write(self._valor)
+
+					return false
+				end
+				]==============================================================],
+		},
+		{ id = "executar_rampa_patamares",
+			name        = "Executar Rampa com Patamares",
+			description = [[Realiza uma rampa com paradas em patamares.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicação de término", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+				function(self)
+					if self._passo == nil then
+						self._passo = 0
+					end
+
+					if self.habilitada and ( self.habilitada:read() == false ) then
+						self:reset()
+						return true
+					end
+
+					if self._valor and (math.abs(self.ponto_atuacao:read() - self._valor) > 0.1) then
+						self:reset()
+						return true
+					end
+
+					if self:executar_rampa() then
+						self._passo = self._passo + 1
+						if self._passo > 2*( self.patamares:read() + 1 ) then
+							self:reset()
+							return true
+						else
+							self:iniciar_passo(self._passo)
+						end
+					end
+
+					return false
+				end
+				]==============================================================],
+		},
+	},
+}
+class{ id = "janela_diagnostico", name = "Janela de Diagnóstico", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "fator_positivo",
+			name   = "Fator Positivo",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo aplicado a banda para determinação da violação positiva do limite.]],
+		},
+		{ id = "fator_negativo",
+			name   = "Fator Negativo",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo aplicado a banda para determinação da violação negativa do limite.]],
+		},
+		{ id = "limite_violacao_positiva",
+			name   = "Limite de Violação Positiva",
+			type   = "REAL",
+			access = "",
+			description = [[Limite para grau de violação positiva.]],
+		},
+		{ id = "limite_violacao_negativa",
+			name   = "Limite de Violação Negativa",
+			type   = "REAL",
+			access = "",
+			description = [[Limite para grau de violação negativa.]],
+		},
+		{ id = "tempo",
+			name   = "Tempo",
+			type   = "REAL",
+			access = "g",
+			description = [[Tempo total da janela no qual o cálculo dos graus de violação vai ser feito.]],
+		},
+	},
+	methods = {
+		{ id = "ajustar_tempo",
+			name        = "Ajustar Tempo",
+			description = [[Ajusta o tempo da janela (em segundos).
+Ajustar o tempo da janela invalida a mesma, para sua validade seja reavaliada é necessário inserir um novo dado na janela.]],
+			parameters = {
+				{ name = "Tempo da Janela", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, v)
+							self.valida = false
+							self.tempo:write(v)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "inicializar",
+			name        = "Inicializar",
+			description = [[Inicializa a janela de diagnóstico, apagando quaisquer valores históricos que existam.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							local t_atual = time()
+							self.lista_violacoes = {
+								["+"] = {{valor=0,tempo=t_atual},somatorio=0},
+								["-"] = {{valor=0,tempo=t_atual},somatorio=0},
+							}
+						 end
+						 ]==============================================================],
+		},
+		{ id = "inserir_dado",
+			name        = "Inserir Dado",
+			description = [[Insere um dado à janela.
+
+Esse método realiza o cálculo da violação e o inclui aos somatórios de grau de violação de acordo.
+Os dados que já perderama válidade são removidos.]],
+			parameters = {
+				{ name = "Valor Desejado", type = "REAL" },
+				{ name = "Banda", type = "REAL" },
+				{ name = "Valor Atual", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+				function(self, sp, banda, pv)
+					local lista, fator, val
+					-- insere dado na lista de vilações positiva
+					lista = self.lista_violacoes["+"]
+					fator = self["fator_positivo"]*1
+					val   = self:calcular_violacao(fator, math.max, sp, banda, pv)
+					self:inserir_violacao(lista, val)
+					self:aplicar_janela(lista)
+					-- insere dado na lista de vilações negativa
+					lista = self.lista_violacoes["-"]
+					fator = self["fator_negativo"]*(-1)
+					val   = self:calcular_violacao(fator, math.min, sp, banda, pv)
+					self:inserir_violacao(lista, val)
+					self:aplicar_janela(lista)
+				end
+						]==============================================================],
+		},
+		{ id = "informar_janela_valida",
+			name        = "Informar Janela Válida",
+			description = [[Informa se a janela já está com o número de amostras completo.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Janela Válida", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self.valida or false
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_violacao_positiva",
+			name        = "Informar Violação Positiva",
+			description = [[Informa se o grau de violação positiva ultrapassou o limite definido.
+O grau de violação é comparado como o limite positivo e uma violação é indicada apenas se a janela de diagnóstico for validada.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Ocorreu Violação", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local lista  = self.lista_violacoes["+"]
+							local limite = self.limite_violacao_positiva
+							return self:informar_violacao(lista, limite)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_violacao_negativa",
+			name        = "Informar Violação Negativa",
+			description = [[Informa se o grau de violação positiva ultrapassou o limite definido.
+
+Esse método irá aquisitar um novo valor e aplicar a janela aos valores obtidos.
+O grau de violação é comparado como o limite negativo e uma violação é indicada apenas se o grau
+de violação for maior que o limite e a janela de diagnóstico for válida.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Ocorreu Violação", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local lista  = self.lista_violacoes["-"]
+							local limite = self.limite_violacao_negativa
+							return self:informar_violacao(lista, limite)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_qualquer_violacao",
+			name        = "Informar Qualquer Violação",
+			description = [[Informa se houve violação positiva ou negativa.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Ocorreu Violação", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self:informar_violacao_negativa() or self:informar_violacao_positiva()
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_grau_violacao_positiva",
+			name        = "Informar Grau de Violação Positiva",
+			description = [[Informa o valor do grau de violação positiva.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Grau de Violação", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self:informar_grau_violacao(self.lista_violacoes["+"])
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_grau_violacao_negativa",
+			name        = "Informar Grau de Violação Negativa",
+			description = [[Informa o valor do grau de violação negativa.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Grau de Violação", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self:informar_grau_violacao(self.lista_violacoes["-"])
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_violacao",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self,lista,limite)
+							return self.valida and (self:informar_grau_violacao(lista) > limite)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_grau_violacao",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, lista)
+							return lista.somatorio
+						 end
+						 ]==============================================================],
+		},
+		{ id = "calcular_violacao",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, fator, f_ajuste, sp, banda, pv)
+							return math.abs(f_ajuste(pv-(sp+banda*fator), 0))
+						 end
+						 ]==============================================================],
+		},
+		{ id = "inserir_violacao",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, lista, v)
+							local t_last = lista[#lista].tempo
+							local t_curr = time()
+							local val = v*(t_curr - t_last)
+							table.insert(lista, {valor=val,tempo=t_curr})
+							lista.somatorio = lista.somatorio + val
+						 end
+						 ]==============================================================],
+		},
+		{ id = "aplicar_janela",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, lista)
+							local t_limit = time() - self.tempo
+							local rem = 0
+							for _, violacao in ipairs(lista) do
+								if violacao.tempo < t_limit then
+									lista.somatorio = lista.somatorio - violacao.valor
+									rem = rem + 1
+								else
+									break
+								end
+							end
+							if rem == 0 then
+								self.valida = false
+							else
+								self.valida = true
+								for i=1,rem do table.remove(lista,1) end
+							end
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "superficie_interpolada", name = "Superfície Interpolada", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "fator",
+			name   = "Fator",
+			type   = "REAL",
+			access = "s",
+			description = [[O fator a ser aplicado (multiplicado) ao valor Y, resultante da interpolação.]],
+		},
+		{ id = "extrapolar",
+			name   = "Extrapolar",
+			type   = "BOOLEAN",
+			access = "s",
+			description = [[Indica se o último segmento da curva deve ser extrapolado para valores além dos seus limites.]],
+		},
+		{ id = "z1",
+			name   = "Z1",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_1",
+			name   = "Curva 1",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z1.]],
+		},
+		{ id = "z2",
+			name   = "Z2",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_2",
+			name   = "Curva 2",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z2.]],
+		},
+		{ id = "z3",
+			name   = "Z3",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_3",
+			name   = "Curva 3",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z3.]],
+		},
+		{ id = "z4",
+			name   = "Z4",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_4",
+			name   = "Curva 4",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z4.]],
+		},
+		{ id = "z5",
+			name   = "Z5",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_5",
+			name   = "Curva 5",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z5.]],
+		},
+		{ id = "z6",
+			name   = "Z6",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_6",
+			name   = "Curva 6",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z6.]],
+		},
+		{ id = "z7",
+			name   = "Z7",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_7",
+			name   = "Curva 7",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z7.]],
+		},
+		{ id = "z8",
+			name   = "Z8",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_8",
+			name   = "Curva 8",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z8.]],
+		},
+		{ id = "z9",
+			name   = "Z9",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_9",
+			name   = "Curva 9",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z9.]],
+		},
+		{ id = "z10",
+			name   = "Z10",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_10",
+			name   = "Curva 10",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z10.]],
+		},
+		{ id = "z11",
+			name   = "Z11",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_11",
+			name   = "Curva 11",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z11.]],
+		},
+		{ id = "z12",
+			name   = "Z12",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_12",
+			name   = "Curva 12",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z12.]],
+		},
+		{ id = "z13",
+			name   = "Z13",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_13",
+			name   = "Curva 13",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z13.]],
+		},
+		{ id = "z14",
+			name   = "Z14",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_14",
+			name   = "Curva 14",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z14.]],
+		},
+		{ id = "z15",
+			name   = "Z15",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_15",
+			name   = "Curva 15",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z15.]],
+		},
+		{ id = "z16",
+			name   = "Z16",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_16",
+			name   = "Curva 16",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z16.]],
+		},
+		{ id = "z17",
+			name   = "Z17",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_17",
+			name   = "Curva 17",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z17.]],
+		},
+		{ id = "z18",
+			name   = "Z18",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_18",
+			name   = "Curva 18",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z18.]],
+		},
+		{ id = "z19",
+			name   = "Z19",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_19",
+			name   = "Curva 19",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z19.]],
+		},
+		{ id = "z20",
+			name   = "Z20",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Z, para o qual a curva correspondente é definida.]],
+		},
+		{ id = "curva_20",
+			name   = "Curva 20",
+			type   = "curva_interpolada",
+			access = "",
+			description = [[A curva interpolada que representa a secção da superfície em Z20.]],
+		},
+	},
+	methods = {
+		{ id = "informar_maior_x",
+			name        = "Informar maior X",
+			description = [[Informa, a partir dos valores configurados o maior valor para coordenada X para as curvas da superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Maior Coordenada X", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local maior
+					for i=1,20 do
+						local c_atual = self["curva_"..i]
+						if c_atual then
+							local val = c_atual:informar_maior_x()
+							maior = math.max(val, maior or val)
+						end
+					end
+
+					return maior
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_menor_x",
+			name        = "Informar menor X",
+			description = [[Informa, a partir dos valores configurados o menor valor para coordenada X para as curvas da superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Menor Coordenada X", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local menor
+					for i=1,20 do
+						local c_atual = self["curva_"..i]
+						if c_atual then
+							local val = c_atual:informar_menor_x()
+							menor = math.max(val, menor or val)
+						end
+					end
+
+					return menor
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_maior_z",
+			name        = "Informar maior Z",
+			description = [[Informa, a partir dos valores configurados o maior valor da coordenada Z para a superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Maior Coordenada Z", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local maior
+					for i=1,20 do
+						local atual = self["z"..i]
+						if atual then
+							maior = math.max(atual,maior or atual)
+						end
+					end
+
+					return maior
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_menor_z",
+			name        = "Informar menor Z",
+			description = [[Informa, a partir dos valores configurados o menor valor da coordenada Z para a superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Menor Coordenada Z", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local menor
+					for i=1,20 do
+						local atual = self["z"..i]
+						if atual then
+							menor = math.min(atual,menor or atual)
+						end
+					end
+
+					return menor
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_superficie",
+			name        = "Informar valor da superfície",
+			description = [[Informa o valor da superfície, isto é, o valor Y, correspondente aos valores de X e Z especificados.
+
+Os valores de X e Z fornecidos não precisam ser nenhum dos pontos especificados na definição da supefície e suas curvas,
+pois esta função calcula, através de interpolações lineares, o valor da superfície para os valores de X e Y fornecidos.
+
+Para tal, esta função determina os segmentos que compreendem o valor X fornecido para as curvas que compreendem o valor de Z
+fornecido.
+
+Para o cálculo das interpolações, é usada a equação da reta:
+
+	f(x) = a*x + b
+
+De onde se estabelece que dois pontos consecutivos da definição das curvas não
+devem possuir o mesmo valor de Z, dado que não seria possível estabelecer um valor correto para Y.
+
+Após o cálculo, via interpolacão, do valor da superfície, é aplicado o fator. Ou seja, o valor Y é
+é multiplicado pelo atributo "Fator" e o resultado é retornado como valor da superfície.]],
+			parameters = {
+				{ name = "Valor da coordenada X", type = "REAL" },
+				{ name = "Valor da coordenada Z", type = "REAL" },
+			},
+			results = {
+				{ name = "Valor da coordenada Y", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, x, z)
+							x,z = tonumber(x),tonumber(z)
+							if (not x or not z) then
+								return 0
+							end
+
+							local i, j = self:get_indexes(z)
+							if (not i or not j) then
+								return 0
+							end
+
+							local curva_j = self["curva_"..j]
+
+							local yj = curva_j:informar_valor_curva(x)
+							local y
+							if i ~= j then
+								local curva_i = self["curva_"..i]
+								local yi = curva_i:informar_valor_curva(x)
+								local zi = self["z"..i]
+								local zj = self["z"..j]
+
+								local a = (yj-yi)/(zj-zi)
+								local b = yi-a*zi
+
+								y = (a*z+b)
+							else
+								y = yj
+							end
+
+							local fator = self.fator or 1
+							return y*fator
+						 end
+						 ]==============================================================],
+		},
+		{ id = "get_indexes",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, z)
+							local i, j
+							for p = 1, 20 do
+								local zp = self["z"..p]
+								zp = tonumber(zp)
+								if (zp) then
+									i = j
+									j = p
+									if (zp >= z) then
+										break
+									end
+								end
+							end
+							if not self.extrapolar then
+								local z_min, z_max = self:informar_menor_z(), self:informar_maior_z()
+								if z < z_min or z > z_max then return j,j end
+							end
+							if (j and not i) then
+								for p = j+1, 20 do
+									local zp = self["z"..p]
+									zp = tonumber(zp)
+									if (zp) then
+										i = j
+										j = p
+										break
+									end
+								end
+							end
+							return i, j
+						 end
+						 ]==============================================================],
+		},
+		{ id = "indexar_curva",
+			name        = "Obter curva por índice",
+			description = [[Retorna uma das curvas associadas a superfície utilizando o campo Z como índice.
+Retorna nil caso o índice não seja encontrado na superfície.]],
+			parameters = {
+				{ name = "Índice", type = "REAL" },
+			},
+			results = {
+				{ name = "Curva associada ao índice", type = "curva_interpolada" },
+			},
+			code = [==============================================================[
+						 function(self, idx)
+								local curva
+								for i=1,20 do
+									if idx == self["z"..i] then
+										curva = self["curva_"..i]
+										break
+									end
+								end
+								return curva
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "curva", name = "Curva", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "coef_linear",
+			name   = "Coeficiente Linear",
+			type   = "REAL",
+			access = "gs",
+			description = [[]],
+		},
+		{ id = "t_0",
+			name   = "Tempo Inicial",
+			type   = "REAL",
+			access = "",
+			description = [[]],
+		},
+		{ id = "coef_angular",
+			name   = "Coeficient Angular",
+			type   = "REAL",
+			access = "",
+			description = [[]],
+		},
+		{ id = "inverter",
+			name   = "Inverter",
+			type   = "BOOLEAN",
+			access = "gs",
+			description = [[Inverte o sinal do coeficiente linear, invertendo o sentido da curva.]],
+		},
+	},
+	methods = {
+		{ id = "definir_t_0",
+			name        = "Definir Tempo Inicial",
+			description = [[Define o valor de Tempo Inicial para o tempo atual.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.t_0 = time()
+						 end
+						 ]==============================================================],
+		},
+		{ id = "ajustar_t_0",
+			name        = "Ajustar Tempo Inicial",
+			description = [[Ajusta o valor de Tempo Inicial.]],
+			parameters = {
+				{ name = "Tempo Inicial", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, v)
+							self.t_0 = v
+						 end
+						 ]==============================================================],
+		},
+		{ id = "limpar",
+			name        = "limpar",
+			description = [[Limpa os dados da curva.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, v)
+							self.t_0 = nil
+							self.coef_linear = nil
+							self.inverter = nil
+						 end
+						 ]==============================================================],
+		},
+		{ id = "calcular",
+			name        = "Calcular",
+			description = [[Calcula o valor da curva no tempo atual.
+A fórmula utilizada é:
+
+y(t) = a*t + b
+
+onde,
+	a: coeficiente angular
+	b: coeficiente linear
+	t: tempo atual - tempo inicial
+
+O tempo inicial deve ser definido usando os método "Definir Tempo Inicial" ou "Ajustar Tempo Inicial".
+
+Se o atributo inverter for verdadeiro o valor do de a será considerado -a.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Valor Calculado", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function (self)
+							local a = self.coef_angular
+							a = self.inverter and -a or a
+							local b = self.coef_linear
+							local t = time() - (self.t_0 or 0)
+							return a and b and t and a*t + b
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "curva_interpolada", name = "Curva Interpolada", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "fator",
+			name   = "Fator",
+			type   = "REAL",
+			access = "s",
+			description = [[O fator a ser aplicado (multiplicado) ao valor Y, resultante da interpolação.]],
+		},
+		{ id = "extrapolar",
+			name   = "Extrapolar",
+			type   = "BOOLEAN",
+			access = "s",
+			description = [[Indica se o último segmento da curva deve ser extrapolado para valores além dos seus limites.]],
+		},
+		{ id = "x1",
+			name   = "X1",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y1.]],
+		},
+		{ id = "y1",
+			name   = "Y1",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X1.]],
+		},
+		{ id = "x2",
+			name   = "X2",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y2.]],
+		},
+		{ id = "y2",
+			name   = "Y2",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X2.]],
+		},
+		{ id = "x3",
+			name   = "X3",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y3.]],
+		},
+		{ id = "y3",
+			name   = "Y3",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X3.]],
+		},
+		{ id = "x4",
+			name   = "X4",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y4.]],
+		},
+		{ id = "y4",
+			name   = "Y4",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X4.]],
+		},
+		{ id = "x5",
+			name   = "X5",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y5.]],
+		},
+		{ id = "y5",
+			name   = "Y5",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X5.]],
+		},
+		{ id = "x6",
+			name   = "X6",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y6.]],
+		},
+		{ id = "y6",
+			name   = "Y6",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X6.]],
+		},
+		{ id = "x7",
+			name   = "X7",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y7.]],
+		},
+		{ id = "y7",
+			name   = "Y7",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X7.]],
+		},
+		{ id = "x8",
+			name   = "X8",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y8.]],
+		},
+		{ id = "y8",
+			name   = "Y8",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X8.]],
+		},
+		{ id = "x9",
+			name   = "X9",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y9.]],
+		},
+		{ id = "y9",
+			name   = "Y9",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X9.]],
+		},
+		{ id = "x10",
+			name   = "X10",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y10.]],
+		},
+		{ id = "y10",
+			name   = "Y10",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X10.]],
+		},
+		{ id = "x11",
+			name   = "X11",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y11.]],
+		},
+		{ id = "y11",
+			name   = "Y11",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X11.]],
+		},
+		{ id = "x12",
+			name   = "X12",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y12.]],
+		},
+		{ id = "y12",
+			name   = "Y12",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X12.]],
+		},
+		{ id = "x13",
+			name   = "X13",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y13.]],
+		},
+		{ id = "y13",
+			name   = "Y13",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X13.]],
+		},
+		{ id = "x14",
+			name   = "X14",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y14.]],
+		},
+		{ id = "y14",
+			name   = "Y14",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X14.]],
+		},
+		{ id = "x15",
+			name   = "X15",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y15.]],
+		},
+		{ id = "y15",
+			name   = "Y15",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X15.]],
+		},
+		{ id = "x16",
+			name   = "X16",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y16.]],
+		},
+		{ id = "y16",
+			name   = "Y16",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X16.]],
+		},
+		{ id = "x17",
+			name   = "X17",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y17.]],
+		},
+		{ id = "y17",
+			name   = "Y17",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X17.]],
+		},
+		{ id = "x18",
+			name   = "X18",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y18.]],
+		},
+		{ id = "y18",
+			name   = "Y18",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X18.]],
+		},
+		{ id = "x19",
+			name   = "X19",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y19.]],
+		},
+		{ id = "y19",
+			name   = "Y19",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X19.]],
+		},
+		{ id = "x20",
+			name   = "X20",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em X, cujo valor correspondente em Y é dado pelo atributo Y20.]],
+		},
+		{ id = "y20",
+			name   = "Y20",
+			type   = "REAL",
+			access = "",
+			description = [[O valor em Y, cujo valor correspondente em X é dado pelo atributo X20.]],
+		},
+	},
+	methods = {
+		{ id = "informar_x",
+			name        = "Informar X",
+			description = [[Informa o valor de X para um dado índice (entre 1 e 20).]],
+			parameters = {
+				{ name = "Índice da coordenada X a ser informada", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Coordenada X", type = "INTEGER" },
+			},
+			code = [==============================================================[
+						 function(self, i)
+							i = tonumber(i) or 0
+							i = math.round(i)
+							if (i<1 or i>20) then
+								return
+							end
+							return self["x"..i]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_y",
+			name        = "Informar Y",
+			description = [[Informa o valor de Y para um dado índice (entre 1 e 20).]],
+			parameters = {
+				{ name = "Índice da coordenada Y a ser informada", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Coordenada Y", type = "INTEGER" },
+			},
+			code = [==============================================================[
+						 function(self, i)
+							i = tonumber(i) or 0
+							i = math.round(i)
+							if (i<1 or i>20) then
+								return
+							end
+							return self["y"..i]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "ajustar_x",
+			name        = "Ajustar X",
+			description = [[Ajusta o valor de X para um dado índice (entre 1 e 20).
+Todo índice que tenha um valor X associado também deve possuir um valor Y, mas
+não é necessário que todos os índices tenham valores.
+Além disso, pode haver saltos entre os índices utilizados.]],
+			parameters = {
+				{ name = "Índice da coordenada X a ser ajustada", type = "INTEGER" },
+				{ name = "Valor de X", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, i, x)
+							i = tonumber(i) or 0
+							i = math.round(i)
+							if (i<1 or i>20) then
+								return
+							end
+							self["x"..i] = (x)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "ajustar_y",
+			name        = "Ajustar Y",
+			description = [[Ajusta o valor de Y para um dado índice (entre 1 e 20).
+Todo índice que tenha um valor X associado também deve possuir um valor Y, mas
+não é necessário que todos os índices tenham valores.
+Além disso, pode haver saltos entre os índices utilizados.]],
+			parameters = {
+				{ name = "Índice da coordenada Y a ser ajustada", type = "INTEGER" },
+				{ name = "Valor de Y", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, i, y)
+							i = tonumber(i) or 0
+							i = math.round(i)
+							if (i<1 or i>20) then
+								return
+							end
+							self["y"..i] = (y)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_maior_x",
+			name        = "Informar maior X",
+			description = [[Informa, a partir dos valores configurados o maior valor da coordenada X para a superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Maior Coordenada X", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local maior
+					for i=1,20 do
+						local atual = self["x"..i]
+						if atual then
+							maior = math.max(atual,maior or atual)
+						end
+					end
+
+					return maior
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_menor_x",
+			name        = "Informar menor X",
+			description = [[Informa, a partir dos valores configurados o menor valor da coordenada X para a superfície.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Menor Coordenada X", type = "REAL" },
+			},
+			code = [==============================================================[
+				function(self)
+					local menor
+					for i=1,20 do
+						local atual = self["x"..i]
+						if atual then
+							menor = math.min(atual,menor or atual)
+						end
+					end
+
+					return menor
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_curva",
+			name        = "Informar valor da curva",
+			description = [[Informa o valor da curva, isto é, o valor Y, correspondente ao valor X especificado.
+
+O valor de X fornecido não precisa ser nenhum dos pontos especificados na definição da curva, pois esta função calcula,
+através de interpolação linear, o valor da curva para o valor X fornecido.
+
+Para tal, esta função determina o segmento da definição da curva que compreende o valor X fornecido, ou um dos segmentos dos extremos,
+caso o X fornecido seja menor que todos os valores da definição, ou maior que todos.
+
+Para o cálculo da interpolação, é usada a equação da reta:
+
+	f(x) = a*x + b
+
+De onde se estabelece que dois pontos consecutivos da definição da curva não
+devem possuir o mesmo valor de X, dado que não seria possível estabelecer um valor correto para Y.
+
+Após o cálculo, via interpolacão, do valor da curva, é aplicado o fator. Ou seja, o valor Y é
+é multiplicado pelo atributo "Fator" e o resultado é retornado como valor da curva.]],
+			parameters = {
+				{ name = "Valor da coordenada X", type = "REAL" },
+			},
+			results = {
+				{ name = "Valor da coordenada Y", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, x)
+							x = tonumber(x)
+							if (not x) then
+								return 0
+							end
+							local i, j = self:get_indexes(x)
+							if (not i or not j) then
+								return 0
+							end
+
+							local yj = self["y"..j]
+
+							local y
+							if i ~= j then
+								-- equação da reta: y = A*x + B
+								-- considerando (xi,yi) e (xj,yj) pontos da reta, temos:
+								-- B = yi - A*xi
+								-- A = (yj-yi)/(xj-xi)
+								local yi = self["y"..i]
+								local xi = self["x"..i]
+								local xj = self["x"..j]
+								local a = (yj-yi)/(xj-xi)
+								local b = yi-a*xi
+								y = a*x + b
+							else
+								y = yj
+							end
+
+							local fator = self.fator or 1
+							return y*fator
+						 end
+						 ]==============================================================],
+		},
+		{ id = "get_indexes",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, x)
+							local i, j
+							for p = 1, 20 do
+								local xp = self["x"..p]
+								xp = tonumber(xp)
+								if (xp) then
+									i = j
+									j = p
+									if (xp >= x) then
+										break
+									end
+								end
+							end
+							if not self.extrapolar then
+								local x_min, x_max = self:informar_menor_x(), self:informar_maior_x()
+								if x < x_min or x > x_max then return j,j end
+							end
+							if (j and not i) then
+								for p = j+1, 20 do
+									local xp = self["x"..p]
+									xp = tonumber(xp)
+									if (xp) then
+										i = j
+										j = p
+										break
+									end
+								end
+							end
+							return i, j
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "media_movel", name = "Média Móvel", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "numero_amostras",
+			name   = "Número Amostras",
+			type   = "INTEGER",
+			access = "gs",
+			description = [[O número de amostras da média móvel.]],
+		},
+		{ id = "valor_inicial",
+			name   = "Valor Inicial",
+			type   = "REAL",
+			access = "gs",
+			description = [[Valor Inicial enquanto a média não tiver amostras.]],
+		},
+	},
+	methods = {
+		{ id = "inicializar",	name = "Inicializar",
+			description = [[Inicializa a média móvel, apagando quaisquer valores históricos que existam.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.l = {}
+							self.i = 0
+						 end
+						 ]==============================================================],
+		},
+		{ id = "executar", name = "Executar",
+			description = [[Aplica a média móvel ao valor de entrada.
+Esta função calcula a média móvel dos valores fornecidos, retornando o valor
+inicial até atingir o número de amostras especificado.]],
+			parameters = {
+				{ name = "Valor de entrada", type = "REAL" },
+			},
+			results = {
+				{ name = "Média", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, v)
+							if (self.l == nil) then	self:inicializar() end
+							local n = self.numero_amostras
+							table.insert(self.l, 1, v)
+
+							-- apaga amostras antigas
+							while #self.l > n do
+								table.remove(self.l)
+							end
+
+
+							return average(self.l)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_media", name = "Informar Média",
+			description = [[Retorna média dos valores incluídos na média.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Média", type = "REAL" },
+			},
+			code = [==============================================================[
+						function(self)
+							if not (self.l == nil) then
+								return average(self.l)
+							else
+								return nil
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "informar_amostragem_completa",
+			name = "Informar amostragem completa",
+			description = [[Informa se o as amostras obtidas são o suficiente para calcular a média.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Amostragem completa", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						function(self)
+							if (self.l ~= nil) then
+								local n = #self.l
+								return n >= self.numero_amostras
+							else
+								return nil
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_historico",
+			name        = "Informar valor histórico",
+			description = [[Retorna o valor inserido há N passos.
+Se um N não for informado retorna o valor mais antigo.]],
+			parameters = {
+				{ name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor histórico", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, n)
+							return self.l and self.l[n or #self.l]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_maior_desvio",
+			name = "Informar maior Desvio",
+			description = [[Retorna o maior diferença entre uma amostra e a média.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Maior erro da média", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, n)
+							local m = self:informar_media()
+							local e = 0
+							for n = 1, #self.l do
+								e = math.max(e, math.abs(self.l[n]-m))
+							end
+							return e
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_desvio_padrao",
+			name = "Informar Desvio Padrão",
+			description = [[Calcula o desvio padrão para a média.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Desvio Padrão", type = "REAL" },
+			},
+			code = [==============================================================[
+						function(self, n)
+							if self.l ~= nil then
+								return devsq(self.l)
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_min",
+			name = "Informar Valor Mínimo",
+			description = [[Informa o menor valor dentre as N últimas amostras.
+	Se o parâmetro N for 'nil', todas as amostras serão consideradas.]],
+			parameters = {
+				{	name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor Mínimo", type = "REAL" },
+			},
+			code = [==============================================================[
+						function(self, n)
+							if self.l ~= nil then
+								local ret = math.huge
+
+								local ultimo = #self.l
+								local primeiro = 1
+								if n and (n > 0) and (n < ultimo) then
+									ultimo = n
+								end
+
+								for i = primeiro, ultimo do
+									ret = math.min(ret, self.l[i])
+								end
+
+								return ret
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "informar_valor_max",
+			name = "Informar Valor Máximo",
+			description = [[Informa o maior valor dentre as N últimas amostras.
+	Se o parâmetro N for 'nil', todas as amostras serão consideradas.]],
+			parameters = {
+				{	name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor Máximo", type = "REAL" },
+			},
+			code = [==============================================================[
+						function(self, n)
+							if self.l ~= nil then
+								local ret = -math.huge
+
+								local ultimo = #self.l
+								local primeiro = 1
+								if n and (n > 0) and (n < ultimo) then
+									ultimo = n
+								end
+
+								for i = primeiro, ultimo do
+									ret = math.max(ret, self.l[i])
+								end
+
+								return ret
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "informar_cruzamentos",
+			name = "Informar Cruzamentos",
+			description = [[Informa o número de vezes que o valor das amostras cruza o parâmetro 'Patamar'.
+	Opcionalmente um parâmetro 'Banda' pode ser definido e os cruzamentos serão considerados quando a variável cruzar,
+	alternadamente Patamar+Banda e Patamar-Banda.
+	Adicionalmente, é possível definiro número das últimas amostras que devem ]],
+			parameters = {
+				{	name = "Patamar", type = "REAL" },
+				{	name = "Banda", type = "REAL" },
+				{	name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Cruzamentos", type = "INTEGER" },
+			},
+			code = [==============================================================[
+						function(self, p, banda, n)
+							local cruzamentos = 0
+							if self.l ~= nil then
+
+								local ultimo = #self.l
+								local primeiro = 1
+								if n and (n > 0) and (n < ultimo) then
+									ultimo = n
+								end
+
+								local flag -- true quando cruzamento positivo, false quando cruzamento negativo
+
+								for i = primeiro, ultimo do
+									local v = self.l[i]
+
+									if (flag ~= true) and (v > p + banda) then
+										cruzamentos = cruzamentos + 1
+										flag = true
+									end
+									if (flag ~= false) and (v < p - banda) then
+										flag = false
+									end
+								end
+								return cruzamentos
+							end
+						end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "tempo_morto", name = "Tempo Morto", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "tempo_morto",
+			name   = "Tempo Morto",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor de tempo morto (em segundos). Considerar como apenas valor real.]],
+		},
+		{ id = "tempo_morto_sim",
+			name   = "Tempo Morto Simulado",
+			type   = "REAL_POINT",
+			access = "grw",
+			description = [[O valor de tempo morto (em segundos). Considerar como ponto real. Existe uma TAG geralmente simulada para representar esse valor.]],
+		},
+		{ id = "valor_inicial",
+			name   = "Valor Inicial",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor inicial da função até atingir o tempo morto.]],
+		},
+	},
+	methods = {
+		{ id = "inicializar",
+			name        = "Inicializar",
+			description = [[Inicializa o tempo morto, apagando quaisquer valores históricos que existam.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.i = nil
+							self.f = nil
+						 end
+						 ]==============================================================],
+		},
+		{ id = "executar",
+			name        = "Executar",
+			description = [[Aplica o tempo morto ao valor de entrada.
+Esta função cria uma defasagem nos valores fornecidos, retornando o valor
+inicial durante o tempo morto especificado.
+Após passado o tempo morto definido, os valores fornecidos anteriormente
+começam a ser retornados. O valor retornado é o valor cujo momento de
+inclusão tenha sido o mais próximo, mas não menor, que o tempo morto.
+
+Todos os valores armazenados associados a tempos anteriores ao valor
+retornado são automaticamente descartados.
+
+Dado esse critério, caso a execução desta função seja feita em uma
+freqüência variável, valores armazenados podem ser descartados sem
+nunca serem retornados.]],
+			parameters = {
+				{ name = "Valor de Entrada", type = "REAL" },
+			},
+			results = {
+				{ name = "Valor", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, v)
+							local t = time()
+							self:armazena_valor(v, t)
+							local dt = t - self.i.t
+							if self.tempo_morto_sim then
+								self.tempo_morto = self.tempo_morto_sim:read() 
+							end
+							if (dt < self.tempo_morto) then
+								return self.valor_inicial
+							else
+								return self:recupera_valor(t)
+							end
+						 end
+						 ]==============================================================],
+		},
+		{ id = "armazena_valor",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, v, t)
+							local n = {
+								v = v,
+								t = t,
+							}
+							if self.f then
+								self.f.next = n
+							else
+								self.i = n
+							end
+							self.f = n
+						 end
+						 ]==============================================================],
+		},
+		{ id = "recupera_valor",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, t)
+							local ii = self.i.next
+							if self.tempo_morto_sim then
+								self.tempo_morto = self.tempo_morto_sim:read() 
+							end
+							while (ii and t-ii.t>=self.tempo_morto) do
+								self.i = ii
+								ii = ii.next
+							end
+							return self.i.v
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "linha_mensagem", name = "Linha Mensagem", group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "linha_texto",
+			name   = "Linha Texto",
+			type   = "STRING_POINT",
+			access = "wr",
+			description = [[]],
+		},
+		{ id = "nova_mensagem",
+			name   = "Nova Mensagem",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Quando configurado, esse ponto é ativado toda vez que uma nova linha
+ for definida ao usar o método escrever.]],
+		},
+	},
+	methods = {
+		{ id = "escrever",
+			name        = "Escrever",
+			description = [[Escreve o valor da nova mensagem na Linha Texto e ativa, quando configurado, o indicador de nova mensagem.
+	Esse método não irá apagar a indicação de nova mensagem.]],
+			parameters = {
+				{ name = "Mensagem", type = "STRING"},
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, m)
+								if self.nova_mensagem then
+									self.nova_mensagem:write(true)
+								end
+
+								self.linha_texto:write(m)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "comparar",
+			name        = "Comparar",
+			description = [[Compara o valor atual da linha mensagem com o texto passado.]],
+			parameters = {
+				{ name = "Texto", type = "STRING"},
+			},
+			results = {
+				{ name = "Iguais", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, txt)
+								return self.linha_texto:read() == txt
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "temporizador", name = "Temporizador", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "tempo",
+			name   = "Tempo",
+			type   = "REAL",
+			access = "",
+			description = [[Tempo a ser contado.]],
+		},
+	},
+	methods = {
+		{ id = "informar_termino",
+			name        = "Informar Término",
+			description = [[Informa o termino da temporização.
+Se o temporizador não for inicializado, a temporização será considerada terminada.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Terminou", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local t_atual = time()
+							if self.t_init then
+								if self.t_temp and (t_atual >= self.t_init + self.t_temp) then
+									return true
+								else
+									return false
+								end
+							end
+							return true
+						 end
+						 ]==============================================================],
+		},
+		{ id = "iniciar_temporizacao",
+			name        = "Iniciar Temporização",
+			description = [[Inicia a temporização.
+O temporizador deve ser resetado antes de iniciar uma nova contagem.
+Uma nova temporização não interfere com a temporização corrente.]],
+			parameters = {
+				{ name = "tempo", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, t)
+							t = tonumber(t) or self.tempo
+							if self.t_temp ~= t then
+								self.t_temp = t
+								self.t_init = time()
+							end
+						 end
+						 ]==============================================================],
+		},
+		{ id = "reiniciar_temporizacao",
+			name        = "Reiniciar Temporização",
+			description = [[Reinicia a temporização.
+Apaga a contagem e em seguida inicia novamente, reiniciando a temporização.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self,t)
+							self.t_init = time()
+						 end
+						 ]==============================================================],
+		},
+		{ id = "resetar_temporizacao",
+			name        = "Apagar Temporização",
+			description = [[Apaga a temporização.
+Apaga a contagem, permitindo iniciar uma nova temporização.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.t_temp = nil
+							self.t_init = nil
+						 end
+						 ]==============================================================],
+		},
+		{ id = "consultar_temporizacao",
+			name        = "Consultar Temporização",
+			description = [[Verifica se o tempo informado já foi vencido pela temporização.]],
+			parameters = {
+        {name="tempo", type="REAL"}
+			},
+			results = {
+        {name="Tempo vencido", type = "BOOLEAN"}
+			},
+			code = [==============================================================[
+						 function(self, t)
+							return self.t_init and ( (self.t_init + t) > time() ) or false
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "valvula_on_off",	name  = "Válvula On/Off",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "indicacao_aberto",
+			name   = "Indicação aberto",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_fechado",
+			name   = "Indicação fechado",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_falha",
+			name   = "Indicação falha",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "comando_abrir",
+			name   = "Comando abrir",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "comando_fechar",
+			name   = "Comando fechar",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "tempo_movimento",
+			name   = "Tempo movimento",
+			type   = "INTEGER",
+			access = "",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id = "informar_aberta",
+			name        = "Informar aberta",
+			description = [[Informa se a válvula está aberta.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicativo de válvula aberta", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local opened = self.indicacao_aberto  and self.indicacao_aberto:read()
+							local closed = self.indicacao_fechado and self.indicacao_fechado:read()
+							local failed = self.indicacao_falha   and self.indicacao_falha:read()
+							if opened ~= nil then
+								return opened and not closed and not failed
+							else
+								return not closed and not failed
+							end
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_fechada",
+			name        = "Informar fechada",
+			description = [[Informa se a válvula está fechada.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicativo de válvula fechada", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local opened = self.indicacao_aberto  and self.indicacao_aberto:read()
+							local closed = self.indicacao_fechado and self.indicacao_fechado:read()
+							local failed = self.indicacao_falha   and self.indicacao_falha:read()
+							if closed ~= nil then
+								return closed and not opened and not failed
+							else
+								return not opened and not failed
+							end
+						 end
+						 ]==============================================================],
+		},
+		{ id = "abrir",
+			name        = "Abrir",
+			description = [[Tenta abrir a válvula.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, n)
+							local t = self.tempo_movimento or 0
+							local ponto, valor = self.comando_abrir, true
+							if ponto == nil then
+								ponto, valor = self.comando_fechar, false
+							end
+							while n > 0 do
+								ponto:write(valor)
+								sleep(t)
+								if self:informar_aberta() then
+									return true
+								end
+								n = n - 1
+							end
+							return false
+						 end
+						 ]==============================================================],
+		},
+		{ id = "fechar",
+			name        = "Fechar",
+			description = [[Tenta fechar a válvula.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, n)
+							local t = self.tempo_movimento or 0
+							local ponto, valor = self.comando_fechar, true
+							if ponto == nil then
+								ponto, valor = self.comando_abrir, false
+							end
+							while n > 0 do
+								ponto:write(valor)
+								sleep(t)
+								if self:informar_fechada() then
+									return true
+								end
+								n = n - 1
+							end
+							return false
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "sintonias_controlador", name = "Sintonias Controlador", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[Classe para armazenar sintonias específicas para controlador]],
+	attributes = {
+		{ id = "rotulo_1",
+			name   = "Rótulo 1",
+			type   = "STRING",
+			access = "",
+			description = [[Rótulo da sintonia 1.]],
+		},
+		{ id = "kp_1",
+			name   = "KP 1",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho proporcional (KP) da sintonia 1.]],
+		},
+		{ id = "ki_1",
+			name   = "KI 1",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho integral (KI) da sintonia 1.]],
+		},
+		{ id = "kd_1",
+			name   = "KD 1",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho derivativo (KD) da sintonia 1.]],
+		},
+		{ id = "rotulo_2",
+			name   = "Rótulo 2",
+			type   = "STRING",
+			access = "",
+			description = [[Rótulo da sintonia 2.]],
+		},
+		{ id = "kp_2",
+			name   = "KP 2",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho proporcional (KP) da sintonia 2.]],
+		},
+		{ id = "ki_2",
+			name   = "KI 2",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho integral (KI) da sintonia 2.]],
+		},
+		{ id = "kd_2",
+			name   = "KD 2",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho derivativo (KD) da sintonia 2.]],
+		},
+		{ id = "rotulo_3",
+			name   = "Rótulo 3",
+			type   = "STRING",
+			access = "",
+			description = [[Rótulo da sintonia 3.]],
+		},
+		{ id = "kp_3",
+			name   = "KP 3",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho proporcional (KP) da sintonia 3.]],
+		},
+		{ id = "ki_3",
+			name   = "KI 3",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho integral (KI) da sintonia 3.]],
+		},
+		{ id = "kd_3",
+			name   = "KD 3",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[Ponto que define o ganho derivativo (KD) da sintonia 3.]],
+		},
+	},
+	methods = {
+		{ id = "informar_kp",
+			name        = "Informar KP",
+			description = [[Retorna o ganho proporcional para a sintonia como o índice do parâmetro. Se não houver ponto definido para o ganho proporcional, retorna nil.]],
+			parameters = {
+				{ name = "Índice de sintonia", type = "INTEGER" },
+			},
+			results = {
+				{ name = "KP", type = "REAL"},
+			},
+			code =
+[==============================================================[
+function(self, i)
+local kp = self["kp_"..i]
+return kp and kp:read()
+end
+]==============================================================],
+		},
+		{ id = "informar_ki",
+			name        = "Informar KI",
+			description = [[Retorna o ganho proporcional para a sintonia como o índice do parâmetro. Se não houver ponto definido para o ganho integral, retorna nil.]],
+			parameters = {
+				{ name = "Índice de sintonia", type = "INTEGER" },
+			},
+			results = {
+				{ name = "KI", type = "REAL"},
+			},
+			code =
+[==============================================================[
+function(self, i)
+local ki = self["ki_"..i]
+return ki and ki:read()
+end
+]==============================================================],
+		},
+		{ id = "informar_kd",
+			name        = "Informar KD",
+			description = [[Retorna o ganho proporcional para a sintonia como o índice do parâmetro. Se não houver ponto definido para o ganho derivativo, retorna nil.]],
+			parameters = {
+				{ name = "Índice de sintonia", type = "INTEGER" },
+			},
+			results = {
+				{ name = "KD", type = "REAL"},
+			},
+			code =
+[==============================================================[
+function(self, i)
+local kd = self["kd_"..i]
+return kd and kd:read()
+end
+]==============================================================],
+		},
+		{ id = "obter_indice_sintonia",
+			name        = "Obter índice de sintonia",
+			description = [[Retorna o índice da sintonia com o rótulo informado. Se o rótulo não for definido para nenhuma sintonia, retorna nil.]],
+			parameters = {
+				{ name = "Rótulo de sintonia", type = "BOOLEAN" },
+			},
+			results = {
+				{ name = "Índice de sintonia", type = "INTEGER" },
+			},
+			code =
+[==============================================================[
+function(self, label)
+for idx=1, 3 do
+	if self["rotulo_"..idx]==label then return idx end
+end
+return nil
+end
+]==============================================================],
+		},
+	},
+}
+class{ id = "indicador", name = "Indicador", group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "variavel",
+			name   = "Variável",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[]],
+		},
+	},
+	methods = {
+	},
+}
+class{ id = "controlador", name = "Controlador PID", group = "",
+	bases = {},
+	description = [[Modela as variáveis e sintonia de um algoritmo controlador PID que executa no supervisório.]],
+	attributes = {
+		{ id = "pv",
+			name   = "PV",
+			type   = "REAL_POINT",
+			access = "rwg",
+			description = [[Ponto que define a variável de processo (PV).]],
+		},
+		{ id = "sp",
+			name   = "SP",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define a variável de ajuste (SP).]],
+		},
+		{ id = "sp_escrita",
+			name   = "SP de Escrita",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define a variável de ajuste (SP). Ponto apenas para escrita do SP. Usado quando o ponto de leitura do SP é diferente do ponto de escrita do SP do mesmo controlador.]],
+		},
+		{ id = "mv",
+			name   = "MV",
+			type   = "REAL_POINT",
+			access = "rwg",
+			description = [[Ponto que define a variável manipulada (MV).]],
+		},
+		{ id = "kp",
+			name   = "KP",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho proporcional (KP).]],
+		},
+		{ id = "ki",
+			name   = "KI",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho integral (KI).]],
+		},
+		{ id = "kd",
+			name   = "KD",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho derivativo (KD).]],
+		},
+		{ id = "tag_modo",
+			name   = "Tag do modo",
+			type   = "STRING",
+			access = "",
+			description = [[Tag do ponto que indica o modo do PID (o ponto deve ser criado manualmente na respectiva classe).]],
+		},
+		{ id = "valor_manual",
+			name   = "Valor manual",
+			type   = "STRING",
+			access = "",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo manual.]],
+		},
+		{ id = "valor_auto",
+			name   = "Valor automático",
+			type   = "STRING",
+			access = "",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo automático.]],
+		},
+		{ id = "valor_cascata",
+			name   = "Valor cascata",
+			type   = "STRING",
+			access = "",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo cascata.]],
+		},
+		{ id = "valor_host",
+			name   = "Valor host",
+			type   = "STRING",
+			access = "",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo host.]],
+		},
+		{ id = "tipo_valor_modo",
+			name   = "Tipo do valor modo",
+			type   = "STRING",
+			access = "",
+			description = [[Tipo (Lua) do valor que determina o modo de funcionamento do PID.]],
+		},
+		{ id = "sintonias",
+			name   = "Sintonias",
+			type   = "sintonias_controlador",
+			access = "g",
+			description = [[Sintonias específicas para o controlador.]],
+		},
+		{ id = "sp_seg",
+			name   = "SP de Segurança",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define um valor novo para o SP. Geralmente, corresponde ao valor que o SP irá caminhar em situações de segurança ou de acordo com a lógica em questão.]],
+		},
+	},
+	methods = {
+		{ id = "aplicar_sintonia",
+			name        = "Aplicar sintonia",
+			description = [[Aplica sintonia ao controlador.]],
+			parameters = {
+				{ name = "Rótulo de sintonia", type = "STRING" },
+			},
+			results = {
+				{ name = "Sucesso", type = "BOOLEAN" },
+			},
+			code =
+[==============================================================[
+function(self, label)
+local sintonias = self.sintonias
+local n = sintonias:obter_indice_sintonia(label)
+
+if n then
+	local kp = sintonias:informar_kp(n)
+	local ki = sintonias:informar_ki(n)
+	local kd = sintonias:informar_kd(n)
+
+	if kp and self.kp then self.kp:write(kp) end
+	if ki and self.ki then self.ki:write(ki) end
+	if kd and self.kd then self.kd:write(kd) end
+
+	return true
+else
+	return false
+end
+end
+]==============================================================],
+		},
+		{ id = "informar_erro",
+			name        = "Informar erro",
+			description = [[Informa o erro do controlador considerando:
+  Erro = PV - SP]],
+			parameters = {
+			},
+			results = {
+				{ name = "Erro", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self)
+								return self.pv:read()-self.sp:read()
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_manual",
+			name        = "Informar modo manual",
+			description = [[Informa se o controlador está em modo manual.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Modo manual", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local modo   = tostring(getpoint(self.tag_modo))
+							local manual = self.valor_manual
+							return modo == manual
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_auto",
+			name        = "Informar modo automático",
+			description = [[Informa se o controlador está em modo automático.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Modo automático", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local modo = tostring(getpoint(self.tag_modo))
+							local auto = self.valor_auto
+							return modo == auto
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_host",
+			name        = "Informar modo host",
+			description = [[Informa se o controlador está em modo host.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Modo host", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local modo = tostring(getpoint(self.tag_modo))
+							local host = self.valor_host
+							return modo == host
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_cascata",
+			name        = "Informar modo cascata",
+			description = [[Informa se o controlador está em modo cascata.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Modo cascata", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							local modo   =
+								tostring(getpoint(self.tag_modo))
+							local cascata = self.valor_cascata
+							return modo == cascata
+						 end
+						 ]==============================================================],
+		},
+		{ id = "converter_modo",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self,v)
+							local typ = self.tipo_valor_modo
+							if typ == "boolean" then
+								if v == "false"
+									then v = false
+									else v = true
+								end
+							elseif typ == "number" then v = tonumber(v) end
+							return v
+						 end
+						 ]==============================================================],
+		},
+		{ id = "ajustar_modo",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self,v,n,t)
+							n = tonumber(n) or 0
+							t = tonumber(t) or 0
+							local tag = self.tag_modo
+							for i=1, n do
+								setpoint(tag,v)
+								if t > 0 then sleep(t) end
+								if getpoint(tag) == v then return true end
+							end
+							return false
+						 end
+						 ]==============================================================],
+		},
+		{ id = "definir_modo_manual",
+			name        = "Definir em Modo Manual",
+			description = [[Define o modo de funcionamento do PID como manual.
+É permitido definir o número de tentativas e o tempo de espera para verificação do valor definido.
+Se o tempo de espera for definido como zero a verificação é feita sem interromper a chamada do método.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+				{ name = "Tempo de espera", type = "REAL" },
+			},
+			results = {
+				{ name = "Definido corretamente", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self,n,t)
+							local manual = self.valor_manual
+							local v = self:converter_modo(manual)
+							return self:ajustar_modo(v, n, t)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "definir_modo_automatico",
+			name        = "Definir em Modo Automático",
+			description = [[Define o modo de funcionamento do PID como automático.
+É permitido definir o número de tentativas e o tempo de espera para verificação do valor definido.
+Se o tempo de espera for definido como zero a verificação é feita sem interromper a chamada do método.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+				{ name = "Tempo de espera", type = "REAL" },
+			},
+			results = {
+				{ name = "Definido corretamente", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self,n,t)
+							local auto = self.valor_auto
+							local v = self:converter_modo(auto)
+							return self:ajustar_modo(v, n, t)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "definir_modo_cascata",
+			name        = "Definir em Modo Cascata",
+			description = [[Define o modo de funcionamento do PID como cascata.
+É permitido definir o número de tentativas e o tempo de espera para verificação do valor definido.
+Se o tempo de espera for definido como zero a verificação é feita sem interromper a chamada do método.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+				{ name = "Tempo de espera", type = "REAL" },
+			},
+			results = {
+				{ name = "Definido corretamente", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self,n,t)
+							local cascata = self.valor_cascata
+							local v = self:converter_modo(cascata)
+							return self:ajustar_modo(v, n, t)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "aplicar_delta_mv",
+			name        = "Aplicar variação na MV",
+			description =
+[[Aplica a variação passada por parâmetro na MV.
+Esse método executa com o controlador PID em modo manual.
+Se o parâmetro Partir for verdadeiro passa o controlador para automático independente do modo anterior.
+O parâmetro percentual informa que o valor da variação é um percentual da MV atual que deve ser aplicado.]],
+			parameters = {
+				{name = "Variação", type = "REAL"},
+				{name = "Partir", type = "BOOLEAN"},
+				{name = "Percentual", type = "BOOLEAN"},
+			},
+			results = {
+				{name = "Variação aplicada", type = "REAL"},
+			},
+			code = [==============================================================[
+						 function(self, dMV, run, p)
+							local mv = self.mv:read()
+							local new_mv
+							local recover_auto = false
+							if not self:informar_manual() then
+								self:definir_modo_manual(2, 3)
+								recover_auto = true
+							end
+							if p then
+								new_mv = mv*(1+dMV/100)
+							else
+								new_mv = mv+dMV
+							end
+							self.mv:write(new_mv)
+							if recover_auto or run then
+								self:definir_modo_automatico(1, 0)
+							end
+							return new_mv - mv
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "disjuntor", name  = "Disjuntor",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando_abrir",
+			name   = "Comando abrir",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Transição de 0 para 1 neste ponto abre o disjuntor.]],
+		},
+		{ id = "comando_fechar",
+			name   = "Comando fechar",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Transição de 0 para 1 neste ponto fecha o disjuntor.]],
+		},
+		{ id = "indicacao_fechado",
+			name   = "Indicação fechado",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[Indicativo do disjuntor fechado.]],
+		},
+		{ id = "tempo_transicao",
+			name   = "Tempo Transição",
+			type   = "REAL",
+			access = "",
+			description = [[Tempo entre as escritas de 0 e 1 para forçar a transição.]],
+		},
+	},
+	methods = {
+		{ id = "abrir",
+			name        = "Abrir",
+			description = [[Abre o disjuntor, forçando uma transição no ponto correspondente.]],
+			parameters = {
+				{ name = "Tempo para verificação (s)", type = "REAL" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, t)
+							t = tonumber(t) or 0
+							self.comando_abrir:write(false)
+							sleep(self.tempo_transicao)
+							self.comando_abrir:write(true)
+							if (t > 0) then
+								sleep(t)
+								return self:informar_aberto()
+							end
+							return true
+						 end
+						 ]==============================================================],
+		},
+		{ id = "fechar",
+			name        = "Fechar",
+			description = [[Fecha o disjuntor, forçando uma transição no ponto correspondente.]],
+			parameters = {
+				{ name = "Tempo para verificação (s)", type = "REAL" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, t)
+							t = tonumber(t) or 0
+							self.comando_fechar:write(false)
+							sleep(self.tempo_transicao)
+							self.comando_fechar:write(true)
+							if (t > 0) then
+								sleep(t)
+								return self.indicacao_fechado:read()
+							end
+							return true
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_aberto",
+			name        = "Informar aberto",
+			description = [[Informa que o disjuntor está aberto.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicação de aberto", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return not self.indicacao_fechado:read()
+						 end
+						 ]==============================================================],
+		},
+		{ id = "atuar",
+			name        = "",
+			description = [[MÉTODO PARA TESTES: MANIPULA A INDICAÇÃO DE LIGADO EM FUNÇÃO DOS PONTOS LIGAR
+E DESLIGAR.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							local i = self.fechar:read()
+							if i then
+								self.indicacao_fechado:write(true)
+							end
+							i = self.abrir:read()
+							if i then
+								self.indicacao_fechado:write(false)
+							end
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "chave", name  = "Chave",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "atuacao",
+			name   = "Atuação",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id = "ligar",
+			name        = "Ligar",
+			description = [[Liga a chave.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.atuacao:write(true)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "desligar",
+			name        = "Desligar",
+			description = [[Desliga a chave.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.atuacao:write(false)
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "alarme_mensagem", name  = "Alarme Mensagem",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "linha_texto",
+			name   = "Linha Texto",
+			type   = "STRING_POINT",
+			access = "w",
+			description = [[]],
+		},
+		{ id = "alarme",
+			name   = "Alarme",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Indica que o alarme está ocupado com uma mensagem que ainda não foi marcada como lida.]],
+		},
+	},
+	methods = {
+		{ id = "alarmar",
+			name        = "Definir Alarme",
+			description = [[Gera um alarme no Supervisório setando o alarme configurado.]],
+			parameters = {
+				{ name = "texto", type = "STRING" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, texto)
+							self.linha_texto:write(texto)
+							self.alarme:write(true)
+							self._timestamp = time()
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+
+
+class{ id = "registro", name = "Registro",
+	bases = {},
+	description = [[Gerencia um arquivo de registro.
+Por padrão o nome do arquivo de registro, se nenhuma versão for criada,
+fica com o nome do equipmanetoe a extensão "log".]],
+	attributes = {
+		{ id = "caminho",
+			name   = "Caminho",
+			type   = "STRING",
+			access = "",
+			description = [[Caminho onde deve ser gravado o arquivo.
+Se não for definido, é usado o diretório corrente de execução do servidor.]],
+		},
+		{ id = "prefixo",
+			name   = "Prefixo",
+			type   = "STRING",
+			access = "",
+			description = [[Prefixo que das versões do arquivo.
+Se não for definido, o tag do registro será usado.]],
+		},
+		{ id = "extensao",
+			name   = "Extensão",
+			type   = "STRING",
+			access = "",
+			description = [[A extensão a ser usada nos arquivos de registro.
+Se não for definido, é usado 'log'.
+Atenção: não coloque o ponto na extensão.]],
+		},
+		{ id = "limite",
+			name   = "Limite de Versões",
+			type   = "INTEGER",
+			access = "",
+			description = [[Define o limite de versões que devem ser criadas para um registro.
+Caso seja definido um limite, as mais antigas serão apagadas para a criação das novas.]],
+		},
+		{ id = "lista_versoes",
+			name   = "Lista Versões",
+			type   = "lista_persistente",
+			access = "",
+			description = [[Lista que armazeana o nome de versões prévias do registro incluindo execuções anteriores.]],
+		},
+	},
+	code = [===[
+		function _CLASS:init()
+			self._filename = tostring(self)..".log"
+		end
+	]===],
+	methods = {
+		{ id = "criar_nova_versao",
+			name        = "Criar Nova Versão",
+			description = [[Cria uma versão nova do arquivo no caminho especificado e
+apaga as versões antigas que excedem o limite configurardo para o registro.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [===[ function(self)
+					-- cria nome de novo arquivo
+					self._filename = os.date("%%s/%%s_%Y%m%d_%H%M%S.%%s"):format(
+							self.caminho or ".",
+							self.prefixo or tostring(self),
+							self.extensao or "log"
+						)
+
+					-- inclui na lista
+					local lista = self.lista_versoes
+
+					if lista then
+						lista:inserir(self._filename)
+						-- remove antigos e deleta
+						while (lista:informar_tamanho() > self.limite) do
+							os.remove(lista:remover())
+						end
+					end
+				end ]===],
+		},
+		{ id = "registrar",
+			name        = "Registrar",
+			description = [[Adiciona um texto ao relatório.]],
+			parameters = {
+				{name = "Mensagem", type = "STRING"},
+			},
+			results = {
+			},
+			code = [===[ function(self, m)
+						local file, err = assert(io.open(self._filename, "a+"))
+						file:write(os.date("%Y/%m/%d %H:%M:%S;%%s\n"):format(m))
+						file:close()
+					end ]===],
+		},
+	},
+}
+class{ id = "botoeira",	name  = "Botoeira",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando",
+			name   = "Comando",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id = "acionar",
+			name        = "Acionar",
+			description = [[Liga o ponto digital associado.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.comando:write(true)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "liberar",
+			name        = "Liberar",
+			description = [[Desliga o ponto digital associado.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.comando:write(false)
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "polinomio", name = "Polinômio", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "max",
+			name   = "X Máximo",
+			type   = "REAL",
+			access = "",
+			description = [[Valor máximo para variável em que o polinômio pode ser aplicado.]],
+		},
+		{ id = "min",
+			name   = "X Mínimo",
+			type   = "REAL",
+			access = "",
+			description = [[Valor mínimo para variável em que o polinômio pode ser aplicado.]],
+		},
+		{ id = "a",
+			name   = "A",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente Linear.]],
+		},
+		{ id = "b",
+			name   = "B",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente do 1o grau.]],
+		},
+		{ id = "c",
+			name   = "C",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente do 2o grau.]],
+		},
+		{ id = "d",
+			name   = "D",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente do 3o grau.]],
+		},
+		{ id = "e",
+			name   = "E",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente do 4o grau.]],
+		},
+		{ id = "f",
+			name   = "F",
+			type   = "REAL",
+			access = "",
+			description = [[Coeficiente do 5o grau.]],
+		},
+	},
+	methods = {
+		{ id = "informar_coeficiente",
+			name        = "Informar Coeficiente",
+			description = [[]],
+			parameters = {
+				{ name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Coeficiente N", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, n)
+							local coefs = {"a","b","c","d","e","f"}
+							return self[coefs[n+1]]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "calcular_polinomio",
+			name        = "Calcular Polinômio",
+			description = [[Calcula o valor do polinômio. Se o valor da variável estiver fora dos limites estabelecidos o método retorna nil.]],
+			parameters = {
+				{ name = "X", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor Calculado", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function (self, x)
+							local val = 0
+							for i=0, 5 do
+								local coef =
+									self:informar_coeficiente(i) or 0
+								val = val + coef*x^i
+							end
+							return val
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "linha_anotacao",	name  = "Linha Anotação",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "linha_texto",
+			name   = "Linha Texto",
+			type   = "STRING_POINT",
+			access = "wr",
+			description = [[]],
+		},
+		{ id = "indicacao_armazenar_texto",
+			name   = "Indicação Armazenar Texto",
+			type   = "BOOLEAN_POINT",
+			access = "wr",
+			description = [[]],
+		},
+	},
+	methods = {
+	},
+}
+class{ id = "mensagens", name = "Grupo de Mensagens", group = "",
+	bases = {},
+	description = [[Conjunto de mensagens.]],
+	attributes = {
+		{ id = "registro",
+			name   = "Registro de mensagens",
+			type   = "registro",
+			access = "g",
+			description = [[Caso seja definido, é utilizado para registrar as mensagens]],
+		},
+		{ id = "prefixa_data_hora",
+			name   = "Prefixa data e hora",
+			type   = "BOOLEAN",
+			access = "",
+			description = [[Indica se as mensagens devem ser prefixadas por data e hora]],
+		},
+		{ id = "formato_data_hora",
+			name   = "Formato de data e hora",
+			type   = "STRING",
+			access = "",
+			description = [[Indica o formato de data e hora que deve prefixar as mensagens.
+O formato de data e hora fornecido pode incluir:
+%Y - ano com 4 dígitos
+%y - ano com 2 dígitos
+%m - mês com 2 dígitos
+%d - dia com 2 dígitos
+%H - hora com 2 dígitos
+%M - minuto com 2 dígitos
+%S - segundo com 2 dígitos
+%c - data e hora em formato padrão do sistema
+]],
+		},
+		{ id = "rolar",
+			name   = "Rolar mensagens",
+			type   = "BOOLEAN",
+			access = "",
+			description = [[Indica se as mensagens devem ser roladas para que as mais novas fiquem na frente]],
+		},
+		{ id = "mensagens",
+			name   = "Mensagens",
+			type   = "linha_mensagem[]",
+			access = "g",
+			description = [[Lista de Mensagens]],
+		},
+	},
+	code = [[
+		function _CLASS:init()
+			self._messages = {}
+		end
+	]],
+	methods = {
+		{ id = "formatar_data_hora",
+			name        = "Formatar data e hora",
+			description = [[Define o formato de data e hora.
+
+O formato de data e hora fornecido pode incluir:
+%Y - ano com 4 dígitos
+%y - ano com 2 dígitos
+%m - mês com 2 dígitos
+%d - dia com 2 dígitos
+%H - hora com 2 dígitos
+%M - minuto com 2 dígitos
+%S - segundo com 2 dígitos
+%c - data e hora em formato padrão do sistema
+
+Para usar o formato padrão do MPA, especifique um texto vazio ("").]],
+			parameters = {
+			  { name = "Formato de data e hora", type = "STRING" },
+		  },
+			results = {
+			},
+			code = [==================================================================[
+          function(self, date_format)
+						date_format = date_format or ""
+						self.formato_data_hora = date_format
+						if string.match(date_format, "^%s*(.-)%s*$")=="" then
+							self.formato_data_hora = "[%Y/%m/%d %H:%M:%S] "
+						end
+					end
+		       ]==================================================================],
+		},
+		{ id = "envia_mensagem",
+			name        = "Envia mensagem",
+			description = [[Envia mensagem de texto, utilizando mensagem vazia ou sobrescrevendo mensagem mais antiga.]],
+			parameters = {
+			  { name = "Texto da mensagem", type = "STRING" },
+		  },
+			results = {
+			},
+			code = [==================================================================[
+		      function(self, message)
+						message = tostring(message)
+		        local formatted = message
+		        if self.prefixa_data_hora then
+						  local format = self.formato_data_hora
+						  if not format then format = "[%Y/%m/%d %H:%M:%S]" end
+							formatted = tostring(os.date(format)).." "..formatted
+						end
+						if self.registro then
+							self.registro:registrar(formatted)
+						end
+
+						while self._messages.lock do sleep(0) end
+						self._messages.lock = true
+
+						local pos
+						if self.rolar then
+							pos = self:roll_messages()
+						else
+							pos = self:get_next_pos()
+						end
+						if not pos then
+							self._messages.lock = false
+							print("ERRO: Nenhum ponto textual definido para exibir a mensagem '"..message.."'")
+							return
+						end
+				    local new = self._messages[pos] or {}
+				    new.time = time()
+				    new.text = formatted
+				    self._messages[pos] = new
+				    self.mensagens[pos].linha_texto:write(formatted)
+
+						self._messages.lock = false
+		      end
+		        ]==================================================================],
+		},
+		{ id = "get_next_pos",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [===[ function(self)
+				local pos
+				local oldest_pos
+				local oldest_time = time()
+				for i, msg in ipairs(self.mensagens) do
+					if not self._messages[i] then
+						pos = i
+						break
+					end
+					local t = self._messages[i].time
+					if t <= oldest_time then
+						oldest_pos = i
+						oldest_time = t
+					end
+				end
+				if not pos then
+					pos = oldest_pos
+					if pos then
+						-- limpa mensagem mais antiga a ser sobrescrita
+						self._messages[pos] = nil
+					end
+				end
+				return pos
+			end ]===],
+		},
+		{ id = "roll_messages",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [===[ function(self)
+				local last
+				for i, msg in ipairs(self.mensagens) do
+					if i > 1 and self._messages[i-1] then
+						msg.linha_texto:write(self._messages[i-1].text)
+					end
+					last = i
+				end
+				table.insert(self._messages,1,{})
+				self._messages[last+1] = nil
+				return 1
+			end ]===],
+		}
+	},
+}
+
+class{ id = "valvula", name  = "Válvula Simples",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando_posicao",
+			name   = "Comando da posição",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[]],
+		},
+		{ id = "indicacao_posicao",
+			name   = "Indicação Posição",
+			type   = "REAL_POINT",
+			access = "rg",
+			description = [[]],
+		},
+		{ id = "atuacao_inversa",
+			name   = "Atuação Inversa",
+			type   = "BOOLEAN",
+			access = "g",
+			description = [[Indica que os métodos da válvula devem inverter os comandos e indicações.]],
+		},
+	},
+	methods = {
+		{ id = "ajustar_comando",
+			name = "Ajustar Comando",
+			parameters = {
+				{name="Valor", type = "REAL"},
+			},
+			results = {
+			},
+			code = [==============================================================[
+				function(self, v)
+					if self.atuacao_inversa==true then
+						self.comando_posicao:write(100-v)
+					else
+						self.comando_posicao:write(v)
+					end
+				end
+						 ]==============================================================],
+		},
+		{ id = "informar_posicao",
+			name = "Informar Posição",
+			parameters = {
+			},
+			results = {
+				{name="Valor", type = "REAL"},
+			},
+			code = [==============================================================[
+				function(self, v)
+					if self.atuacao_inversa==true then
+						return 100 - self.indicacao_posicao:read()
+					else
+						return self.indicacao_posicao:read()
+					end
+				end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "padrao_identificacao", name = "Padrão", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[Armazena sequencia fator tempo para aplicação de padrão.]],
+	attributes = {
+		{ id = "fator_delta1",
+			name   = "Fator Delta 1",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 1.]],
+		},
+		{ id = "fator_tempo1",
+			name   = "Fator Tempo 1",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 1.]],
+		},
+		{ id = "fator_delta2",
+			name   = "Fator Delta 2",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 2.]],
+		},
+		{ id = "fator_tempo2",
+			name   = "Fator Tempo 2",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 2.]],
+		},
+		{ id = "fator_delta3",
+			name   = "Fator Delta 3",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 3.]],
+		},
+		{ id = "fator_tempo3",
+			name   = "Fator Tempo 3",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 3.]],
+		},
+		{ id = "fator_delta4",
+			name   = "Fator Delta 4",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 4.]],
+		},
+		{ id = "fator_tempo4",
+			name   = "Fator Tempo 4",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 4.]],
+		},
+		{ id = "fator_delta5",
+			name   = "Fator Delta 5",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 5.]],
+		},
+		{ id = "fator_tempo5",
+			name   = "Fator Tempo 5",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 5.]],
+		},
+		{ id = "fator_delta6",
+			name   = "Fator Delta 6",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 6.]],
+		},
+		{ id = "fator_tempo6",
+			name   = "Fator Tempo 6",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 6.]],
+		},
+		{ id = "fator_delta7",
+			name   = "Fator Delta 7",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 7.]],
+		},
+		{ id = "fator_tempo7",
+			name   = "Fator Tempo 7",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 7.]],
+		},
+		{ id = "fator_delta8",
+			name   = "Fator Delta 8",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 8.]],
+		},
+		{ id = "fator_tempo8",
+			name   = "Fator Tempo 8",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 8.]],
+		},
+		{ id = "fator_delta9",
+			name   = "Fator Delta 9",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 9.]],
+		},
+		{ id = "fator_tempo9",
+			name   = "Fator Tempo 9",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 9.]],
+		},
+		{ id = "fator_delta10",
+			name   = "Fator Delta 10",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para delta de valor 10.]],
+		},
+		{ id = "fator_tempo10",
+			name   = "Fator Tempo 10",
+			type   = "REAL",
+			access = "",
+			description = [[Fator multiplicativo para tempo de espera 10.]],
+		},
+	},
+	methods = {
+		{ id = "obtem_fator_tempo_N",
+			name = "Obtem o fator de tempo N",
+			description = [[Informa o fator de tempo configurado para o passo N do padrão]],
+			parameters = {
+				{ name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor do tempo N", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self,n)
+							return self["fator_tempo"..n]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "obtem_fator_delta_N",
+			name = "Obtem o fator delta N",
+			description = [[Informa o fator de delta configurado para o passo N do padrão]],
+			parameters = {
+				{ name = "N", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Valor do delta N", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self,n)
+							return self["fator_delta"..n]
+						 end
+						 ]==============================================================],
+		},
+		{ id = "obtem_numero_passos",
+			name = "Obter Número de Passos",
+			description = [[Informa o índice do primeiro passo do padrão que está incompleto.
+Um passo é considerado incompleto se está sem o fator delta ou sem o fator tempo configurado.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Número de Passos", type = "INTEGER" },
+			},
+			code = [==============================================================[
+						 function(self)
+							for i =1,10 do
+								if not self["fator_delta"..i] or not self["fator_tempo"..i] then
+									return i-1
+								end
+							end
+							return 10
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "seletor_maior_menor", name  = "Seletor Maior/Menor",	group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "modo",
+			name   = "Modo",
+			type   = "INTEGER_POINT",
+			access = "rw",
+			description = [[O modo de seleção (0=menor valor, 1=maior valor).]],
+		},
+		{
+      id = "saida",
+      name   = "Saída",
+      type   = "REAL_POINT",
+      access = "r",
+      description = [[O ponto de saída do seletor.]],
+    },
+		{ id = "minimo",
+			name   = "Mínimo",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[O menor valor que o seletor pode aplicar na sua saída.]],
+		},
+		{ id = "maximo",
+			name   = "Máximo",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[O maior valor que o seletor pode aplicar na sua saída.]],
+		},
+    {
+      id = "valor_entrada_1",
+      name   = "Valor Entrada 1",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 1]],
+    },
+    {
+      id = "habilita_entrada_1",
+      name   = "Habilita Entrada 1",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 1 deve ser considerada]],
+    },
+    {
+      id = "valor_entrada_2",
+      name   = "Valor Entrada 2",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 2]],
+    },
+    {
+      id = "habilita_entrada_2",
+      name   = "Habilita Entrada 2",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 2 deve ser considerada]],
+    },
+    {
+      id = "valor_entrada_3",
+      name   = "Valor Entrada 3",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 3]],
+    },
+    {
+      id = "habilita_entrada_3",
+      name   = "Habilita Entrada 3",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 3 deve ser considerada]],
+    },
+    {
+      id = "valor_entrada_4",
+      name   = "Valor Entrada 4",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 4]],
+    },
+    {
+      id = "habilita_entrada_4",
+      name   = "Habilita Entrada 4",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 4 deve ser considerada]],
+    },
+    {
+      id = "valor_entrada_5",
+      name   = "Valor Entrada 5",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 5]],
+    },
+    {
+      id = "habilita_entrada_5",
+      name   = "Habilita Entrada 5",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 5 deve ser considerada]],
+    },
+    {
+      id = "valor_entrada_6",
+      name   = "Valor Entrada 6",
+      type   = "REAL_POINT",
+      access = "",
+      description = [[Valor da Entrada 6]],
+    },
+    {
+      id = "habilita_entrada_6",
+      name   = "Habilita Entrada 6",
+      type   = "BOOLEAN_POINT",
+      access = "",
+      description = [[Indica se a entrada 6 deve ser considerada]],
+    },
+	},
+	code = [===[
+	function _CLASS:set_input_enable_state(i, state)
+		local value = self["valor_entrada_"..i]
+		if value then
+			local enable = self["habilita_entrada_"..i]
+			if enable ~= nil then
+				enable:write(state == true)
+			end
+		end
+	end
+
+	]===],
+	methods = {
+		{ id = "ajustar_entrada",
+			name        = "Ajustar Entrada",
+			description = [[Altera o valor da entrada especificada.]],
+			parameters = {
+				{ name = "Número da Entrada (1 a 6)", type = "INTEGER" },
+				{ name = "Valor da Entrada", type = "REAL" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 	function(self, i, v)
+								local value = self["valor_entrada_"..i]
+								if value then
+									local enable = self["habilita_entrada_"..i]
+									if enable == nil or enable:read() then
+										value:write(v)
+									end
+								end
+							end
+				     ]==============================================================],
+		},
+		{
+      id = "habilitar_entrada",
+      name        = "Habilitar Entrada",
+      description = [[Habilita a entrada para seleção.]],
+      parameters = {
+          { name = "Número da Entrada (1 a 6)", type = "INTEGER" },
+      },
+      results = {
+      },
+      code = [==============================================================[
+						 	function(self, i)
+								self:set_input_enable_state(i, true)
+							end
+             ]==============================================================],
+    },
+		{
+      id = "desabilitar_entrada",
+      name        = "Desabilitar Entrada",
+      description = [[Desabilita a entrada para seleção.]],
+      parameters = {
+          { name = "Número da Entrada (1 a 6)", type = "INTEGER" },
+      },
+      results = {
+      },
+      code = [==============================================================[
+						 	function(self, i)
+								self:set_input_enable_state(i, false)
+							end
+             ]==============================================================],
+    },
+		{ id = "executar",
+			name        = "Executar",
+			description = [[Escreve na saída e retorna o maior ou menor valor entre as entradas habilitadas.
+O modo de operação determina se o seletor é de maior (modo = 1) ou menor (modo = 0).
+Se nenhuma entrada com estiver habilitada o valor de saída não é alterado e retorna nil.]],
+			parameters = {
+			},
+			results = {
+			  { name = "Valor selecionado", type = "REAL" },
+			},
+			code = [==============================================================[
+  						function(self)
+                local v, f
+                local modo = 0
+                if self.modo then
+                  modo = self.modo:read()
+                end
+                local minimo = -math.huge
+                if self.minimo then
+                  minimo = self.minimo:read() or -math.huge
+                end
+                local maximo = math.huge
+                if self.maximo then
+                  maximo = self.maximo:read() or math.huge
+                end
+                if (modo == 0) then
+                  f = math.min
+                  v = maximo
+                else
+                  f = math.max
+                  v = minimo
+                end
+                local selected = false
+                for i=1,6 do
+                  local value = self["valor_entrada_"..i]
+                  if value then
+                    local enable = self["habilita_entrada_"..i]
+                    if enable == nil or enable:read() then
+                    	selected = true
+                      v = f(v, (value:read()))
+                    end
+                  end
+                end
+                if not selected then
+                  return nil
+                end
+                local saida = math.max(minimo, math.min(maximo, v))
+                if self.saida then
+                	self.saida:write(saida)
+                end
+                return saida
+              end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "integrador", name = "Integrador", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "k",
+			name   = "K",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor da constante do processo.]],
+		},
+		{ id = "valor_referencia",
+			name   = "Valor Referência",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor de referência do processo.]],
+		},
+	},
+	methods = {
+		{ id = "executar_integrador",
+			name        = "Executar Integrador",
+			description = [[Executa o integrador sobre o valor do processo.
+O integrador calcula a seguinte equação sobre o valor do processo:
+
+	f(x) = K*S((x-VR)*dt)
+
+Onde K é a constante de ganho adimensional do processo, S é o somatório, VR é
+o valor de referência do processo e dt é a diferença de tempo, em segundos,
+entre cada duas avaliações.]],
+			parameters = {
+				{ name = "Valor do Processo", type = "REAL" },
+			},
+			results = {
+				{ name = "Valor do Integrador", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self, x)
+							self:atualizar_tempos()
+							local y = 0
+							if (self.y_1 ~= nil) then
+								local VR = self.valor_referencia
+								local dt = self.t_0 - self.t_1
+								y = self.y_1+(x-VR)*dt
+							end
+							self.y_1 = y
+							local K = self.k
+							return K*y
+						 end
+						 ]==============================================================],
+		},
+		{ id = "atualizar_tempos",
+			name        = "",
+			description = [[]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self)
+							self.t_1 = self.t_0
+							self.t_0 = time()
+						 end
+						 ]==============================================================],
+		},
+		{
+      id = "iniciar",
+      name        = "Iniciar Integrador",
+      description = [[Inicia o valor do somatório]],
+      parameters = {
+      },
+      results = {
+      },
+      code = [==============================================================[
+             function(self)
+              self.y_1 = nil
+             end
+             ]==============================================================],
+    },
+	},
+}
+class{ id = "derivador", name = "Derivador", group = "Blocos de Cálculo",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "ganho",
+			name   = "K",
+			type   = "REAL",
+			access = "gs",
+			description = [[O valor da constante do processo.]],
+		},
+		{ id = "amostras",
+			name   = "N",
+			type   = "REAL",
+			access = "gs",
+			description = [[Número de amostras a serem consideradas para o cálculo da derivada.]],
+		},
+	},
+	code = [[
+		function _CLASS:init()
+			self.values = {}
+			self.times = {}
+		end
+	]],
+	methods = {
+		{ id = "executar",
+			name        = "Executar",
+			description = [[Executa sobre o valor do processo.
+O derivador calcula a seguinte equação sobre o valor do processo:
+
+	f(x) = K*(valor-valor_anterior)/dt
+
+Onde K é a constante de ganho adimensional do processo e dt é a diferença de tempo, em segundos,
+entre cada duas avaliações.
+
+Se for determinado um número de amostras o resultado será a inclinação da reta de regressão linear para as amostras informadas.
+
+Obs: A primeira execução irá retornar 0, como se não houvesse variação no valor.]],
+			parameters = {
+				{ name = "Valor do Processo", type = "REAL" },
+			},
+			results = {
+				{ name = "Variação do Valor", type = "REAL" },
+			},
+			code = [==============================================================[
+					 	function(self, v)
+							self:armazena_amostra(v)
+							if #self.values <= 1 then
+								return 0
+							else
+								local K = self.ganho or 1
+								if self.amostras == nil then
+									local dv = self.values[1] - self.values[2]
+									local dt = self.times[1] - self.times[2]
+									self.resultado = K*dv/dt
+								else
+									self.resultado = K*slope(self.values, self.times)
+								end
+								return self.resultado
+							end
+					 	end
+						 ]==============================================================],
+		},
+		{ id = "informar_resultado",
+			name        = "Informar resultado",
+			description = [[Informa o resultado da última execução do derivador.]],
+			parameters = {},
+			results = {
+				{ name = "Variação do Valor", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self)
+							return self.resultado
+						 end
+						 ]==============================================================],
+		},
+		{ id = "armazena_amostra",
+			name        = "",
+			description = [[]],
+			parameters = {},
+			results = {},
+			code = [==============================================================[
+						function(self, value)
+							table.insert(self.values, 1, value)
+							table.insert(self.times, 1, time())
+
+							local amostras = self.amostras or 2
+							while #self.values > amostras do
+								table.remove(self.values)
+								table.remove(self.times)
+							end
+						end
+						 ]==============================================================],
+		},
+		{ id = "inicializar",
+			name        = "Inicializar",
+			description = [[Inicializa o derivador, apagando quaisquer valores históricos que existam.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [==============================================================[
+						function(self)
+							self.values = {}
+							self.times = {}
+						end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "pergunta_operador",	name  = "Pergunta ao Operador",	group = "",
+	bases = {},
+	description = [[Permite fazer perguntas ao operador e esperar determinado tempo pela resposta.]],
+	attributes = {
+		{ id = "texto_pergunta",
+			name   = "Texto pergunta",
+			type   = "STRING_POINT",
+			access = "",
+			description = [[Ponto para envio do texto de pergunta ao operador.]],
+		},
+		{ id = "indicacao_pergunta",
+			name   = "Indicação pergunta",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Indicativo de que há uma pergunta para o operador.]],
+		},
+		{ id = "resposta_pergunta",
+			name   = "Resposta pergunta",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[Resposta do operador para a pergunta sendo feita.]],
+		},
+	},
+	methods = {
+		{ id = "perguntar_operador",
+			name        = "Perguntar ao operador",
+			description = [[Faz uma pergunta ao operador e aguarda o tempo indicado por uma resposta.
+Caso não haja resposta no tempo estabelecido, retorna falso. O MPA entende
+que há uma resposta do operador quando o indicativo de que há uma pergunta
+ativa é desligado.]],
+			parameters = {
+				{ name = "Texto da pergunta", type = "STRING" },
+				{ name = "Tempo de espera pela resposta (s)", type = "REAL" },
+			},
+			results = {
+				{ name = "Resposta (verdadeiro ou falso)", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self, s, t)
+							t = tonumber(t) or 0
+							local t1 = time()
+							local t2 = t1
+							local lock = {}
+							while self.lock and (t2-t1 < t) do
+								sleep(1)
+								t2 = time()
+								if self.lock and (t2-self.t1 > self.t) then
+									break
+								end
+							end
+							self.t = t
+							self.t1 = t1
+							self.t2 = t2
+							self.lock = lock
+							self.resposta_pergunta:write(false)
+							self.texto_pergunta:write(s)
+							self.indicacao_pergunta:write(true)
+							local answer = false
+							while self.t2-self.t1 < self.t do
+								sleep(1)
+								if self.lock ~= lock then
+									return false
+								end
+								if not self.indicacao_pergunta:read() then
+									answer = self.resposta_pergunta:read()
+									break
+								end
+								self.t2 = time()
+							end
+							self.indicacao_pergunta:write(false)
+							self.texto_pergunta:write("")
+							self.resposta_pergunta:write(false)
+							self.t = nil
+							self.t1 = nil
+							self.t2 = nil
+							self.lock = nil
+							return answer
+						 end
+						 ]==============================================================],
+		},
+		{ id = "limpar", name = "Limpar",
+			description = [[Limpa o campo de pergunta.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [=[
+				function(self, s, t)
+					self.lock = nil
+					self.texto_pergunta:write("")
+				end
+			]=],
+		},
+	},
+}
+class{ id = "bomba_simples", name  = "Bomba Simples", group = "",
+	bases = {},
+	description = [[Bomba simples.]],
+	attributes = {
+		{ id = "comando_partir",
+			name   = "Comando Partir",
+			type   = "BOOLEAN_POINT",
+			access = "w",
+			description = [[Comando de partida da bomba.]],
+		},
+		{ id = "comando_parar",
+			name   = "Comando Parar",
+			type   = "BOOLEAN_POINT",
+			access = "w",
+			description = [[Comando de parada da bomba.]],
+		},
+		{ id = "indicacao_funcionando",
+			name   = "Indicação Funcionando",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[Indicativo de que a bomba está funcionando.]],
+		},
+		{ id = "corrente",
+			name   = "Corrente",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[Indica a corrente demandada pelo equipamento.]],
+		},
+		{ id = "corrente_maxima",
+			name   = "Corrente Máxima",
+			type   = "REAL",
+			access = "g",
+			description = [[Indica a corrente máxima para o equipamento.]],
+		},
+		{ id = "pressao",
+			name   = "Pressão",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[Lê a pressão atual na bomba.]],
+		},
+		{ id = "pressao_minima",
+			name   = "Pressão Mínima",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[Batente de mínimo para a pressão na bomba. Abaixo desse valor a bomba está sujeita a possibilidade de TRIP.]],
+		},
+		{ id = "pressao_trip",
+			name   = "Pressão de Trip",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[Pressão de Trip para bomba. Ao atingir tal valor, a bomba entra em estado de Trip.]],
+		},
+	},
+	methods = {
+	},
+}
+class{ id = "valvula_atuador_mecanico",	name  = "Válvula Atuador Mecânico",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando_posicao",
+			name   = "Comando da posição",
+			type   = "REAL_POINT",
+			access = "wr",
+			description = [[]],
+		},
+		{ id = "indicacao_posicao",
+			name   = "Indicação da posição",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "comando_abrir_totalmente",
+			name   = "Comando abrir totalmente",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_totalmente_aberta",
+			name   = "Indicação de totalmente aberta",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "comando_fechar_totalmente",
+			name   = "Comando fechar totalmente",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_totalmente_fechada",
+			name   = "Indicação de totalmente fechada",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "tempo_retorno",
+			name   = "Tempo retorno (s)",
+			type   = "REAL",
+			access = "g",
+			description = [[Tempo em segundos de retorno da posição.]],
+		},
+		{ id = "erro_posicao",
+			name   = "Erro posição",
+			type   = "REAL",
+			access = "g",
+			description = [[Erro máximo no posicionamento da abertura.]],
+		},
+	},
+	methods = {
+		{ id = "abrir_totalmente",
+			name        = "Abrir totalmente",
+			description = [[Envia o sinal de abrir totalmente para a válvula durante o tempo especificado, em segundos.]],
+			parameters = {
+				{ name = "Tempo", type = "INTEGER" },
+			},
+			code = [==============================================================[
+				function(self, t)
+					t = tonumber(t) or 0
+					self.comando_abrir_totalmente:write(true)
+					sleep(t)
+					self.comando_abrir_totalmente:write(false)
+				end
+						 ]==============================================================],
+		},
+		{ id = "fechar_totalmente",
+			name        = "Fechar totalmente",
+			description = [[Envia o sinal de fechar totalmente para a válvula durante o tempo especificado, em segundos.]],
+			parameters = {
+				{ name = "Tempo", type = "INTEGER" },
+			},
+			code = [==============================================================[
+				function(self, t)
+					t = tonumber(t) or 0
+					self.comando_fechar_totalmente:write(true)
+					sleep(t)
+					self.comando_fechar_totalmente:write(false)
+				end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "valvula_choke", name = "Válvula Choke",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando_posicao",
+			name   = "Comando posição",
+			type   = "REAL_POINT",
+			access = "w",
+			description = [[]],
+		},
+		{ id = "comando_pulso_abertura",
+			name   = "Comando pulso abertura",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "comando_pulso_fechamento",
+			name   = "Comando pulso fechamento",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_posicao",
+			name   = "Indicação posição",
+			type   = "REAL_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "indicacao_fechado",
+			name   = "Indicação fechado",
+			type   = "BOOLEAN_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "posicao_contador",
+			name   = "Posição contador",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "modo_automatico",
+			name   = "Modo automático",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id = "pulsar_abertura",
+			name        = "Pulsar abertura",
+			description = [[Executa seqüência de pulsos de abertura.]],
+			parameters = {
+				{ name = "Quantidade de pulsos", type = "INTEGER" },
+				{ name = "Intervalo em segundos entre os pulsos", type = "INTEGER" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, n, t)
+							t = tonumber(t) or 0
+							while (n > 0) do
+								self.comando_pulso_abertura:write(true)
+								sleep(t)
+								n = n - 1
+							end
+						 end
+						 ]==============================================================],
+		},
+		{ id = "pulsar_fechamento",
+			name        = "Pulsar fechamento",
+			description = [[Executa seqüência de pulsos de fechamento.]],
+			parameters = {
+				{ name = "Quantidade de pulsos", type = "INTEGER" },
+				{ name = "Intervalo em segundos entre os pulsos", type = "INTEGER" },
+			},
+			results = {
+			},
+			code = [==============================================================[
+						 function(self, n, t)
+							t = tonumber(t) or 0
+							while (n > 0) do
+								self.comando_pulso_fechamento:write(true)
+								sleep(t)
+								n = n - 1
+							end
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "tanque", name = "Tanque",	group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "ullage",
+			name   = "Ullage",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "pressao",
+			name   = "Pressão",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "valvula_entrada",
+			name   = "Válvula de Entrada",
+			type   = "valvula_controle",
+			access = "",
+			description = [[]],
+		},
+		{ id = "status_shutdown",
+			name   = "Status Shutdown",
+			type   = "BOOLEAN_POINT",
+			access = "r",
+			description = [[]],
+		},
+		{ id = "indicacao_vazamento",
+			name   = "Indicação Vazamento",
+			type   = "BOOLEAN_POINT",
+			access = "rw",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id = "informar_carregamento",
+			name        = "Informar Carregamento",
+			description = [[Informa se o tanque está sendo carregado.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Carregando", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function(self) --$bqd - 2Translate
+						 --informar-carregamento (T:class tanque) = (value)
+
+						 --{ Informa que o tanque está em carregamento, abertura >= tolerancia da valula.}
+
+						 --err-symb     : symbol        ;
+						 --err-txt      : text          ;
+						 --tolerancia   : value         ;
+						 --nome-valvula : symbol        ;
+						 --valvula      : class valvula ;
+						 --valor        : value         ;
+
+						 --Begin
+						 --    nome-valvula = call informar-valvula-entrada (T);
+						 --    valor = call informar-entrada (T);
+							valor = self:informar_entrada()
+						 --    begin
+						 --    valvula = the valvula named by nome-valvula;
+							valvula = self.valvula_entrada
+						 --    tolerancia = the tolerancia of valvula;
+							tolerancia = nil --!bqd - não existe em types.valvula_controle
+						 --    end on error (err-symb, err-txt) { se atributo nao existe }
+							if not tolerancia then
+						 --        tolerancia = 0;
+									tolerancia = 0
+						 --    end;
+							end
+						 --    if  (valor >= tolerancia)  then  return true
+							if valor>= tolerancia then return true
+						 --    else
+						 --        return false;
+																		else return false
+							end
+						 --End
+						 end
+						 ]==============================================================],
+		},
+		{ id = "ajustar_entrada",
+			name        = "Ajustar Entrada",
+			description = [[Ajusta o percentual de abertura da válvula de entrada.]],
+			parameters = {
+				{ name = "percentual de abertura", type = "REAL" },
+				{ name = "número de tentativas", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Sucesso", type = "BOOLEAN" },
+			},
+			code = [==============================================================[
+						 function( self, v, n ) --$bqd - 2Translate
+						 --ajustar-entrada (T:class tanque, valor: value, n: integer) = (value)
+
+						 --{--01.JUL.2002.Satuf - Criacao.  Tentar ajustar a entrada n vezes.}
+
+						 --i            : integer             ;
+						 --moveu        : truth-value = false ;
+						 --valvula-nome : symbol              ;
+
+						 --Begin
+						 --    for  i = 1 to n do
+						 local moveu = false
+							for i = 1, n do
+						 --        moveu = call ajustar-entrada (T, valor);
+								moveu = self:ajustar_entrada(v)
+						 --        exit if (moveu);
+								if moveu then return true end
+						 --    end;
+							end
+						 --    return  moveu ;
+							return false
+						 --End
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_entrada",
+			name        = "Informar Entrada",
+			description = [[Informa o percentual de abertura da válvula de entrada.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Percentual de abertura", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function(self) --$bqd - 2Translate
+						 --informar-entrada (T:class tanque) = (value)
+						 --{
+						 --23.ABR.2002.Satuf - Criacao.  Informa qual a posicao (ou qual o comando para posicao, em caso de erro) da valvula de entrada do tanque.
+						 --}
+						 --{  Que fazer se por acaso o Tanque nao tiver o nome-valvula-entrada preenchido ??
+						 --Por ora, sinalizando erro. }
+
+						 --err-symb: symbol;
+						 --err-txt: text;
+						 --err-value: value = -9999;
+						 --nome-valvula: symbol;
+						 --valvula: class valvula;
+						 --valor: value;
+						 --Begin
+						 --    nome-valvula = call informar-valvula-entrada (T);
+							valvula_entrada = self.valvula_entrada
+						 --    if  (nome-valvula is none)  then begin
+							if not valvula_entrada then --reporta erro
+						 --        err-symb = the symbol informar-entrada-err;
+						 --        err-txt = "Valvula de entrada nao indicada para o tanque [the name of T].";
+						 --        inform the operator that "* [err-symb] * [err-txt] *";
+						 --        signal err-symb, err-txt;
+						 --        return (-9999);
+						 --     end;
+							end
+						 --    valvula = the valvula named by nome-valvula;
+						 --    begin
+						 --    valor = call informar-posicao (valvula);
+							valor = valvula_entrada.indicacao_posicao:read()
+						 --    end on error (err-symb, err-txt)
+							if not valor then
+						 --        valor = call informar-comando-posicao (valvula);
+								valor = valvula_entrada.comando_posicao:read()
+						 --    end;
+							end
+						 --    return (valor);
+							return valor
+						 --End
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_ullage",
+			name        = "Informar Ullage",
+			description = [[Informa ullage corrente.]],
+			parameters = {
+				{ name = "Tempo da média (zero para valor corrente)", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Informa ullage corrente", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function( self, tempo_media )
+							 return self.ullage:read(tempo_media)
+						 end
+						 ]==============================================================],
+		},
+		{ id = "informar_pressao",
+			name        = "Informar Pressao",
+			description = [[Informa pressao corrente dentro do tanque.]],
+			parameters = {
+				{ name = "Tempo da média (zero para valor corrente)", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Informa pressao corrente do tanque", type = "REAL" },
+			},
+			code = [==============================================================[
+						 function( self, tempo_media )
+							 return self.pressao:read(tempo_media)
+						 end
+						 ]==============================================================],
+		},
+	},
+}
+class{ id = "valvula_controle",	name  = "Válvula de Controle", group = "",
+	bases = {},
+	description = [[]],
+	attributes = {
+		{ id = "comando_posicao",
+			name   = "Comando Posição",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "indicacao_posicao",
+			name   = "Indicação da posição real",
+			type   = "REAL_POINT",
+			access = "",
+			description = [[]],
+		},
+		{ id = "controlador",
+			name   = "Controlador",
+			type   = "controlador",
+			access = "g",
+			description = [[]],
+		},
+		{ id = "tempo_movimento",
+			name   = "Tempo movimento (seg)",
+			type   = "INTEGER",
+			access = "",
+			description = [[]],
+		},
+	},
+	methods = {
+		{ id   = "comandar_posicao",
+			name = "Comandar Posição",
+			description = "Altera a posição de abertura da válvula.",
+			parameters = {
+				{ name = "Posição de abetura"  , type = "REAL" },
+				{ name = "Número de tentativas", type = "INTEGER", default = 1 },
+				{ name = "Margem de Erro"      , type = "REAL", default = .01 },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+						 function(self, posicao, n, e)
+							local controlador = self.controlador
+							if not controlador or self.controlador:informar_manual() then
+								local t = self.tempo_movimento or 0
+								while n > 0 do
+									self.comando_posicao:write(posicao)
+									sleep(t)
+									if abs(posicao - self:informar_posicao()) < e then
+										return true
+									end
+									n = n - 1
+								end
+							end
+							return false
+						 end
+						 ]================================================================],
+		},
+	},
+}
+
+class{ id = "termopares",	name  = "Termopares", group = "",
+	bases = {},
+	description = [[Equipamento para agrupar um conjunto de termopares.]],
+	attributes = {
+		{ id = "temperaturas",
+			name   = "Temperaturas",
+			type   = "REAL_POINT[]",
+			access = "",
+			description = [[]],
+		},
+		{ id = "remover",
+			name   = "Remover",
+			type   = "BOOLEAN[]",
+			access = "",
+			description = [[]],
+		},
+	},
+	code = [=[
+		function _CLASS:_informar_temperaturas(ajustes)
+			local temps = {}
+			local media
+			local desvio
+			local j
+			for j, pt_temp in ipairs(self.temperaturas) do
+				if self.remover[j] ~= true then
+					temps[#temps+1] = pt_temp:read()
+				end
+			end
+			local i = 1
+			while i <= ajustes do
+				media = average(temps)
+				desvio = devsq(temps)
+				j = 1
+				while j <= #temps do
+					if math.abs(temps[j] - media) > 2*desvio
+						then table.remove(temps, j)
+						else j = j+1
+					end
+				end
+				i = i+1
+			end
+			return temps
+		end
+	]=],
+	methods = {
+		{ id   = "calcular_minimo",
+			name = "Calcular Mínimo",
+			description = [[Itera sobre leituras de temperatura calculando a média e removendo entradas que fujam do desvio padrão e depois informa a menor.]],
+			parameters = {
+				{ name = "Ajustes"  , type = "INTEGER" },
+			},
+			results = {
+				{ name = "Mínimo", type = "REAL" },
+			},
+			code = [=[ function(self, ajustes)
+				local temps = self:_informar_temperaturas(ajustes)
+				local ret = math.huge
+				for _, value in ipairs(temps) do
+					ret = math.min(ret, value)
+				end
+				return ret
+			end]=],
+		},
+		{ id   = "calcular_media",
+			name = "Calcular Média",
+			description = [[Itera sobre leituras de temperatura calculando a média e removendo entradas que fujam do desvio padrão.]],
+			parameters = {
+				{ name = "Ajustes"  , type = "INTEGER" },
+			},
+			results = {
+				{ name = "Média", type = "REAL" },
+			},
+			code = [=[ function(self, ajustes)
+				local temps = self:_informar_temperaturas(ajustes)
+				return average(temps)
+			end]=],
+		},
+	},
+}
+
+class{ id = "poco", name = "Poço", group = "",
+	bases = {},
+	description = [[Poço.]],
+	attributes = {
+		{	id = "pressao_fundo_pdg",	name = "P. de Fundo PDG", type = "REAL_POINT",
+			access = "grw",
+			description = [[Ponto real que informa a pressão no fundo do poço medida no PDG.]],
+		},
+		{	id = "pressao_fundo_tpt",	name = "P. de Fundo TPT",	type = "REAL_POINT",
+			access = "grw",
+			description = [[Ponto real que informa a pressão no fundo do poço medida no TPT.]],
+		},
+		{	id = "sdv",	name = "Válvula SDV", type = "valvula_on_off",
+			access = "g",
+			description = [[Válvula de segurança que interrompe operação do poço.]],
+		},
+		{	id = "valvula_choke",	name = "Válvula Choke", type = "valvula",
+			access = "g",
+			description = [[Válvula que controla a vazão de exportação do poço.]],
+		},
+		{	id = "valvula_producao", name = "Válvula Produção", type = "valvula",
+			access = "g",
+			description = [[Válvula que determina a vazão de produção do poço.]],
+		},
+		{	id = "fic_gaslift",	name = "Válvula Gas-Lift", type = "controlador",
+			access = "g",
+			description = [[Controlador da vazão de gas-lift.]],
+		},
+		{	id = "temperatura_montante_choke", name = "Temp. Montante Choke", type = "REAL_POINT",
+			access = "gr",
+			description = [[Ponto real que informa a temperatura à montante da válvula de exportação do poço.]],
+		},
+		{	id = "pressao_montante_choke", name = "P. Montante Choke", type = "REAL_POINT",
+			access = "gr",
+			description = [[Ponto real que informa a pressão à montante da válvula de exportação do poço.]],
+		},
+		{	id = "pressao_jusante_choke",	name = "P. Jusante Choke", type = "REAL_POINT",
+			access = "gr",
+			description = [[Ponto real que informa a pressão à jusante da válvula de exportação do poço.]],
+		},
+		{	id = "rampa_partida",	name = "Rampa Partida",	type = "rampa",
+			access = "g",
+			description = [[Rampa com parâmetros de partida de poço.]],
+		},
+	},
+	methods = {
+		{id="_set_pdg", name = "Set PDG", code = "function (self) print(tostring(self.pressao_fundo_pdg)) print(self.pressao_fundo_pdg:write(190)) end "}
+	},
+}
+class{ id = "REAL_POINT_DIAG", name = "Ponto Real com Diagnóstico",
+	isPoint = true,
+	bases = { "REAL_POINT" },
+	simulationValue = "OFF",
+	description = "Classe de ponto real com diagnóstico.",
+	attributes = {
+		{ id = "media",	name = "Média", type = "media_movel", access = "g",
+			description = [[Equipamento para calculo do valor médio, desvio padrão, máximo e mínimo das amostras.]],
+		},
+		{ id = "min_val",	name = "Valor Mínimo", type = "REAL", access = "g",
+			description = [[Parâmetro que define o menor valor aceitável para variável.]],
+		},
+		{ id = "max_val",	name = "Valor Máximo", type = "REAL", access = "g",
+			description = [[Parâmetro que define o maior valor aceitável para variável.]],
+		},
+		{ id = "delta_1",	name = "Delta 1", type = "REAL", access = "g",
+			description = [[Parâmetro que define diferença entre valor filtrado em t2 e valor
+filtrado em t3 para identificar se variável está subindo ou descendo.]],
+		},
+		{ id = "delta_2",	name = "Delta 2", type = "REAL", access = "g",
+			description = [[Valor para desvio padrão que indica que variável ainda está oscilando.]],
+		},
+		{ id = "delta_3",	name = "Delta 3", type = "REAL", access = "g",
+			description = [[Diferença entre valor máximo e mínimo da variável que indica que a mesma ainda está oscilando.]],
+		},
+		{ id = "texto_diagnostico",	name = "Texto Diagnostico", type = "STRING", access = "gs",
+			description = [[Armazena o texto com o último diagnóstico.]],
+		},
+	},
+	methods = {
+		{ id   = "validar",
+			name = "Validar",
+			description = [[Indica se o valor informado por parâmetro é válido para a variável.
+	Se um valor máximo ou um valor mínimo não for definido para a variável, a variável
+	será sempre considerada válida no sentindo correspondente.]],
+			parameters = {
+				{ name = "Valor"  , type = "REAL" },
+			},
+			results = {
+				{ name = "Válido", type = "BOOLEAN" },
+			},
+			code = [=[ function(self, valor)
+				if ( (self.max_val ~= nil) and (valor > self.max_val) ) then
+					return false
+				end
+				if ( (self.min_val ~= nil) and (valor < self.min_val) ) then
+					return false
+				end
+
+				return true
+			end]=],
+		},
+
+	},
+	code = [[
+		local function calculateValue(self, value, ...)
+			return value * self.factor + self.offset, ...
+		end
+		function _CLASS:read()
+			local ret, err = self.bridge:get(self.id)
+			if not ret
+				then error("Erro na leitura do ponto "..tostring(self.id)..": "..err)
+				else return calculateValue(self, ret)
+			end
+		end
+		function _CLASS:write(value)
+			local ret, err = self.bridge:set(self, (value - self.offset) / self.factor)
+			if not ret
+				then error("Erro na escrita do ponto "..tostring(self.id)..": "..err)
+				else return ret
+			end
+		end
+	]],
+}

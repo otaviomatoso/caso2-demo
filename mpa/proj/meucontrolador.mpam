@@ -1,0 +1,76 @@
+-- code = (code or "") .. [===[
+
+	-- alien = require "alien"
+	-- exampleUFSC = assert(alien.exampleUFSC)
+	
+	-- soma_dois_inteiros = assert(exampleUFSC.sum_two_int)
+	-- soma_dois_inteiros:types("int", -- a + b
+	-- "int", -- a
+	-- "int" -- b
+	-- )
+	
+	-- executar_controle = assert(exampleUFSC.execute_control)
+	-- executar_controle:types("void"
+	-- )
+	
+	-- atualizar_sintonia = assert(exampleUFSC.update_alfa)
+	-- atualizar_sintonia:types("void",
+	-- "float"
+	-- )
+	
+-- ]===]
+
+class {
+	id    = "meucontrolador",
+	name  = "Controlador UFSC",
+	group = "UFSC",
+	bases = {"PID"},
+	attributes = {
+		{
+			id     = "alfa_otimizado",
+			name   = "Alfa Otimizado",
+			type   = "REAL_POINT",
+			access = "gsrw",
+		},
+	},
+	methods = {
+		{
+			id          = "rodar_controlador",
+			name        = "Executar Controle DLL",
+			description = [[Este método executa o controlador da DLL.]],
+			code = [================================================================[
+			       function(self)
+						--executar_controle()
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "atualizar_controlador",
+			name        = "Atualizar a sintonia na DLL de controle",
+			description = [[Este método atualiza o alfa da DLL.]],
+			parameters	= { { name = "Novo alfa", type = "REAL" } },
+			code = [================================================================[
+			       function(self, novo_alfa)
+						--atualizar_sintonia(novo_alfa)
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "verificar_alfa",
+			name        = "Verificar Alfa",
+			description = [[Este método verifica se o alfa está dentro do limite.]],
+			results		= { { name = "Erro", type = "BOOLEAN" } },
+			code = [================================================================[
+			       function(self)
+						local a = self.alfa_otimizado:read()
+						local kp_atual = self.kp:read()
+						local limite_atual = 1.1*kp_atual
+						if a <= limite_atual then
+							return false
+						end
+							return true
+			       end
+			       ]================================================================],
+		},
+	},
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Replicao</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 369--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase30.html" >prev</a>] [<a 
+href="mpase30.html#tailmpase30.html" >prev-tail</a>] [<a 
+href="mpase25.html#tailmpase31.html">tail</a>] [<a 
+href="mpase30.html#mpaap2.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">11.7   </span> <a 
+ id="x98-14600011.7"></a>Replicação</h3>
+<!--l. 372--><p class="noindent" >Um servidor de execução do MPA pode executar cooperativamente com outras instâncias desse mesmo servidor de execução,
+denominadas réplicas. O objetivo de execução simultânea cooperativa de várias réplicas é criar um mecanismo de tolerância a
+falhas. Nesse mecanismo, apenas uma das instâncias atua normalmente, executando os diagramas e podendo manipular os dados
+do sistema de supervisão. Essa instância é denominada a réplica ativa. As demais instâncias apenas monitoram o estado da
+réplica ativa, sem executar os diagramas e sem realizar alterações nos dados do sistema de supervisão. Tais réplicas são
+denominadas réplicas inativas. O mecanismo de tolerância a falhas busca garantir que no caso da interrupção da execução da
+réplica ativa, uma das réplicas inativas irá se tornar ativa e reiniciar a execução do controle, partindo do início do diagrama
+principal.
+<!--l. 380--><p class="indent" >   As réplicas cooperam tanto para eleger uma réplica ativa, que executará enquanto os demais ficam inativas sem executar,
+como também para fazer com que uma réplica inativa assuma o papel da ativa caso ela deixe de executar por qualquer
+razão. Para configurar um conjunto de réplicas, é necessário informar a elas um tag textual de pelo menos 41
+caracteres. Isso é informado através do parâmetro de configuração <span 
+class="cmss-10">exectag</span>. Esse tag é utilizado na comunicação das
+réplicas. Apenas as réplicas que utilizam o mesmo tag conhecem uma as outras. Se nenhuma tag for informada,
+então o servidor funciona sem conhecimento de outras réplicas e executará sempre que houver diagramas a ser
+executados.
+<!--l. 387--><p class="indent" >   Não há troca de informações sobre a aplicação ou o estado de execução entre as réplicas. Portanto, quando uma réplica
+inativa passa a executar no lugar de uma réplica ativa que deixou de executar, a aplicação da réplica inativa é
+executada do início, sem herdar ou compartilhar nenhum dado calculado pela execução da réplica que deixou de
+executar.
+<!--l. 390--><p class="indent" >   Idealmente, as réplicas devem todas serem configuradas com a mesma aplicação (planta e diagramas) e iniciarem o mesmo
+diagrama principal. Dessa forma, quando uma réplica substituir outra, a aplicação iniciada pela nova réplica será a mesma da
+réplica substituída.
+<!--l. 393--><p class="indent" >   O tag textual usado pela réplicas é modificado periodicamente sempre que há uma réplica ativa em execução. Portanto, esse
+tag textual pode ser utilizado para implementar um mecanismo de &#8220;watchdog&#8221; que verifica que alguma réplica do servidor MPA
+está em execução.
+                                                                                                    
+                                                                                                    
+   <!--l. 396--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase30.html" >prev</a>] [<a 
+href="mpase30.html#tailmpase30.html" >prev-tail</a>] [<a 
+href="mpase31.html" >front</a>] [<a 
+href="mpase30.html#mpaap2.html" >up</a>] </p></div>
+<!--l. 396--><p class="indent" >   <a 
+ id="tailmpase31.html"></a>  
+</body></html> 

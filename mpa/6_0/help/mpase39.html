@@ -1,0 +1,975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Definio de Classes de Equipamentos</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 85--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu51.html" >next</a>] [<a 
+href="mpase38.html" >prev</a>] [<a 
+href="mpase38.html#tailmpase38.html" >prev-tail</a>] [<a 
+href="mpase37.html#tailmpase39.html">tail</a>] [<a 
+href="mpase40.html#mpasu50.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">C.2   </span> <a 
+ id="x115-166000C.2"></a>Definição de Classes de Equipamentos</h3>
+<!--l. 87--><p class="noindent" >Classes de equipamentos são definidas através do construtor <span 
+class="cmss-10">class</span>. Cada definição indica o nome da classe de equipamentos e um
+identificador. Sugere-se que esse identificador siga as mesmas regras de identificadores de linguagens como Lua,
+C/C++ ou Java para permitir chamá-los de outras funções de forma mais usual. Além disso, os identificadores
+em letras maiúsculas são reservados par uso do MPA (<span 
+class="cmti-10">e.g.</span>&#x00A0;identificadores de tipos básicos e tipos de pontos de
+controle).
+<!--l. 92--><p class="indent" >   A definição de uma classe de equipamentos também inclui uma lista de atributos, contendo o nome, o identificador e o tipo de
+valor de cada atributo. Os tipos de valores de atributos podem ser um tipo básico (BOOLEAN, INTEGER, REAL ou
+STRING), assim como um tipo de ponto de controle (BOOLEAN_POINT, INTEGER_POINT, REAL_POINT ou
+STRING_POINT) ou inclusive um outro equipamento, que é especificado através do identificador da classe do
+equipamento, <span 
+class="cmti-10">e.g.</span>&#x00A0;<span 
+class="cmss-10">ValvulaOnOff</span>. Opcionalmente, os atributos também podem definir o campo <span 
+class="cmss-10">access </span>cujo valor é uma
+string contendo caracteres que definem as permissões de acesso dos diagramas ao atributo. Por exemplo, se um
+atributo define o campo <span 
+class="cmss-10">access </span>como <span 
+class="cmss-10">&#8221;gs&#8221; </span>então os diagramas serão capazes de obter (<span 
+class="cmss-10">&#8221;g&#8221; </span>de <span 
+class="cmti-10">get</span>) e alterar (<span 
+class="cmss-10">&#8221;s&#8221;</span>
+de <span 
+class="cmti-10">set</span>) o valor do atributo. Se o campo <span 
+class="cmss-10">access </span>não é definido então o atributo não é acessível diretamente no
+diagrama.
+<!--l. 98--><p class="indent" >   Vale ressaltar que quando o tipo de um atributo é uma classe de ponto como <span 
+class="cmss-10">REAL</span><span 
+class="cmss-10">_POINT </span>então a operação de obter (<span 
+class="cmss-10">&#8221;g&#8221;</span>)
+resulta no objeto que representa o ponto e não no valor do ponto no sistema supervisório. De forma similar, a
+operação de alteração (<span 
+class="cmss-10">&#8221;s&#8221;</span>) pode ser usada para mudar o ponto referenciado (<span 
+class="cmti-10">i.e.</span>&#x00A0;o tag a ser acessado) e não alterar
+valor do ponto mantido pelo sistema supervisório. Por essa razão, o MPA define que atributos cujo tipo sejam
+classes de ponto podem definir modos de acesso adicionais. Por exemplo, um atributo com o campo <span 
+class="cmss-10">access </span>definido
+como <span 
+class="cmss-10">&#8221;rw&#8221; </span>permitem que os diagramas possam ler (<span 
+class="cmss-10">&#8221;r&#8221; </span>de <span 
+class="cmti-10">read</span>) e escrever (<span 
+class="cmss-10">&#8221;w&#8221; </span>de <span 
+class="cmti-10">write</span>) o valor do ponto no
+supervisório.
+<!--l. 103--><p class="indent" >   Uma classe de equipamento também pode definir um conjunto de funções destinadas a permitir a manipulação dos
+equipamentos, como por exemplo realizar operações complexas que exijam manipular de forma sistemática vários pontos de
+controle relacionados ao equipamento (<span 
+class="cmti-10">e.g.</span>&#x00A0;pulsar uma válvula choke). A definição de uma função de equipamento é composta
+por um nome, um identificador, uma descrição, uma lista de parâmetros e uma lista de resultados. Tanto a lista de parâmetros
+quanto a lista de resultados são <span 
+class="cmti-10">arrays </span>definindo o nome e o tipo de cada um dos parâmetros ou resultados. Os tipos dos
+parâmetros e valor de retorno das funções só podem ser tipos básicos ou equipamentos (definido através do identificador da classe
+de equipamento). Para parâmetros, o desenvolvedor por definir um valor padrão para um parâmetro atribuindo um valor ao
+campo <span 
+class="cmss-10">default</span>.
+<!--l. 109--><p class="indent" >   Opcionalmente, uma classe de equipamento pode definir uma lista de classes base das quais herdará as definições de atributos
+e métodos. Isso é feito através do campo <span 
+class="cmss-10">bases </span>que deve ser uma lista dos identificadores das classes bases. Alternativamente, uma
+classe pode ser definida como abstrata. <span 
+class="cmbx-10">Classes abstratas </span>são usadas para definir comportamentos comuns para suas subclasses.
+Entretanto, para que esses comportamentos sejam utilizados, essas subclasses que devem extender a classe abstrata e ter
+instâncias definidas na configuração de planta. Para que uma classe seja considerada abstrata, o desenvolvedor do modelo desta
+classe deve definir o campo <span 
+class="cmss-10">abstract </span>com o valor <span 
+class="cmss-10">true</span>. Dessa forma, outras classes poderão usá-la como base e programar
+apenas o comportamento específico que corresponde a estas, cabendo à IDE impedir o desenvolvedor MPA de
+instânciá-la.
+<!--l. 117--><p class="indent" >   A figura <a 
+href="#x115-166001r1">C.1<!--tex4ht:ref: fig: exemplo_classe_equip --></a> ilustra a definição da classe <span 
+class="cmss-10">V</span><span 
+class="cmss-10">álvula Choke</span>. <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x115-166001r1"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.1: </span><span  
+class="content">Exemplo de definição de classe de equipamento.</span></div><!--tex4ht:label?: x115-166001r1 -->
+<!--l. 119--><div class="lstinputlisting">
+<a 
+ id="x115-166002"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166003r1"></a></span><span 
+class="cmss-8x-x-87">class</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">ValvulaChoke</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Valvula</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Choke</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166006r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">V</span><span 
+class="cmssi-8x-x-87">álvula</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">que</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">permite</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pulsar</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">sua</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">abertura</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">e</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">seu</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">fechamento</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166007r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166008r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">bases</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Valvula</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmsy-7">-</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">a</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">classe</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8217;</span><span 
+class="cmssi-8x-x-87">Valvula</span><span 
+class="cmssi-8x-x-87">&#8217;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">tem</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">que</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">ser</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">definida</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">tamb</span><span 
+class="cmssi-8x-x-87">ém</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166009r7"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166010r8"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">attributes</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166011r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">indicacaoPosicao</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166012r10"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Indicacao</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">posicao</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166013r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166014r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">access</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">r</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166015r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">comandoPulsoAbertura</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166016r14"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Comando</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pulso</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">abertura</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166017r15"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166018r16"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166019r17"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166020r18"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166021r19"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166022r20"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">methods</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166023r21"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">pulsarAbertura</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166024r22"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Pulsar</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">abertura</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166025r23"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">parameters</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166026r24"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Quantidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pulsos</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">INTEGER</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166027r25"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Intervalo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">entre</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">os</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pulsos</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">default</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">10</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166028r26"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Executa</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">seq</span><span 
+class="cmssi-8x-x-87">ü</span><span 
+class="cmssi-8x-x-87">ência</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pulsos</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">abertura</span><span 
+class="cmssi-8x-x-87">.</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166029r27"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">n</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">t</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166030r28"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">while</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">n</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmmi-7">&#x003E;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">0)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">do</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166031r29"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">comandoPulsoAbertura</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">true</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166032r30"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">sleep</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">t</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166033r31"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">n</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">n</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166034r32"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166035r33"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">]]</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166036r34"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166037r35"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166038r36"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166039r37"></a></span><span 
+class="cmsy-7">}</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 119--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 121--><p class="indent" >   A implementação de classes também pode definir operações internas que só são utilizadas por funções ou outras operações
+definidas no arquivo de módulo. Neste caso, a implementação dessas operações é feita através do campo <span 
+class="cmss-10">code </span>da classe, que pode
+adicionar ao campo <span 
+class="cmss-10">_CLASS </span>novos valores que serão automaticamente disponibilizados para todas as instâncias daquela classe.
+Por exemplo, para definir uma operação interna que calcula um número randômico com distribuição normal pode-se usar o trecho
+ilustrado na figura <a 
+href="#x115-166040r2">C.2<!--tex4ht:ref: fig: exemplo_classe_code --></a>. <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x115-166040r2"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.2: </span><span  
+class="content">Exemplo de definição de classe de equipamento com campo <span 
+class="cmss-10">code</span>.</span></div><!--tex4ht:label?: x115-166040r2 -->
+<!--l. 125--><div class="lstinputlisting">
+<a 
+ id="x115-166041"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166042r1"></a></span><span 
+class="cmss-8x-x-87">class</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166043r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">MinhaClasse</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166044r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166045r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">_CLASS</span><span 
+class="cmss-8x-x-87">:</span><span 
+class="cmss-8x-x-87">normal</span><span 
+class="cmss-8x-x-87">()</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166046r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">s</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166047r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">while</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">s</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmmi-7">&#x003E;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">do</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166048r7"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">u1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">random</span><span 
+class="cmss-8x-x-87">()</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166049r8"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">u2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">random</span><span 
+class="cmss-8x-x-87">()</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166050r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">2.0</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">u1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">1.0</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166051r10"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">2.0</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">u2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">1.0</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166052r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">s</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">+</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v2</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166053r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166054r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">return</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">v1</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">sqrt</span><span 
+class="cmss-8x-x-87">((</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">2.0</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">log</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">s</span><span 
+class="cmss-8x-x-87">))</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">/</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">s</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166055r14"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166056r15"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">]],</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166057r16"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">attributes</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166058r17"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">methods</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x115-166059r18"></a></span><span 
+class="cmsy-7">}</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 125--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 127--><p class="indent" >   Alternativamente, também é possível usar o identificador da classe ao invés do nome <span 
+class="cmss-10">_CLASS</span>. O campo <span 
+class="cmss-10">code </span>também deve
+ser usado para implementar as operações declaradas através do campo <span 
+class="cmss-10">methods</span>.
+                                                                                                    
+                                                                                                    
+   <!--l. 130--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu51.html" >next</a>] [<a 
+href="mpase38.html" >prev</a>] [<a 
+href="mpase38.html#tailmpase38.html" >prev-tail</a>] [<a 
+href="mpase39.html" >front</a>] [<a 
+href="mpase40.html#mpasu50.html" >up</a>] </p></div>
+<!--l. 130--><p class="indent" >   <a 
+ id="tailmpase39.html"></a>  
+</body></html> 

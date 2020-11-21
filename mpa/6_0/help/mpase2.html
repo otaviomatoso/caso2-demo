@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Fase de Pr-Configurao</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 20--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase3.html" >next</a>] [<a 
+href="#tailmpase2.html">tail</a>] [<a 
+href="mpach2.html#mpase2.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x8-70002.1"></a>Fase de Pré-Configuração</h3>
+<!--l. 23--><p class="noindent" >A fase de pré-configuração é a fase inicial do processo de utilização do MPA e é compreendida por duas atividades principais: a
+definição de <span 
+class="cmbx-10">classes de equipamentos </span>e a definição de <span 
+class="cmbx-10">fun</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ões auxiliares</span>. Usualmente, a fase de pré-configuração é feita
+poucas vezes no processo de utilização do MPA e não é necessariamente realizada pelo mesmo usuário responsável pelo
+desenvolvimento do restante da aplicação do MPA.
+<!--l. 26--><p class="indent" >   As classes de equipamentos definem <span 
+class="cmbx-10">atributos </span>que especificam quais pontos de controle cada tipo de equipamento apresenta.
+Por exemplo, a classe <span 
+class="cmss-10">sensor</span><span 
+class="cmss-10">_pressao </span>pode definir o atributo <span 
+class="cmss-10">pressao</span><span 
+class="cmss-10">_atual </span>que especifica o ponto de controle através do qual a
+pressão captada pelo equipamento é obtida. Além disso, uma classe de equipamento também pode definir atributos que
+determinam características dos equipamentos (<span 
+class="cmti-10">e.g.</span>&#x00A0;capacidade de um tanque) ou que definam relacionamentos com outros
+equipamentos (<span 
+class="cmti-10">e.g.</span>&#x00A0;válvula de entrada de um tanque). As classes de equipamentos também definem funções para manipulação
+desses equipamentos, que são denominadas <span 
+class="cmbx-10">opera</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ões sobre equipamento</span>. As operações sobre equipamento
+são utilizadas, por exemplo, para obter valores dos pontos de controle de um equipamento ou realizar operações
+complexas sobre o equipamento, ou seja, operações que exijam a alteração coordenada de um conjunto de pontos de
+controle.
+<!--l. 32--><p class="indent" >   As funções auxiliares implementam funcionalidades específicas de alguma plataforma de execução, como por exemplo, acesso
+a mecanismos de notificação e alarme ou funções do sistema operacional (<span 
+class="cmti-10">e.g.</span>&#x00A0;hora atual, sistema de arquivos, etc.). Tanto as
+operações sobre equipamentos, como as funções auxiliares são utilizadas na implementação das manobras de operação. As
+atividades da fase de pré-configuração são feitas por um usuário especializado com conhecimento da linguagem Lua, que constrói
+um arquivo contendo a definição das classes de equipamentos e a implementação das funções auxiliares. A confecção destes
+arquivos foge ao escopo desse manual. O apêndice <a 
+href="mpaap3.html#x109-160000C">C<!--tex4ht:ref: app: preconfig --></a> apresenta uma visão geral da confecção dos arquivos de pré-configuração do
+MPA.
+                                                                                                    
+                                                                                                    
+   <!--l. 38--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase3.html" >next</a>] [<a 
+href="mpase2.html" >front</a>] [<a 
+href="mpach2.html#mpase2.html" >up</a>] </p></div>
+<!--l. 38--><p class="indent" >   <a 
+ id="tailmpase2.html"></a>  
+</body></html> 

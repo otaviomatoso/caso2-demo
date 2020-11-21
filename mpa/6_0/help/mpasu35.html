@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Bloco de Aes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 755--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase18.html" >next</a>] [<a 
+href="mpasu34.html" >prev</a>] [<a 
+href="mpasu34.html#tailmpasu34.html" >prev-tail</a>] [<a 
+href="mpase16.html#tailmpasu35.html">tail</a>] [<a 
+href="mpasu35.html#mpase17.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.4.4   </span> <a 
+ id="x66-970006.4.4"></a>Bloco de Ações</h4>
+<!--l. 758--><p class="noindent" >O bloco de ações é um elemento de composição de SFC que permite associar ações a passos, de forma a indicar
+quando uma ação deve ser executada de acordo com a ativação dos passos do SFC. Cada bloco de ação pode
+definir um conjunto de entradas que são compostas por um qualificador e opcionalmente uma ação e/ou uma
+variável lógica indicadora que são ativados de acordo com a ativação do passo e o qualificador definido. O MPA dá
+suporte aos seguintes qualificadores, exatamente como são definidos na especificação IEC-61131 em que o MPA se
+baseia:
+<div class="center" 
+>
+<!--l. 762--><p class="noindent" >
+<div class="tabular"> <table id="TBL-5" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-1-1"  
+class="td11">N </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-2"  
+class="td11">      <span 
+class="cmbx-10">N</span>on-stored         </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-2-1"  
+class="td11">R </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-2"  
+class="td11"> overriding <span 
+class="cmbx-10">R</span>eset</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-3-1"  
+class="td11">S  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-3-2"  
+class="td11">     <span 
+class="cmbx-10">S</span>et (<span 
+class="cmbx-10">S</span>tored)        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-4-1"  
+class="td11">L  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-4-2"  
+class="td11">     time <span 
+class="cmbx-10">L</span>imited        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-5-1"  
+class="td11">D </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-5-2"  
+class="td11"> time <span 
+class="cmbx-10">D</span>elayed</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-6-1"  
+class="td11">P  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-6-2"  
+class="td11">        <span 
+class="cmbx-10">P</span>ulse             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-7-1"  
+class="td11">SD</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-7-2"  
+class="td11"><span 
+class="cmbx-10">S</span>tored and time <span 
+class="cmbx-10">D</span>elayed</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-8-1"  
+class="td11">DS</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-8-2"  
+class="td11">  <span 
+class="cmbx-10">D</span>elayed and <span 
+class="cmbx-10">S</span>tored   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-9-1"  
+class="td11">SL</td><td  style="white-space:nowrap; text-align:center;" id="TBL-5-9-2"  
+class="td11"><span 
+class="cmbx-10">S</span>tored and time <span 
+class="cmbx-10">L</span>imited</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-5-10-1"  
+class="td11">   </td></tr></table></div></div>
+<!--l. 776--><p class="indent" >   Os qualificadores L, D, SD, DS e SL exigem a definição de um parâmetro que indica um tempo, dado em segundos. Cada
+entrada do bloco de ações estará ativa ou inativa de acordo com a semântica do seu qualificador e o estado do passo. Quando a
+entrada do bloco de ações estiver ativa, a ação associada aquela entrada será executada repetidas vezes continuamente.
+Similarmente, a variável indicadora definida na entrada do bloco assumirá o valor <span 
+class="cmbx-10">true </span>quando a entrada estiver ativa
+ou <span 
+class="cmbx-10">false </span>caso contrário. Para maiores informações sobre a semântica dos qualificadores consulte a especificação
+IEC-61131.
+                                                                                                    
+                                                                                                    
+   <!--l. 782--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase18.html" >next</a>] [<a 
+href="mpasu34.html" >prev</a>] [<a 
+href="mpasu34.html#tailmpasu34.html" >prev-tail</a>] [<a 
+href="mpasu35.html" >front</a>] [<a 
+href="mpasu35.html#mpase17.html" >up</a>] </p></div>
+<!--l. 782--><p class="indent" >   <a 
+ id="tailmpasu35.html"></a>  
+</body></html> 

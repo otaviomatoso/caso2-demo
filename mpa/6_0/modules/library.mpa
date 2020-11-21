@@ -1,0 +1,536 @@
+--
+-- Função de Espera
+--
+func {
+	id = "sleep",
+	name = "Espera",
+	description = "Suspende a execução por um determinado período de tempo dado em segundos.",
+	parameters = { { name = "Tempo em segundos", type = "REAL" } },
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--
+-- Class Chave de Operação
+--
+class {
+	id    = "ChaveOperacao",
+	name  = "Chave de Operação",
+	group = "Controles do Operador",
+	attributes = {
+		{
+			id     = "ativa",
+			name   = "Ativação",
+			type   = "BOOLEAN_POINT",
+			access = "rw",
+		},
+	},
+}
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--
+-- Class Mensagem de Operação
+--
+class {
+	id    = "MensagemOperacao",
+	name  = "Mensagem de Operação",
+	group = "Controles do Operador",
+	attributes = {
+		{
+			id     = "texto",
+			name   = "Texto da Mensagem",
+			type   = "STRING_POINT",
+		},
+	},
+}
+
+--
+-- Function Avisar Operador
+--
+func {
+	id   = "avisar",
+	name = "Avisar Operador",
+	description = [[Exibe uma mensagem ao operador.]],
+	parameters = {
+		{ name = "Mensagem a ser exibida", type = "STRING" },
+	},
+	code = [====================================================================[
+	       function(message)
+	       	local first, next
+	       	for id, linha in instancesof("MensagemOperacao") do
+	       		if UltimaLinha == nil or tostring(linha) > UltimaLinha then
+	       			if next == nil or tostring(linha) < tostring(next) then
+	       				next = linha
+	       			end
+	       		else
+	       			if first == nil or tostring(linha) < tostring(first) then
+	       				first = linha
+	       			end
+	       		end
+	       	end
+	       	if next == nil then next = first end
+	       	if next ~= nil then
+	       		UltimaLinha = tostring(next)
+	       		next.texto:write(string.format("%s - %s", os.date("%H:%M:%S"), message))
+	       	else
+	       		print("ERROR: Nenhuma linha de mensagem encontrada para exibir a mensagem '" .. message .. "'")
+	       	end
+	       end
+	       ]====================================================================],
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--
+-- Class Mensagem de Alarme 
+--
+class {
+	id    = "MensagemAlarme",
+	name  = "Mensagem de Alarme",
+	bases = { "MensagemOperacao" },
+	group = "Controles do Operador",
+	attributes = {
+		{
+			id     = "ativo",
+			name   = "Ativação do Alarme",
+			type   = "BOOLEAN_POINT",
+		},
+	},
+}
+
+--
+-- Function Alarmar Operador
+--
+func {
+	id   = "alarmar",
+	name = "Alarmar Operador",
+	description = [[
+Ativa um alarme no Supervisório associado com uma mensagem que descreve o
+alarme.]],
+	parameters = {
+		{ name = "Mensagem de alarme a ser exibida", type = "STRING" },
+	},
+	code = [====================================================================[
+	       function(message)
+	       	local choosen
+	       	repeat
+	       		for id, alarme in instancesof("MensagemAlarme") do
+	       			if
+	       				not alarme.alarme:read() and
+	       				(choosen == nil or tostring(alarme) < tostring(choosen))
+	       			then
+	       				choosen = alarme
+	       			end
+	       		end
+	       		if not choosen then sleep(1) end
+	       	until choosen
+	       	choosen.texto:write(string.format("%s - %s", os.date("%H:%M:%S"), message))
+	       	choosen.ativo:write(true)
+	       end
+	       ]====================================================================],
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--
+-- Classe Controlador PID
+--
+class {
+	id    = "PID",
+	name  = "Controlador PID",
+	group = "Programas PLC",
+	attributes = {
+		{
+			id     = "pv",
+			name   = "PV",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define a variável de processo (PV).]],
+		},
+		{
+			id     = "sp",
+			name   = "SP",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define a variável de ajuste (SP).]],
+		},
+		{
+			id     = "mv",
+			name   = "MV",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define a variável manipulada (MV).]],
+		},
+		{
+			id     = "kp",
+			name   = "KP",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho proporcional (KP).]],
+		},
+		{
+			id     = "ki",
+			name   = "KI",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho integral (KI).]],
+		},
+		{
+			id     = "kd",
+			name   = "KD",
+			type   = "REAL_POINT",
+			access = "rw",
+			description = [[Ponto que define o ganho derivativo (KD).]],
+		},
+		{
+			id     = "tagModo",
+			name   = "Tag do modo",
+			type   = "STRING",
+			description = [[Tag do ponto que indica o modo do PID.]],
+		},
+		{
+			id     = "valorManual",
+			name   = "Valor manual",
+			type   = "STRING",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo manual.]],
+		},
+		{
+			id     = "valorAuto",
+			name   = "Valor automático",
+			type   = "STRING",
+			description = [[Valor que, lido no ponto Modo, indica que o controlador está em modo automático.]],
+		},
+		{
+			id     = "tipoValorModo",
+			name   = "Tipo do valor modo",
+			type   = "STRING",
+			description = [[Tipo do valor que determina o modo de funcionamento do PID (boolean, number ou string).]],
+		},
+	},
+	code = [====================================================================[
+	       function _CLASS:converterModo(v)
+	       	local typ = self.tipoValorModo
+	       	if typ == "boolean" then
+	       		if v == "false"
+	       			then v = false
+	       			else v = true
+	       		end
+	       	elseif typ == "number" then v = tonumber(v) end
+	       	return v
+	       end
+	       
+	       function _CLASS:ajustarModo(v,n,t)
+	       	n = tonumber(n) or 0
+	       	t = tonumber(t) or 0
+	       	local tag = self.tagModo
+	       	for i=1, n do
+	       		setpoint(tag,v)
+	       		if t > 0 then sleep(t) end
+	       		if getpoint(tag) == v then return true end
+	       	end
+	       	return false
+	       end
+	       ]====================================================================],
+	methods = {
+		{
+			id          = "informarManual",
+			name        = "Informar modo manual",
+			description = [[Informa se o controlador está em modo manual.]],
+			results     = { { name = "Modo manual", type = "BOOLEAN" } },
+			code = [================================================================[
+			       function(self)
+			       	local modo   =
+			       		tostring(getpoint(self.tagModo))
+			       	local manual = self.valorManual
+			       	return modo == manual
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "informarAuto",
+			name        = "Informar modo automático",
+			description = [[Informa se o controlador está em modo automático.]],
+			results     = { { name = "Modo automático", type = "BOOLEAN" } },
+			code = [================================================================[
+			       function(self)
+			       	local modo   =
+			       		tostring(getpoint(self.tagModo))
+			       	local auto = self.valorAuto
+			       	return modo == auto
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "definirManual",
+			name        = "Definir em Modo Manual",
+			description = [[Define o modo de funcionamento do PID como manual.
+É permitido definir o número de tentativas e o tempo de espera para verificação do valor definido.
+Se o tempo de espera for definido como zero a verificação é feita sem interromper a chamada do método.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+				{ name = "Tempo de espera", type = "REAL" },
+			},
+			results = {
+				{ name = "Definido corretamente", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self,n,t)
+			       	local manual = self.valorManual
+			       	local v = self:converterModo(manual)
+			       	return self:ajustarModo(v, n, t)
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "definirAuto",
+			name        = "Definir em Modo Automático",
+			description = [[Define o modo de funcionamento do PID como automático.
+É permitido definir o número de tentativas e o tempo de espera para verificação do valor definido.
+Se o tempo de espera for definido como zero a verificação é feita sem interromper a chamada do método.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+				{ name = "Tempo de espera", type = "REAL" },
+			},
+			results = {
+				{ name = "Definido corretamente", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self,n,t)
+			       	local auto = self.valorAuto
+			       	local v = self:converterModo(auto)
+			       	return self:ajustarModo(v, n, t)
+			       end
+			       ]================================================================],
+		},
+	},
+}
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--
+-- Classe Válvula On/Off
+--
+class {
+	id = "ValvulaOnOff",
+	name = "Válvula On/Off",
+	group = "Válvulas",
+	attributes = {
+		{
+			id     = "indicacaoAberto",
+			name   = "Indicação Aberto",
+			type   = "BOOLEAN_POINT",
+		},
+		{
+			id     = "indicacaoFechado",
+			name   = "Indicação Fechado",
+			type   = "BOOLEAN_POINT",
+		},
+		{
+			id     = "indicacaoFalha",
+			name   = "Indicação Falha",
+			type   = "BOOLEAN_POINT",
+		},
+		{
+			id     = "comandoAbrir",
+			name   = "Comando Abrir",
+			type   = "BOOLEAN_POINT",
+		},
+		{
+			id     = "comandoFechar",
+			name   = "Comando Fechar",
+			type   = "BOOLEAN_POINT",
+		},
+		{
+			id     = "tempoMovimento",
+			name   = "Tempo de Movimento",
+			type   = "REAL",
+		},
+	},
+	code = [====================================================================[
+	       _CLASS.tempoMovimento = 0
+	       ]====================================================================],
+	methods = {
+		{
+			id          = "aberta",
+			name        = "Informar Aberta",
+			description = [[Informa se a válvula está aberta.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicativo de válvula aberta", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self)
+			       	local opened = self.indicacaoAberto  and self.indicacaoAberto:read()
+			       	local closed = self.indicacaoFechado and self.indicacaoFechado:read()
+			       	local failed = self.indicacaoFalha   and self.indicacaoFalha:read()
+			       	if opened == nil then
+			       		return not closed and not failed
+			       	else
+			       		return opened and not closed and not failed
+			       	end
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "fechada",
+			name        = "Informar Fechada",
+			description = [[Informa se a válvula está fechada.]],
+			parameters = {
+			},
+			results = {
+				{ name = "Indicativo de válvula fechada", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self)
+			       	local opened = self.indicacaoAberto  and self.indicacaoAberto:read()
+			       	local closed = self.indicacaoFechado and self.indicacaoFechado:read()
+			       	local failed = self.indicacaoFalha   and self.indicacaoFalha:read()
+			       	if closed == nil then
+			       		return not opened and not failed
+			       	else
+			       		return closed and not opened and not failed
+			       	end
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "abrir",
+			name        = "Abrir",
+			description = [[Tenta abrir a válvula.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self, n)
+			       	local t = self.tempoMovimento
+			       	local ponto, valor = self.comandoAbrir, true
+			       	if ponto == nil then
+			       		ponto, valor = self.comandoFechar, false
+			       	end
+			       	n = n or 1
+			       	while n > 0 do
+			       		ponto:write(valor)
+			       		sleep(t)
+			       		if self:aberta() then
+			       			return true
+			       		end
+			       		n = n - 1
+			       	end
+			       	return false
+			       end
+			       ]================================================================],
+		},
+		{
+			id          = "fechar",
+			name        = "Fechar",
+			description = [[Tenta fechar a válvula.
+Se o atributo Comando Fechar não for definido, o valor 'false' será enviado pelo atributo Comando Abrir.]],
+			parameters = {
+				{ name = "Número de tentativas", type = "INTEGER" },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self, n)
+			       	local t = self.tempoMovimento
+			       	local ponto, valor = self.comandoFechar, true
+			       	if ponto == nil then
+			       		ponto, valor = self.comandoAbrir, false
+			       	end
+			       	n = n or 1
+			       	while n > 0 do
+			       		ponto:write(valor)
+			       		sleep(t)
+			       		if self:fechada() then
+			       			return true
+			       		end
+			       		n = n - 1
+			       	end
+			       	return false
+			       end
+			       ]================================================================],
+		},
+	},
+}
+
+--
+-- Classe Válvula de Controle
+--
+class {
+	id    = "ValvulaControle",
+	name  = "Válvula de Controle",
+	group = "Válvulas",
+	attributes = {
+		{
+			id     = "comandoPosicao",
+			name   = "Comando Posição",
+			type   = "REAL_POINT",
+		},
+		{
+			id     = "indicacaoPosicao",
+			name   = "Indicação da Posição Real",
+			type   = "REAL_POINT",
+			access = "r",
+		},
+		{
+			id     = "controlador",
+			name   = "Controlador",
+			type   = "PID",
+			access = "g",
+		},
+		{
+			id      = "tempoMovimento",
+			name    = "Tempo movimento (seg)",
+			type    = "REAL",
+		},
+		{
+			id      = "margemErro",
+			name    = "Margem de Erro (%)",
+			type    = "REAL",
+		},
+	},
+	code = [====================================================================[
+	       _CLASS.tempoMovimento = 0
+	       _CLASS.margemErro = 1
+	       ]====================================================================],
+	methods = {
+		{
+			id   = "comandarPosicao",
+			name = "Comandar Posição",
+			description = "Altera a posição de abertura da válvula.",
+			parameters = {
+				{ name = "Posição de abetura"  , type = "REAL" },
+				{ name = "Número de tentativas", type = "INTEGER", default = 1 },
+			},
+			results = {
+				{ name = "Indicativo de sucesso", type = "BOOLEAN" },
+			},
+			code = [================================================================[
+			       function(self, posicao, n)
+			       	local controlador = self.controlador
+			       	if not controlador or self.controlador:informarManual() then
+			       		local t = self.tempoMovimento
+			       		local e = self.margemErro/100
+			       		n = n or 1
+			       		while n > 0 do
+			       			self.comandoPosicao:write(posicao)
+			       			sleep(t)
+			       			if abs(posicao - self.indicacaoPosicao:read()) < e then
+			       				return true
+			       			end
+			       			n = n - 1
+			       		end
+			       	end
+			       	return false
+			       end
+			       ]================================================================],
+		},
+	},
+}

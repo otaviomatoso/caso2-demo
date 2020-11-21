@@ -1,0 +1,37 @@
+-- =============================================================================
+-- Copyright (C) 2003-2010 PETROBRAS S/A
+-- Tecgraf, PUC-Rio <mpa@tecgraf.puc-rio.br>
+-- Arquivo gerado pelo programa MPA
+-- Planta : valvulas.mpae
+-- Arquivo: valvulas.mpae
+-- Data   : 21/05/2018 01:21:10
+-- =============================================================================
+MPA_3_3 = true
+EXPANDED = {}
+PLANTNAME = "no name"
+WIDTHS = {
+  ["REAL_POINT"] = {80, 80, 80},
+  ["ValvulaControle"] = {80, 80, 80, 80, 80},
+}
+PLANT = {
+  REAL_POINT = {
+    ["ufsc.v1_abertura"] = {
+      factor = "1",
+    },
+    ["ufsc.v2_abertura"] = {
+      factor = "1",
+    },
+  },
+  ValvulaControle = {
+    ValvulaControle_1 = {
+      comandoPosicao = "ufsc.v1_abertura",
+      controlador = "controlador",
+      indicacaoPosicao = "ufsc.v1_abertura",
+    },
+    ValvulaControle_2 = {
+      comandoPosicao = "ufsc.v2_abertura",
+      controlador = "controlador",
+      indicacaoPosicao = "ufsc.v2_abertura",
+    },
+  },
+}

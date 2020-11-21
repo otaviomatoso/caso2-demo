@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Erros de Execuo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 401--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase27.html#tailmpase32.html">tail</a>] [<a 
+href="mpase35.html#mpase36.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">12.1   </span> <a 
+ id="x100-14800012.1"></a>Erros de Execução</h3>
+<!--l. 403--><p class="noindent" >Esta seção descreve os erros de execução mais comuns do servidor de execução do MPA.
+   <div class="paragraphTOCS">
+   </div>
+<!--l. 405--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x100-14900012.1"></a><span 
+class="cmbx-10">Arquivos Inexistentes</span></span>
+   Sempre que o servidor de execução tentar ler um arquivo que não é permitido, será gerado um erro de execução ocasionando a
+geração de uma mensagem descrevendo o problema e posteriormente o encerramento da sua execução.
+<!--l. 409--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x100-15000012.1"></a><span 
+class="cmbx-10">Configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão de Planta e Diagramas Inv</span><span 
+class="cmbx-10">álida</span></span>
+   Sempre que houver a tentativa de carregar uma configuração de planta e diagramas incompatível com a pré-configuração
+inicial, é gerado um erro na tela informando a razão da incompatibilidade. Geralmente este erro é causado por uma
+referência a uma definição não encontrada, como por exemplo, uma função auxiliar ou classe de equipamento não
+definida.
+<!--l. 414--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x100-15100012.1"></a><span 
+class="cmbx-10">Erros da Ponte de Comunica</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+   Cada supervisório pode definir tratamento de situações excepcionais de formas diferentes. Por essa razão, os tipos de erros
+gerados por um supevisório podem variar significativamente. De qualquer forma, todo erro gerado por um determinado
+supervisório é repassado à sua ponte de comunicação que, por sua vez, provoca um erro no servidor de execução. Por esta razão,
+todos os erros originários do sistema supervisório são registrados no arquivo de log do servidor de execução. Dentre os erros mais
+comuns, pode-se citar a existência de um ponto de controle configurado no sistema MPA, mas que não existe na base de dados do
+supervisório. Isso ocorre comumente após manutenções na plataforma que resultam em alterações nas identificações dos pontos de
+controle.
+                                                                                                    
+                                                                                                    
+   <!--l. 104--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase32.html" >front</a>] [<a 
+href="mpase35.html#mpase36.html" >up</a>] </p></div>
+<!--l. 104--><p class="indent" >   <a 
+ id="tailmpase32.html"></a>   
+</body></html> 

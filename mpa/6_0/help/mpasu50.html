@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Criao de Instncias</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 329--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase39.html#tailmpasu50.html">tail</a>] [<a 
+href="# "  >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">C.6.1   </span> <a 
+ id="x123-173000C.6.1"></a>Criação de Instâncias</h4>
+<!--l. 331--><p class="noindent" >A criação de instâncias é feita utilizando o ID da classe como construtor, que recebe como parâmetro uma tabela cujos campos
+definem o ID da instância e os valores dos atributos da classe, como ilustrado no código abaixo.
+<!--l. 333--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x123-173001r7"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.7: </span><span  
+class="content">Criação de equipamento dinamicamente.</span></div><!--tex4ht:label?: x123-173001r7 -->
+<!--l. 333--><div class="lstinputlisting">
+<a 
+ id="x123-173002"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173003r1"></a></span><span 
+class="cmss-8x-x-87">func</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">create</span><span 
+class="cmssi-8x-x-87">_valve</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">results</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{{</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">ValvulaOnOff</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmsy-7">}}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173006r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173007r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">()</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173008r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">valv</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">ValvulaOnOff</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173009r7"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">xv</span><span 
+class="cmsy-7">-</span><span 
+class="cmssi-8x-x-87">040</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173010r8"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">comando</span><span 
+class="cmss-8x-x-87">_abrir</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">BOOLEAN</span><span 
+class="cmss-8x-x-87">_POINT</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040SH</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173011r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">comando</span><span 
+class="cmss-8x-x-87">_fechar</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">BOOLEAN</span><span 
+class="cmss-8x-x-87">_POINT</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040SL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173012r10"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">indicacao</span><span 
+class="cmss-8x-x-87">_aberto</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">getinstance</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040EPT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">),</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173013r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">indicacao</span><span 
+class="cmss-8x-x-87">_falha</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">getinstance</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040ESD</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">),</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173014r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173015r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173016r14"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">valv</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">indicacao</span><span 
+class="cmss-8x-x-87">_fechado</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">getinstance</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040SL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173017r15"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173018r16"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">return</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">valv</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173019r17"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173020r18"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">]]</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x123-173021r19"></a></span><span 
+class="cmsy-7">}</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 333--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 335--><p class="indent" >   Neste exemplo, são criadas instâncias das classes <span 
+class="cmss-10">ValvulaOnOff </span>e <span 
+class="cmss-10">BOOLEAN</span><span 
+class="cmss-10">_POINT</span>. Se já existir uma instância da mesma
+classe com o mesmo ID, o construtor lança o erro &#8220;attempt to create a class instance with an ID already being used (got <span 
+class="cmmi-10">&#x003C;</span>ID
+utilizado<span 
+class="cmmi-10">&#x003E;</span>)&#8221;. Similarmente, se o ID informado ao construtor não for do tipo string (ou não for fornecido), o seguinte erro é
+lançado &#8220;invalid ID value for class instance (got <span 
+class="cmmi-10">&#x003C;</span>valor do campo ID<span 
+class="cmmi-10">&#x003E;</span>)&#8221;.
+<!--l. 339--><p class="indent" >   Imediatamente após a execução do construtor, a nova instância já estará incorporada à base de configurações da planta.
+Portanto, a função <span 
+class="cmss-10">getinstance </span>passará a devolver a nova instância recém-criada caso o seu ID e classe sejam passados como
+parâmetro.
+                                                                                                    
+                                                                                                    
+   <!--l. 342--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu50.html" >front</a>] [<a 
+href="# "  >up</a>] </p></div>
+<!--l. 342--><p class="indent" >   <a 
+ id="tailmpasu50.html"></a>  
+</body></html> 

@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Comando</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 315--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu29.html" >next</a>] [<a 
+href="mpasu23.html" >prev</a>] [<a 
+href="mpasu23.html#tailmpasu23.html" >prev-tail</a>] [<a 
+href="#tailmpasu24.html">tail</a>] [<a 
+href="mpasu23.html#mpasu27.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.2   </span> <a 
+ id="x53-730006.3.2"></a>Comando</h4>
+<!--l. 318--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Comando </span>é representado graficamente por um retângulo. Através desse elemento de composição, é
+possível atribuir valores a variáveis, executar operações sobre fluxos, executar funções auxiliares ou operações sobre pontos e
+equipamentos. A configuração do elemento de composição é feita através do painel contextual, que exibe controles para
+configuração do comando ao selecioná-lo na área de edição do diagrama. A figura <a 
+href="#x53-73001r11">6.11<!--tex4ht:ref: fig: fc_command_edit_dialog --></a> apresenta o painel de
+configuração.
+<!--l. 323--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x53-73001r11"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 323--><p class="noindent" ><img 
+src="images/fc_command_edit_dialog.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.11: </span><span  
+class="content"> <span 
+class="cmr-8">Painel de configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão do elemento de composi</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão Comando.</span></span></div><!--tex4ht:label?: x53-73001r11 -->
+                                                                                                    
+                                                                                                    
+<!--l. 323--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 325--><p class="indent" >   Painel contextual de edição do comando apresenta três áreas principais:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">A</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">Apresenta botões para a seleção e visualização da ação. Abaixo desses botões há tabelas para preenchimento dos
+     parâmetros da ação. E ao final áreas para a definição de mensagens de acompanhamento. O botão de definição da
+     ação exibe um diálogo para seleção da ação que pode ser a avaliação de uma expressão, ou um diagrama, função
+     auxiliar ou uma operação sobre um ponto, equipamento ou variável, conforme apresentado na seção&#x00A0;<a 
+href="#x53-740006.3.2">6.3.2<!--tex4ht:ref: sec: selecaodeoperacao --></a>. A área de
+     definição dos parâmetros da ação tipicamente permite a definição de uma expressão, ou os valores dos parâmetros
+     e variáveis de resultado de um diagrama-função, ou função auxiliar, ou operação sobre ponto ou equipamento.
+     As mensagens de acompanhamento são expressões Lua, portanto podem ser construídas de acordo com o valor
+     de variáveis do diagrama. Por conta disso, todos os textos das mensagens devem ser especificados entre aspas, de
+     forma a distingui-los dos nomes de variáveis. A mensagens de acompanhamento são geradas durante a execução do
+     diagrama e são exibidas no painel inferior na aba <span 
+class="cmss-10">Monitora</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão</span>. Os elementos do fluxo que possuem mensagens de
+     acompanhamento são exibidos no fluxo com um ponto na parte superior e central do elemento.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Descri</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">A descrição pode ser qualquer texto que o usuário deseje utilizar para descrever o efeito do elemento. Pode-se
+     usar também a descrição automática gerada pelo sistema, ligando o botão <span 
+class="cmss-10">Autom</span><span 
+class="cmss-10">ática</span>. O conteúdo da descrição
+     será exibido no fluxo dentro da caixa correspondente. Se a área da caixa for menor que o suficiente para exibir o
+     texto, uma parte não ficará visível. Se preferir, o usuário pode redimensionar a caixa de forma que todo o texto
+     fique visível, ou mudar o texto &#8211; inserindo quebras de linhas, por exemplo &#8211; para que caiba na forma da caixa.
+     <!--l. 344--><p class="noindent" >O texto da descrição é um texto <span 
+class="cmti-10">parametriz</span><span 
+class="cmti-10">ável</span>, ou seja, pode-se fazer uso de certos nomes especiais que se
+     referem aos valores de configuração da ação para generalizar as descrições. As descrições automáticas exploram esse
+     recurso, mas uma descrição manual também pode fazê-lo. Por exemplo, a descrição automática de uma atribuição
+     é <span 
+class="cmtt-10">$variable = $expression</span>, o que significa que o texto final, que aparece no fluxo será composto pelo texto que
+     preencher o campo <span 
+class="cmss-10">Vari</span><span 
+class="cmss-10">ável</span>, seguido do símbolo <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">=</span></span></span>, seguido pelo texto que preencher o campo <span 
+class="cmss-10">Valor</span>. A vantagem
+     desse recurso é que alterações na configuração da ação podem ser diretamente refletidos na descrição, sem ter
+     que alterá-la. Isso é importante para mantê-la atualizada e coerente com seu conteúdo. Os parâmetros atualmente
+     disponíveis são os seguintes<span class="footnote-mark"><a 
+href="mpa54.html#fn4x7"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x53-73002f4"></a> :
+     <div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"></colgroup><colgroup id="TBL-4-2g"><col 
+id="TBL-4-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-1-1"  
+class="td11">      <span 
+class="cmtt-8">$class</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-2"  
+class="td11"><span 
+class="cmr-8">Identificador da classe                                                                       </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-2-1"  
+class="td11">      <span 
+class="cmtt-8">$Class</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-2"  
+class="td11"><span 
+class="cmr-8">Nome da classe                                                                                </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-3-1"  
+class="td11"> <span 
+class="cmtt-8">$expression</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-2"  
+class="td11"><span 
+class="cmr-8">Texto do campo </span><span 
+class="cmss-8">Valor                                                                        </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-4-1"  
+class="td11">       <span 
+class="cmtt-8">$list</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-4-2"  
+class="td11"><span 
+class="cmr-8">Identificador da lista                                                                         </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-5-1"  
+class="td11">       <span 
+class="cmtt-8">$name</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-5-2"  
+class="td11"><span 
+class="cmr-8">Identificador do diagrama, fun</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão ou opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão sobre pontos e equipamentos</span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-6-1"  
+class="td11">       <span 
+class="cmtt-8">$Name</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-6-2"  
+class="td11"><span 
+class="cmr-8">Nome do diagrama, fun</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão ou opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão sobre pontos e equipamentos         </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-7-1"  
+class="td11">     <span 
+class="cmtt-8">$object</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-7-2"  
+class="td11"><span 
+class="cmr-8">Vari</span><span 
+class="cmr-8">ável que cont</span><span 
+class="cmr-8">ém o ponto ou equipamento                                         </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-8-1"  
+class="td11">  <span 
+class="cmtt-8">$operation</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-8-2"  
+class="td11"><span 
+class="cmr-8">Identificador da opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão                                                                   </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-9-1"  
+class="td11">  <span 
+class="cmtt-8">$Operation</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-9-2"  
+class="td11"><span 
+class="cmr-8">Nome da opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão (Inicia, Interrompe, Obt</span><span 
+class="cmr-8">ém, Define, ...)                       </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-10-1"  
+class="td11"> <span 
+class="cmtt-8">$parameters</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-10-2"  
+class="td11"><span 
+class="cmr-8">Lista de par</span><span 
+class="cmr-8">âmetros de uma chamada                                                   </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-11-1"  
+class="td11"><span 
+class="cmtt-8">$parameter</span><span 
+class="cmtt-8">_</span><span 
+class="cmitt-10x-x-80">i</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-11-2"  
+class="td11"><span 
+class="cmti-8">i</span><span 
+class="cmr-8">-</span><span 
+class="cmr-8">ésimo par</span><span 
+class="cmr-8">âmetro de uma chamada                                                     </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-12-1"  
+class="td11">    <span 
+class="cmtt-8">$results</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-12-2"  
+class="td11"><span 
+class="cmr-8">Lista de vari</span><span 
+class="cmr-8">áveis que recebem os resultados                                          </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-13-1"  
+class="td11">   <span 
+class="cmtt-8">$result</span><span 
+class="cmtt-8">_</span><span 
+class="cmitt-10x-x-80">i</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-13-2"  
+class="td11"><span 
+class="cmti-8">i</span><span 
+class="cmr-8">-</span><span 
+class="cmr-8">ésima vari</span><span 
+class="cmr-8">ável da lista de atribui</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ões ou dos resultados                         </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-14-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-14-1"  
+class="td11">   <span 
+class="cmtt-8">$variable</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-14-2"  
+class="td11"><span 
+class="cmr-8">Texto do campo </span><span 
+class="cmss-8">Vari</span><span 
+class="cmss-8">ável </span><span 
+class="cmr-8">de uma atribui</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão                                           </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-15-"><td  style="white-space:nowrap; text-align:right;" id="TBL-4-15-1"  
+class="td11">            </td></tr></table>
+     </div>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Erros</span> </dt><dd 
+class="description"></dd></dl>
+   <h5 class="subsubsectionHead"><a 
+ id="x53-740006.3.2"></a>Seleção de Operação</h5>
+<!--l. 395--><p class="noindent" >O diálogo de seleção de operação (figura&#x00A0;<a 
+href="#x53-74001r12">6.12<!--tex4ht:ref: fig: diagram_pickaction --></a>) permite a seleção através da escolha de um dos quatro ramos principais
+da árvore: <span 
+class="cmss-10">Express</span><span 
+class="cmss-10">ão</span>, para a avaliação de expressões e armazenamento dos resultados variáveis; <span 
+class="cmss-10">Vari</span><span 
+class="cmss-10">ável</span>, para
+operação sobre o valor de uma variável; <span 
+class="cmss-10">Diagramas</span>, para uma operação sobre diagramas; <span 
+class="cmss-10">Fun</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ões</span>, para chamada de
+uma função auxiliar; <span 
+class="cmss-10">Equipamentos</span>, para a operação sobre um equipamento; e <span 
+class="cmss-10">Pontos</span>, para a operação sobre um
+ponto.
+<!--l. 397--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x53-74001r12"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 397--><p class="noindent" ><img 
+src="images/diagram_pickaction.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.12: </span><span  
+class="content"> <span 
+class="cmr-8">Di</span><span 
+class="cmr-8">álogo de se</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão.</span></span></div><!--tex4ht:label?: x53-74001r12 -->
+                                                                                                    
+                                                                                                    
+<!--l. 397--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 399--><p class="indent" >   O ramo <span 
+class="cmss-10">Diagramas </span>apresenta todos os diagramas definidos no projeto e, para cada um, a área de configuração apresenta suas
+particularidades, que serão detalhadas a seguir. O ramo <span 
+class="cmss-10">Vari</span><span 
+class="cmss-10">áveis </span>apresenta todas as variáveis do diagrama que assumem valores
+que sejam pontos ou equipamentos, assim como as operações possíveis sobre esses valores. Da mesma forma, o ramo <span 
+class="cmss-10">Fun</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ões</span>
+apresenta todas as funções definidas na pré-configuração. O ramo <span 
+class="cmss-10">Pontos</span>, no entanto, apresenta as classes de pontos definidas na
+pré-configuração organizadas em grupos. De forma similar, o ramo <span 
+class="cmss-10">Equipamentos </span>apresenta as classes definidas na
+pré-configuração organizadas em grupos.
+<!--l. 405--><p class="indent" >   Cada ramo dos nós <span 
+class="cmss-10">Pontos </span>e <span 
+class="cmss-10">Equipamentos </span>que representa uma classe de ponto ou equipamento apresenta como folhas as
+operações sobre pontos ou equipamentos definidas para a respectiva classe.
+   <h5 class="subsubsectionHead"><a 
+ id="x53-750006.3.2"></a>Ação de Avaliação de Expressão</h5>
+<!--l. 410--><p class="noindent" >Através da ação de avaliação de expressão, o usuário é capaz de atribuir valores a variáveis do diagrama. Para isso, ele
+deve indicar um valor, tipo e nome da variável por linha, como na figura <a 
+href="#x53-75001r13">6.13<!--tex4ht:ref: fig: fc_dialogo_atribuicao --></a>. Ele pode também incluir novas
+linhas de atribuição ao final da tabela usando o botão <span 
+class="cmss-10">+ </span>ou remover uma linha selecionado-a e clicando no botão
+<span 
+class="cmss-10">-</span>.
+<!--l. 414--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x53-75001r13"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 414--><p class="noindent" ><img 
+src="images/fc_dialogo_atribuicao.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.13: </span><span  
+class="content"> <span 
+class="cmr-8">Configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de comando de atribui</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão</span></span></div><!--tex4ht:label?: x53-75001r13 -->
+                                                                                                    
+                                                                                                    
+<!--l. 414--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 416--><p class="indent" >   O nome da variável precisa ser um identificador válido da linguagem Lua, ou seja, uma sequência de letras, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">_</span></span></span> ou
+algarismos, desde que não comece com um algarismo, e que não seja uma palavra reservada. O tipo pode ser qualquer
+um dos apresentados no diálogo de edição da célula do tipo, que inclui os tipos básicos e todas as classes em
+ordem alfabética. Este diálogo também apresenta uma caixa de seleção ao final que é utilizada para indicar se
+o valor da atribuição é uma lista de valores, ao invés de um único valor do tipo indicado. Quando o tipo for
+uma classe e não for uma lista, o valor da atribuição só pode ser o nome de uma variável. No caso de variáveis
+de algum dos tipos básicos, o valor da atribuição pode ser uma expressão que resulte em um valor que possa
+ser convertido para o tipo da variável da atribuição. Para maiores informações sobre expressões, veja a seção
+<a 
+href="mpasu22.html#x48-700006.2.5">6.2.5<!--tex4ht:ref: sec: expressoes --></a>.
+<!--l. 423--><p class="indent" >   É importante deixar claro que sempre que houver uma variável local com o mesmo nome indicado no campo
+<span 
+class="cmbx-10">Vari</span><span 
+class="cmbx-10">ável</span>, está será usada. Se não existir uma local com aquele nome, mas existir uma global do diagrama com o
+mesmo nome, esta será usada. Se tampouco existir global com aquele nome, uma local será criada e usada a partir
+daí.
+   <h5 class="subsubsectionHead"><a 
+ id="x53-760006.3.2"></a>Ação sobre Diagramas</h5>
+<!--l. 430--><p class="noindent" >A opção <span 
+class="cmss-10">Diagramas </span>do diálogo de ações apresenta cada um dos diagramas existentes no projeto, permitindo definir qual o
+diagrama a ser manipulado. O usuário pode selecionar um diagrama-função, ou escolher uma das operações possíveis
+sobre um diagrama-aplicação: <span 
+class="cmss-10">Iniciar </span>ou <span 
+class="cmss-10">Interromper</span>. As operações sobre diagramas-aplicação são simples: só é
+possível iniciar ou interromper a execução de um diagrama-aplicação e não precisam de parametrização no painel
+contextual.
+<!--l. 434--><p class="indent" >   No caso de diagramas-função, o painel contextual adapta-se para permitir a definição dos parâmetros e valores de retorno,
+quando existirem, como mostra a figura <a 
+href="#x53-76001r14">6.14<!--tex4ht:ref: fig: fc_dialogo_chamada_fluxo --></a>. Quando houver parâmetros, uma tabela mostra os nomes e tipos dos mesmos, cada
+um em uma linha, e permite que seus valores sejam indicados na última coluna. Estes valores podem ser qualquer expressão válida
+na linguagem Lua. Quando o diagrama-função selecionado retornar valor, o nome e o tipo do resultado são também exibidos, e
+um campo de texto é apresentado para que o usuário informe o nome da variável que receberá o resultado da
+chamada.
+<!--l. 439--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x53-76001r14"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 439--><p class="noindent" ><img 
+src="images/fc_dialogo_chamada_fluxo.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.14: </span><span  
+class="content"> <span 
+class="cmr-8">Configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de chamada de diagrama.</span></span></div><!--tex4ht:label?: x53-76001r14 -->
+                                                                                                    
+                                                                                                    
+<!--l. 439--><p class="indent" >   </div><hr class="endfigure">
+   <h5 class="subsubsectionHead"><a 
+ id="x53-770006.3.2"></a>Ação sobre Função</h5>
+<!--l. 443--><p class="noindent" >A opção <span 
+class="cmss-10">Fun</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ões </span>exibe as funções auxiliares definidas nos módulos de definições do projeto da aplicação, como ilustrado no
+exemplo da figura <a 
+href="#x53-77001r15">6.15<!--tex4ht:ref: fig: fc_dialogo_funcao --></a>.
+<!--l. 445--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x53-77001r15"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 445--><p class="noindent" ><img 
+src="images/fc_dialogo_funcao.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.15: </span><span  
+class="content"> <span 
+class="cmr-8">Configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de chamada de fun</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão.</span></span></div><!--tex4ht:label?: x53-77001r15 -->
+                                                                                                    
+                                                                                                    
+<!--l. 445--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 447--><p class="indent" >   Ao selecionar a função auxiliar desejada, o painel contextual apresentará os campos específicos para a definição da
+chamada à função escolhida. Assim como na chamada de um diagrama-função, na chamada de uma função auxiliar
+é possível indicar os parâmetros e valor de retorno, quando existirem. Sendo assim, quando a função receber
+parâmetros, uma tabela mostra os nomes e tipos dos mesmos, cada um em uma linha, e permite que seus valores sejam
+indicados através de expressões da linguagem Lua. Quando houver resultados, o nome e o tipo do resultado serão
+exibidos, e um campo de texto será apresentado para que o usuário informe o nome da variável que receberá o
+resultado.
+   <h5 class="subsubsectionHead"><a 
+ id="x53-780006.3.2"></a>Ação sobre Ponto ou Equipamento</h5>
+<!--l. 454--><p class="noindent" >As opções <span 
+class="cmss-10">Pontos </span>e <span 
+class="cmss-10">Equipamentos </span>apresentam todas as operações de todas as classes definidas na pré-configuração.
+Como podem ser muitas classes, estas são colocadas dentro dos respectivos grupos, também de acordo com a
+pré-configuração.
+<!--l. 457--><p class="indent" >   Ao selecionar a operação desejada, o painel contextual apresentará os campos específicos para a configuração da chamada da
+mesma, assim como no caso de chamada de função auxiliar ou de diagramas-função, descritos acima. Em uma operação sobre
+ponto ou equipamento também podem ser definidos parâmetros e resultados, quando a descrição da mesma assim
+especificar.
+<!--l. 460--><p class="indent" >   A diferença entre uma operação sobre ponto ou equipamento e uma chamada de função está na apresentação de um
+parâmetro inicial adicional que define o <span 
+class="cmti-10">ponto ou equipamento sobre o qual a opera</span><span 
+class="cmti-10">ç</span><span 
+class="cmti-10">ão ser</span><span 
+class="cmti-10">á executada</span>. Vale ressaltar que não é
+permitida a especificação direta de <span 
+class="cmti-10">tags </span>de pontos ou equipamentos da planta: referências aos mesmos devem ser guardadas em
+variáveis globais (através da definição do respectivo valor inicial) ou locais (através de um comando de atribuição ou de um
+iterador).
+                                                                                                    
+                                                                                                    
+   <!--l. 463--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu29.html" >next</a>] [<a 
+href="mpasu23.html" >prev</a>] [<a 
+href="mpasu23.html#tailmpasu23.html" >prev-tail</a>] [<a 
+href="mpasu24.html" >front</a>] [<a 
+href="mpasu23.html#mpasu27.html" >up</a>] </p></div>
+<!--l. 463--><p class="indent" >   <a 
+ id="tailmpasu24.html"></a>   
+</body></html> 

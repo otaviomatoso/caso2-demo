@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Remoo de Instncias</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 342--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu50.html" >prev</a>] [<a 
+href="mpasu50.html#tailmpasu50.html" >prev-tail</a>] [<a 
+href="mpase40.html#tailmpasu51.html">tail</a>] [<a 
+href="# "  >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">C.6.2   </span> <a 
+ id="x124-174000C.6.2"></a>Remoção de Instâncias</h4>
+<!--l. 344--><p class="noindent" >É possível remover instâncias existentes na configuração de planta atual do servidor através da função <span 
+class="cmss-10">removeinstance(</span><span 
+class="cmmi-10">&#x003C;</span>ID da
+classe<span 
+class="cmmi-10">&#x003E;</span>, <span 
+class="cmmi-10">&#x003C;</span>ID da instância<span 
+class="cmmi-10">&#x003E;</span><span 
+class="cmss-10">)</span>. A instância removida deixa de ser incluída em todas as iterações feitas sobre as instâncias daquela
+classe que sejam feitas após a execução da função <span 
+class="cmss-10">removeinstance</span>.
+<!--l. 347--><p class="indent" >   A função <span 
+class="cmss-10">removeinstance </span>nunca lança erros, mas devolve o valor <span 
+class="cmss-10">true </span>para indicar se a instância referenciada pelos parâmetros
+existe e foi removida, ou o valor <span 
+class="cmss-10">false </span>caso contrário.
+<!--l. 349--><p class="indent" >   Todas referências a uma instância removida &#8212; como atributos de outras instâncias ou variáveis do diagrama &#8212; permanecem
+inalteradas após a remoção da instância. Entretanto, o objeto que representa a instância removida fica invalidado, de forma que
+todas as operações feitas sobre esse objeto resultem no lançamento do erro Lua &#8220;attempt to access a removed instance&#8221;. Para
+ilustrar isso, considere o código abaixo: <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x124-174001r8"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.8: </span><span  
+class="content">Remoção de equipamento dinamicamente.</span></div><!--tex4ht:label?: x124-174001r8 -->
+<!--l. 353--><div class="lstinputlisting">
+<a 
+ id="x124-174002"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174003r1"></a></span><span 
+class="cmss-8x-x-87">func</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">check</span><span 
+class="cmssi-8x-x-87">_removed</span><span 
+class="cmssi-8x-x-87">_error</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174006r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">()</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174007r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">toberemoved</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">getinstance</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040SL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174008r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">if</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">toberemoved</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">then</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174009r7"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">removeinstance</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">BOOLEAN</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">PRO</span><span 
+class="cmssi-8x-x-87">_</span><span 
+class="cmssi-8x-x-87">_1223040SL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174010r8"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174011r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">print</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">toberemoved</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">attribute</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmsy-7">-</span><span 
+class="cmmi-7">&#x003E;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">deve</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">lancar</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">um</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">erro</span><span 
+class="cmssi-8x-x-87">.</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174012r10"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174013r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174014r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174015r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">]]</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x124-174016r14"></a></span><span 
+class="cmsy-7">}</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 353--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 355--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x124-175000C.6.2"></a><span 
+class="cmbx-10">Nota sobre Itera</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+   Durante uma iteração sobre uma classe &#8212; seja através do elemento Iterador, seja através da função <span 
+class="cmss-10">getinstances </span>&#8212; não devem
+haver criação ou remoção de equipamentos dessa classe, caso contrário, o comportamento da iteração não é determinado. Em
+particular, nem todos os elementos podem ser percorridos. É responsabilidade do desenvolvedor do arquivo de módulo evitar essa
+situação.
+                                                                                                    
+                                                                                                    
+   <!--l. 360--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu50.html" >prev</a>] [<a 
+href="mpasu50.html#tailmpasu50.html" >prev-tail</a>] [<a 
+href="mpasu51.html" >front</a>] [<a 
+href="# "  >up</a>] </p></div>
+<!--l. 360--><p class="indent" >   <a 
+ id="tailmpasu51.html"></a>   
+</body></html> 

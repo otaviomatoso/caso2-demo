@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Aba de Depurao</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 845--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase20.html" >next</a>] [<a 
+href="mpasu37.html#tailmpasu39.html">tail</a>] [<a 
+href="mpach7.html#mpase19.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.6.1   </span> <a 
+ id="x73-1030006.6.1"></a>Aba de Depuração</h4>
+<!--l. 847--><p class="noindent" >Após a seleção dos diagramas-aplicação, a aba de depuração ilustrada na figura <a 
+href="#x73-103001r42">6.42<!--tex4ht:ref: fig: debug_window --></a> é exibida no painel inferior. Essa aba exibe
+uma barra com cinco botões e uma tabela com as linhas de execução sendo observadas do diagrama, conforme descrito a
+seguir:
+<!--l. 850--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x73-103001r42"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 850--><p class="noindent" ><img 
+src="images/debug_window.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.42: </span><span  
+class="content"> <span 
+class="cmr-8">Aba de depura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão no painel inferior.</span></span></div><!--tex4ht:label?: x73-103001r42 -->
+                                                                                                    
+                                                                                                    
+<!--l. 850--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 852--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x73-1040006.6.1"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ões de Adi</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão e Remo</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão de Linhas de Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+   Os dois primeiros botões permitem adicionar e remover da tabela de linhas de execução sendo observadas, respectivamente.
+Apenas as linhas de execução sendo observadas podem ser acompanhadas visualmente no diagrama durante a
+depuração.
+<!--l. 857--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x73-1050006.6.1"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ões de Controle da Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+   Esses botões só ficam habilitados quando alguma linha de execução atinge um ponto de parada (veja a seção <a 
+href="mpasu42.html#x77-1090006.6.4">6.6.4<!--tex4ht:ref: sec:breakpoints --></a>). O
+primeiro botão (símbolo de <span 
+class="cmbx-10">play</span>) é o comando <span 
+class="cmss-10">Continuar Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão</span>, que permite continuar a execução até o próximo ponto de
+parada.
+<!--l. 862--><p class="indent" >   Os dois botões mais abaixo executam os comandos <span 
+class="cmss-10">Passo da Linha Atual </span>e <span 
+class="cmss-10">Passo de Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>e servem para fazer o servidor
+executar um <span 
+class="cmti-10">passo</span>. Esse <span 
+class="cmti-10">passo </span>pode considerar apenas a própria linha de execução ou também incluir as outras linhas de
+execução concorrentes. Sendo assim, a ideia é que o <span 
+class="cmss-10">Passo da Linha Atual </span>sirva para seguir a linha de execução corrente, indo para
+a caixa seguinte, que pode estar em outro diagrama se o comando corrente for uma chamada de diagrama-função. A ideia do
+<span 
+class="cmss-10">Passo de Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>é considerar outras linhas de execução, indo para a caixa de algum outro diagrama, que está interrompido e
+pertence a outra linha de execução. Porém, isso só acontece quando o comando corrente provoca algum tipo de
+espera<span class="footnote-mark"><a 
+href="mpa74.html#fn6x7"><sup class="textsuperscript">6</sup></a></span><a 
+ id="x73-105001f6"></a> , o
+que dá a chance do executor de diagramas trocar de linha de execução. Portanto, se o comando corrente não provoca nenhuma
+espera, os dois botões produzem <span 
+class="cmti-10">sempre </span>o mesmo efeito.
+<!--l. 869--><p class="indent" >   Há ainda uma situação que merece ser enfatizada. A primeira é quando o comando corrente provoca uma espera e o servidor
+encontra um ponto de parada em alguma outra linha de execução. Nesse caso, independentemente de qual botão foi pressionado,
+a execução será sempre interrompida onde o outro ponto de parada foi encontrado.
+<!--l. 875--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x73-1060006.6.1"></a><span 
+class="cmbx-10">Tabela de Linhas de Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+   Essa tabela permite visualizar as linhas de execução dos diagramas aplicação disponíveis para depuração. Quando uma linha
+de execução é adicionada a essa tabela, é possível acompanhar sua execução fazendo um clique-duplo na coluna <span 
+class="cmss-10">Diagrama</span>
+correspondente à linha de execução desejada. Também é possível renomear o rótulo da linha de execução para um texto mais
+descritivo fazendo um clique-duplo na coluna <span 
+class="cmss-10">R</span><span 
+class="cmss-10">ótulo</span>.
+                                                                                                    
+                                                                                                    
+   <!--l. 881--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase20.html" >next</a>] [<a 
+href="mpasu39.html" >front</a>] [<a 
+href="mpach7.html#mpase19.html" >up</a>] </p></div>
+<!--l. 881--><p class="indent" >   <a 
+ id="tailmpasu39.html"></a>   
+</body></html> 

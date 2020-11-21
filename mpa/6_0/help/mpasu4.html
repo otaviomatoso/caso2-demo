@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Menu Executor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 108--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu5.html" >next</a>] [<a 
+href="mpasu3.html" >prev</a>] [<a 
+href="mpasu3.html#tailmpasu3.html" >prev-tail</a>] [<a 
+href="#tailmpasu4.html">tail</a>] [<a 
+href="mpase6.html#mpasu4.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">3.2.4   </span> <a 
+ id="x18-300003.2.4"></a>Menu Executor</h4>
+<!--l. 111--><p class="noindent" >Contém operações para controlar um servidor remoto de execução do MPA. Essas operações são divididas em dois
+grupos: o primeiro são operações sobre o servidor; e o segundo são operações sobre a aplicação MPA carregada no
+servidor.
+<!--l. 114--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-310003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Conectar...</span><span 
+class="cmbx-10">/</span><span 
+class="cmssbx-10">Desconectar</span></span>
+   Conecta ou desconecta a IDE de um servidor de execução. Para se conectar a um servidor é necessário informar o nome da
+máquina do servidor, a senha de acesso e o número porta de conexão do processo naquela máquina. Isso é feito através de um
+diálogo que é exibido quando o comando é executado, como ilustrado na figura&#x00A0;<a 
+href="#x18-31001r3">3.3<!--tex4ht:ref: fig: mn_connectdialog --></a>. Todas essas informações são configuradas no
+servidor de execução ao ser iniciado, como apresentado na seção&#x00A0;<a 
+href="mpase25.html#x91-12700011.1">11.1<!--tex4ht:ref: sec: networkconfig --></a>.
+<!--l. 120--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x18-31001r3"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 120--><p class="noindent" ><img 
+src="images/mn_connectdialog.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;3.3: </span><span  
+class="content"> <span 
+class="cmr-8">Di</span><span 
+class="cmr-8">álogo de conex</span><span 
+class="cmr-8">ão com servidor de execu</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão.</span></span></div><!--tex4ht:label?: x18-31001r3 -->
+                                                                                                    
+                                                                                                    
+<!--l. 120--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 122--><p class="indent" >   Uma vez conectado, o comando muda para <span 
+class="cmss-10">Desconectar</span>, que permite encerrar o canal de comunicação com o servidor atual.
+Isso implica que as mensagens de acompanhamento não serão mais recebidas. Ao se desconectar do servidor de execução, toda a
+comunicação com o mesmo é encerrada, de forma que as mensagens de acompanhamento ou acompanhamento visual da execução
+da aplicação não serão automaticamente descontinuadas.
+<!--l. 126--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-320003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Encerrar...</span></span>
+   Inicia o processo de encerramento do servidor de execução ao qual a IDE esteja conectado. Neste caso, todos os diagramas são
+imediatamente interrompidos, a comunicação com a IDE é desconectada, e o processo do servidor de execução termina. É
+importante salientar que todos os serviços fornecidos pelo servidor de execução serão encerrados. Além disso, a IDE não fornece
+mecanismos para disparar o servidor de execução novamente.
+<!--l. 132--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-330003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Desbloquear...</span></span>
+   Esse comando fica habilitado sempre que a execução dos diagramas atinge um ponto de parada. Nesse caso, o comando
+permite prosseguir com a execução dos diagramas após o ponto de parada atingido. É importante salientar que outros usuários
+podem estar inspecionando a execução do diagrama nesse ponto de parada. Nesse caso, se a execução continuar o valor das
+variáveis sendo inspecionadas podem ser alteradas pela execução normal do diagrama fazendo com que o estado sendo
+inspecionado seja perdido.
+<!--l. 138--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-340003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Enviar Aplica</span><span 
+class="cmssbx-10">ç</span><span 
+class="cmssbx-10">ão</span></span>
+   Exporta a aplicação atual através da conexão com o servidor de execução para que possa ser executada. Todas as definições
+da aplicação que não forem desabilitadas são incluídas no envio.
+<!--l. 142--><p class="indent" >   Quando definições de módulo são enviadas ao servidor, todas as classes e funções previamente carregadas no servidor são
+removidas. Portanto, para que o servidor aceite uma nova pré-configuração é necessário que não haja nenhuma configuração de
+planta ou diagramas presente no servidor, uma vez que elas podem fazer referência a alguma classe ou função da pré-configuração
+sendo substituída.
+<!--l. 145--><p class="indent" >   Não é possível substituir diagramas em execução ou suspensos, assim como enviar novas configurações de planta durante a
+execução de diagramas que façam referência às classes dessas configurações sendo enviadas.
+<!--l. 147--><p class="indent" >   Após o envio, os diagramas da aplicação ficam imediatamente disponíveis para execução no servidor, como é apresentado no
+capítulo&#x00A0;<a 
+href="mpach8.html#x83-1160008">8<!--tex4ht:ref: cha: manager --></a>.
+<!--l. 149--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-350003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Apagar Aplica</span><span 
+class="cmssbx-10">ç</span><span 
+class="cmssbx-10">ão...</span></span>
+   Remove a aplicação carregada no servidor de execução ao qual a IDE esteja conectada. Só é permitido apagar a aplicação do
+servidor se não houver nenhum diagrama em execução. É importante salientar que todas as informações de configuração de planta
+e diagramas serão perdidas e, portanto, não é possível recuperá-las posteriormente. Entretanto, é possível reenviar ao servidor a
+mesma aplicação, bastando carregar um projeto com as definições originais de planta, diagramas e demais arquivos que
+compunham o projeto da aplicação.
+<!--l. 155--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-360003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Depurar Aplica</span><span 
+class="cmssbx-10">ç</span><span 
+class="cmssbx-10">ão...</span></span>
+   Ativa o modo de depuração da aplicação, que permite um acompanhamento visual da execução dos diagramas em execução
+no servidor, assim como outros recursos para permitir compreender o funcionamento da aplicação e identificar possíveis
+inadequações com o intuito do desejado. A seção&#x00A0;<a 
+href="mpase18.html#x72-1020006.6">6.6<!--tex4ht:ref: sec:depuracao_visual --></a> apresenta os recursos do modo de depuração visual de aplicações
+MPA.
+<!--l. 159--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x18-370003.2.4"></a><span 
+class="cmbx-10">Item </span><span 
+class="cmssbx-10">Remover Bloqueios...</span></span>
+   Remove quaisquer pontos de parada atualmente inseridos na aplicação carregada no servidor. Esse comando é tipicamente
+utilizado para limpar eventuais pontos de parada esquecidos por um usuário durante uma sessão de depuração da
+aplicação.
+<!--l. 163--><p class="indent" >   É importante salientar que outros usuários podem estar inspecionando utilizando esses pontos de parada para interromper a
+execução do diagrama em pontos estratégicos permitindo a inspeção de seu estado. Nesse caso, esse comando fará com que a
+definição dos pontos de parada sejam perdidas.
+                                                                                                    
+                                                                                                    
+   <!--l. 166--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu5.html" >next</a>] [<a 
+href="mpasu3.html" >prev</a>] [<a 
+href="mpasu3.html#tailmpasu3.html" >prev-tail</a>] [<a 
+href="mpasu4.html" >front</a>] [<a 
+href="mpase6.html#mpasu4.html" >up</a>] </p></div>
+<!--l. 166--><p class="indent" >   <a 
+ id="tailmpasu4.html"></a>   
+</body></html> 

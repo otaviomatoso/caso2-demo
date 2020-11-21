@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>D Servidor de Execuo para OpenVMS</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap3.html" >prev</a>] [<a 
+href="mpaap3.html#tailmpaap3.html" >prev-tail</a>] [<a 
+href="mpase42.html#tailmpaap4.html">tail</a>] [<a 
+href="mpase37.html# " >up</a>] </p></div>
+   <h2 class="appendixHead"><span class="titlemark">Apêndice&#x00A0;D</span><br /><a 
+ id="x129-177000D"></a>Servidor de Execução para OpenVMS</h2>
+<!--l. 4--><p class="noindent" >Este apêndice apresenta os passos para execução do servidor do MPA no sistema operacional OpenVMS. O servidor de execução
+do MPA (ou seja, o executor de diagramas) para o ambiente OpenVMS segue o mesmo padrão de configuração descrito neste
+manual, que também se aplica aos ambientes Windows e Unix.
+<!--l. 7--><p class="indent" >   O arquivo de distribuição (<span 
+class="cmti-10">e.g.</span>&#x00A0;<span 
+class="cmss-10">MPA</span><span 
+class="cmss-10">_6</span><span 
+class="cmss-10">_0</span><span 
+class="cmss-10">_OPENVMS</span><span 
+class="cmss-10">_8</span><span 
+class="cmss-10">_3</span><span 
+class="cmss-10">_VXL</span><span 
+class="cmss-10">_5</span><span 
+class="cmss-10">_0.ZIP</span>) deve ser baixado para um diretório na máquina
+servidora (a que executa o OpenVMS), no tipo de transmissão imagem (<span 
+class="cmbx-10">type image</span>, obtido com o comando <span 
+class="cmss-10">BINARY </span>do
+programa FTP), e seu conteúdo deve ser recuperado com o programa <span 
+class="cmss-10">unzip</span>, ou similar, para o diretório onde o servidor de
+execução do MPA será instalado. O pacote contém os seguintes arquivos:
+     <dl class="description"><dt class="description">
+<span 
+class="cmssbx-10">MPA-MANUAL.PDF</span> </dt><dd 
+class="description">este manual.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">MPA-RUN.EXE</span> </dt><dd 
+class="description">arquivo binário da versão VMS do executor MPA que possui a ponte de acesso à base de dados VXL.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">VXLLUA.EXE</span> </dt><dd 
+class="description">arquivo binário com console iterpretador lua com pacote <span 
+class="cmbx-10">vxl</span>, cujo método <span 
+class="cmss-10">open </span>retorna a ponte de acesso
+     à base de dados VXL.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">RUN.COM</span> </dt><dd 
+class="description">exemplo de script de comando para início do executor com passagem de parâmetros.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">SERVICE.COM</span> </dt><dd 
+class="description">exemplo de script de comando para início do executor como serviço na fila de processo <span 
+class="cmbx-10">&#8220;BATCH&#8221; </span>do
+     VMS.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">START.COM</span> </dt><dd 
+class="description">exemplo de script de comando para início de uma aplicação MPA.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">STOP.COM</span> </dt><dd 
+class="description">exemplo de script de comando para término de uma aplicação MPA.</dd></dl>
+<!--l. 20--><p class="indent" >   Para o carregamento e execução do servidor, devem ser respeitadas algumas características do sistema operacional OpenVMS
+e de sua interface de comandos interativos (o DCL, <span 
+class="cmti-10">Digital Command Languange</span>) cujo sinal de pronto &#8211; ou <span 
+class="cmbx-10">prompt </span>&#8211; é o <span 
+class="cmss-10">$ </span>por
+padrão.
+<!--l. 22--><p class="indent" >   O comando para executar um programa no DCL é o <span 
+class="cmss-10">run</span>. Para executar o servidor do MPA,
+é necessário o privilégio <span 
+class="cmss-10">SYSLCK </span>(<span 
+class="cmbx-10">system lock</span>). O privilégio pode ser obtido com o seguinte
+comando<span class="footnote-mark"><a 
+href="mpa130.html#fn1x17"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x129-177001f1"></a> 
+(o usuário deve ter a autorização necessária)
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-1">
+$&#x00A0;&#x00A0;set&#x00A0;process/privilege=syslck
+</div>
+<!--l. 31--><p class="nopar" >
+<!--l. 33--><p class="indent" >   Para executar o servidor numa sessão interativa, pode-se usar
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-2">
+$&#x00A0;&#x00A0;run&#x00A0;MPA-RUN.EXE
+</div>
+<!--l. 37--><p class="nopar" >
+<!--l. 39--><p class="indent" >   Porém, como o comando <span 
+class="cmss-10">run </span>não permite passar parâmetros para o servidor do MPA, deve-se criar um nome simbólico (ou
+seja, uma variável de ambiente) com o comando:
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-3">
+$&#x00A0;&#x00A0;MPA_RUN&#x00A0;=&#x00A0;"$&#x00A0;"&#x00A0;+&#x00A0;F$PARSE("MPA-RUN.EXE",&#x00A0;"[direxec]",,,)
+</div>
+<!--l. 43--><p class="nopar" >
+<!--l. 45--><p class="indent" >   onde <span 
+class="cmss-10">direxec </span>é o diretório onde está o arquivo <span 
+class="cmss-10">MPA-RUN.EXE</span>.
+<!--l. 47--><p class="indent" >   Após isso, é possível iniciar o excutor do MPA passando-lhe parâmetros.
+<!--l. 49--><p class="indent" >   Por exemplo, o comando
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-4">
+$&#x00A0;&#x00A0;MPA_RUN&#x00A0;--host&#x00A0;10.10.228.253&#x00A0;--port&#x00A0;9091
+</div>
+<!--l. 53--><p class="nopar" >
+<!--l. 55--><p class="indent" >   carregará o executor, que aguardará comandos de uma IDE do MPA na interface de rede com o endereço IP 10.10.228.253,
+através da porta 9091 (em vez da porta 9090, que é a default).
+<!--l. 57--><p class="indent" >   Por comodidade, pode-se criar um arquivo de comandos de nome, por exemplo, <span 
+class="cmss-10">RUN</span><span 
+class="cmss-10">_MPA.COM</span>, contendo:
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-5">
+$&#x00A0;&#x00A0;set&#x00A0;process/priv=syslck
+&#x00A0;<br />$&#x00A0;&#x00A0;MPA_RUN&#x00A0;=&#x00A0;"$&#x00A0;"&#x00A0;+&#x00A0;F$PARSE("MPA-RUN.EXE",&#x00A0;"[direxec]",,,)
+&#x00A0;<br />$&#x00A0;&#x00A0;MPA_RUN&#x00A0;&#8217;P1&#8217;&#x00A0;&#8217;P2&#8217;&#x00A0;&#8217;P3&#8217;&#x00A0;&#8217;P4&#8217;&#x00A0;&#8217;P5&#8217;&#x00A0;&#8217;P6&#8217;&#x00A0;&#8217;P7&#8217;&#x00A0;&#8217;P8&#8217;&#x00A0;&#8217;P9&#8217;
+&#x00A0;<br />$&#x00A0;&#x00A0;exit
+</div>
+<!--l. 64--><p class="nopar" >
+<!--l. 66--><p class="indent" >   Seguindo com o exemplo dado, a execução pode ser interativa
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-6">
+$&#x00A0;&#x00A0;@RUN_MPA&#x00A0;--host&#x00A0;10.10.228.253&#x00A0;--port&#x00A0;9091
+</div>
+<!--l. 70--><p class="nopar" >
+<!--l. 72--><p class="indent" >   Ou <span 
+class="cmss-10">RUN</span><span 
+class="cmss-10">_MPA.COM </span>pode ser submetido a uma fila de execução em <span 
+class="cmbx-10">batch </span>(em &#8220;lote&#8221;) com o comando
+                                                                                                    
+                                                                                                    
+   <div class="verbatim" id="verbatim-7">
+$&#x00A0;&#x00A0;submit/log=[]&#x00A0;RUN_MPA.COM&#x00A0;/param=("--host&#x00A0;10.10.228.253",&#x00A0;"--port&#x00A0;9091")
+</div>
+<!--l. 76--><p class="nopar" >
+<!--l. 78--><p class="indent" >   Quando a fila executar o arquivo <span 
+class="cmss-10">RUN</span><span 
+class="cmss-10">_MPA.COM</span>, carregará o servidor com os parâmetros especificados.
+   <!--l. 113--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap3.html" >prev</a>] [<a 
+href="mpaap3.html#tailmpaap3.html" >prev-tail</a>] [<a 
+href="mpaap4.html" >front</a>] [<a 
+href="mpase37.html# " >up</a>] </p></div>
+<!--l. 113--><p class="indent" >   <a 
+ id="tailmpaap4.html"></a>  
+</body></html> 

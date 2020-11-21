@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Conector</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 636--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu33.html" >next</a>] [<a 
+href="mpasu28.html" >prev</a>] [<a 
+href="mpasu28.html#tailmpasu28.html" >prev-tail</a>] [<a 
+href="mpasu25.html#tailmpasu29.html">tail</a>] [<a 
+href="mpasu23.html#mpasu32.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.7   </span> <a 
+ id="x59-850006.3.7"></a>Conector</h4>
+<!--l. 638--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Conector </span>é representado graficamente por um círculo cinza. O Conector é usado principalmente para
+definir ligações entre elementos distantes no fluxo sem a necessidade de criar linhas longas que cortem ou contornem uma grande
+área do fluxo. Cada Conector possui uma descrição que o identifica. Todos os Conectores com a mesma descrição
+indicam o mesmo ponto de conexão no fluxo. Em outras palavras, todas as linhas que chegam a um Conector são
+implicitamente continuadas pelo Conector de mesma descrição que apresente uma linha de saída, como ilustrado na figura
+<a 
+href="#x59-85001r30">6.30<!--tex4ht:ref: fig: fc_conector_salto --></a>.
+<!--l. 644--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x59-85001r30"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 644--><p class="noindent" ><img 
+src="images/fc_conector_salto.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.30: </span><span  
+class="content"> <span 
+class="cmr-8">Uso do Conector como liga</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão descontinuada.</span></span></div><!--tex4ht:label?: x59-85001r30 -->
+                                                                                                    
+                                                                                                    
+<!--l. 644--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 646--><p class="indent" >   Nesse exemplo, tanto a saída da caixa <span 
+class="cmss-10">Origem 1</span>, quanto a saída da caixa <span 
+class="cmss-10">Origem 2 </span>têm como destino a caixa <span 
+class="cmss-10">Destino</span>, pois
+todos os Conectores utilizados possuem a mesma descrição e portanto definem o mesmo ponto. Quando um conector é
+selecionado, todos os demais conectores com a mesma descrição são exibidos em um tom de cinza mais claro para facilitar sua
+localização no fluxo. Em particular, o conector de saída é exibido em branco. Esse destaque é ilustrado na figura
+<a 
+href="#x59-85002r31">6.31<!--tex4ht:ref: fig: fc_conector_highlight --></a>
+<!--l. 651--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x59-85002r31"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 651--><p class="noindent" ><img 
+src="images/fc_conector_highlight.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.31: </span><span  
+class="content"> <span 
+class="cmr-8">Conector selecionado em destaque.</span></span></div><!--tex4ht:label?: x59-85002r31 -->
+                                                                                                    
+                                                                                                    
+<!--l. 651--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 653--><p class="indent" >   Não é permitido ter dois Conectores com mesma descrição que tenham uma ligação de saída, pois isso gera ambiguidade na
+continuação do fluxo após o Conector, conforme ilustrado na figura <a 
+href="#x59-85003r32">6.32<!--tex4ht:ref: fig: fc_conector_saida_dupla --></a>.
+<!--l. 655--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x59-85003r32"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 655--><p class="noindent" ><img 
+src="images/fc_conector_saida_dupla.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.32: </span><span  
+class="content"> <span 
+class="cmr-8">Conector com sa</span><span 
+class="cmr-8">ída amb</span><span 
+class="cmr-8">ígua.</span></span></div><!--tex4ht:label?: x59-85003r32 -->
+                                                                                                    
+                                                                                                    
+<!--l. 655--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 657--><p class="indent" >   Também não é permitido definir Conectores com uma dada descrição sem que haja um com uma saída, pois nesse caso a
+continuação do fluxo é indeterminada.
+<!--l. 659--><p class="indent" >   Também é possível utilizar um Conector como um agrupador de linhas que possuem o mesmo destino, conforme ilustrado na
+figura <a 
+href="#x59-85004r33">6.33<!--tex4ht:ref: fig: fc_conector_juncao --></a>. Nesse caso, inclusive pode haver outros Conectores que são usados para desviar a execução para o Conector
+agrupador.
+<!--l. 662--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x59-85004r33"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 662--><p class="noindent" ><img 
+src="images/fc_conector_juncao.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.33: </span><span  
+class="content"> <span 
+class="cmr-8">Conector agrupando linhas convergentes.</span></span></div><!--tex4ht:label?: x59-85004r33 -->
+                                                                                                    
+                                                                                                    
+<!--l. 662--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 664--><p class="indent" >   Note que nesse caso o Conector também pode funcionar como um rótulo de um ponto específico do fluxo, como ilustrado na
+figura <a 
+href="#x59-85005r34">6.34<!--tex4ht:ref: fig: fc_conector_rotulo --></a>.
+<!--l. 666--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x59-85005r34"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 666--><p class="noindent" ><img 
+src="images/fc_conector_rotulo.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.34: </span><span  
+class="content"> <span 
+class="cmr-8">Conector como r</span><span 
+class="cmr-8">ótulo de um ponto do fluxo.</span></span></div><!--tex4ht:label?: x59-85005r34 -->
+                                                                                                    
+                                                                                                    
+<!--l. 666--><p class="indent" >   </div><hr class="endfigure">
+                                                                                                    
+                                                                                                    
+   <!--l. 668--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu33.html" >next</a>] [<a 
+href="mpasu28.html" >prev</a>] [<a 
+href="mpasu28.html#tailmpasu28.html" >prev-tail</a>] [<a 
+href="mpasu29.html" >front</a>] [<a 
+href="mpasu23.html#mpasu32.html" >up</a>] </p></div>
+<!--l. 668--><p class="indent" >   <a 
+ id="tailmpasu29.html"></a>  
+</body></html> 

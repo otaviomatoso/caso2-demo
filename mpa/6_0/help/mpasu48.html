@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Funes Matemticas</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 170--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu45.html#tailmpasu48.html">tail</a>] [<a 
+href="mpaap4.html# " >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">C.5.1   </span> <a 
+ id="x119-170000C.5.1"></a>Funções Matemáticas</h4>
+<!--l. 173--><p class="noindent" >A seguir são reproduzidas as descrições das funções matemáticas oferecidas pelo manual de
+Lua<span class="footnote-mark"><a 
+href="mpa120.html#fn1x16"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x119-170001f1"></a> .
+Entretanto, no MPA, essas funções podem ser utilizadas sem o prefixo <span 
+class="cmss-10">math.</span>
+     <dl class="description"><dt class="description">
+<span 
+class="cmssbx-10">abs(x)</span> </dt><dd 
+class="description">Retorna o valor absoluto de <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">acos(x)</span> </dt><dd 
+class="description">Retorna o arco co-seno de <span 
+class="cmss-10">x </span>(em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">asin(x)</span> </dt><dd 
+class="description">Retorna o arco seno de <span 
+class="cmss-10">x </span>(em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">atan(x)</span> </dt><dd 
+class="description">Retorna o arco tangente de <span 
+class="cmss-10">x </span>(em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">atan2 (y, x)</span> </dt><dd 
+class="description">Retorna o arco tangente de <span 
+class="cmss-10">y/x </span>(em radianos), mas usa o sinal dos dois parâmetros para achar o quadrante
+     do resultado. (Também trata corretamente o caso de <span 
+class="cmss-10">x </span>ser zero.)
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">ceil(x)</span> </dt><dd 
+class="description">Retorna o menor inteiro maior ou igual a <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">cos(x)</span> </dt><dd 
+class="description">Retorna o co-seno de <span 
+class="cmss-10">x </span>(assume que <span 
+class="cmss-10">x </span>está em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">cosh(x)</span> </dt><dd 
+class="description">Retorna o co-seno hiperbólico de <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">deg(x)</span> </dt><dd 
+class="description">Retorna o ângulo <span 
+class="cmss-10">x </span>(dado em radianos) em graus.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">exp(x)</span> </dt><dd 
+class="description">Retorna o valor de <span 
+class="cmmi-10">e</span><sup><span 
+class="cmmi-7">x</span></sup>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">floor(x)</span> </dt><dd 
+class="description">Retorna o maior inteiro menor ou igual a <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">fmod(x, y)</span> </dt><dd 
+class="description">Retorna o resto da divisão de <span 
+class="cmss-10">x </span>por <span 
+class="cmss-10">y</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">frexp(x)</span> </dt><dd 
+class="description">Retorna <span 
+class="cmss-10">m </span>e <span 
+class="cmss-10">e </span>tais que <span 
+class="cmmi-10">x </span>= <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x22C5; </span>2<sup><span 
+class="cmmi-7">e</span></sup>, e é um inteiro e o valor absoluto de m está no intervalo [0.5, 1) (ou zero
+     quando <span 
+class="cmss-10">x </span>é zero).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">huge</span> </dt><dd 
+class="description">O valor de <span 
+class="cmss-10">HUGE</span><span 
+class="cmss-10">_VAL </span>de C, um valor maior ou igual a qualquer outro valor numérico.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">ldexp(m, e)</span> </dt><dd 
+class="description">Retorna <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">&#x22C5; </span>2<sup><span 
+class="cmmi-7">e</span></sup> (e deve ser um inteiro).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">log(x)</span> </dt><dd 
+class="description">Retorna o logaritmo natural de <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">log10(x)</span> </dt><dd 
+class="description">Retorna o logaritmo base-10 de <span 
+class="cmss-10">x</span>.
+                                                                                                    
+                                                                                                    
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">max(x, ...)</span> </dt><dd 
+class="description">Retorna o valor máximo entre os seus argumentos.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">min(x, ...)</span> </dt><dd 
+class="description">Retorna o valor mínimo entre os seus argumentos.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">modf(x)</span> </dt><dd 
+class="description">Retorna dois números, a parte integral de <span 
+class="cmss-10">x </span>e a parte fracionária de <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">pi</span> </dt><dd 
+class="description">O valor de pi.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">pow(x, y)</span> </dt><dd 
+class="description">Retorna <span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">&#x22C5; </span><span 
+class="cmmi-10">y</span>. (Você também pode usar a expressão <span 
+class="cmss-10">x&#x02C6;y </span>para computar este valor.)
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">rad(x)</span> </dt><dd 
+class="description">Retorna o ângulo <span 
+class="cmss-10">x </span>(dado em graus) em radianos.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">random([m [, n]])</span> </dt><dd 
+class="description">Esta função é uma interface para a função geradora pseudo-randômica simples rand fornecida por
+     ANSI C. (Nenhuma garantia pode ser dada para suas propriedades estatísticas.) Quando chamada sem argumentos,
+     retorna um número real pseudo-randômico no intervalo [0,1). Quando chamada com um número m, <span 
+class="cmss-10">random </span>retorna
+     um inteiro pseudo-randômico no intervalo [1, m]. Quando chamada com dois números m e n, math.random retorna
+     um inteiro pseudo-randômico no intervalo [m, n].
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">randomseed(x)</span> </dt><dd 
+class="description">Estabelece <span 
+class="cmss-10">x </span>como a &#8221;semente&#8221;para o gerador pseudo-randômico: sementes iguais produzem seqüências
+     iguais de números.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">sin(x)</span> </dt><dd 
+class="description">Retorna o seno de <span 
+class="cmss-10">x </span>(assume que <span 
+class="cmss-10">x </span>está em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">sinh(x)</span> </dt><dd 
+class="description">Retorna o seno hiperbólico de <span 
+class="cmss-10">x</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">sqrt(x)</span> </dt><dd 
+class="description">Retorna a raiz quadrada de <span 
+class="cmss-10">x</span>. (Você também pode usar a expressão <span 
+class="cmss-10">x&#x02C6;0.5 </span>para computar este valor.)
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">tan(x)</span> </dt><dd 
+class="description">Retorna a tangente de <span 
+class="cmss-10">x </span>(assume que <span 
+class="cmss-10">x </span>está em radianos).
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">tanh(x)</span> </dt><dd 
+class="description">Retorna a tangente hiperbólica de <span 
+class="cmss-10">x</span>.</dd></dl>
+                                                                                                    
+                                                                                                    
+   <!--l. 271--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu48.html" >front</a>] [<a 
+href="mpaap4.html# " >up</a>] </p></div>
+<!--l. 271--><p class="indent" >   <a 
+ id="tailmpasu48.html"></a>  
+</body></html> 

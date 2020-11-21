@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Iterador</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 497--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu31.html" >next</a>] [<a 
+href="mpasu25.html" >prev</a>] [<a 
+href="mpasu25.html#tailmpasu25.html" >prev-tail</a>] [<a 
+href="mpasu23.html#tailmpasu26.html">tail</a>] [<a 
+href="mpasu23.html#mpasu30.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.4   </span> <a 
+ id="x56-820006.3.4"></a>Iterador</h4>
+<!--l. 500--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Iterador </span>permite que se execute uma série de comandos para todos as configurações de uma mesma
+classe ou sobre uma lista de valores. Este elemento é representado graficamente por um retângulo com uma indicação em preto no
+canto superior esquerdo, como ilustrado na figura <a 
+href="#x56-82002r20">6.20<!--tex4ht:ref: fig: fc_exemplo_iteracao --></a>.
+<!--l. 503--><p class="indent" >   O iterador pode ser configurado através do painel lateral ao selecioná-lo. O painel lateral de configuração do iterador é
+ilustrado na figura <a 
+href="#x56-82001r19">6.19<!--tex4ht:ref: fig: fc_definicao_iterador --></a>. O campo <span 
+class="cmss-10">Modo </span>é utilizado para indicar se a iteração é sobre os elementos de uma classe ou de uma lista.
+O campo <span 
+class="cmss-10">Tipo </span>é utilizado para definir o tipo dos elementos a serem iterados. No caso da iteração sobre todas as
+configurações de uma classe, esse tipo indica a classe a ser iterada. Já no caso de iteração sobre uma lista, a
+lista deve ser de elementos deste tipo. O campo <span 
+class="cmss-10">Lista </span>é utilizado para indicar a variável com a lista a ser iterada
+caso o modo seja <span 
+class="cmss-10">Lista</span>. O campo <span 
+class="cmss-10">Vari</span><span 
+class="cmss-10">ável </span>é utilizado para indicar o nome da variável que deve ser utilizada para
+armazenar o elemento corrente da iteração. O campo <span 
+class="cmss-10">Índice </span>é utilizado para indicar o nome da variável que deve
+ser utilizara para armazenar o índice numérico do elemento corrente da interação. No caso de iteração sobre os
+elementos de uma classe, o campo <span 
+class="cmss-10">Classe </span>é utilizado para especificar a classe que deve ser iterada. Ao final do
+painel é possível definir uma descrição do elemento. Uma descrição em branco é substituída por uma descrição
+padrão.
+<!--l. 516--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x56-82001r19"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 516--><p class="noindent" ><img 
+src="images/fc_definicao_iterador.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.19: </span><span  
+class="content"> <span 
+class="cmr-8">Painel de configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão do iterador.</span></span></div><!--tex4ht:label?: x56-82001r19 -->
+                                                                                                    
+                                                                                                    
+<!--l. 516--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 518--><p class="indent" >   A figura <a 
+href="#x56-82002r20">6.20<!--tex4ht:ref: fig: fc_exemplo_iteracao --></a> exemplifica o uso do elemento de composição Iteração sobre Equipamentos. O usuário deve criar uma
+Ligação com descrição <span 
+class="cmss-10">I </span>(ramo de Iteração) com origem no objeto Iterador e com o destino no primeiro elemento de
+composição do laço de iteração. Caso haja uma sequência do fluxo após o fim da iteração, o usuário deve criar uma
+Ligação com descrição <span 
+class="cmss-10">F </span>(fim) com origem no Iterador e destino no elemento de composição que dá sequência ao
+fluxo.
+<!--l. 522--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x56-82002r20"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 522--><p class="noindent" ><img 
+src="images/fc_exemplo_iteracao.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.20: </span><span  
+class="content"> <span 
+class="cmr-8">Exemplo de itera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão sobre elementos.</span></span></div><!--tex4ht:label?: x56-82002r20 -->
+                                                                                                    
+                                                                                                    
+<!--l. 522--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 524--><p class="indent" >   A seguir são apresentadas quatro importantes notas sobre a utilização do objeto de composição Iteração sobre
+Equipamentos:
+     <ul class="itemize1">
+     <li class="itemize">Os elementos de composição a partir da <span 
+class="cmbx-10">Liga</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span><span 
+class="cmss-10">I </span>(ou seja, que serão iterados) ocorrem em sequência. No exemplo
+     da figura <a 
+href="#x56-82002r20">6.20<!--tex4ht:ref: fig: fc_exemplo_iteracao --></a>, o comando <span 
+class="cmss-10">Avisar fechamento </span>só ocorre após a execução do comando <span 
+class="cmss-10">Fechar tanque tq</span>.
+     </li>
+     <li class="itemize">A sequência do fluxo (a partir da Ligação <span 
+class="cmss-10">F</span>) só ocorre ao final da iteração. No exemplo da figura <a 
+href="#x56-82002r20">6.20<!--tex4ht:ref: fig: fc_exemplo_iteracao --></a>, o comando
+     <span 
+class="cmss-10">Tanques fechados </span>só ocorre após o comando de avisar que o último tanque fechou (<span 
+class="cmss-10">Avisar fechamento</span>).
+     </li>
+     <li class="itemize">A variável de iteração só é disponível no ramo do fluxo iniciado a partir da Ligação <span 
+class="cmss-10">I </span>e o seu valor nunca é alterado
+     (é constante), mesmo que haja alguma atribuição à variável de iteração.
+     </li>
+     <li class="itemize">O ramo do fluxo iniciado a partir da Ligação <span 
+class="cmss-10">I </span>deve ser um <span 
+class="cmbx-10">ramo de fluxo independente</span>, ou seja, não pode ter
+     ligação com o resto do fluxo. O exemplo da figura <a 
+href="#x56-82003r21">6.21<!--tex4ht:ref: fig: fc_iteracao_encontra_fluxo --></a> mostra um exemplo de um fluxo errado em que o ramo de
+     iteração se encontra com o ramo principal do fluxo.
+     </li></ul>
+<!--l. 545--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x56-82003r21"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 545--><p class="noindent" ><img 
+src="images/fc_iteracao_encontra_fluxo.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.21: </span><span  
+class="content"> <span 
+class="cmr-8">Exemplo de erro na itera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão sobre elementos.</span></span></div><!--tex4ht:label?: x56-82003r21 -->
+                                                                                                    
+                                                                                                    
+<!--l. 545--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 547--><p class="indent" >   As figuras <a 
+href="#x56-82004r22">6.22<!--tex4ht:ref: fig: fc_uso_variavel_iteracao1 --></a> e <a 
+href="#x56-82005r23">6.23<!--tex4ht:ref: fig: fc_uso_variavel_iteracao2 --></a> apresentam o painel contextual com a configuração dos elementos de composição que fazem parte do
+laço de iteração mostrado na figura <a 
+href="#x56-82002r20">6.20<!--tex4ht:ref: fig: fc_exemplo_iteracao --></a> acima. Essas figuras mostram a variável <span 
+class="cmss-10">valvula </span>sendo usada em situações diferentes. No
+elemento Comando selecionado na figura&#x00A0;<a 
+href="#x56-82004r22">6.22<!--tex4ht:ref: fig: fc_uso_variavel_iteracao1 --></a>, utilizamos a chamada de operação sobre o equipamento referenciado pela variável
+<span 
+class="cmss-10">valvula</span>.
+<!--l. 551--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x56-82004r22"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 551--><p class="noindent" ><img 
+src="images/fc_uso_variavel_iteracao1.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.22: </span><span  
+class="content"> <span 
+class="cmr-8">Utiliza</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão da vari</span><span 
+class="cmr-8">ável de itera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão na chamada de opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ões sobre equipamentos.</span></span></div><!--tex4ht:label?: x56-82004r22 -->
+                                                                                                    
+                                                                                                    
+<!--l. 551--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 553--><p class="indent" >   Já no exemplo da figura <a 
+href="#x56-82005r23">6.23<!--tex4ht:ref: fig: fc_uso_variavel_iteracao2 --></a>, o conteúdo da variável <span 
+class="cmss-10">valvula </span>é usado para formar uma mensagem que será exibida para o
+operador. Vale ressaltar que a variável de iteração (variável <span 
+class="cmss-10">valvula </span>no exemplo) só está disponível no ramo de iteração, ou seja,
+no ramo do fluxo iniciado pelo elemento de ligação rotulado como <span 
+class="cmss-10">I</span>.
+<!--l. 557--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x56-82005r23"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 557--><p class="noindent" ><img 
+src="images/fc_uso_variavel_iteracao2.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.23: </span><span  
+class="content"> <span 
+class="cmr-8">Utiliza</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão da vari</span><span 
+class="cmr-8">ável de itera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão como par</span><span 
+class="cmr-8">âmetro na chamada de fun</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ões.</span></span></div><!--tex4ht:label?: x56-82005r23 -->
+                                                                                                    
+                                                                                                    
+<!--l. 557--><p class="indent" >   </div><hr class="endfigure">
+                                                                                                    
+                                                                                                    
+   <!--l. 559--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu31.html" >next</a>] [<a 
+href="mpasu25.html" >prev</a>] [<a 
+href="mpasu25.html#tailmpasu25.html" >prev-tail</a>] [<a 
+href="mpasu26.html" >front</a>] [<a 
+href="mpasu23.html#mpasu30.html" >up</a>] </p></div>
+<!--l. 559--><p class="indent" >   <a 
+ id="tailmpasu26.html"></a>  
+</body></html> 

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Editor de Configuraes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 80--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase11.html" >prev</a>] [<a 
+href="mpase11.html#tailmpase11.html" >prev-tail</a>] [<a 
+href="#tailmpase12.html">tail</a>] [<a 
+href="mpach5.html#mpase12.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x31-500005.2"></a>Editor de Configurações</h3>
+<!--l. 83--><p class="noindent" >Ao editar uma classe de equipamentos ou pontos de um arquivo de planta é exibido um editor que apresenta uma
+tabela com as configurações daquela classe no arquivo de planta, conforme ilustrado na figura&#x00A0;<a 
+href="#x31-50001r2">5.2<!--tex4ht:ref: fig: pc_configssheet --></a>. O usuário edita
+os campos da planilha definindo o nome de uma configuração (de ponto ou equipamento) e os valores dos seus
+atributos.
+<!--l. 86--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x31-50001r2"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 86--><p class="noindent" ><img 
+src="images/pc_configssheet.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;5.2: </span><span  
+class="content"> <span 
+class="cmr-8">Planilha de configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ões da aba </span><span 
+class="cmss-8">Planta</span></span></div><!--tex4ht:label?: x31-50001r2 -->
+                                                                                                    
+                                                                                                    
+<!--l. 86--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 88--><p class="indent" >   No caso de configurações de equipamentos seus atributos podem ser nomes de configurações de pontos ou de outras
+configurações de equipamentos. As cores de fundo das células variam de acordo com o gênero dos atributos:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Fundo Branco</span> </dt><dd 
+class="description">O atributo é de um tipo básico.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fundo Azul</span> </dt><dd 
+class="description">O atributo é de uma classe de ponto.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fundo Verde</span> </dt><dd 
+class="description">O atributo é de uma classe de equipamento.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fundo Amarelo</span> </dt><dd 
+class="description">Tag da configuração.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fundo Cinza</span> </dt><dd 
+class="description">O atributo é de tipo desconhecido.</dd></dl>
+<!--l. 104--><p class="indent" >   Os valores definidos são verificados automaticamente e erros são sinalizados modificando a cor do texto das células. Valores
+incorretos são sinalizados com a cor vermelha.
+   <div class="paragraphTOCS">
+   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.1 <a 
+href="mpasu10.html#x32-530005.2.1">Renomeando uma configuração de uma classe</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.2 <a 
+href="mpasu11.html#x33-540005.2.2">Removendo configurações de uma classe</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.3 <a 
+href="mpasu12.html#x34-550005.2.3">Alterando valores de atributos de configurações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.4 <a 
+href="mpasu13.html#x35-570005.2.4">Ordenando configurações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.5 <a 
+href="mpasu14.html#x36-580005.2.5">Trabalhando com arquivos CSV</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.6 <a 
+href="mpasu15.html#x37-590005.2.6">Lendo e atribuindo valores a pontos</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >5.2.7 <a 
+href="mpasu16.html#x38-600005.2.7">Painel Contextual</a></span>
+   </div>
+<!--l. 107--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x31-510005.2"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ões de manipula</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão de configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ões</span></span>
+   À direita da planilha de configurações se encontram os botões com as ferramentas relativas à configuração da planta. Essa
+ferramentas vão desde a adição de uma configuração à classe corrente até a exportação da planilha em um arquivo CSV e são
+descritas a seguir. Uma configuração é selecionada clicando sobre o número da linha ou marcando toda as células da linha da
+configuração.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Adicionar Configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">Adiciona  uma  configuração  vazia  à  lista  de  configurações  da  classe  atual.  As  novas
+     configurações são sempre criadas no início da lista.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Remover Configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">Remove a(s) configuração(ões) selecionada(s) da lista de configurações.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Visualizar Configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">Gera uma visualização da configuração selecionada em um grafo de ligação. O grafo consiste
+     na configuração de ponto ou equipamento conectada a outras configurações ou valores pelos seus atributos. Um
+     exemplo de visualização e descrição detalhada podem encontradas, respectivamente, na figura <a 
+href="mpase36.html#x107-158001r1">B.1<!--tex4ht:ref: fig: pc_sampleviz --></a> e no Apêndice
+     <a 
+href="mpaap2.html#x105-156000B">B<!--tex4ht:ref: app: pc_viz --></a>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Apagar Configura</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ões da Classe</span> </dt><dd 
+class="description">Remove todas as configurações da lista de configurações.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Exportar CSV</span> </dt><dd 
+class="description">Salva o conteúdo corrente da planilha de configurações em um arquivo no formato CSV. Esse formato
+     de arquivo é compatível com os principais editores de planilhas.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Importar CSV</span> </dt><dd 
+class="description">Substitui a planilha da classe atual pelo conteúdo do arquivo no formato CSV. É importante que esse
+     arquivo tenha sido gerado pelo MPA e com as ordem de atributos correta.</dd></dl>
+                                                                                                    
+                                                                                                    
+<!--l. 133--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x31-520005.2"></a><span 
+class="cmbx-10">Menu de contexto</span></span>
+   A planilha de configurações apresenta um menu de contexto com algumas ações comuns para edição de planilhas. O menu
+exibe apenas as ações relativas à célula ou conjunto de células selecionadas. Para acessar o menu de contexo basta clicar sobre
+uma célula da matriz com o botão direito do mouse. Essas ações podem ser:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Editar</span> </dt><dd 
+class="description">Esse item de menu é ativado sempre que houver ou apenas uma célula de atributo marcada ou múltiplas células
+     de atributos de mesmo tipo marcadas. Quando selecionado inicia a edição da célula. Caso várias células estejam
+     marcadas, o valor a ser atribuído é definido em um diálogo e será usado em todas as células.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Ir para ...</span> </dt><dd 
+class="description">Esse item de menu é ativado sempre que houver ou apenas uma célula de atributo marcada ou múltiplas
+     células de atributos de mesmo tipo marcadas. Caso apenas uma célula esteja marcada, esse item só está ativo
+     quando a célula contiver uma configuração que exista na respectiva classe. Quando selecionado exibe a planilha
+     que contém as configurações referenciadas e as marca.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Criar inst</span><span 
+class="cmbx-10">âncias n</span><span 
+class="cmbx-10">ão encontradas</span> </dt><dd 
+class="description">Esse item de menu só é ativado quando alguma das células marcadas referencie um
+     ponto ou equipamento não existente. Quando selecionado cria automaticamente quaisquer pontos ou equipamentos
+     referenciados nos atributos selecionados mas que não existem. Os pontos e equipamentos que por ventura forem
+     criados apresentam todos os atributos em branco. Portanto, é necessário configurá-los quando necessário.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Ler/Escrever do/no servidor</span> </dt><dd 
+class="description">Esses itens de menu só são ativados quando apenas uma célula de atributo estiver
+     marcada. Quando selecionado permite o acesso (leitura e escrita) a valores de pontos da planta e atributos de
+     configurações carregados no servidor.</dd></dl>
+<!--l. 156--><p class="noindent" >
+
+
+
+
+
+
+                                                                                                    
+                                                                                                    
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase11.html" >prev</a>] [<a 
+href="mpase11.html#tailmpase11.html" >prev-tail</a>] [<a 
+href="mpase12.html" >front</a>] [<a 
+href="mpach5.html#mpase12.html" >up</a>] </p></div>
+<!--l. 1--><p class="indent" >   <a 
+ id="tailmpase12.html"></a>   
+</body></html> 

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>4 Bibliotecas de Modelos</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 251--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach5.html" >next</a>] [<a 
+href="mpach3.html" >prev</a>] [<a 
+href="mpach3.html#tailmpach3.html" >prev-tail</a>] [<a 
+href="#tailmpach4.html">tail</a>] [<a 
+href="mpapa2.html#mpach4.html" >up</a>] </p></div>
+   <h2 class="chapterHead"><span class="titlemark">Capítulo&#x00A0;4</span><br /><a 
+ id="x26-450004"></a>Bibliotecas de Modelos</h2>
+<!--l. 254--><p class="noindent" >Um arquivo de biblioteca de modelos é um arquivo escrito na Linguagem Lua que define modelos no ambiente de
+execução de aplicações MPA. Esse modelos podem ser <span 
+class="cmbx-10">fun</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ões auxiliares </span>ou <span 
+class="cmbx-10">classes de equipamento ou</span>
+<span 
+class="cmbx-10">pontos</span>.
+<!--l. 257--><p class="indent" >   Uma função auxiliar é uma implementação de uma função Lua que é disponibilizada para ser chamada diretamente por um
+dos diagrama que compõem a aplicação MPA. Essas funções são descritas com um número fixo de parâmetros e valores de
+retorno. Os tipos dos valores dos parâmetros e valores de retorno das funções auxiliar é determinado pelo próprio arquivo ou pelas
+bibliotecas de modelos incluidas pelo mesmo.
+<!--l. 261--><p class="indent" >   Uma classe de equipamento basicamente define os tipos dos pontos de controle que permitem manipular um determinado tipo
+de equipamento na aplicação. Por exemplo, a classe de equipamento <span 
+class="cmbx-10">V</span><span 
+class="cmbx-10">álvula On/Off </span>pode definir que esses equipamentos são
+manipulados por três pontos de controle que assumem valores lógicos (<span 
+class="cmbx-10">BOOLEAN</span><span 
+class="cmbx-10">_POINT</span>), onde um indica que a válvula está
+completamente aberta, outro indica que está completamente fechada e terceiro indica se a válvula está em falha. A classe de
+equipamento também pode definir outros tipos de valores para exprimir outras características dos equipamentos, como um valor
+inteiro para indicar o tempo em segundos para a movimentação completa de cada válvula. Finalmente, uma classe de
+equipamento também pode definir operações para manipular o equipamento. Essas operações sobre equipamentos são descritas de
+forma similar às funções auxiliares. Contudo, essas operações sempre são executadas sobre um equipamento da
+classe.
+<!--l. 268--><p class="indent" >   Uma classe de pontos é similar a uma classe de equipamento, contudo ela necessariamente estende uma das classes de ponto
+pré-definidas do MPA e tem acesso direto a uma ponte de comunicação para acessar o tag correspondente ao ponto de
+controle.
+<!--l. 270--><p class="indent" >   Na versão atual do MPA, os arquivos de módulos são editados fora da IDE, tipicamente num editor de texto ou de código Lua.
+O apêndice&#x00A0;<a 
+href="mpaap3.html#x109-160000C">C<!--tex4ht:ref: app: preconfig --></a> apresenta o formato dos arquivos de módulo.
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >4.1 <a 
+href="mpase10.html#x27-460004.1">Gerenciando Dependências</a></span>
+   </div>
+                                                                                                    
+                                                                                                    
+   <!--l. 5--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach5.html" >next</a>] [<a 
+href="mpach3.html" >prev</a>] [<a 
+href="mpach3.html#tailmpach3.html" >prev-tail</a>] [<a 
+href="mpach4.html" >front</a>] [<a 
+href="mpapa2.html#mpach4.html" >up</a>] </p></div>
+<!--l. 5--><p class="indent" >   <a 
+ id="tailmpach4.html"></a>  
+</body></html> 

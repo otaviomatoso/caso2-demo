@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Aba de Execuo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 12--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase25.html" >next</a>] [<a 
+href="mpach7.html#tailmpase22.html">tail</a>] [<a 
+href="mpase24.html#mpach11.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">8.1   </span> <a 
+ id="x84-1170008.1"></a>Aba de Execução</h3>
+<!--l. 14--><p class="noindent" >Ao se conectar a um servidor de execução, a aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>é exibida no painel inferior. Através dessa aba é possível controlar a
+execução dos diagramas da aplicação. A figura <a 
+href="#x84-117001r1">8.1<!--tex4ht:ref: fig: mn_managertab --></a> ilustra a aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão</span>. A seguir, os componentes da interface serão discutidos
+em detalhes.
+<!--l. 19--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x84-117001r1"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 19--><p class="noindent" ><img 
+src="images/mn_managertab.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;8.1: </span><span  
+class="content"> <span 
+class="cmr-8">Aba de ger</span><span 
+class="cmr-8">ência de execu</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de diagramas.</span></span></div><!--tex4ht:label?: x84-117001r1 -->
+                                                                                                    
+                                                                                                    
+<!--l. 19--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 21--><p class="indent" >   A tabela na aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>apresenta os diagramas de controle existentes no servidor de execução. Na lateral esqueda da tablea
+encontra-se os botões permitem iniciar, suspender, encerrar ou remover os diagramas selecionados na lista de
+diagramas. Para selecionar mais de um diagrama clique sobre o número do diagrama mantendo a tecla <span 
+class="cmss-10">Control</span>
+pressionada.
+<!--l. 25--><p class="indent" >   Apenas diagramas-aplicação podem ser iniciados, suspensos ou encerrados. Diagramas-função só podem ser chamados por
+outros diagramas e não diretamente executados pela interface de execução. Entretanto, todos os diagramas podem ser removidos
+usando o botão de remoção. A lista de diagramas de controle está dividida em cinco colunas, como descrito a
+seguir:
+<!--l. 30--><p class="indent" >   A coluna <span 
+class="cmbx-10">Nome </span>informa o nome do diagrama, que funciona como identificador do diagrama no servidor. Não é possível
+alterar o nome de um diagrama no servidor, visto que o nome do diagrama é o seu identificador no servidor. Pela mesma razão,
+não é permitido ter dois diagramas com o mesmo nome.
+<!--l. 34--><p class="indent" >   A coluna <span 
+class="cmbx-10">Estado </span>informa o estado do diagrama, que pode ser: <span 
+class="cmss-10">Executando</span>, <span 
+class="cmss-10">Parado </span>ou <span 
+class="cmss-10">Suspenso</span>. Para alterar o estado do
+diagrama, são utilizados os botões de gerenciamento de diagramas da barra de botões da aba de gerência de execução que ficam
+acima da lista de diagramas, no canto direito. Para tanto, basta selecionar o diagrama na lista de diagramas e depois clicar no
+botão adequado.
+<!--l. 38--><p class="indent" >   A coluna <span 
+class="cmbx-10">Exec. </span>mostra o número de linhas de execução (<span 
+class="cmbx-10">threads</span>) de um diagrama.
+<!--l. 40--><p class="indent" >   A coluna <span 
+class="cmbx-10">BP </span>mostra o número de pontos de parada (<span 
+class="cmbx-10">break-points</span>) atualmente definidos em um diagrama.
+<!--l. 42--><p class="indent" >   A coluna <span 
+class="cmbx-10">Monitoramento </span>permite definir a forma de monitoramente de cada diagrama. O MPA permite diferentes formas de
+monitoramento de execução dos diagramas. A opção, <span 
+class="cmss-10">Apenas Erros</span>, indica o monitoramento apenas dos erros de execução; já a
+opção <span 
+class="cmss-10">Acompanhamento </span>indica o monitoramento tanto dos erros de execução quanto das mensagens de acompanhamento definidas
+explicitamente na criação do diagrama; a opção <span 
+class="cmss-10">Elementos do Diagrama </span>indica o monitoramento tanto dos erros de
+execução quanto da execução de cada elemento de construção do diagrama; e finalmente a opção <span 
+class="cmss-10">Todas Mensagens</span>
+indica a junção de todas as formas de monitoramento descritas anteriormente. Para definir o monitoramento de
+um diagrama, basta fazer um clique duplo na célula da coluna de <span 
+class="cmss-10">Monitoramento </span>correspondente ao diagrama
+desejado e escolher uma das opções da lista. A seção <a 
+href="mpase23.html#x85-1180008.2">8.2<!--tex4ht:ref: sec: flowmonitor --></a> descreve a forma que as mensagens de monitoramento são
+exibidas.
+<!--l. 48--><p class="indent" >   A coluna <span 
+class="cmbx-10">Cria</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>informa a data e a hora em que o diagrama foi enviado ao servidor. Essa informação é útil para permitir
+que o configurador possa controlar as versões existentes no servidor.
+<!--l. 51--><p class="indent" >   A lista de diagramas apresenta também um menu de contexto para acesso rápido às operações sobre um diagrama. Para exibir
+o menu de contexto, basta clicar com o botão direito sobre o diagrama que se deseja executar o comando. Através desse menu de
+comando também é possível iniciar, interromper, excluir ou alterar o monitoramento de um diagrama do conjunto de diagramas
+selecionados. Em especial, através desse menu de contexto é possível alterar a forma de monitoramento do conjunto de diagramas
+selecionados de uma só vez.
+                                                                                                    
+                                                                                                    
+   <!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase25.html" >next</a>] [<a 
+href="mpase22.html" >front</a>] [<a 
+href="mpase24.html#mpach11.html" >up</a>] </p></div>
+<!--l. 56--><p class="indent" >   <a 
+ id="tailmpase22.html"></a>  
+</body></html> 

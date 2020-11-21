@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Espera por Execuo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 599--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu32.html" >next</a>] [<a 
+href="mpasu27.html" >prev</a>] [<a 
+href="mpasu27.html#tailmpasu27.html" >prev-tail</a>] [<a 
+href="#tailmpasu28.html">tail</a>] [<a 
+href="mpasu23.html#mpase16.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.6   </span> <a 
+ id="x58-840006.3.6"></a>Espera por Execução</h4>
+<!--l. 602--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>cria um ponto de espera no fluxo. A sequência do fluxo após este ponto só é
+executada quando todas as linhas de execução concorrente que executam os elementos de composição que têm ligação com o
+objeto <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>sejam finalizadas. A <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>é representada graficamente por um círculo como
+na figura <a 
+href="#x58-84001r26">6.26<!--tex4ht:ref: fig: fc_espera --></a>. No trecho de fluxo mostrado na figura, o elemento de composição com descrição <span 
+class="cmss-10">Comandos terminados </span>só é
+executado quando as três ramificações do fluxo chegam ao círculo vermelho que graficamente representa a Espera por
+Execução.
+<!--l. 607--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x58-84001r26"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 607--><p class="noindent" ><img 
+src="images/fc_espera.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.26: </span><span  
+class="content"> <span 
+class="cmr-8">O elemento de composi</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão Espera por Execu</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão.</span></span></div><!--tex4ht:label?: x58-84001r26 -->
+                                                                                                    
+                                                                                                    
+<!--l. 607--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 609--><p class="indent" >   A utilização do elemento de composição <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>deve observar as seguintes restrições:
+     <ul class="itemize1">
+     <li class="itemize">Os ramos do fluxo que tiverem ligação com o objeto <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>devem ser necessariamente originados
+     por um único objeto <span 
+class="cmbx-10">Executor</span>. A figura <a 
+href="#x58-84002r27">6.27<!--tex4ht:ref: fig: fc_multiplos_executores --></a> mostra um fluxo que <span 
+class="cmti-10">n</span><span 
+class="cmti-10">ão </span>satisfaz essa restrição.
+     <!--l. 617--><p class="noindent" ><hr class="figure"><div class="figure" 
+><a 
+ id="x58-84002r27"></a>
+<!--l. 617--><p class="noindent" ><img 
+src="images/fc_multiplos_executores.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.27: </span><span  
+class="content"> <span 
+class="cmr-8">Erro de dois </span><span 
+class="cmbx-8">Executores </span><span 
+class="cmr-8">sincronizados com </span><span 
+class="cmr-8">único objeto </span><span 
+class="cmbx-8">Espera</span><span 
+class="cmr-8">.</span></span></div><!--tex4ht:label?: x58-84002r27 -->
+     <!--l. 617--><p class="noindent" ></div><hr class="endfigure">
+     </li>
+     <li class="itemize">Os ramos do fluxo originados em um objeto <span 
+class="cmbx-10">Executor </span>devem ser sincronizados em um único objeto <span 
+class="cmbx-10">Espera por</span>
+     <span 
+class="cmbx-10">Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span>. Vale ressaltar que nem todos os ramos de fluxo originados em um objeto <span 
+class="cmbx-10">Executor </span>devam necessariamente ser
+     sincronizados. Apenas os ramos de fluxo cujo término for em um objeto <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão </span>são sincronizados. A figura
+     <a 
+href="#x58-84003r28">6.28<!--tex4ht:ref: fig: fc_multiplas_esperas --></a> mostra um fluxo que <span 
+class="cmti-10">n</span><span 
+class="cmti-10">ão </span>satisfaz essa restrição.
+     <!--l. 625--><p class="noindent" ><hr class="figure"><div class="figure" 
+><a 
+ id="x58-84003r28"></a>
+<!--l. 625--><p class="noindent" ><img 
+src="images/fc_multiplas_esperas.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.28: </span><span  
+class="content"> <span 
+class="cmr-8">Erro de </span><span 
+class="cmr-8">único </span><span 
+class="cmbx-8">Executor </span><span 
+class="cmr-8">sincronizado por dois objetos </span><span 
+class="cmbx-8">Espera</span><span 
+class="cmr-8">.</span></span></div><!--tex4ht:label?: x58-84003r28 -->
+     <!--l. 625--><p class="noindent" ></div><hr class="endfigure">
+     </li>
+     <li class="itemize">Um dado ramo do fluxo pode ter várias possibilidades de término, dependendo das decisões tomadas nos objetos <span 
+class="cmbx-10">Escolha</span>.
+     Entretanto, todas as possibilidades de término devem terminar em um mesmo objeto <span 
+class="cmbx-10">Espera por Execu</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span>, ou em
+     nenhum (<span 
+class="cmti-10">e.g.</span>&#x00A0;no caso da linha de execução do ramo do fluxo não ser sincronizada.). A figura <a 
+href="#x58-84004r29">6.29<!--tex4ht:ref: fig: fc_ambiguidade_espera --></a> mostra um fluxo que <span 
+class="cmti-10">n</span><span 
+class="cmti-10">ão</span>
+     satisfaz essa restrição.
+     <!--l. 632--><p class="noindent" ><hr class="figure"><div class="figure" 
+><a 
+ id="x58-84004r29"></a>
+<!--l. 632--><p class="noindent" ><img 
+src="images/fc_ambiguidade_espera.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.29: </span><span  
+class="content"> <span 
+class="cmr-8">Erro de ramo de fluxo com possibilidade de t</span><span 
+class="cmr-8">érmino amb</span><span 
+class="cmr-8">ígua.</span></span></div><!--tex4ht:label?: x58-84004r29 -->
+     <!--l. 632--><p class="noindent" ></div><hr class="endfigure">
+     </li></ul>
+                                                                                                    
+                                                                                                    
+   <!--l. 636--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu32.html" >next</a>] [<a 
+href="mpasu27.html" >prev</a>] [<a 
+href="mpasu27.html#tailmpasu27.html" >prev-tail</a>] [<a 
+href="mpasu28.html" >front</a>] [<a 
+href="mpasu23.html#mpase16.html" >up</a>] </p></div>
+<!--l. 636--><p class="indent" >   <a 
+ id="tailmpasu28.html"></a>  
+</body></html> 

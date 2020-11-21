@@ -1,0 +1,31 @@
+-- =============================================================================
+-- Copyright (C) 2003-2010 PETROBRAS S/A
+-- Tecgraf, PUC-Rio <mpa@tecgraf.puc-rio.br>
+-- Arquivo gerado pelo programa MPA
+-- Planta : plataforma_1.mpae
+-- Arquivo: plataforma_1.mpae
+-- Data   : 21/05/2018 01:21:10
+-- =============================================================================
+MPA_3_3 = true
+EXPANDED = {}
+PLANTNAME = "no name"
+WIDTHS = {
+  ["REAL_POINT"] = {80, 80, 80},
+  ["meucontrolador"] = {80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80},
+}
+PLANT = {
+  REAL_POINT = {
+    ["ufsc.ALFA"] = {
+      factor = "1",
+    },
+    ["ufsc.KPcontrolador"] = {
+      factor = "1",
+    },
+  },
+  meucontrolador = {
+    controlador = {
+      alfa_otimizado = "ufsc.ALFA",
+      kp = "ufsc.KPcontrolador",
+    },
+  },
+}

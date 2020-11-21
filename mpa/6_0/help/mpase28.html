@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Ponte de Comunicao</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 108--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase33.html" >next</a>] [<a 
+href="mpase27.html" >prev</a>] [<a 
+href="mpase27.html#tailmpase27.html" >prev-tail</a>] [<a 
+href="mpach10.html#tailmpase28.html">tail</a>] [<a 
+href="mpase30.html#mpapa4.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">11.4   </span> <a 
+ id="x94-13000011.4"></a>Ponte de Comunicação</h3>
+<!--l. 110--><p class="noindent" >Todas as tarefas realizadas pelo servidor de execução são feitas através de interações com um sistema supervisório que controla o
+acesso aos pontos de controle dos equipamentos. Essas interações são feitas através de uma ponte de comunicação. A versão atual
+do MPA foi desenvolvida com duas pontes de comunicação: a versão para a plataforma Microsoft Windows fornece uma ponte de
+comunicação com supervisórios que sigam o padrão de automação OPC (<span 
+class="cmti-10">OLE for Process Control</span>); a versão para a plataforma
+OpenVMS Alpha (Veja mais detalhes no apêndice <a 
+href="mpaap4.html#x129-177000D">D<!--tex4ht:ref: app: openvms --></a>) fornece uma ponte de comunicação com o supervisório
+VXL.
+<!--l. 114--><p class="indent" >   Adicionalmente, o servidor de execução também fornece uma ponte de comunicação com um sistema supervisório simulado,
+que pode ser utilizado durante o desenvolvimento de diagramas de controle quando não é possível ter acesso a um sistema
+supervisório real. Este supervisório simulado mantém uma base de dados contendo valores associados a cada um dos pontos de
+controle carregados no servidor de execução. Dessa forma, é possível alterar e recuperar os valores de vários pontos de controle.
+Todas as versões do servidor de execução fornecem a opção de utilização da ponte de comunicação com o supervisório
+simulado.
+<!--l. 119--><p class="indent" >   A ponte de comunicação é definida através da opção de configuração <span 
+class="cmss-10">bridge </span>que define o tipo da ponte de comunicação a ser
+utilizada e seus parâmetros de configuração. O valor dessa opção consiste do nome de uma ou mais pontes de
+comunicação separados por ponto e vírgula. Segue-se ao nome da ponte uma lista de nomes de parâmetros separados por
+vírgulas. Quando um parâmetro define um valor, utiliza-se o formato <span 
+class="cmss-10">nome=valor</span>. Esta lista deve ser escrita entre
+parênteses.
+<!--l. 125--><p class="indent" >   Entretanto, para definir mais de uma ponte de comunicação num mesmo servidor, é necessário definir como os tags dos pontos
+manipulados pelo MPA são distribuídos entre essas pontes. Isso é feito através da definição de um padrão expresso através de expressões
+regulares de Lua <span class="footnote-mark"><a 
+href="mpa95.html#fn1x12"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x94-130001f1"></a> 
+para cada ponte adicional especificada no parâmetro <span 
+class="cmss-10">bridge</span>. Dessa forma o MPA descobre qual ponte utilizar para acessar um
+dado ponto tentando casar o seu tag com o padrão definido por cada ponte de comunicação. O padrão de tags é dado antes do
+tipo da ponte e separado pelo caracter <span 
+class="cmss-10">@</span>. Por exemplo, para iniciar um servidor com uma ponte OPC conectada à um servidor
+iFIX para todos os tags que comecem com <span 
+class="cmss-10">SCADA. </span>e uma ponte simulada para armazenar os demais pontos,
+usa-se:
+<!--l. 131--><p class="indent" >   <span 
+class="cmss-10">mpa-run.exe </span><span 
+class="cmsy-10">--</span><span 
+class="cmss-10">bridge &#8221;simulated;&#x02C6;SCADA%.@opc(server=Intellution.OPCiFIX)&#8221;</span>
+<!--l. 133--><p class="indent" >   Neste exemplo uma ponte do tipo <span 
+class="cmss-10">simulated </span>é definida para todos os pontos e uma ponte <span 
+class="cmss-10">opc </span>conectada ao supervisório OPC
+<span 
+class="cmss-10">Intellution.OPCiFIX </span>para todos os pontos cujo tag casem com o padrão <span 
+class="cmss-10">&#x02C6;SCADA%.</span>
+<!--l. 135--><p class="indent" >   Cada tipo de ponte de comunicação apresenta diferentes parâmetros de configuração. A seguir são apresentadas as pontes de
+comunicação disponíveis no servidor de execução, assim como seus respectivos parâmetros de configuração.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">opc</span> </dt><dd 
+class="description">Esta ponte de comunicação só está disponível no servidor de execução do MPA para a plataforma Microsoft
+     Windows. Para utilizar a ponte de comunicação OPC, é necessário especificar o servidor OPC a ser utilizado como
+     um parâmetro. Por exemplo, para fazer o servidor de execução do MPA interagir com o servidor de simulação da
+     Matrikon, pode-se adicionar ao arquivo de parâmetros o seguinte:
+     <!--l. 144--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;opc(server=Matrikon.OPC.Simulation)&#8221;;</span>
+     <!--l. 146--><p class="noindent" >Alternativamente, o parâmetro <span 
+class="cmss-10">host </span>pode ser definido informando a máquina remota em que o sistema supervisório
+     esteja executando. Por exemplo, suponha que se deseje que o servidor de execução utilize o supervisório iFIX
+     executando no endereço <span 
+class="cmss-10">opc.automation.localdomain</span>. Neste caso o arquivo de parâmetros de configuração seria
+     alterado para o seguinte:
+     <!--l. 150--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;opc(server=Intellution.OPCiFIX,host=opc.automation.localdomain)&#8221;;</span>
+     <!--l. 152--><p class="noindent" >Além dos nomes amigáveis do servidor e máquina, é possível passar como parâmetros o identificador CLSID e
+     endereço IP da máquina do supervsório OPC. Um exemplo de utilização de parâmetros CLSID e endereço IP para
+     a ponte de comunicação OPC é:
+     <!--l. 155--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;opc(server=</span><span 
+class="cmsy-10">{</span><span 
+class="cmss-10">F8582CF2-88FB-11D0-B850-00C0F0104305</span><span 
+class="cmsy-10">}</span><span 
+class="cmss-10">,host=10.0.16.23)&#8221;;</span>
+     <!--l. 157--><p class="noindent" >A ponte OPC também pode receber outros parâmetros opcionais, descritos a seguir:
+     <div class="paragraphTOCS">
+     </div>
+     <!--l. 182--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13100011.4"></a><span 
+class="cmbx-10">For</span><span 
+class="cmbx-10">çar OPC 2.0</span></span>
+                                                                                                    
+                                                                                                    
+     A presença do parâmetro <span 
+class="cmss-10">use</span><span 
+class="cmss-10">_v2 </span>indica que todo o acesso ao servidor deve ser feito utilizando apenas as
+     interfaces definidas na versão 2.0 do padrão OPC. Isso implica em algumas limitações de recursos que só
+     foram introduzidos na versão 3.0 do padrão OPC. Contudo, pode ser interessante forçar o uso das interfaces
+     OPC 2.0 quando o servidor OPC sendo acessado não implementa corretamente as interfaces do OPC 3.0.
+     Para desativar o uso exclusivo de interfaces OPC 2.0 basta não passar esse parâmetro, ou passar um valor
+     vazio.
+     <!--l. 188--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13200011.4"></a><span 
+class="cmbx-10">Modo Ass</span><span 
+class="cmbx-10">íncrono</span></span>
+     A presença do parâmetro <span 
+class="cmss-10">async </span>indica que todas leituras no servidor OPC devem ser feitas de forma assíncrona, através de
+     um cache de valores mantido internamente no MPA e atualizado de acordo com eventos (<span 
+class="cmss-10">OnDataChanged</span>) gerados pelo
+     servidor OPC. Para desativar o uso de leituras assíncronas basta não passar esse parâmetro, ou passar um valor
+     vazio.
+     <!--l. 192--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13300011.4"></a><span 
+class="cmbx-10">Nome de Usu</span><span 
+class="cmbx-10">ário</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">user=NomeDoUsu</span><span 
+class="cmss-10">ário </span>para indicar o nome de um usuário a ser autenticado no servidor OPC utilizando
+     as interfaces do padrão <span 
+class="cmbx-10">OPC Secutiry</span>. Esse parâmetro deve ser utilizado em conjunto com o parâmetro
+     seguinte.
+     <!--l. 196--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13400011.4"></a><span 
+class="cmbx-10">Senha do Usu</span><span 
+class="cmbx-10">ário</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">pass=SenhaDoUsu</span><span 
+class="cmss-10">ário </span>para indicar a senha do usuário a ser autenticado no servidor OPC utilizando as
+     interfaces do padrão <span 
+class="cmbx-10">OPC Secutiry</span>. Esse parâmetro deve ser utilizado em conjunto com o parâmetro
+     anterior.
+     <!--l. 200--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13500011.4"></a><span 
+class="cmbx-10">Deadband</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">deadband=[0.0:100.0] </span>para indicar o percentual de <span 
+class="cmbx-10">deadband </span>a ser usado no acesso a itens analógicos,
+     como especificado pelo padrão OPC.
+     <!--l. 203--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13600011.4"></a><span 
+class="cmbx-10">Taxa de Atualiza</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão (Update Rate)</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">updaterate=Milisegundos </span>para indicar taxa de atualização mínima que o servidor OPC deve notificar as
+     alterações dos valores dos tags.
+     <!--l. 206--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13700011.4"></a><span 
+class="cmbx-10">Escrita na Cache</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">writeoncache=Op</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>para indicar a política de atualização da cache na escrita de tags. As opções
+     possíveis são:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">delete</span> </dt><dd 
+class="description">remove o valor da tag do cache quando este valor é sobrescrito, fazendo com que um novo valor tenha que
+         ser obtido do servidor OPC quando a tag for lida no futuro.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">written</span> </dt><dd 
+class="description">adiciona ao cache o valor escrito do tag, mesmo que o servidor OPC não notifique a mudança para o novo
+         valor.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">previous</span> </dt><dd 
+class="description">mantém na cache o último valor lido do tag sendo escrito, até que o servidor eventualmente notifique a
+         mudança do valor da tag após a escrita. Contudo até que a notificação de alteração seja recebida as leituras
+         informarão o valor da tag anterior a sua escrita.</dd></dl>
+     <!--l. 217--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13800011.4"></a><span 
+class="cmbx-10">Nome do Grupo</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">groupname=NomeDoGrupo </span>para indicar o nome do grupo OPC a ser criado pela ponte para agrupar os
+     itens sendo observados.
+                                                                                                    
+                                                                                                    
+     <!--l. 220--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-13900011.4"></a><span 
+class="cmbx-10">stats</span></span>
+     Utilize o parâmetro <span 
+class="cmss-10">stats </span>para indicar que informações sobre as estatísticas de acesso da ponte OPC devem ser coletadas.
+     Essas informações podem ser exibidas no log da ponte OPC quando a ponte é fechada. Para mais informações sobre a
+     geração de log do servidor, veja a seção&#x00A0;<a 
+href="mpase30.html#x97-14500011.6">11.6<!--tex4ht:ref: sec: serverlogs --></a>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">vxl</span> </dt><dd 
+class="description">A ponte de comunicação com o supervisório VXL só está disponível no servidor de execução do MPA para a plataforma
+     OpenVMS. Ao contrário da ponte OPC, a ponte VXL não recebe nenhum parâmetro de configuração, portanto, para
+     utilizar o servidor de execução em conjunto com o supervisório VXL pode-se adicionar ao arquivo de parâmetros de
+     configuração o seguinte:
+     <!--l. 229--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;vxl&#8221;;</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">simulated</span> </dt><dd 
+class="description">Esta é a ponte de comunicação disponível em todos os servidores de execução do MPA e permite
+     acessar um repositório simulado. Esta ponte de comunicação recebe três parâmetros opcionais descritos
+     abaixo.
+     <!--l. 235--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-14000011.4"></a><span 
+class="cmbx-10">Arquivo de Simula</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span></span>
+     O parâmetro <span 
+class="cmss-10">file=CaminhoDoArquivo </span>indica o endereço de um arquivo que define os pontos que devem ser reconhecidos pelo
+     supervisório simulado. Este arquivo é um script Lua que disponibiliza a tabela <span 
+class="cmss-10">_P </span>onde o valor inicial de cada ponto deve ser
+     registrado, como ilustrado no exemplo abaixo:
+     <!--l. 239--><p class="noindent" ><span 
+class="cmss-10">_P[&#8221;SCADA.PIC-05</span><span 
+class="cmss-10">_MV.F</span><span 
+class="cmss-10">_CV&#8221;] = 0.0;</span><br 
+class="newline" /><span 
+class="cmss-10">_P[&#8221;SCADA.PIC-05</span><span 
+class="cmss-10">_SP.F</span><span 
+class="cmss-10">_CV&#8221;] = 1500;</span><br 
+class="newline" /><span 
+class="cmss-10">_P[&#8221;SCADA.PIC-05</span><span 
+class="cmss-10">_PV.F</span><span 
+class="cmss-10">_CV&#8221;] = 1342;</span><br 
+class="newline" /><span 
+class="cmss-10">_P[&#8221;SCADA.PIC-05</span><span 
+class="cmss-10">_AUTO.F</span><span 
+class="cmss-10">_CV&#8221;] = true;</span>
+     <!--l. 244--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-14100011.4"></a><span 
+class="cmbx-10">Nome da Ponte Simulada</span></span>
+     O parâmetro <span 
+class="cmss-10">name=NomeDaPonte </span>é utilizado para definir o nome da ponte simulada. Esse nome é utilizado na geração das
+     mensagens de <span 
+class="cmti-10">log</span>, como descrito a seguir.
+     <!--l. 248--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-14200011.4"></a><span 
+class="cmbx-10">Arquivo de Log</span></span>
+     O parâmetro <span 
+class="cmss-10">log=CaminhoDoArquivo </span>indica o caminho do arquivo de <span 
+class="cmti-10">log </span>a ser gerado com o registro de todos os acessos
+     feitos através dessa ponte.
+     <!--l. 251--><p class="noindent" >Um exemplo bem simples é o uso do servidor de execução com o supervisório simulado, com os tags descritos no arquivo
+     <span 
+class="cmss-10">C:</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">MPA</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Plantas</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">P31</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">simulation.lua</span>:
+     <!--l. 253--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;simulated(file=C:</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">MPA</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Plantas</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">P31</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">simulation.lua)&#8221;;</span>
+     <!--l. 255--><p class="noindent" >Em um caso um pouco mais elaborado, deseja-se iniciar o servidor de execução com o supervisório simulado, sem
+     utilizar nenhuma simulação, com o nome <span 
+class="cmss-10">TesteBase </span>para a ponte e com o arquivo de <span 
+class="cmti-10">log </span>definido como
+     <span 
+class="cmss-10">simulated.log</span>:
+     <!--l. 257--><p class="noindent" ><span 
+class="cmss-10">BRIDGE = &#8221;simulated(name=TesteBase,log=simulated.log)&#8221;;</span>
+     <!--l. 259--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x94-14300011.4"></a><span 
+class="cmbx-10">Dados de Arquivo CSV com Valores Hist</span><span 
+class="cmbx-10">óricos</span></span>
+     O parâmetro <span 
+class="cmss-10">csv=CaminhoDoArquivo </span>é utilizado para definir o caminho do arquivo CSV com valores históricos que deverá
+     ser carregado. O carregamento desse arquivo permite que uma sequência de valores observados anteriormente sejam
+     utilizados para simulação, permitindo observar o comportamento do MPA para variáveis carregadas como se estivesse as
+     observando em tempo real.
+     <!--l. 263--><p class="noindent" >Esse arquivo deverá apresentar a primeira linha válida com um cabeçalho com a hora inicial e os tags correspondentes a
+     cada coluna no seguinte formato:
+       <!--l. 265--><pre class="listings"><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143001r1"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmmi-7">&#x003C;</span><span 
+class="cmss-8x-x-87">Data</span><span 
+class="cmmi-7">&#x003E;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmmi-7">&#x003C;</span><span 
+class="cmss-8x-x-87">Hora</span><span 
+class="cmmi-7">&#x003E;</span><span 
+class="cmss-8x-x-87">;</span><span 
+class="cmss-8x-x-87">SCADA</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">PIC</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">05</span><span 
+class="cmss-8x-x-87">_MV</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">F</span><span 
+class="cmss-8x-x-87">_CV</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">;</span><span 
+class="cmss-8x-x-87">SCADA</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">PIC</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">05</span><span 
+class="cmss-8x-x-87">_MV</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">F</span><span 
+class="cmss-8x-x-87">_SP</span>
+       <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143002r2"></a></span></pre>
+     <!--l. 269--><p class="noindent" >As linhas seguintes devem apresentar o tempo, em segundos, desde o data indicada no cabeçalho e o valor para cada uma
+     das variáveis.
+       <!--l. 270--><pre class="listings"><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143003r1"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">0;55.67;50</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">30;54.38;50</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span>
+       <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x94-143006r4"></a></span></pre>
+                                                                                                    
+                                                                                                    
+     <!--l. 276--><p class="noindent" >Para o carregamento de arquivos CSV ainda é possível definir uma escala de tempo para informação dos valores. Isso é
+     feito utilizando o parãmetro <span 
+class="cmss-10">timescale=Escala </span>onde escala irá definir quanto tempo deverá se passar na simulação para cada
+     segundo em tempo real.
+     </dd></dl>
+                                                                                                    
+                                                                                                    
+   <!--l. 281--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase33.html" >next</a>] [<a 
+href="mpase27.html" >prev</a>] [<a 
+href="mpase27.html#tailmpase27.html" >prev-tail</a>] [<a 
+href="mpase28.html" >front</a>] [<a 
+href="mpase30.html#mpapa4.html" >up</a>] </p></div>
+<!--l. 281--><p class="indent" >   <a 
+ id="tailmpase28.html"></a>   
+</body></html> 

@@ -1,0 +1,2876 @@
+
+2018/05/22 17:48:23 [assert]    logging settings ... OK
+2018/05/22 17:48:34 [assert]    logging settings ... OK
+2018/05/22 17:48:34 [assert]    control server ... OK
+2018/05/22 17:48:34 [setup]     bridge 'simulated(file=sim.lua)' successfully loaded
+2018/05/22 17:48:34 [assert]    communication bridge ... OK
+2018/05/22 17:48:34 [setup]     execution tag write time is 3
+2018/05/22 17:48:34 [assert]    state replication ... OK
+2018/05/22 17:48:34 [setup]     pre-configuration loaded from ./app/exported.mpam
+2018/05/22 17:48:34 [assert]    automation engine ... FAILED: IDL:MPA/PreConfig/BadCodeImpl:1.02018/05/22 17:49:28 [assert]    logging settings ... OK
+2018/05/22 17:49:28 [assert]    control server ... OK
+2018/05/22 17:49:28 [setup]     bridge 'simulated(file=sim.lua)' successfully loaded
+2018/05/22 17:49:28 [assert]    communication bridge ... OK
+2018/05/22 17:49:28 [setup]     execution tag write time is 3
+2018/05/22 17:49:28 [assert]    state replication ... OK
+2018/05/22 17:49:28 [setup]     pre-configuration loaded from ./app/exported.mpam
+2018/05/22 17:49:28 [setup]     processing application loaded from ./app/exported.mpaa
+2018/05/22 17:49:28 [assert]    automation engine ... OK
+2018/05/22 17:49:28 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:01:26 [assert]    logging settings ... OK
+2019/10/01 12:01:26 [assert]    control server ... OK
+2019/10/01 12:01:27 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:01:27 [assert]    communication bridge ... OK
+2019/10/01 12:01:27 [setup]     execution tag write time is 3
+2019/10/01 12:01:27 [assert]    state replication ... OK
+2019/10/01 12:01:27 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:01:27 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:01:27 [assert]    automation engine ... OK
+2019/10/01 12:01:27 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:08:35 [assert]    logging settings ... OK
+2019/10/01 12:08:35 [assert]    control server ... OK
+2019/10/01 12:08:36 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:08:36 [assert]    communication bridge ... OK
+2019/10/01 12:08:36 [setup]     execution tag write time is 3
+2019/10/01 12:08:36 [assert]    state replication ... OK
+2019/10/01 12:08:36 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:08:36 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:08:36 [assert]    automation engine ... OK
+2019/10/01 12:08:36 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:08:43 [blocks]    do command
+2019/10/01 12:08:43 [actions]     execute Abrir Valvulas()
+2019/10/01 12:08:43 [blocks]    done
+2019/10/01 12:08:43 [blocks]    do command
+2019/10/01 12:08:43 [actions]     execute Controle Valvulas()
+2019/10/01 12:08:43 [blocks]    done
+2019/10/01 12:08:43 [blocks]    foreach valvula do
+2019/10/01 12:08:43 [actions]     class interation evaluation
+2019/10/01 12:08:43 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:08:43 [blocks]      new thread
+2019/10/01 12:08:43 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:08:43 [blocks]      new thread
+2019/10/01 12:08:43 [blocks]    done
+2019/10/01 12:08:43 [blocks]    foreach valvula do
+2019/10/01 12:08:43 [actions]     class interation evaluation
+2019/10/01 12:08:43 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:08:43 [blocks]      do command
+2019/10/01 12:08:43 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:43 [blocks]    do command
+2019/10/01 12:08:43 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:43 [blocks]    do command
+2019/10/01 12:08:43 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:43 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:08:43 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:08:54 [blocks]    do command
+2019/10/01 12:08:54 [actions]     execute Abrir Valvulas()
+2019/10/01 12:08:54 [blocks]    done
+2019/10/01 12:08:54 [blocks]    do command
+2019/10/01 12:08:54 [actions]     execute Controle Valvulas()
+2019/10/01 12:08:54 [blocks]    done
+2019/10/01 12:08:54 [blocks]    foreach valvula do
+2019/10/01 12:08:54 [actions]     class interation evaluation
+2019/10/01 12:08:54 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:08:54 [blocks]      new thread
+2019/10/01 12:08:54 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:08:54 [blocks]      new thread
+2019/10/01 12:08:54 [blocks]    done
+2019/10/01 12:08:54 [blocks]    foreach valvula do
+2019/10/01 12:08:54 [actions]     class interation evaluation
+2019/10/01 12:08:54 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:08:54 [blocks]      do command
+2019/10/01 12:08:54 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:54 [blocks]    do command
+2019/10/01 12:08:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:54 [blocks]    do command
+2019/10/01 12:08:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:08:54 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:08:54 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:11:09 [assert]    logging settings ... OK
+2019/10/01 12:11:09 [assert]    control server ... OK
+2019/10/01 12:11:09 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:11:09 [assert]    communication bridge ... OK
+2019/10/01 12:11:09 [setup]     execution tag write time is 3
+2019/10/01 12:11:09 [assert]    state replication ... OK
+2019/10/01 12:11:09 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:11:09 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:11:09 [assert]    automation engine ... OK
+2019/10/01 12:11:09 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:11:20 [blocks]    do command
+2019/10/01 12:11:20 [actions]     execute Abrir Valvulas()
+2019/10/01 12:11:20 [blocks]    done
+2019/10/01 12:11:20 [blocks]    do command
+2019/10/01 12:11:20 [actions]     execute Controle Valvulas()
+2019/10/01 12:11:20 [blocks]    done
+2019/10/01 12:11:20 [blocks]    foreach valvula do
+2019/10/01 12:11:20 [actions]     class interation evaluation
+2019/10/01 12:11:20 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:11:20 [blocks]      new thread
+2019/10/01 12:11:20 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:11:20 [blocks]      new thread
+2019/10/01 12:11:20 [blocks]    done
+2019/10/01 12:11:20 [blocks]    foreach valvula do
+2019/10/01 12:11:20 [actions]     class interation evaluation
+2019/10/01 12:11:20 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:11:20 [blocks]      do command
+2019/10/01 12:11:20 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:20 [blocks]    do command
+2019/10/01 12:11:20 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:20 [blocks]    do command
+2019/10/01 12:11:20 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:20 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:11:20 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:11:51 [blocks]    do command
+2019/10/01 12:11:51 [actions]     execute Abrir Valvulas()
+2019/10/01 12:11:51 [blocks]    done
+2019/10/01 12:11:51 [blocks]    do command
+2019/10/01 12:11:51 [actions]     execute Controle Valvulas()
+2019/10/01 12:11:51 [blocks]    done
+2019/10/01 12:11:51 [blocks]    foreach valvula do
+2019/10/01 12:11:51 [actions]     class interation evaluation
+2019/10/01 12:11:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:11:51 [blocks]      new thread
+2019/10/01 12:11:51 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:11:51 [blocks]      new thread
+2019/10/01 12:11:51 [blocks]    done
+2019/10/01 12:11:51 [blocks]    foreach valvula do
+2019/10/01 12:11:51 [actions]     class interation evaluation
+2019/10/01 12:11:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:11:51 [blocks]      do command
+2019/10/01 12:11:51 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:51 [blocks]    do command
+2019/10/01 12:11:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:51 [blocks]    do command
+2019/10/01 12:11:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:11:51 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:11:51 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:11:59 [assert]    logging settings ... OK
+2019/10/01 12:11:59 [assert]    control server ... OK
+2019/10/01 12:11:59 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:11:59 [assert]    communication bridge ... OK
+2019/10/01 12:11:59 [setup]     execution tag write time is 3
+2019/10/01 12:11:59 [assert]    state replication ... OK
+2019/10/01 12:11:59 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:11:59 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:11:59 [assert]    automation engine ... OK
+2019/10/01 12:11:59 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:12:29 [blocks]    do command
+2019/10/01 12:12:29 [actions]     execute Abrir Valvulas()
+2019/10/01 12:12:29 [blocks]    done
+2019/10/01 12:12:29 [blocks]    do command
+2019/10/01 12:12:29 [actions]     execute Controle Valvulas()
+2019/10/01 12:12:29 [blocks]    done
+2019/10/01 12:12:29 [blocks]    foreach valvula do
+2019/10/01 12:12:29 [actions]     class interation evaluation
+2019/10/01 12:12:29 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:12:29 [blocks]      new thread
+2019/10/01 12:12:29 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:12:29 [blocks]      new thread
+2019/10/01 12:12:29 [blocks]    done
+2019/10/01 12:12:29 [blocks]    foreach valvula do
+2019/10/01 12:12:29 [actions]     class interation evaluation
+2019/10/01 12:12:29 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:12:29 [blocks]      do command
+2019/10/01 12:12:29 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:12:29 [blocks]    do command
+2019/10/01 12:12:29 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:12:29 [blocks]    do command
+2019/10/01 12:12:29 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:12:29 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:12:29 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:13:18 [assert]    logging settings ... OK
+2019/10/01 12:13:18 [assert]    control server ... OK
+2019/10/01 12:13:18 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:13:18 [assert]    communication bridge ... OK
+2019/10/01 12:13:18 [setup]     execution tag write time is 3
+2019/10/01 12:13:18 [assert]    state replication ... OK
+2019/10/01 12:13:18 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:13:18 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:13:18 [assert]    automation engine ... OK
+2019/10/01 12:13:18 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:13:55 [blocks]    do command
+2019/10/01 12:13:55 [actions]     execute Abrir Valvulas()
+2019/10/01 12:13:55 [blocks]    done
+2019/10/01 12:13:55 [blocks]    do command
+2019/10/01 12:13:55 [actions]     execute Controle Valvulas()
+2019/10/01 12:13:55 [blocks]    done
+2019/10/01 12:13:55 [blocks]    foreach valvula do
+2019/10/01 12:13:55 [actions]     class interation evaluation
+2019/10/01 12:13:55 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:13:55 [blocks]      new thread
+2019/10/01 12:13:55 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:13:55 [blocks]      new thread
+2019/10/01 12:13:55 [blocks]    done
+2019/10/01 12:13:55 [blocks]    foreach valvula do
+2019/10/01 12:13:55 [actions]     class interation evaluation
+2019/10/01 12:13:55 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:13:55 [blocks]      do command
+2019/10/01 12:13:55 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:13:55 [blocks]    do command
+2019/10/01 12:13:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:13:55 [blocks]    do command
+2019/10/01 12:13:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:13:55 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v2_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:13:55 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v2_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:24:37 [assert]    logging settings ... OK
+2019/10/01 12:24:37 [assert]    control server ... OK
+2019/10/01 12:24:37 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:24:37 [assert]    communication bridge ... OK
+2019/10/01 12:24:37 [setup]     execution tag write time is 3
+2019/10/01 12:24:37 [assert]    state replication ... OK
+2019/10/01 12:24:37 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:24:37 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:24:37 [assert]    automation engine ... OK
+2019/10/01 12:24:37 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:25:17 [blocks]    do command
+2019/10/01 12:25:17 [actions]     execute Abrir Valvulas()
+2019/10/01 12:25:17 [blocks]    done
+2019/10/01 12:25:17 [blocks]    do command
+2019/10/01 12:25:17 [actions]     execute Controle Valvulas()
+2019/10/01 12:25:17 [blocks]    done
+2019/10/01 12:25:17 [blocks]    foreach valvula do
+2019/10/01 12:25:17 [actions]     class interation evaluation
+2019/10/01 12:25:17 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:25:17 [blocks]      new thread
+2019/10/01 12:25:17 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:25:17 [blocks]      new thread
+2019/10/01 12:25:17 [blocks]    done
+2019/10/01 12:25:17 [blocks]    foreach valvula do
+2019/10/01 12:25:17 [actions]     class interation evaluation
+2019/10/01 12:25:17 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:25:17 [blocks]      do command
+2019/10/01 12:25:17 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:25:17 [blocks]    do command
+2019/10/01 12:25:17 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:25:17 [blocks]    do command
+2019/10/01 12:25:17 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:25:17 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:25:17 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:28:35 [assert]    logging settings ... OK
+2019/10/01 12:28:35 [assert]    control server ... OK
+2019/10/01 12:28:35 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:28:35 [assert]    communication bridge ... OK
+2019/10/01 12:28:35 [setup]     execution tag write time is 3
+2019/10/01 12:28:35 [assert]    state replication ... OK
+2019/10/01 12:28:35 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:28:35 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:28:35 [assert]    automation engine ... OK
+2019/10/01 12:28:35 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:29:04 [assert]    logging settings ... OK
+2019/10/01 12:29:04 [assert]    control server ... OK
+2019/10/01 12:29:04 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/01 12:29:04 [assert]    communication bridge ... OK
+2019/10/01 12:29:04 [setup]     execution tag write time is 3
+2019/10/01 12:29:04 [assert]    state replication ... OK
+2019/10/01 12:29:04 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/01 12:29:04 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/01 12:29:04 [assert]    automation engine ... OK
+2019/10/01 12:29:04 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/01 12:29:11 [blocks]    do command
+2019/10/01 12:29:11 [actions]     execute Abrir Valvulas()
+2019/10/01 12:29:11 [blocks]    done
+2019/10/01 12:29:11 [blocks]    do command
+2019/10/01 12:29:11 [actions]     execute Controle Valvulas()
+2019/10/01 12:29:11 [blocks]    done
+2019/10/01 12:29:11 [blocks]    foreach valvula do
+2019/10/01 12:29:11 [actions]     class interation evaluation
+2019/10/01 12:29:11 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:29:11 [blocks]      new thread
+2019/10/01 12:29:11 [blocks]      [valvula: ValvulaControle_2]
+2019/10/01 12:29:11 [blocks]      new thread
+2019/10/01 12:29:11 [blocks]    done
+2019/10/01 12:29:11 [blocks]    foreach valvula do
+2019/10/01 12:29:11 [actions]     class interation evaluation
+2019/10/01 12:29:11 [blocks]      [valvula: ValvulaControle_1]
+2019/10/01 12:29:11 [blocks]      do command
+2019/10/01 12:29:11 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/01 12:29:11 [blocks]    do command
+2019/10/01 12:29:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:29:11 [blocks]    do command
+2019/10/01 12:29:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/01 12:29:11 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+	../lua/mpa/executor/base/blocks.lua:77: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/01 12:29:11 [error]     error in diagram: ../lua/mpa/executor/base/actions.lua:95: error reading point 'ufsc.v1_abertura' (The item definition does not conform to the server's syntax.)
+stack traceback:
+	[C]: in function 'error'
+	../lua/mpa/points/base.lua:37: in function <../lua/mpa/points/base.lua:36>
+	(...tail calls...)
+	../lua/mpa/points/base.lua:63: in function 'member'
+	../lua/mpa/executor/base/actions.lua:95: in function 'evaluate'
+	../lua/mpa/executor/base/blocks.lua:43: in function 'successor'
+	../lua/mpa/executor/base/blocks.lua:30: in function <../lua/mpa/executor/base/blocks.lua:29>
+	(...tail calls...)
+2019/10/02 10:51:56 [assert]    logging settings ... OK
+2019/10/02 10:51:56 [assert]    control server ... OK
+2019/10/02 10:51:56 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/02 10:51:56 [assert]    communication bridge ... OK
+2019/10/02 10:51:56 [setup]     execution tag write time is 3
+2019/10/02 10:51:56 [assert]    state replication ... OK
+2019/10/02 10:51:56 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/02 10:51:56 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/02 10:51:56 [assert]    automation engine ... OK
+2019/10/02 10:51:56 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     execute Abrir Valvulas()
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     execute Controle Valvulas()
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    foreach valvula do
+2019/10/02 10:52:06 [actions]     class interation evaluation
+2019/10/02 10:52:06 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 10:52:06 [blocks]      new thread
+2019/10/02 10:52:06 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 10:52:06 [blocks]      new thread
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    foreach valvula do
+2019/10/02 10:52:06 [actions]     class interation evaluation
+2019/10/02 10:52:06 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 10:52:06 [blocks]      do command
+2019/10/02 10:52:06 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:06 [variables]     variable abertura updated to 0
+2019/10/02 10:52:06 [blocks]      done
+2019/10/02 10:52:06 [messages]    after : Abertura da valvula ValvulaControle_1 = 0
+2019/10/02 10:52:06 [blocks]      test condition
+2019/10/02 10:52:06 [actions]       evaluate abertura > 0.8
+2019/10/02 10:52:06 [blocks]      evaluated to false
+2019/10/02 10:52:06 [blocks]      do command
+2019/10/02 10:52:06 [actions]       call sleep(3)
+2019/10/02 10:52:06 [variables]   variable abertura updated to 0
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:06 [variables]   variable abertura updated to 0
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     call sleep(1)
+2019/10/02 10:52:06 [blocks]    done
+2019/10/02 10:52:06 [blocks]    do command
+2019/10/02 10:52:06 [actions]     call sleep(1)
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:07 [variables]   variable abertura updated to 0.1
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:07 [variables]   variable abertura updated to 0.1
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     call sleep(1)
+2019/10/02 10:52:07 [blocks]    done
+2019/10/02 10:52:07 [blocks]    do command
+2019/10/02 10:52:07 [actions]     call sleep(1)
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:08 [variables]   variable abertura updated to 0.2
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:08 [variables]   variable abertura updated to 0.2
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     call sleep(1)
+2019/10/02 10:52:08 [blocks]    done
+2019/10/02 10:52:08 [blocks]    do command
+2019/10/02 10:52:08 [actions]     call sleep(1)
+2019/10/02 10:52:09 [blocks]      done
+2019/10/02 10:52:09 [blocks]      do command
+2019/10/02 10:52:09 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:09 [variables]     variable abertura updated to 0.3
+2019/10/02 10:52:09 [blocks]      done
+2019/10/02 10:52:09 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.3
+2019/10/02 10:52:09 [blocks]      test condition
+2019/10/02 10:52:09 [actions]       evaluate abertura > 0.8
+2019/10/02 10:52:09 [blocks]      evaluated to false
+2019/10/02 10:52:09 [blocks]      do command
+2019/10/02 10:52:09 [actions]       call sleep(3)
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:09 [variables]   variable abertura updated to 0.3
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:09 [variables]   variable abertura updated to 0.3
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     call sleep(1)
+2019/10/02 10:52:09 [blocks]    done
+2019/10/02 10:52:09 [blocks]    do command
+2019/10/02 10:52:09 [actions]     call sleep(1)
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:10 [variables]   variable abertura updated to 0.4
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:10 [variables]   variable abertura updated to 0.4
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     call sleep(1)
+2019/10/02 10:52:10 [blocks]    done
+2019/10/02 10:52:10 [blocks]    do command
+2019/10/02 10:52:10 [actions]     call sleep(1)
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:11 [variables]   variable abertura updated to 0.5
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:11 [variables]   variable abertura updated to 0.5
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     call sleep(1)
+2019/10/02 10:52:11 [blocks]    done
+2019/10/02 10:52:11 [blocks]    do command
+2019/10/02 10:52:11 [actions]     call sleep(1)
+2019/10/02 10:52:12 [blocks]      done
+2019/10/02 10:52:12 [blocks]      do command
+2019/10/02 10:52:12 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:12 [variables]     variable abertura updated to 0.6
+2019/10/02 10:52:12 [blocks]      done
+2019/10/02 10:52:12 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.6
+2019/10/02 10:52:12 [blocks]      test condition
+2019/10/02 10:52:12 [actions]       evaluate abertura > 0.8
+2019/10/02 10:52:12 [blocks]      evaluated to false
+2019/10/02 10:52:12 [blocks]      do command
+2019/10/02 10:52:12 [actions]       call sleep(3)
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:12 [variables]   variable abertura updated to 0.6
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:12 [variables]   variable abertura updated to 0.6
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     call sleep(1)
+2019/10/02 10:52:12 [blocks]    done
+2019/10/02 10:52:12 [blocks]    do command
+2019/10/02 10:52:12 [actions]     call sleep(1)
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:13 [variables]   variable abertura updated to 0.7
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:13 [variables]   variable abertura updated to 0.7
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     call sleep(1)
+2019/10/02 10:52:13 [blocks]    done
+2019/10/02 10:52:13 [blocks]    do command
+2019/10/02 10:52:13 [actions]     call sleep(1)
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:14 [variables]   variable abertura updated to 0.8
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:14 [variables]   variable abertura updated to 0.8
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     call sleep(1)
+2019/10/02 10:52:14 [blocks]    done
+2019/10/02 10:52:14 [blocks]    do command
+2019/10/02 10:52:14 [actions]     call sleep(1)
+2019/10/02 10:52:15 [blocks]      done
+2019/10/02 10:52:15 [blocks]      do command
+2019/10/02 10:52:15 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:15 [variables]     variable abertura updated to 0.9
+2019/10/02 10:52:15 [blocks]      done
+2019/10/02 10:52:15 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.9
+2019/10/02 10:52:15 [blocks]      test condition
+2019/10/02 10:52:15 [actions]       evaluate abertura > 0.8
+2019/10/02 10:52:15 [blocks]      evaluated to truth
+2019/10/02 10:52:15 [messages]    before: Atenção para abertura de válvula
+2019/10/02 10:52:15 [blocks]      do command
+2019/10/02 10:52:15 [actions]       call sleep(1)
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:15 [variables]   variable abertura updated to 0.9
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:15 [variables]   variable abertura updated to 0.9
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     call sleep(1)
+2019/10/02 10:52:15 [blocks]    done
+2019/10/02 10:52:15 [blocks]    do command
+2019/10/02 10:52:15 [actions]     call sleep(1)
+2019/10/02 10:52:16 [blocks]      done
+2019/10/02 10:52:16 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 10:52:16 [blocks]      do command
+2019/10/02 10:52:16 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:16 [variables]     variable abertura updated to 1
+2019/10/02 10:52:16 [blocks]      done
+2019/10/02 10:52:16 [messages]    after : Abertura da valvula ValvulaControle_2 = 1
+2019/10/02 10:52:16 [blocks]      test condition
+2019/10/02 10:52:16 [actions]       evaluate abertura > 0.8
+2019/10/02 10:52:16 [blocks]      evaluated to truth
+2019/10/02 10:52:16 [messages]    before: Atenção para abertura de válvula
+2019/10/02 10:52:16 [blocks]      do command
+2019/10/02 10:52:16 [actions]       call sleep(1)
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 10:52:16 [variables]   variable abertura updated to 1
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:16 [variables]   variable abertura updated to 1
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     call sleep(1)
+2019/10/02 10:52:16 [blocks]    done
+2019/10/02 10:52:16 [blocks]    do command
+2019/10/02 10:52:16 [actions]     call sleep(1)
+2019/10/02 10:52:17 [blocks]      done
+2019/10/02 10:52:17 [blocks]    done
+2019/10/02 10:52:17 [blocks]    do command
+2019/10/02 10:52:17 [actions]     stop Abrir Valvulas()
+2019/10/02 10:52:17 [blocks]    done
+2019/10/02 11:41:56 [assert]    logging settings ... OK
+2019/10/02 11:41:56 [assert]    control server ... OK
+2019/10/02 11:41:56 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/02 11:41:56 [assert]    communication bridge ... OK
+2019/10/02 11:41:56 [setup]     execution tag write time is 3
+2019/10/02 11:41:56 [assert]    state replication ... OK
+2019/10/02 11:41:56 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/02 11:41:56 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/02 11:41:56 [assert]    automation engine ... OK
+2019/10/02 11:41:56 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/02 11:56:16 [assert]    logging settings ... OK
+2019/10/02 11:56:16 [assert]    control server ... OK
+2019/10/02 11:56:16 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/02 11:56:16 [assert]    communication bridge ... OK
+2019/10/02 11:56:16 [setup]     execution tag write time is 3
+2019/10/02 11:56:16 [assert]    state replication ... OK
+2019/10/02 11:56:16 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/02 11:56:16 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/02 11:56:16 [assert]    automation engine ... OK
+2019/10/02 11:56:16 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     execute Abrir Valvulas()
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     execute Controle Valvulas()
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    foreach valvula do
+2019/10/02 11:56:50 [actions]     class interation evaluation
+2019/10/02 11:56:50 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 11:56:50 [blocks]      new thread
+2019/10/02 11:56:50 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 11:56:50 [blocks]      new thread
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    foreach valvula do
+2019/10/02 11:56:50 [actions]     class interation evaluation
+2019/10/02 11:56:50 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 11:56:50 [blocks]      do command
+2019/10/02 11:56:50 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:50 [variables]     variable abertura updated to 1.1
+2019/10/02 11:56:50 [blocks]      done
+2019/10/02 11:56:50 [messages]    after : Abertura da valvula ValvulaControle_2 = 1.1
+2019/10/02 11:56:50 [blocks]      test condition
+2019/10/02 11:56:50 [actions]       evaluate abertura > 0.8
+2019/10/02 11:56:50 [blocks]      evaluated to truth
+2019/10/02 11:56:50 [messages]    before: Atenção para abertura de válvula
+2019/10/02 11:56:50 [blocks]      do command
+2019/10/02 11:56:50 [actions]       call sleep(1)
+2019/10/02 11:56:50 [variables]   variable abertura updated to 1.1
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 11:56:50 [variables]   variable abertura updated to 1.1
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     call sleep(1)
+2019/10/02 11:56:50 [blocks]    done
+2019/10/02 11:56:50 [blocks]    do command
+2019/10/02 11:56:50 [actions]     call sleep(1)
+2019/10/02 11:56:51 [blocks]      done
+2019/10/02 11:56:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 11:56:51 [blocks]      do command
+2019/10/02 11:56:51 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 11:56:51 [variables]     variable abertura updated to 1.2
+2019/10/02 11:56:51 [blocks]      done
+2019/10/02 11:56:51 [messages]    after : Abertura da valvula ValvulaControle_1 = 1.2
+2019/10/02 11:56:51 [blocks]      test condition
+2019/10/02 11:56:51 [actions]       evaluate abertura > 0.8
+2019/10/02 11:56:51 [blocks]      evaluated to truth
+2019/10/02 11:56:51 [messages]    before: Atenção para abertura de válvula
+2019/10/02 11:56:51 [blocks]      do command
+2019/10/02 11:56:51 [actions]       call sleep(1)
+2019/10/02 11:56:51 [variables]   variable abertura updated to 1.2
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 11:56:51 [variables]   variable abertura updated to 1.2
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     call sleep(1)
+2019/10/02 11:56:51 [blocks]    done
+2019/10/02 11:56:51 [blocks]    do command
+2019/10/02 11:56:51 [actions]     call sleep(1)
+2019/10/02 11:56:52 [blocks]      done
+2019/10/02 11:56:52 [blocks]    done
+2019/10/02 11:56:52 [blocks]    do command
+2019/10/02 11:56:52 [actions]     stop Abrir Valvulas()
+2019/10/02 11:56:52 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     execute Abrir Valvulas()
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     execute Controle Valvulas()
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    foreach valvula do
+2019/10/02 12:14:15 [actions]     class interation evaluation
+2019/10/02 12:14:15 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 12:14:15 [blocks]      new thread
+2019/10/02 12:14:15 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 12:14:15 [blocks]      new thread
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    foreach valvula do
+2019/10/02 12:14:15 [actions]     class interation evaluation
+2019/10/02 12:14:15 [blocks]      [valvula: ValvulaControle_2]
+2019/10/02 12:14:15 [blocks]      do command
+2019/10/02 12:14:15 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:15 [variables]     variable abertura updated to 10
+2019/10/02 12:14:15 [blocks]      done
+2019/10/02 12:14:15 [messages]    after : Abertura da valvula ValvulaControle_2 = 10
+2019/10/02 12:14:15 [blocks]      test condition
+2019/10/02 12:14:15 [actions]       evaluate abertura > 0.8
+2019/10/02 12:14:15 [blocks]      evaluated to truth
+2019/10/02 12:14:15 [messages]    before: Atenção para abertura de válvula
+2019/10/02 12:14:15 [blocks]      do command
+2019/10/02 12:14:15 [actions]       call sleep(1)
+2019/10/02 12:14:15 [variables]   variable abertura updated to 10
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 12:14:15 [variables]   variable abertura updated to 7
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     call sleep(1)
+2019/10/02 12:14:15 [blocks]    done
+2019/10/02 12:14:15 [blocks]    do command
+2019/10/02 12:14:15 [actions]     call sleep(1)
+2019/10/02 12:14:16 [blocks]      done
+2019/10/02 12:14:16 [blocks]      [valvula: ValvulaControle_1]
+2019/10/02 12:14:16 [blocks]      do command
+2019/10/02 12:14:16 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/02 12:14:16 [variables]     variable abertura updated to 7.1
+2019/10/02 12:14:16 [blocks]      done
+2019/10/02 12:14:16 [messages]    after : Abertura da valvula ValvulaControle_1 = 7.1
+2019/10/02 12:14:16 [blocks]      test condition
+2019/10/02 12:14:16 [actions]       evaluate abertura > 0.8
+2019/10/02 12:14:16 [blocks]      evaluated to truth
+2019/10/02 12:14:16 [messages]    before: Atenção para abertura de válvula
+2019/10/02 12:14:16 [blocks]      do command
+2019/10/02 12:14:16 [actions]       call sleep(1)
+2019/10/02 12:14:16 [variables]   variable abertura updated to 10.1
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 12:14:16 [variables]   variable abertura updated to 7.1
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     call sleep(1)
+2019/10/02 12:14:16 [blocks]    done
+2019/10/02 12:14:16 [blocks]    do command
+2019/10/02 12:14:16 [actions]     call sleep(1)
+2019/10/02 12:14:17 [blocks]      done
+2019/10/02 12:14:17 [blocks]    done
+2019/10/02 12:14:17 [blocks]    do command
+2019/10/02 12:14:17 [actions]     stop Abrir Valvulas()
+2019/10/02 12:14:17 [blocks]    done
+2019/10/03 14:14:34 [assert]    logging settings ... OK
+2019/10/03 14:14:34 [assert]    control server ... OK
+2019/10/03 14:14:34 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/03 14:14:34 [assert]    communication bridge ... OK
+2019/10/03 14:14:34 [setup]     execution tag write time is 3
+2019/10/03 14:14:34 [assert]    state replication ... OK
+2019/10/03 14:14:34 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/03 14:14:34 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/03 14:14:34 [assert]    automation engine ... OK
+2019/10/03 14:14:34 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     execute Abrir Valvulas()
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     execute Controle Valvulas()
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    foreach valvula do
+2019/10/03 14:15:34 [actions]     class interation evaluation
+2019/10/03 14:15:34 [blocks]      [valvula: ValvulaControle_1]
+2019/10/03 14:15:34 [blocks]      new thread
+2019/10/03 14:15:34 [blocks]      [valvula: ValvulaControle_2]
+2019/10/03 14:15:34 [blocks]      new thread
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    foreach valvula do
+2019/10/03 14:15:34 [actions]     class interation evaluation
+2019/10/03 14:15:34 [blocks]      [valvula: ValvulaControle_1]
+2019/10/03 14:15:34 [blocks]      do command
+2019/10/03 14:15:34 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:34 [variables]     variable abertura updated to 0
+2019/10/03 14:15:34 [blocks]      done
+2019/10/03 14:15:34 [messages]    after : Abertura da valvula ValvulaControle_1 = 0
+2019/10/03 14:15:34 [blocks]      test condition
+2019/10/03 14:15:34 [actions]       evaluate abertura > 0.8
+2019/10/03 14:15:34 [blocks]      evaluated to false
+2019/10/03 14:15:34 [blocks]      do command
+2019/10/03 14:15:34 [actions]       call sleep(3)
+2019/10/03 14:15:34 [variables]   variable abertura updated to 0
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:34 [variables]   variable abertura updated to 0
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     call sleep(1)
+2019/10/03 14:15:34 [blocks]    done
+2019/10/03 14:15:34 [blocks]    do command
+2019/10/03 14:15:34 [actions]     call sleep(1)
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:35 [variables]   variable abertura updated to 0.1
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:35 [variables]   variable abertura updated to 0.1
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     call sleep(1)
+2019/10/03 14:15:35 [blocks]    done
+2019/10/03 14:15:35 [blocks]    do command
+2019/10/03 14:15:35 [actions]     call sleep(1)
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:36 [variables]   variable abertura updated to 0.2
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:36 [variables]   variable abertura updated to 0.2
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     call sleep(1)
+2019/10/03 14:15:36 [blocks]    done
+2019/10/03 14:15:36 [blocks]    do command
+2019/10/03 14:15:36 [actions]     call sleep(1)
+2019/10/03 14:15:37 [blocks]      done
+2019/10/03 14:15:37 [blocks]      do command
+2019/10/03 14:15:37 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:37 [variables]     variable abertura updated to 0.3
+2019/10/03 14:15:37 [blocks]      done
+2019/10/03 14:15:37 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.3
+2019/10/03 14:15:37 [blocks]      test condition
+2019/10/03 14:15:37 [actions]       evaluate abertura > 0.8
+2019/10/03 14:15:37 [blocks]      evaluated to false
+2019/10/03 14:15:37 [blocks]      do command
+2019/10/03 14:15:37 [actions]       call sleep(3)
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:37 [variables]   variable abertura updated to 0.3
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:37 [variables]   variable abertura updated to 0.3
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     call sleep(1)
+2019/10/03 14:15:37 [blocks]    done
+2019/10/03 14:15:37 [blocks]    do command
+2019/10/03 14:15:37 [actions]     call sleep(1)
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:38 [variables]   variable abertura updated to 0.4
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:38 [variables]   variable abertura updated to 0.4
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     call sleep(1)
+2019/10/03 14:15:38 [blocks]    done
+2019/10/03 14:15:38 [blocks]    do command
+2019/10/03 14:15:38 [actions]     call sleep(1)
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:39 [variables]   variable abertura updated to 0.5
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:39 [variables]   variable abertura updated to 0.5
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     call sleep(1)
+2019/10/03 14:15:39 [blocks]    done
+2019/10/03 14:15:39 [blocks]    do command
+2019/10/03 14:15:39 [actions]     call sleep(1)
+2019/10/03 14:15:40 [blocks]      done
+2019/10/03 14:15:40 [blocks]      do command
+2019/10/03 14:15:40 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:40 [variables]     variable abertura updated to 0.6
+2019/10/03 14:15:40 [blocks]      done
+2019/10/03 14:15:40 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.6
+2019/10/03 14:15:40 [blocks]      test condition
+2019/10/03 14:15:40 [actions]       evaluate abertura > 0.8
+2019/10/03 14:15:40 [blocks]      evaluated to false
+2019/10/03 14:15:40 [blocks]      do command
+2019/10/03 14:15:40 [actions]       call sleep(3)
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:40 [variables]   variable abertura updated to 0.6
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:40 [variables]   variable abertura updated to 0.6
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     call sleep(1)
+2019/10/03 14:15:40 [blocks]    done
+2019/10/03 14:15:40 [blocks]    do command
+2019/10/03 14:15:40 [actions]     call sleep(1)
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:41 [variables]   variable abertura updated to 0.7
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:41 [variables]   variable abertura updated to 0.7
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     call sleep(1)
+2019/10/03 14:15:41 [blocks]    done
+2019/10/03 14:15:41 [blocks]    do command
+2019/10/03 14:15:41 [actions]     call sleep(1)
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:42 [variables]   variable abertura updated to 0.8
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:42 [variables]   variable abertura updated to 0.8
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     call sleep(1)
+2019/10/03 14:15:42 [blocks]    done
+2019/10/03 14:15:42 [blocks]    do command
+2019/10/03 14:15:42 [actions]     call sleep(1)
+2019/10/03 14:15:43 [blocks]      done
+2019/10/03 14:15:43 [blocks]      do command
+2019/10/03 14:15:43 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:43 [variables]     variable abertura updated to 0.9
+2019/10/03 14:15:43 [blocks]      done
+2019/10/03 14:15:43 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.9
+2019/10/03 14:15:43 [blocks]      test condition
+2019/10/03 14:15:43 [actions]       evaluate abertura > 0.8
+2019/10/03 14:15:43 [blocks]      evaluated to truth
+2019/10/03 14:15:43 [messages]    before: Atenção para abertura de válvula
+2019/10/03 14:15:43 [blocks]      do command
+2019/10/03 14:15:43 [actions]       call sleep(1)
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:43 [variables]   variable abertura updated to 0.9
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:43 [variables]   variable abertura updated to 0.9
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     call sleep(1)
+2019/10/03 14:15:43 [blocks]    done
+2019/10/03 14:15:43 [blocks]    do command
+2019/10/03 14:15:43 [actions]     call sleep(1)
+2019/10/03 14:15:44 [blocks]      done
+2019/10/03 14:15:44 [blocks]      [valvula: ValvulaControle_2]
+2019/10/03 14:15:44 [blocks]      do command
+2019/10/03 14:15:44 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:44 [variables]     variable abertura updated to 1
+2019/10/03 14:15:44 [blocks]      done
+2019/10/03 14:15:44 [messages]    after : Abertura da valvula ValvulaControle_2 = 1
+2019/10/03 14:15:44 [blocks]      test condition
+2019/10/03 14:15:44 [actions]       evaluate abertura > 0.8
+2019/10/03 14:15:44 [blocks]      evaluated to truth
+2019/10/03 14:15:44 [messages]    before: Atenção para abertura de válvula
+2019/10/03 14:15:44 [blocks]      do command
+2019/10/03 14:15:44 [actions]       call sleep(1)
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 14:15:44 [variables]   variable abertura updated to 1
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:44 [variables]   variable abertura updated to 1
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     call sleep(1)
+2019/10/03 14:15:44 [blocks]    done
+2019/10/03 14:15:44 [blocks]    do command
+2019/10/03 14:15:44 [actions]     call sleep(1)
+2019/10/03 14:15:45 [blocks]      done
+2019/10/03 14:15:45 [blocks]    done
+2019/10/03 14:15:45 [blocks]    do command
+2019/10/03 14:15:45 [actions]     stop Abrir Valvulas()
+2019/10/03 14:15:45 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     execute Abrir Valvulas()
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     execute Controle Valvulas()
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    foreach valvula do
+2019/10/03 16:02:25 [actions]     class interation evaluation
+2019/10/03 16:02:25 [blocks]      [valvula: ValvulaControle_1]
+2019/10/03 16:02:25 [blocks]      new thread
+2019/10/03 16:02:25 [blocks]      [valvula: ValvulaControle_2]
+2019/10/03 16:02:25 [blocks]      new thread
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    foreach valvula do
+2019/10/03 16:02:25 [actions]     class interation evaluation
+2019/10/03 16:02:25 [blocks]      [valvula: ValvulaControle_1]
+2019/10/03 16:02:25 [blocks]      do command
+2019/10/03 16:02:25 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:25 [variables]     variable abertura updated to 1
+2019/10/03 16:02:25 [blocks]      done
+2019/10/03 16:02:25 [messages]    after : Abertura da valvula ValvulaControle_1 = 1
+2019/10/03 16:02:25 [blocks]      test condition
+2019/10/03 16:02:25 [actions]       evaluate abertura > 0.8
+2019/10/03 16:02:25 [blocks]      evaluated to truth
+2019/10/03 16:02:25 [messages]    before: Atenção para abertura de válvula
+2019/10/03 16:02:25 [blocks]      do command
+2019/10/03 16:02:25 [actions]       call sleep(1)
+2019/10/03 16:02:25 [variables]   variable abertura updated to 1
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 16:02:25 [variables]   variable abertura updated to 15
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     call sleep(1)
+2019/10/03 16:02:25 [blocks]    done
+2019/10/03 16:02:25 [blocks]    do command
+2019/10/03 16:02:25 [actions]     call sleep(1)
+2019/10/03 16:02:26 [blocks]      done
+2019/10/03 16:02:26 [blocks]      [valvula: ValvulaControle_2]
+2019/10/03 16:02:26 [blocks]      do command
+2019/10/03 16:02:26 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/03 16:02:26 [variables]     variable abertura updated to 15.1
+2019/10/03 16:02:26 [blocks]      done
+2019/10/03 16:02:26 [messages]    after : Abertura da valvula ValvulaControle_2 = 15.1
+2019/10/03 16:02:26 [blocks]      test condition
+2019/10/03 16:02:26 [actions]       evaluate abertura > 0.8
+2019/10/03 16:02:26 [blocks]      evaluated to truth
+2019/10/03 16:02:26 [messages]    before: Atenção para abertura de válvula
+2019/10/03 16:02:26 [blocks]      do command
+2019/10/03 16:02:26 [actions]       call sleep(1)
+2019/10/03 16:02:26 [variables]   variable abertura updated to 1.1
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 16:02:26 [variables]   variable abertura updated to 15.1
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     call sleep(1)
+2019/10/03 16:02:26 [blocks]    done
+2019/10/03 16:02:26 [blocks]    do command
+2019/10/03 16:02:26 [actions]     call sleep(1)
+2019/10/03 16:02:27 [blocks]      done
+2019/10/03 16:02:27 [blocks]    done
+2019/10/03 16:02:27 [blocks]    do command
+2019/10/03 16:02:27 [actions]     stop Abrir Valvulas()
+2019/10/03 16:02:27 [blocks]    done
+2019/10/04 19:14:10 [assert]    logging settings ... OK
+2019/10/04 19:14:10 [assert]    control server ... OK
+2019/10/04 19:14:10 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/04 19:14:10 [assert]    communication bridge ... OK
+2019/10/04 19:14:10 [setup]     execution tag write time is 3
+2019/10/04 19:14:10 [assert]    state replication ... OK
+2019/10/04 19:14:10 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/04 19:14:10 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/04 19:14:10 [assert]    automation engine ... OK
+2019/10/04 19:14:10 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     execute Abrir Valvulas()
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     execute Controle Valvulas()
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    foreach valvula do
+2019/10/04 19:14:51 [actions]     class interation evaluation
+2019/10/04 19:14:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/04 19:14:51 [blocks]      new thread
+2019/10/04 19:14:51 [blocks]      [valvula: ValvulaControle_2]
+2019/10/04 19:14:51 [blocks]      new thread
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    foreach valvula do
+2019/10/04 19:14:51 [actions]     class interation evaluation
+2019/10/04 19:14:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/04 19:14:51 [blocks]      do command
+2019/10/04 19:14:51 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:51 [variables]     variable abertura updated to 0
+2019/10/04 19:14:51 [blocks]      done
+2019/10/04 19:14:51 [messages]    after : Abertura da valvula ValvulaControle_1 = 0
+2019/10/04 19:14:51 [blocks]      test condition
+2019/10/04 19:14:51 [actions]       evaluate abertura > 0.8
+2019/10/04 19:14:51 [blocks]      evaluated to false
+2019/10/04 19:14:51 [blocks]      do command
+2019/10/04 19:14:51 [actions]       call sleep(3)
+2019/10/04 19:14:51 [variables]   variable abertura updated to 0
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:51 [variables]   variable abertura updated to 0
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     call sleep(1)
+2019/10/04 19:14:51 [blocks]    done
+2019/10/04 19:14:51 [blocks]    do command
+2019/10/04 19:14:51 [actions]     call sleep(1)
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:52 [variables]   variable abertura updated to 0.1
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:52 [variables]   variable abertura updated to 0.1
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     call sleep(1)
+2019/10/04 19:14:52 [blocks]    done
+2019/10/04 19:14:52 [blocks]    do command
+2019/10/04 19:14:52 [actions]     call sleep(1)
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:53 [variables]   variable abertura updated to 0.2
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:53 [variables]   variable abertura updated to 0.2
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     call sleep(1)
+2019/10/04 19:14:53 [blocks]    done
+2019/10/04 19:14:53 [blocks]    do command
+2019/10/04 19:14:53 [actions]     call sleep(1)
+2019/10/04 19:14:54 [blocks]      done
+2019/10/04 19:14:54 [blocks]      do command
+2019/10/04 19:14:54 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:54 [variables]     variable abertura updated to 0.3
+2019/10/04 19:14:54 [blocks]      done
+2019/10/04 19:14:54 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.3
+2019/10/04 19:14:54 [blocks]      test condition
+2019/10/04 19:14:54 [actions]       evaluate abertura > 0.8
+2019/10/04 19:14:54 [blocks]      evaluated to false
+2019/10/04 19:14:54 [blocks]      do command
+2019/10/04 19:14:54 [actions]       call sleep(3)
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:54 [variables]   variable abertura updated to 0.3
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:54 [variables]   variable abertura updated to 0.3
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     call sleep(1)
+2019/10/04 19:14:54 [blocks]    done
+2019/10/04 19:14:54 [blocks]    do command
+2019/10/04 19:14:54 [actions]     call sleep(1)
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:55 [variables]   variable abertura updated to 0.4
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:55 [variables]   variable abertura updated to 0.4
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     call sleep(1)
+2019/10/04 19:14:55 [blocks]    done
+2019/10/04 19:14:55 [blocks]    do command
+2019/10/04 19:14:55 [actions]     call sleep(1)
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:56 [variables]   variable abertura updated to 0.5
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:56 [variables]   variable abertura updated to 0.5
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     call sleep(1)
+2019/10/04 19:14:56 [blocks]    done
+2019/10/04 19:14:56 [blocks]    do command
+2019/10/04 19:14:56 [actions]     call sleep(1)
+2019/10/04 19:14:57 [blocks]      done
+2019/10/04 19:14:57 [blocks]      do command
+2019/10/04 19:14:57 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:57 [variables]     variable abertura updated to 0.6
+2019/10/04 19:14:57 [blocks]      done
+2019/10/04 19:14:57 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.6
+2019/10/04 19:14:57 [blocks]      test condition
+2019/10/04 19:14:57 [actions]       evaluate abertura > 0.8
+2019/10/04 19:14:57 [blocks]      evaluated to false
+2019/10/04 19:14:57 [blocks]      do command
+2019/10/04 19:14:57 [actions]       call sleep(3)
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:57 [variables]   variable abertura updated to 0.6
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:57 [variables]   variable abertura updated to 0.6
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     call sleep(1)
+2019/10/04 19:14:57 [blocks]    done
+2019/10/04 19:14:57 [blocks]    do command
+2019/10/04 19:14:57 [actions]     call sleep(1)
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:58 [variables]   variable abertura updated to 0.7
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:58 [variables]   variable abertura updated to 0.7
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     call sleep(1)
+2019/10/04 19:14:58 [blocks]    done
+2019/10/04 19:14:58 [blocks]    do command
+2019/10/04 19:14:58 [actions]     call sleep(1)
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:14:59 [variables]   variable abertura updated to 0.8
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:59 [variables]   variable abertura updated to 0.8
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     call sleep(1)
+2019/10/04 19:14:59 [blocks]    done
+2019/10/04 19:14:59 [blocks]    do command
+2019/10/04 19:14:59 [actions]     call sleep(1)
+2019/10/04 19:15:00 [blocks]      done
+2019/10/04 19:15:00 [blocks]      do command
+2019/10/04 19:15:00 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:00 [variables]     variable abertura updated to 0.9
+2019/10/04 19:15:00 [blocks]      done
+2019/10/04 19:15:00 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.9
+2019/10/04 19:15:00 [blocks]      test condition
+2019/10/04 19:15:00 [actions]       evaluate abertura > 0.8
+2019/10/04 19:15:00 [blocks]      evaluated to truth
+2019/10/04 19:15:00 [messages]    before: Atenção para abertura de válvula
+2019/10/04 19:15:00 [blocks]      do command
+2019/10/04 19:15:00 [actions]       call sleep(1)
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:01 [variables]   variable abertura updated to 0.9
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:15:01 [variables]   variable abertura updated to 0.9
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     call sleep(1)
+2019/10/04 19:15:01 [blocks]    done
+2019/10/04 19:15:01 [blocks]    do command
+2019/10/04 19:15:01 [actions]     call sleep(1)
+2019/10/04 19:15:01 [blocks]      done
+2019/10/04 19:15:01 [blocks]      [valvula: ValvulaControle_2]
+2019/10/04 19:15:01 [blocks]      do command
+2019/10/04 19:15:01 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:01 [variables]     variable abertura updated to 1
+2019/10/04 19:15:01 [blocks]      done
+2019/10/04 19:15:01 [messages]    after : Abertura da valvula ValvulaControle_2 = 1
+2019/10/04 19:15:01 [blocks]      test condition
+2019/10/04 19:15:01 [actions]       evaluate abertura > 0.8
+2019/10/04 19:15:01 [blocks]      evaluated to truth
+2019/10/04 19:15:01 [messages]    before: Atenção para abertura de válvula
+2019/10/04 19:15:01 [blocks]      do command
+2019/10/04 19:15:01 [actions]       call sleep(1)
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/04 19:15:02 [variables]   variable abertura updated to 1
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:15:02 [variables]   variable abertura updated to 1
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     call sleep(1)
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     call sleep(1)
+2019/10/04 19:15:02 [blocks]      done
+2019/10/04 19:15:02 [blocks]    done
+2019/10/04 19:15:02 [blocks]    do command
+2019/10/04 19:15:02 [actions]     stop Abrir Valvulas()
+2019/10/04 19:15:02 [blocks]    done
+2019/10/06 11:16:18 [assert]    logging settings ... OK
+2019/10/06 11:16:18 [assert]    control server ... OK
+2019/10/06 11:16:19 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/06 11:16:19 [assert]    communication bridge ... OK
+2019/10/06 11:16:19 [setup]     execution tag write time is 3
+2019/10/06 11:16:19 [assert]    state replication ... OK
+2019/10/06 11:16:19 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/06 11:16:19 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/06 11:16:19 [assert]    automation engine ... OK
+2019/10/06 11:16:19 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     execute Abrir Valvulas()
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     execute Controle Valvulas()
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    foreach valvula do
+2019/10/06 11:17:11 [actions]     class interation evaluation
+2019/10/06 11:17:11 [blocks]      [valvula: ValvulaControle_2]
+2019/10/06 11:17:11 [blocks]      new thread
+2019/10/06 11:17:11 [blocks]      [valvula: ValvulaControle_1]
+2019/10/06 11:17:11 [blocks]      new thread
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    foreach valvula do
+2019/10/06 11:17:11 [actions]     class interation evaluation
+2019/10/06 11:17:11 [blocks]      [valvula: ValvulaControle_2]
+2019/10/06 11:17:11 [blocks]      do command
+2019/10/06 11:17:11 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:11 [variables]     variable abertura updated to 0
+2019/10/06 11:17:11 [blocks]      done
+2019/10/06 11:17:11 [messages]    after : Abertura da valvula ValvulaControle_2 = 0
+2019/10/06 11:17:11 [blocks]      test condition
+2019/10/06 11:17:11 [actions]       evaluate abertura > 0.8
+2019/10/06 11:17:11 [blocks]      evaluated to false
+2019/10/06 11:17:11 [blocks]      do command
+2019/10/06 11:17:11 [actions]       call sleep(3)
+2019/10/06 11:17:11 [variables]   variable abertura updated to 0
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:11 [variables]   variable abertura updated to 0
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     call sleep(1)
+2019/10/06 11:17:11 [blocks]    done
+2019/10/06 11:17:11 [blocks]    do command
+2019/10/06 11:17:11 [actions]     call sleep(1)
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:12 [variables]   variable abertura updated to 0.1
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:12 [variables]   variable abertura updated to 0.1
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     call sleep(1)
+2019/10/06 11:17:12 [blocks]    done
+2019/10/06 11:17:12 [blocks]    do command
+2019/10/06 11:17:12 [actions]     call sleep(1)
+2019/10/06 11:17:13 [blocks]    done
+2019/10/06 11:17:13 [blocks]    do command
+2019/10/06 11:17:13 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:13 [blocks]    done
+2019/10/06 11:17:13 [blocks]    do command
+2019/10/06 11:17:13 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:13 [variables]   variable abertura updated to 0.2
+2019/10/06 11:17:13 [blocks]    done
+2019/10/06 11:17:13 [blocks]    do command
+2019/10/06 11:17:13 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:13 [variables]   variable abertura updated to 0.2
+2019/10/06 11:17:13 [blocks]    done
+2019/10/06 11:17:13 [blocks]    do command
+2019/10/06 11:17:13 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:14 [blocks]    done
+2019/10/06 11:17:14 [blocks]    do command
+2019/10/06 11:17:14 [actions]     call sleep(1)
+2019/10/06 11:17:14 [blocks]    done
+2019/10/06 11:17:14 [blocks]    do command
+2019/10/06 11:17:14 [actions]     call sleep(1)
+2019/10/06 11:17:14 [blocks]      done
+2019/10/06 11:17:14 [blocks]      do command
+2019/10/06 11:17:14 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:14 [variables]     variable abertura updated to 0.3
+2019/10/06 11:17:14 [blocks]      done
+2019/10/06 11:17:14 [messages]    after : Abertura da valvula ValvulaControle_2 = 0.3
+2019/10/06 11:17:14 [blocks]      test condition
+2019/10/06 11:17:14 [actions]       evaluate abertura > 0.8
+2019/10/06 11:17:14 [blocks]      evaluated to false
+2019/10/06 11:17:14 [blocks]      do command
+2019/10/06 11:17:14 [actions]       call sleep(3)
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:15 [variables]   variable abertura updated to 0.3
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:15 [variables]   variable abertura updated to 0.3
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     call sleep(1)
+2019/10/06 11:17:15 [blocks]    done
+2019/10/06 11:17:15 [blocks]    do command
+2019/10/06 11:17:15 [actions]     call sleep(1)
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:16 [variables]   variable abertura updated to 0.4
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:16 [variables]   variable abertura updated to 0.4
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     call sleep(1)
+2019/10/06 11:17:16 [blocks]    done
+2019/10/06 11:17:16 [blocks]    do command
+2019/10/06 11:17:16 [actions]     call sleep(1)
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:17 [variables]   variable abertura updated to 0.5
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:17 [variables]   variable abertura updated to 0.5
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     call sleep(1)
+2019/10/06 11:17:17 [blocks]    done
+2019/10/06 11:17:17 [blocks]    do command
+2019/10/06 11:17:17 [actions]     call sleep(1)
+2019/10/06 11:17:17 [blocks]      done
+2019/10/06 11:17:17 [blocks]      do command
+2019/10/06 11:17:17 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:17 [variables]     variable abertura updated to 0.6
+2019/10/06 11:17:17 [blocks]      done
+2019/10/06 11:17:17 [messages]    after : Abertura da valvula ValvulaControle_2 = 0.6
+2019/10/06 11:17:17 [blocks]      test condition
+2019/10/06 11:17:17 [actions]       evaluate abertura > 0.8
+2019/10/06 11:17:17 [blocks]      evaluated to false
+2019/10/06 11:17:17 [blocks]      do command
+2019/10/06 11:17:17 [actions]       call sleep(3)
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:18 [variables]   variable abertura updated to 0.6
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:18 [variables]   variable abertura updated to 0.6
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     call sleep(1)
+2019/10/06 11:17:18 [blocks]    done
+2019/10/06 11:17:18 [blocks]    do command
+2019/10/06 11:17:18 [actions]     call sleep(1)
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:19 [variables]   variable abertura updated to 0.7
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:19 [variables]   variable abertura updated to 0.7
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     call sleep(1)
+2019/10/06 11:17:19 [blocks]    done
+2019/10/06 11:17:19 [blocks]    do command
+2019/10/06 11:17:19 [actions]     call sleep(1)
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:20 [variables]   variable abertura updated to 0.8
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:20 [variables]   variable abertura updated to 0.8
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     call sleep(1)
+2019/10/06 11:17:20 [blocks]    done
+2019/10/06 11:17:20 [blocks]    do command
+2019/10/06 11:17:20 [actions]     call sleep(1)
+2019/10/06 11:17:21 [blocks]      done
+2019/10/06 11:17:21 [blocks]      do command
+2019/10/06 11:17:21 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:21 [variables]     variable abertura updated to 0.9
+2019/10/06 11:17:21 [blocks]      done
+2019/10/06 11:17:21 [messages]    after : Abertura da valvula ValvulaControle_2 = 0.9
+2019/10/06 11:17:21 [blocks]      test condition
+2019/10/06 11:17:21 [actions]       evaluate abertura > 0.8
+2019/10/06 11:17:21 [blocks]      evaluated to truth
+2019/10/06 11:17:21 [messages]    before: Atenção para abertura de válvula
+2019/10/06 11:17:21 [blocks]      do command
+2019/10/06 11:17:21 [actions]       call sleep(1)
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:21 [variables]   variable abertura updated to 0.9
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:21 [variables]   variable abertura updated to 0.9
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     call sleep(1)
+2019/10/06 11:17:21 [blocks]    done
+2019/10/06 11:17:21 [blocks]    do command
+2019/10/06 11:17:21 [actions]     call sleep(1)
+2019/10/06 11:17:22 [blocks]      done
+2019/10/06 11:17:22 [blocks]      [valvula: ValvulaControle_1]
+2019/10/06 11:17:22 [blocks]      do command
+2019/10/06 11:17:22 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:22 [variables]     variable abertura updated to 1
+2019/10/06 11:17:22 [blocks]      done
+2019/10/06 11:17:22 [messages]    after : Abertura da valvula ValvulaControle_1 = 1
+2019/10/06 11:17:22 [blocks]      test condition
+2019/10/06 11:17:22 [actions]       evaluate abertura > 0.8
+2019/10/06 11:17:22 [blocks]      evaluated to truth
+2019/10/06 11:17:22 [messages]    before: Atenção para abertura de válvula
+2019/10/06 11:17:22 [blocks]      do command
+2019/10/06 11:17:22 [actions]       call sleep(1)
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/06 11:17:22 [variables]   variable abertura updated to 1
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:22 [variables]   variable abertura updated to 1
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     call sleep(1)
+2019/10/06 11:17:22 [blocks]    done
+2019/10/06 11:17:22 [blocks]    do command
+2019/10/06 11:17:22 [actions]     call sleep(1)
+2019/10/06 11:17:23 [blocks]      done
+2019/10/06 11:17:23 [blocks]    done
+2019/10/06 11:17:23 [blocks]    do command
+2019/10/06 11:17:23 [actions]     stop Abrir Valvulas()
+2019/10/06 11:17:23 [blocks]    done
+2019/10/10 14:36:30 [assert]    logging settings ... OK
+2019/10/10 14:36:30 [assert]    control server ... OK
+2019/10/10 14:36:30 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/10 14:36:30 [assert]    communication bridge ... OK
+2019/10/10 14:36:30 [setup]     execution tag write time is 3
+2019/10/10 14:36:30 [assert]    state replication ... OK
+2019/10/10 14:36:30 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/10 14:36:30 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/10 14:36:30 [assert]    automation engine ... OK
+2019/10/10 14:36:30 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/10 15:29:54 [assert]    logging settings ... OK
+2019/10/10 15:29:54 [assert]    control server ... OK
+2019/10/10 15:29:54 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/10 15:29:54 [assert]    communication bridge ... OK
+2019/10/10 15:29:54 [setup]     execution tag write time is 3
+2019/10/10 15:29:54 [assert]    state replication ... OK
+2019/10/10 15:29:54 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/10 15:29:54 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/10 15:29:54 [assert]    automation engine ... OK
+2019/10/10 15:29:54 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     execute Abrir Valvulas()
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     execute Controle Valvulas()
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    foreach valvula do
+2019/10/10 15:38:51 [actions]     class interation evaluation
+2019/10/10 15:38:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/10 15:38:51 [blocks]      new thread
+2019/10/10 15:38:51 [blocks]      [valvula: ValvulaControle_2]
+2019/10/10 15:38:51 [blocks]      new thread
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    foreach valvula do
+2019/10/10 15:38:51 [actions]     class interation evaluation
+2019/10/10 15:38:51 [blocks]      [valvula: ValvulaControle_1]
+2019/10/10 15:38:51 [blocks]      do command
+2019/10/10 15:38:51 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:51 [variables]     variable abertura updated to 0
+2019/10/10 15:38:51 [blocks]      done
+2019/10/10 15:38:51 [messages]    after : Abertura da valvula ValvulaControle_1 = 0
+2019/10/10 15:38:51 [blocks]      test condition
+2019/10/10 15:38:51 [actions]       evaluate abertura > 0.8
+2019/10/10 15:38:51 [blocks]      evaluated to false
+2019/10/10 15:38:51 [blocks]      do command
+2019/10/10 15:38:51 [actions]       call sleep(3)
+2019/10/10 15:38:51 [variables]   variable abertura updated to 0
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:51 [variables]   variable abertura updated to 0
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     call sleep(1)
+2019/10/10 15:38:51 [blocks]    done
+2019/10/10 15:38:51 [blocks]    do command
+2019/10/10 15:38:51 [actions]     call sleep(1)
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:52 [variables]   variable abertura updated to 0.1
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:52 [variables]   variable abertura updated to 0.1
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     call sleep(1)
+2019/10/10 15:38:52 [blocks]    done
+2019/10/10 15:38:52 [blocks]    do command
+2019/10/10 15:38:52 [actions]     call sleep(1)
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:53 [variables]   variable abertura updated to 0.2
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:53 [variables]   variable abertura updated to 0.2
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     call sleep(1)
+2019/10/10 15:38:53 [blocks]    done
+2019/10/10 15:38:53 [blocks]    do command
+2019/10/10 15:38:53 [actions]     call sleep(1)
+2019/10/10 15:38:54 [blocks]      done
+2019/10/10 15:38:54 [blocks]      do command
+2019/10/10 15:38:54 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:54 [variables]     variable abertura updated to 0.3
+2019/10/10 15:38:54 [blocks]      done
+2019/10/10 15:38:54 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.3
+2019/10/10 15:38:54 [blocks]      test condition
+2019/10/10 15:38:54 [actions]       evaluate abertura > 0.8
+2019/10/10 15:38:54 [blocks]      evaluated to false
+2019/10/10 15:38:54 [blocks]      do command
+2019/10/10 15:38:54 [actions]       call sleep(3)
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:54 [variables]   variable abertura updated to 0.3
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:54 [variables]   variable abertura updated to 0.3
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     call sleep(1)
+2019/10/10 15:38:54 [blocks]    done
+2019/10/10 15:38:54 [blocks]    do command
+2019/10/10 15:38:54 [actions]     call sleep(1)
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:55 [variables]   variable abertura updated to 0.4
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:55 [variables]   variable abertura updated to 0.4
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     call sleep(1)
+2019/10/10 15:38:55 [blocks]    done
+2019/10/10 15:38:55 [blocks]    do command
+2019/10/10 15:38:55 [actions]     call sleep(1)
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:56 [variables]   variable abertura updated to 0.5
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:56 [variables]   variable abertura updated to 0.5
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     call sleep(1)
+2019/10/10 15:38:56 [blocks]    done
+2019/10/10 15:38:56 [blocks]    do command
+2019/10/10 15:38:56 [actions]     call sleep(1)
+2019/10/10 15:38:57 [blocks]      done
+2019/10/10 15:38:57 [blocks]      do command
+2019/10/10 15:38:57 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:57 [variables]     variable abertura updated to 0.6
+2019/10/10 15:38:57 [blocks]      done
+2019/10/10 15:38:57 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.6
+2019/10/10 15:38:57 [blocks]      test condition
+2019/10/10 15:38:57 [actions]       evaluate abertura > 0.8
+2019/10/10 15:38:57 [blocks]      evaluated to false
+2019/10/10 15:38:57 [blocks]      do command
+2019/10/10 15:38:57 [actions]       call sleep(3)
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:57 [variables]   variable abertura updated to 0.6
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:57 [variables]   variable abertura updated to 0.6
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     call sleep(1)
+2019/10/10 15:38:57 [blocks]    done
+2019/10/10 15:38:57 [blocks]    do command
+2019/10/10 15:38:57 [actions]     call sleep(1)
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:58 [variables]   variable abertura updated to 0.7
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:58 [variables]   variable abertura updated to 0.7
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     call sleep(1)
+2019/10/10 15:38:58 [blocks]    done
+2019/10/10 15:38:58 [blocks]    do command
+2019/10/10 15:38:58 [actions]     call sleep(1)
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:38:59 [variables]   variable abertura updated to 0.8
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:59 [variables]   variable abertura updated to 0.8
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     call sleep(1)
+2019/10/10 15:38:59 [blocks]    done
+2019/10/10 15:38:59 [blocks]    do command
+2019/10/10 15:38:59 [actions]     call sleep(1)
+2019/10/10 15:39:00 [blocks]      done
+2019/10/10 15:39:00 [blocks]      do command
+2019/10/10 15:39:00 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:00 [variables]     variable abertura updated to 0.9
+2019/10/10 15:39:00 [blocks]      done
+2019/10/10 15:39:00 [messages]    after : Abertura da valvula ValvulaControle_1 = 0.9
+2019/10/10 15:39:00 [blocks]      test condition
+2019/10/10 15:39:00 [actions]       evaluate abertura > 0.8
+2019/10/10 15:39:00 [blocks]      evaluated to truth
+2019/10/10 15:39:00 [messages]    before: Atenção para abertura de válvula
+2019/10/10 15:39:00 [blocks]      do command
+2019/10/10 15:39:00 [actions]       call sleep(1)
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:00 [variables]   variable abertura updated to 0.9
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:39:00 [variables]   variable abertura updated to 0.9
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     call sleep(1)
+2019/10/10 15:39:00 [blocks]    done
+2019/10/10 15:39:00 [blocks]    do command
+2019/10/10 15:39:00 [actions]     call sleep(1)
+2019/10/10 15:39:01 [blocks]      done
+2019/10/10 15:39:01 [blocks]      [valvula: ValvulaControle_2]
+2019/10/10 15:39:01 [blocks]      do command
+2019/10/10 15:39:01 [actions]       invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:01 [variables]     variable abertura updated to 1
+2019/10/10 15:39:01 [blocks]      done
+2019/10/10 15:39:01 [messages]    after : Abertura da valvula ValvulaControle_2 = 1
+2019/10/10 15:39:01 [blocks]      test condition
+2019/10/10 15:39:01 [actions]       evaluate abertura > 0.8
+2019/10/10 15:39:01 [blocks]      evaluated to truth
+2019/10/10 15:39:01 [messages]    before: Atenção para abertura de válvula
+2019/10/10 15:39:01 [blocks]      do command
+2019/10/10 15:39:01 [actions]       call sleep(1)
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     invoke valvula:indicacaoPosicao()
+2019/10/10 15:39:01 [variables]   variable abertura updated to 1
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:39:01 [variables]   variable abertura updated to 1
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     invoke valvula:comandoPosicao(abertura + 0.1)
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     call sleep(1)
+2019/10/10 15:39:01 [blocks]    done
+2019/10/10 15:39:01 [blocks]    do command
+2019/10/10 15:39:01 [actions]     call sleep(1)
+2019/10/10 15:39:02 [blocks]      done
+2019/10/10 15:39:02 [blocks]    done
+2019/10/10 15:39:02 [blocks]    do command
+2019/10/10 15:39:02 [actions]     stop Abrir Valvulas()
+2019/10/10 15:39:02 [blocks]    done
+2019/10/10 15:55:30 [assert]    logging settings ... OK
+2019/10/10 15:55:30 [assert]    control server ... OK
+2019/10/10 15:55:30 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/10 15:55:30 [assert]    communication bridge ... OK
+2019/10/10 15:55:30 [setup]     execution tag write time is 3
+2019/10/10 15:55:30 [assert]    state replication ... OK
+2019/10/10 15:55:30 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/10 15:55:30 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/10 15:55:30 [assert]    automation engine ... OK
+2019/10/10 15:55:30 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/10 16:10:48 [assert]    logging settings ... OK
+2019/10/10 16:10:48 [assert]    control server ... OK
+2019/10/10 16:10:49 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/10 16:10:49 [assert]    communication bridge ... OK
+2019/10/10 16:10:49 [setup]     execution tag write time is 3
+2019/10/10 16:10:49 [assert]    state replication ... OK
+2019/10/10 16:10:49 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/10 16:10:49 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/10 16:10:49 [assert]    automation engine ... OK
+2019/10/10 16:10:49 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 17:23:24 [assert]    logging settings ... OK
+2019/10/11 17:23:24 [assert]    control server ... OK
+2019/10/11 17:23:24 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 17:23:24 [assert]    communication bridge ... OK
+2019/10/11 17:23:24 [setup]     execution tag write time is 3
+2019/10/11 17:23:24 [assert]    state replication ... OK
+2019/10/11 17:23:24 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 17:23:24 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 17:23:24 [assert]    automation engine ... OK
+2019/10/11 17:23:24 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 16:36:54 [assert]    logging settings ... OK
+2019/10/11 16:36:54 [assert]    control server ... OK
+2019/10/11 16:36:54 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 16:36:54 [assert]    communication bridge ... OK
+2019/10/11 16:36:54 [setup]     execution tag write time is 3
+2019/10/11 16:36:54 [assert]    state replication ... OK
+2019/10/11 16:36:54 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 16:36:54 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 16:36:54 [assert]    automation engine ... OK
+2019/10/11 16:36:54 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:24:36 [assert]    logging settings ... OK
+2019/10/11 18:24:36 [assert]    control server ... OK
+2019/10/11 18:24:36 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:24:36 [assert]    communication bridge ... OK
+2019/10/11 18:24:36 [setup]     execution tag write time is 3
+2019/10/11 18:24:36 [assert]    state replication ... OK
+2019/10/11 18:24:36 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:24:36 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:24:36 [assert]    automation engine ... OK
+2019/10/11 18:24:36 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:25:03 [assert]    logging settings ... OK
+2019/10/11 18:25:03 [assert]    control server ... OK
+2019/10/11 18:25:03 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:25:03 [assert]    communication bridge ... OK
+2019/10/11 18:25:03 [setup]     execution tag write time is 3
+2019/10/11 18:25:03 [assert]    state replication ... OK
+2019/10/11 18:25:03 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:25:03 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:25:03 [assert]    automation engine ... OK
+2019/10/11 18:25:03 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:35:31 [assert]    logging settings ... OK
+2019/10/11 18:35:31 [assert]    control server ... OK
+2019/10/11 18:35:31 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:35:31 [assert]    communication bridge ... OK
+2019/10/11 18:35:31 [setup]     execution tag write time is 3
+2019/10/11 18:35:31 [assert]    state replication ... OK
+2019/10/11 18:35:31 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:35:31 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:35:31 [assert]    automation engine ... OK
+2019/10/11 18:35:31 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:37:40 [assert]    logging settings ... OK
+2019/10/11 18:37:40 [assert]    control server ... OK
+2019/10/11 18:37:40 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:37:40 [assert]    communication bridge ... OK
+2019/10/11 18:37:40 [setup]     execution tag write time is 3
+2019/10/11 18:37:40 [assert]    state replication ... OK
+2019/10/11 18:37:40 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:37:40 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:37:40 [assert]    automation engine ... OK
+2019/10/11 18:37:40 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:38:58 [assert]    logging settings ... OK
+2019/10/11 18:38:58 [assert]    control server ... OK
+2019/10/11 18:38:58 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:38:58 [assert]    communication bridge ... OK
+2019/10/11 18:38:58 [setup]     execution tag write time is 3
+2019/10/11 18:38:58 [assert]    state replication ... OK
+2019/10/11 18:38:58 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:38:58 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:38:58 [assert]    automation engine ... OK
+2019/10/11 18:38:58 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/10/11 18:41:37 [assert]    logging settings ... OK
+2019/10/11 18:41:37 [assert]    control server ... OK
+2019/10/11 18:41:37 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/10/11 18:41:37 [assert]    communication bridge ... OK
+2019/10/11 18:41:37 [setup]     execution tag write time is 3
+2019/10/11 18:41:37 [assert]    state replication ... OK
+2019/10/11 18:41:37 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/10/11 18:41:37 [setup]     processing application loaded from ./app/exported.mpaa
+2019/10/11 18:41:37 [assert]    automation engine ... OK
+2019/10/11 18:41:37 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/11/04 14:49:27 [assert]    logging settings ... OK
+2019/11/04 14:49:27 [assert]    control server ... OK
+2019/11/04 14:49:28 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/11/04 14:49:28 [assert]    communication bridge ... OK
+2019/11/04 14:49:28 [setup]     execution tag write time is 3
+2019/11/04 14:49:28 [assert]    state replication ... OK
+2019/11/04 14:49:28 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/11/04 14:49:28 [setup]     processing application loaded from ./app/exported.mpaa
+2019/11/04 14:49:28 [assert]    automation engine ... OK
+2019/11/04 14:49:28 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/11/06 18:04:54 [assert]    logging settings ... OK
+2019/11/06 18:04:55 [assert]    control server ... OK
+2019/11/06 18:04:56 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/11/06 18:04:56 [assert]    communication bridge ... OK
+2019/11/06 18:04:56 [setup]     execution tag write time is 3
+2019/11/06 18:04:56 [assert]    state replication ... OK
+2019/11/06 18:04:56 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/11/06 18:04:56 [setup]     processing application loaded from ./app/exported.mpaa
+2019/11/06 18:04:56 [assert]    automation engine ... OK
+2019/11/06 18:04:56 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2019/11/14 14:18:58 [assert]    logging settings ... OK
+2019/11/14 14:18:58 [assert]    control server ... OK
+2019/11/14 14:19:00 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2019/11/14 14:19:00 [assert]    communication bridge ... OK
+2019/11/14 14:19:00 [setup]     execution tag write time is 3
+2019/11/14 14:19:00 [assert]    state replication ... OK
+2019/11/14 14:19:00 [setup]     pre-configuration loaded from ./app/exported.mpam
+2019/11/14 14:19:00 [setup]     processing application loaded from ./app/exported.mpaa
+2019/11/14 14:19:00 [assert]    automation engine ... OK
+2019/11/14 14:19:00 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/02/16 04:33:02 [assert]    logging settings ... OK
+2020/02/16 04:33:02 [assert]    control server ... OK
+2020/02/16 04:33:02 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/02/16 04:33:02 [assert]    communication bridge ... OK
+2020/02/16 04:33:02 [setup]     execution tag write time is 3
+2020/02/16 04:33:02 [assert]    state replication ... OK
+2020/02/16 04:33:02 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/02/16 04:33:02 [setup]     processing application loaded from ./app/exported.mpaa
+2020/02/16 04:33:02 [assert]    automation engine ... OK
+2020/02/16 04:33:02 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/04/04 15:25:43 [assert]    logging settings ... OK
+2020/04/04 15:25:44 [assert]    control server ... OK
+2020/04/04 15:25:44 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/04/04 15:25:44 [assert]    communication bridge ... OK
+2020/04/04 15:25:44 [setup]     execution tag write time is 3
+2020/04/04 15:25:44 [assert]    state replication ... OK
+2020/04/04 15:25:44 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/04/04 15:25:44 [setup]     processing application loaded from ./app/exported.mpaa
+2020/04/04 15:25:44 [assert]    automation engine ... OK
+2020/04/04 15:25:44 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/15 06:19:10 [assert]    logging settings ... OK
+2020/05/15 06:19:10 [assert]    control server ... OK
+2020/05/15 06:19:11 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/15 06:19:11 [assert]    communication bridge ... OK
+2020/05/15 06:19:11 [setup]     execution tag write time is 3
+2020/05/15 06:19:11 [assert]    state replication ... OK
+2020/05/15 06:19:11 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/15 06:19:11 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/15 06:19:11 [assert]    automation engine ... OK
+2020/05/15 06:19:11 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/15 06:20:17 [assert]    logging settings ... OK
+2020/05/15 06:20:17 [assert]    control server ... OK
+2020/05/15 06:20:17 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/15 06:20:17 [assert]    communication bridge ... OK
+2020/05/15 06:20:17 [setup]     execution tag write time is 3
+2020/05/15 06:20:17 [assert]    state replication ... OK
+2020/05/15 06:20:17 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/15 06:20:17 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/15 06:20:17 [assert]    automation engine ... OK
+2020/05/15 06:20:17 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/15 06:24:57 [assert]    logging settings ... OK
+2020/05/15 06:24:57 [assert]    control server ... OK
+2020/05/15 06:24:57 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/15 06:24:57 [assert]    communication bridge ... OK
+2020/05/15 06:24:57 [setup]     execution tag write time is 3
+2020/05/15 06:24:57 [assert]    state replication ... OK
+2020/05/15 06:24:57 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/15 06:24:57 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/15 06:24:57 [assert]    automation engine ... OK
+2020/05/15 06:24:57 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/15 06:32:31 [assert]    logging settings ... OK
+2020/05/15 06:32:31 [assert]    control server ... OK
+2020/05/15 06:32:31 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/15 06:32:31 [assert]    communication bridge ... OK
+2020/05/15 06:32:31 [setup]     execution tag write time is 3
+2020/05/15 06:32:31 [assert]    state replication ... OK
+2020/05/15 06:32:31 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/15 06:32:31 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/15 06:32:31 [assert]    automation engine ... OK
+2020/05/15 06:32:31 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/15 06:36:05 [assert]    logging settings ... OK
+2020/05/15 06:36:05 [assert]    control server ... OK
+2020/05/15 06:36:05 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/15 06:36:05 [assert]    communication bridge ... OK
+2020/05/15 06:36:05 [setup]     execution tag write time is 3
+2020/05/15 06:36:05 [assert]    state replication ... OK
+2020/05/15 06:36:05 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/15 06:36:05 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/15 06:36:05 [assert]    automation engine ... OK
+2020/05/15 06:36:05 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/18 01:52:28 [assert]    logging settings ... OK
+2020/05/18 01:52:28 [assert]    control server ... OK
+2020/05/18 01:52:28 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/18 01:52:28 [assert]    communication bridge ... OK
+2020/05/18 01:52:28 [setup]     execution tag write time is 3
+2020/05/18 01:52:28 [assert]    state replication ... OK
+2020/05/18 01:52:28 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/18 01:52:28 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/18 01:52:28 [assert]    automation engine ... OK
+2020/05/18 01:52:28 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/23 21:31:22 [assert]    logging settings ... OK
+2020/05/23 21:31:22 [assert]    control server ... OK
+2020/05/23 21:31:22 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/23 21:31:22 [assert]    communication bridge ... OK
+2020/05/23 21:31:22 [setup]     execution tag write time is 3
+2020/05/23 21:31:22 [assert]    state replication ... OK
+2020/05/23 21:31:22 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/23 21:31:22 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/23 21:31:22 [assert]    automation engine ... OK
+2020/05/23 21:31:22 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/23 21:44:16 [assert]    logging settings ... OK
+2020/05/23 21:44:16 [assert]    control server ... OK
+2020/05/23 21:44:16 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/23 21:44:16 [assert]    communication bridge ... OK
+2020/05/23 21:44:16 [setup]     execution tag write time is 3
+2020/05/23 21:44:16 [assert]    state replication ... OK
+2020/05/23 21:44:16 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/23 21:44:16 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/23 21:44:16 [assert]    automation engine ... OK
+2020/05/23 21:44:16 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/24 23:28:07 [assert]    logging settings ... OK
+2020/05/24 23:28:07 [assert]    control server ... OK
+2020/05/24 23:28:08 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/24 23:28:08 [assert]    communication bridge ... OK
+2020/05/24 23:28:08 [setup]     execution tag write time is 3
+2020/05/24 23:28:08 [assert]    state replication ... OK
+2020/05/24 23:28:08 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/24 23:28:08 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/24 23:28:08 [assert]    automation engine ... OK
+2020/05/24 23:28:08 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/26 05:51:21 [assert]    logging settings ... OK
+2020/05/26 05:51:21 [assert]    control server ... OK
+2020/05/26 05:51:22 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/26 05:51:22 [assert]    communication bridge ... OK
+2020/05/26 05:51:22 [setup]     execution tag write time is 3
+2020/05/26 05:51:22 [assert]    state replication ... OK
+2020/05/26 05:51:22 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/26 05:51:22 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/26 05:51:22 [assert]    automation engine ... OK
+2020/05/26 05:51:22 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:00:45 [assert]    logging settings ... OK
+2020/05/27 20:00:45 [assert]    control server ... OK
+2020/05/27 20:00:45 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:00:45 [assert]    communication bridge ... OK
+2020/05/27 20:00:45 [setup]     execution tag write time is 3
+2020/05/27 20:00:45 [assert]    state replication ... OK
+2020/05/27 20:00:45 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:00:45 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:00:45 [assert]    automation engine ... OK
+2020/05/27 20:00:45 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:19:57 [assert]    logging settings ... OK
+2020/05/27 20:19:57 [assert]    control server ... OK
+2020/05/27 20:19:57 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:19:57 [assert]    communication bridge ... OK
+2020/05/27 20:19:57 [setup]     execution tag write time is 3
+2020/05/27 20:19:57 [assert]    state replication ... OK
+2020/05/27 20:19:57 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:19:57 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:19:57 [assert]    automation engine ... OK
+2020/05/27 20:19:57 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:20:28 [assert]    logging settings ... OK
+2020/05/27 20:20:28 [assert]    control server ... OK
+2020/05/27 20:20:28 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:20:28 [assert]    communication bridge ... OK
+2020/05/27 20:20:28 [setup]     execution tag write time is 3
+2020/05/27 20:20:28 [assert]    state replication ... OK
+2020/05/27 20:20:28 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:20:28 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:20:28 [assert]    automation engine ... OK
+2020/05/27 20:20:28 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:22:54 [assert]    logging settings ... OK
+2020/05/27 20:22:54 [assert]    control server ... OK
+2020/05/27 20:22:54 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:22:54 [assert]    communication bridge ... OK
+2020/05/27 20:22:54 [setup]     execution tag write time is 3
+2020/05/27 20:22:54 [assert]    state replication ... OK
+2020/05/27 20:22:54 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:22:54 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:22:54 [assert]    automation engine ... OK
+2020/05/27 20:22:54 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:27:57 [assert]    logging settings ... OK
+2020/05/27 20:27:57 [assert]    control server ... OK
+2020/05/27 20:27:57 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:27:57 [assert]    communication bridge ... OK
+2020/05/27 20:27:57 [setup]     execution tag write time is 3
+2020/05/27 20:27:57 [assert]    state replication ... OK
+2020/05/27 20:27:57 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:27:57 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:27:57 [assert]    automation engine ... OK
+2020/05/27 20:27:57 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 20:33:15 [assert]    logging settings ... OK
+2020/05/27 20:33:15 [assert]    control server ... OK
+2020/05/27 20:33:15 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 20:33:15 [assert]    communication bridge ... OK
+2020/05/27 20:33:15 [setup]     execution tag write time is 3
+2020/05/27 20:33:15 [assert]    state replication ... OK
+2020/05/27 20:33:15 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 20:33:15 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 20:33:15 [assert]    automation engine ... OK
+2020/05/27 20:33:15 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 21:15:23 [assert]    logging settings ... OK
+2020/05/27 21:15:23 [assert]    control server ... OK
+2020/05/27 21:15:23 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 21:15:23 [assert]    communication bridge ... OK
+2020/05/27 21:15:23 [setup]     execution tag write time is 3
+2020/05/27 21:15:23 [assert]    state replication ... OK
+2020/05/27 21:15:24 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 21:15:24 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 21:15:24 [assert]    automation engine ... OK
+2020/05/27 21:15:24 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 21:39:52 [assert]    logging settings ... OK
+2020/05/27 21:39:52 [assert]    control server ... OK
+2020/05/27 21:39:52 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 21:39:52 [assert]    communication bridge ... OK
+2020/05/27 21:39:52 [setup]     execution tag write time is 3
+2020/05/27 21:39:52 [assert]    state replication ... OK
+2020/05/27 21:39:52 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 21:39:52 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 21:39:52 [assert]    automation engine ... OK
+2020/05/27 21:39:52 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 21:44:17 [assert]    logging settings ... OK
+2020/05/27 21:44:17 [assert]    control server ... OK
+2020/05/27 21:44:17 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 21:44:17 [assert]    communication bridge ... OK
+2020/05/27 21:44:17 [setup]     execution tag write time is 3
+2020/05/27 21:44:17 [assert]    state replication ... OK
+2020/05/27 21:44:17 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 21:44:17 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 21:44:17 [assert]    automation engine ... OK
+2020/05/27 21:44:17 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/27 21:49:44 [assert]    logging settings ... OK
+2020/05/27 21:49:44 [assert]    control server ... OK
+2020/05/27 21:49:44 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/27 21:49:44 [assert]    communication bridge ... OK
+2020/05/27 21:49:44 [setup]     execution tag write time is 3
+2020/05/27 21:49:44 [assert]    state replication ... OK
+2020/05/27 21:49:44 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/27 21:49:44 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/27 21:49:44 [assert]    automation engine ... OK
+2020/05/27 21:49:44 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 05:38:21 [assert]    logging settings ... OK
+2020/05/28 05:38:21 [assert]    control server ... OK
+2020/05/28 05:38:21 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 05:38:21 [assert]    communication bridge ... OK
+2020/05/28 05:38:21 [setup]     execution tag write time is 3
+2020/05/28 05:38:21 [assert]    state replication ... OK
+2020/05/28 05:38:21 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 05:38:21 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 05:38:21 [assert]    automation engine ... OK
+2020/05/28 05:38:21 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 07:25:36 [assert]    logging settings ... OK
+2020/05/28 07:25:36 [assert]    control server ... OK
+2020/05/28 07:25:36 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 07:25:36 [assert]    communication bridge ... OK
+2020/05/28 07:25:36 [setup]     execution tag write time is 3
+2020/05/28 07:25:36 [assert]    state replication ... OK
+2020/05/28 07:25:36 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 07:25:36 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 07:25:36 [assert]    automation engine ... OK
+2020/05/28 07:25:36 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 16:59:55 [assert]    logging settings ... OK
+2020/05/28 16:59:55 [assert]    control server ... OK
+2020/05/28 16:59:55 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 16:59:55 [assert]    communication bridge ... OK
+2020/05/28 16:59:55 [setup]     execution tag write time is 3
+2020/05/28 16:59:55 [assert]    state replication ... OK
+2020/05/28 16:59:55 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 16:59:55 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 16:59:55 [assert]    automation engine ... OK
+2020/05/28 16:59:55 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 18:42:52 [assert]    logging settings ... OK
+2020/05/28 18:42:53 [assert]    control server ... OK
+2020/05/28 18:42:53 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 18:42:53 [assert]    communication bridge ... OK
+2020/05/28 18:42:53 [setup]     execution tag write time is 3
+2020/05/28 18:42:53 [assert]    state replication ... OK
+2020/05/28 18:42:53 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 18:42:53 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 18:42:53 [assert]    automation engine ... OK
+2020/05/28 18:42:53 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 18:46:06 [assert]    logging settings ... OK
+2020/05/28 18:46:06 [assert]    control server ... OK
+2020/05/28 18:46:06 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 18:46:06 [assert]    communication bridge ... OK
+2020/05/28 18:46:06 [setup]     execution tag write time is 3
+2020/05/28 18:46:06 [assert]    state replication ... OK
+2020/05/28 18:46:06 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 18:46:06 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 18:46:06 [assert]    automation engine ... OK
+2020/05/28 18:46:06 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 18:47:18 [assert]    logging settings ... OK
+2020/05/28 18:47:18 [assert]    control server ... OK
+2020/05/28 18:47:18 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 18:47:18 [assert]    communication bridge ... OK
+2020/05/28 18:47:18 [setup]     execution tag write time is 3
+2020/05/28 18:47:18 [assert]    state replication ... OK
+2020/05/28 18:47:18 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 18:47:18 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 18:47:18 [assert]    automation engine ... OK
+2020/05/28 18:47:18 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 18:49:55 [assert]    logging settings ... OK
+2020/05/28 18:49:55 [assert]    control server ... OK
+2020/05/28 18:49:55 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 18:49:55 [assert]    communication bridge ... OK
+2020/05/28 18:49:55 [setup]     execution tag write time is 3
+2020/05/28 18:49:55 [assert]    state replication ... OK
+2020/05/28 18:49:55 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 18:49:55 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 18:49:55 [assert]    automation engine ... OK
+2020/05/28 18:49:55 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 18:50:45 [assert]    logging settings ... OK
+2020/05/28 18:50:45 [assert]    control server ... OK
+2020/05/28 18:50:46 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 18:50:46 [assert]    communication bridge ... OK
+2020/05/28 18:50:46 [setup]     execution tag write time is 3
+2020/05/28 18:50:46 [assert]    state replication ... OK
+2020/05/28 18:50:46 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 18:50:46 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 18:50:46 [assert]    automation engine ... OK
+2020/05/28 18:50:46 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 19:59:33 [assert]    logging settings ... OK
+2020/05/28 19:59:33 [assert]    control server ... OK
+2020/05/28 19:59:33 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 19:59:33 [assert]    communication bridge ... OK
+2020/05/28 19:59:33 [setup]     execution tag write time is 3
+2020/05/28 19:59:33 [assert]    state replication ... OK
+2020/05/28 19:59:33 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 19:59:33 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 19:59:33 [assert]    automation engine ... OK
+2020/05/28 19:59:33 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/28 21:45:25 [assert]    logging settings ... OK
+2020/05/28 21:45:25 [assert]    control server ... OK
+2020/05/28 21:45:25 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/28 21:45:25 [assert]    communication bridge ... OK
+2020/05/28 21:45:25 [setup]     execution tag write time is 3
+2020/05/28 21:45:25 [assert]    state replication ... OK
+2020/05/28 21:45:25 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/28 21:45:25 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/28 21:45:25 [assert]    automation engine ... OK
+2020/05/28 21:45:25 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/30 05:28:55 [assert]    logging settings ... OK
+2020/05/30 05:28:55 [assert]    control server ... OK
+2020/05/30 05:28:55 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/30 05:28:55 [assert]    communication bridge ... OK
+2020/05/30 05:28:55 [setup]     execution tag write time is 3
+2020/05/30 05:28:55 [assert]    state replication ... OK
+2020/05/30 05:28:56 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/30 05:28:56 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/30 05:28:56 [assert]    automation engine ... OK
+2020/05/30 05:28:56 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/30 06:02:22 [assert]    logging settings ... OK
+2020/05/30 06:02:22 [assert]    control server ... OK
+2020/05/30 06:02:22 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/30 06:02:22 [assert]    communication bridge ... OK
+2020/05/30 06:02:22 [setup]     execution tag write time is 3
+2020/05/30 06:02:22 [assert]    state replication ... OK
+2020/05/30 06:02:22 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/30 06:02:22 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/30 06:02:22 [assert]    automation engine ... OK
+2020/05/30 06:02:22 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/30 21:02:08 [assert]    logging settings ... OK
+2020/05/30 21:02:08 [assert]    control server ... OK
+2020/05/30 21:02:09 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/30 21:02:09 [assert]    communication bridge ... OK
+2020/05/30 21:02:09 [setup]     execution tag write time is 3
+2020/05/30 21:02:09 [assert]    state replication ... OK
+2020/05/30 21:02:09 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/30 21:02:09 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/30 21:02:09 [assert]    automation engine ... OK
+2020/05/30 21:02:09 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/31 00:21:33 [assert]    logging settings ... OK
+2020/05/31 00:21:33 [assert]    control server ... OK
+2020/05/31 00:21:33 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/31 00:21:33 [assert]    communication bridge ... OK
+2020/05/31 00:21:33 [setup]     execution tag write time is 3
+2020/05/31 00:21:33 [assert]    state replication ... OK
+2020/05/31 00:21:33 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/31 00:21:33 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/31 00:21:33 [assert]    automation engine ... OK
+2020/05/31 00:21:33 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/31 00:23:33 [assert]    logging settings ... OK
+2020/05/31 00:23:33 [assert]    control server ... OK
+2020/05/31 00:23:33 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/31 00:23:33 [assert]    communication bridge ... OK
+2020/05/31 00:23:33 [setup]     execution tag write time is 3
+2020/05/31 00:23:33 [assert]    state replication ... OK
+2020/05/31 00:23:34 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/31 00:23:34 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/31 00:23:34 [assert]    automation engine ... OK
+2020/05/31 00:23:34 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/31 03:12:37 [assert]    logging settings ... OK
+2020/05/31 03:12:38 [assert]    control server ... OK
+2020/05/31 03:12:38 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/31 03:12:38 [assert]    communication bridge ... OK
+2020/05/31 03:12:38 [setup]     execution tag write time is 3
+2020/05/31 03:12:38 [assert]    state replication ... OK
+2020/05/31 03:12:38 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/31 03:12:38 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/31 03:12:38 [assert]    automation engine ... OK
+2020/05/31 03:12:38 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/05/31 03:16:51 [assert]    logging settings ... OK
+2020/05/31 03:16:51 [assert]    control server ... OK
+2020/05/31 03:16:51 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/05/31 03:16:51 [assert]    communication bridge ... OK
+2020/05/31 03:16:51 [setup]     execution tag write time is 3
+2020/05/31 03:16:51 [assert]    state replication ... OK
+2020/05/31 03:16:51 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/05/31 03:16:51 [setup]     processing application loaded from ./app/exported.mpaa
+2020/05/31 03:16:51 [assert]    automation engine ... OK
+2020/05/31 03:16:51 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/06/03 01:02:19 [assert]    logging settings ... OK
+2020/06/03 01:02:19 [assert]    control server ... OK
+2020/06/03 01:02:20 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/06/03 01:02:20 [assert]    communication bridge ... OK
+2020/06/03 01:02:20 [setup]     execution tag write time is 3
+2020/06/03 01:02:20 [assert]    state replication ... OK
+2020/06/03 01:02:20 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/06/03 01:02:20 [setup]     processing application loaded from ./app/exported.mpaa
+2020/06/03 01:02:20 [assert]    automation engine ... OK
+2020/06/03 01:02:20 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/06/03 01:05:05 [assert]    logging settings ... OK
+2020/06/03 01:05:05 [assert]    control server ... OK
+2020/06/03 01:05:05 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/06/03 01:05:05 [assert]    communication bridge ... OK
+2020/06/03 01:05:05 [setup]     execution tag write time is 3
+2020/06/03 01:05:05 [assert]    state replication ... OK
+2020/06/03 01:05:05 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/06/03 01:05:05 [setup]     processing application loaded from ./app/exported.mpaa
+2020/06/03 01:05:05 [assert]    automation engine ... OK
+2020/06/03 01:05:05 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/06/03 02:03:33 [assert]    logging settings ... OK
+2020/06/03 02:03:33 [assert]    control server ... OK
+2020/06/03 02:03:34 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/06/03 02:03:34 [assert]    communication bridge ... OK
+2020/06/03 02:03:34 [setup]     execution tag write time is 3
+2020/06/03 02:03:34 [assert]    state replication ... OK
+2020/06/03 02:03:34 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/06/03 02:03:34 [setup]     processing application loaded from ./app/exported.mpaa
+2020/06/03 02:03:34 [assert]    automation engine ... OK
+2020/06/03 02:03:34 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/06/28 22:52:32 [assert]    logging settings ... OK
+2020/06/28 22:52:32 [assert]    control server ... OK
+2020/06/28 22:52:33 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/06/28 22:52:33 [assert]    communication bridge ... OK
+2020/06/28 22:52:33 [setup]     execution tag write time is 3
+2020/06/28 22:52:33 [assert]    state replication ... OK
+2020/06/28 22:52:33 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/06/28 22:52:33 [setup]     processing application loaded from ./app/exported.mpaa
+2020/06/28 22:52:33 [assert]    automation engine ... OK
+2020/06/28 22:52:33 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/06/29 10:03:36 [assert]    logging settings ... OK
+2020/06/29 10:03:36 [assert]    control server ... OK
+2020/06/29 10:03:36 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/06/29 10:03:36 [assert]    communication bridge ... OK
+2020/06/29 10:03:36 [setup]     execution tag write time is 3
+2020/06/29 10:03:36 [assert]    state replication ... OK
+2020/06/29 10:03:36 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/06/29 10:03:36 [setup]     processing application loaded from ./app/exported.mpaa
+2020/06/29 10:03:36 [assert]    automation engine ... OK
+2020/06/29 10:03:36 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/07/10 08:52:18 [assert]    logging settings ... OK
+2020/07/10 08:52:18 [assert]    control server ... OK
+2020/07/10 08:52:18 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/07/10 08:52:18 [assert]    communication bridge ... OK
+2020/07/10 08:52:18 [setup]     execution tag write time is 3
+2020/07/10 08:52:18 [assert]    state replication ... OK
+2020/07/10 08:52:18 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/07/10 08:52:18 [setup]     processing application loaded from ./app/exported.mpaa
+2020/07/10 08:52:18 [assert]    automation engine ... OK
+2020/07/10 08:52:18 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/11/20 15:46:59 [assert]    logging settings ... OK
+2020/11/20 15:46:59 [assert]    control server ... OK
+2020/11/20 16:06:40 [assert]    logging settings ... OK
+2020/11/20 16:06:40 [assert]    control server ... OK
+2020/11/20 16:16:35 [assert]    logging settings ... OK
+2020/11/20 16:16:36 [assert]    control server ... OK
+2020/11/20 16:16:54 [assert]    logging settings ... OK
+2020/11/20 16:16:54 [assert]    control server ... OK
+2020/11/20 16:24:13 [assert]    logging settings ... OK
+2020/11/20 16:24:13 [assert]    control server ... OK
+2020/11/20 16:24:13 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/11/20 16:24:13 [assert]    communication bridge ... OK
+2020/11/20 16:24:13 [setup]     execution tag write time is 3
+2020/11/20 16:24:13 [assert]    state replication ... OK
+2020/11/20 16:24:13 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/11/20 16:24:13 [setup]     processing application loaded from ./app/exported.mpaa
+2020/11/20 16:24:13 [assert]    automation engine ... OK
+2020/11/20 16:24:13 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/11/20 16:34:29 [assert]    logging settings ... OK
+2020/11/20 16:34:29 [assert]    control server ... OK
+2020/11/20 16:34:29 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/11/20 16:34:29 [assert]    communication bridge ... OK
+2020/11/20 16:34:29 [setup]     execution tag write time is 3
+2020/11/20 16:34:29 [assert]    state replication ... OK
+2020/11/20 16:34:29 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/11/20 16:34:29 [setup]     processing application loaded from ./app/exported.mpaa
+2020/11/20 16:34:29 [assert]    automation engine ... OK
+2020/11/20 16:34:29 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)

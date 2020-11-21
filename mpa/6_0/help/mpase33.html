@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Funes disponibilizadas</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 27--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu44.html" >next</a>] [<a 
+href="mpase29.html#tailmpase33.html">tail</a>] [<a 
+href="mpaap3.html#mpase38.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">A.1   </span> <a 
+ id="x103-154000A.1"></a>Funções disponibilizadas</h3>
+<!--l. 30--><p class="noindent" >Para dar suporte ao desenvolvimento de <span 
+class="cmti-10">scripts</span>, foi desenvolvida uma <span 
+class="cmti-10">API </span>com funções que permitem o acesso aos dados do
+arquivo de projeto corrente de planta ou diagramas.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">MPA.PrintOut( ... )</span> </dt><dd 
+class="description">Imprime no campo de saída os parâmetros passados para a função.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.Message( msg )</span> </dt><dd 
+class="description">Abre uma janela com o título &#8220;
+     <!--l. 36--><p class="noindent" >&#8221;Informação com o conteúdo <span 
+class="cmss-10">msg</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.Option( title, msg, first, second, third )</span> </dt><dd 
+class="description">Abre uma janela com o título &#8220;
+     <!--l. 37--><p class="noindent" >&#8221;title com o conteúdo <span 
+class="cmss-10">msg </span>e botões com rótulos: <span 
+class="cmss-10">first</span>, <span 
+class="cmss-10">second</span>, <span 
+class="cmss-10">third</span>. Retorna o número da opção selecionada ;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.LoadFileDialog(title,filter,info)</span> </dt><dd 
+class="description">Exibe um diálogo para seleção de arquivo para abrir com título <span 
+class="cmss-10">title</span>, exibindo
+     apenas arquivos com extensão <span 
+class="cmss-10">filter</span>, e apresentando descrição para filtro <span 
+class="cmss-10">info</span>. Retorna o caminho para o arquivo
+     selecionado ou <span 
+class="cmss-10">nil </span>se a operação for cancelada;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.OpenDirDialog(title)</span> </dt><dd 
+class="description">Exibe diálogo para seleção de diálogo com título <span 
+class="cmss-10">title</span>. Retorna o caminho para o diálogo
+     selecionado ou <span 
+class="cmss-10">nil </span>se a operação for cancelada;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.SaveFileDialog(title,filter, info)</span> </dt><dd 
+class="description">Exibe  um  diálogo  para  seleção  de  arquivo  para  salvar  com  título  <span 
+class="cmss-10">title</span>,
+     exibindo apenas arquivos com extensão <span 
+class="cmss-10">filter</span>, e apresentando descrição para filtro <span 
+class="cmss-10">info</span>. Retorna o caminho para o
+     arquivo selecionado com extensão aplicada ou <span 
+class="cmss-10">nil </span>se a operação for cancelada;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.DisableNameCheck()</span> </dt><dd 
+class="description">Desabilita a verificação de referências ;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.EnableNameCheck()</span> </dt><dd 
+class="description">Habilita a verificação de referências ;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.RecoverNameCheck()</span> </dt><dd 
+class="description">Recupera     modo     verificação     de     referências     anterior     a     chamada     de
+     <span 
+class="cmss-10">MPA.DisableNameCheck() </span>ou <span 
+class="cmss-10">MPA.EnableNameCheck()</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.AddConfig( classid, cfgid )</span> </dt><dd 
+class="description">Adiciona uma configuração vazia na classe <span 
+class="cmss-10">classid </span>com o nome <span 
+class="cmss-10">cfgid</span>, a configuração
+     pode ser tanto de ponto quanto de equipamento, desde que o identificador da classe (<span 
+class="cmss-10">classid</span>) represente a classe
+     desejada;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.RemoveConfig(tag, classid)</span> </dt><dd 
+class="description">Remove a configuração identificada por <span 
+class="cmss-10">tag </span>da classe identificada por <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.SetTag(c, tag, classid)</span> </dt><dd 
+class="description">Atribui o identificador <span 
+class="cmss-10">tag </span>a configuração <span 
+class="cmss-10">c </span>da classe identificada por <span 
+class="cmss-10">classid</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.ConfigExists(name, classid)</span> </dt><dd 
+class="description">Função para informar se uma configuração com identificador <span 
+class="cmss-10">name </span>existe na classe
+     identificada por <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetAttribute(attridx, classid)</span> </dt><dd 
+class="description">Função que retorna definição do atributo identificador por <span 
+class="cmss-10">attridx </span>na class
+     identificada por <span 
+class="cmss-10">classid </span>;
+                                                                                                    
+                                                                                                    
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.SetAttribute(classid, cfgid, attrid, val)</span>  </dt><dd 
+class="description">Define   o   valor   <span 
+class="cmss-10">val   </span>ao   atributo   identificado   por   <span 
+class="cmss-10">attrid   </span>da
+     configuraração identificada por <span 
+class="cmss-10">cfgid </span>da classe identificada por <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetAttributeName(classid, attridx)</span> </dt><dd 
+class="description">Retorna o nome do atributo de índice <span 
+class="cmss-10">attridx </span>da classe identificada por
+     <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetAttributeType(classid, attridx)</span> </dt><dd 
+class="description">Retorna o tipo do atributo de índice <span 
+class="cmss-10">attridx </span>da classe identificada por
+     <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetAttributeAccess(classid, attridx)</span> </dt><dd 
+class="description">Retorna  o  tipo  de  acesso  do  atributo  de  índice  <span 
+class="cmss-10">attridx  </span>da  classe
+     identificada por <span 
+class="cmss-10">classid </span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.ExportCSV(filename, classid, append)</span> </dt><dd 
+class="description">Exporta a classe identificada por <span 
+class="cmss-10">classid </span>para o arquivo <span 
+class="cmss-10">filename</span>. Se o
+     parâmetro <span 
+class="cmss-10">append </span>for <span 
+class="cmbx-10">true </span>adiciona o conteúdo ao arquivo, caso contrário sobreescreve o conteúdo atual do arquivo;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.ImportCSV(filename, classid, append)</span> </dt><dd 
+class="description">Importa o conteúdo do arquivo <span 
+class="cmss-10">filename </span>para a classe identificada por
+     <span 
+class="cmss-10">classid</span>. Se o parâmetro <span 
+class="cmss-10">append </span>for <span 
+class="cmbx-10">true </span>adiciona o conteúdo do arquivo a classe, caso contrário sobreescreve o
+     conteúdo atual da classe;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetDiagramNames()</span> </dt><dd 
+class="description">Retorna uma tabela com os nomes dos diagramas configurados no arquivo de projeto de
+     fluxos.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.AllNodes(diagram)</span> </dt><dd 
+class="description">Função para iterar sobre todos os elementos do diagrama <span 
+class="cmss-10">diagram</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.AllLinks(diagram)</span> </dt><dd 
+class="description">Função para iterar sobre todos os elementos conectores do diagrama <span 
+class="cmss-10">diagram</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.AllAnnotations(diagram)</span> </dt><dd 
+class="description">Função para iterar sobre todos os elementos de anotação do diagrama <span 
+class="cmss-10">diagram</span>;
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.BuildSequence(flow)</span> </dt><dd 
+class="description">Função usada para construir a seqüência entre os nós de um fluxo. Permite a navegação
+     seqüencial dos nós a partir das funções <span 
+class="cmss-10">MPA.GetStartPoint </span>e <span 
+class="cmss-10">MPA.GetNthPath</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetStartPoint(seq)</span> </dt><dd 
+class="description">Retorna o ponto de início de uma sequencia de elementos de um fluxo.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetNthPath(node, n)</span> </dt><dd 
+class="description">Retorna o enésimo caminho de saída de determinado nó do fluxo. Além do caminho de
+     saída de um <span 
+class="cmbx-10">Comando</span>, pode ser usado para obter os caminhos de saída alternativos dos elementos <span 
+class="cmbx-10">Iterador</span>,
+     <span 
+class="cmbx-10">Escolha </span>ou <span 
+class="cmbx-10">Executor</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.NodeType(node)</span> </dt><dd 
+class="description">Retorna uma string com o tipo do nó dado.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.ActionType(node)</span> </dt><dd 
+class="description">Retorna uma <span 
+class="cmss-10">string </span>que representa o tipo da ação definida para o nó.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetDescription(node)</span> </dt><dd 
+class="description">Retorna a descrição definida para o nó.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MPA.GetInfo(node, kind)</span> </dt><dd 
+class="description">Essa função é usada para obter informações detalhadas do nó. A informação desejada
+     deve ser passada no parâmetro <span 
+class="cmss-10">kind </span>de acordo com a seguinte lista de códigos:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmss-10">&#8221;iterated.class&#8221; </span>- classe para a qual a ação do nó é definida;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;message.pre&#8221; </span>- mensagem de acompanhamento anterior;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;message.post&#8221; </span>- mensagem de acompanhamento posterior;
+                                                                                                    
+                                                                                                    
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;diagram.name&#8221; </span>- nome do diagrama que é chamado;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;diagram.action&#8221; </span>- ação desenvolvida sobre o diagrama chamado;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;expression&#8221; </span>- expressão definida para escolha;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;function.id&#8221; </span>- identificador da função auxiliar chamada;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;parameters&#8221; </span>- parâmetros passados para função auxiliar ou método;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;results&#8221; </span>- variável em que os retornos da chamada de função, método ou atribuição serão armazenados.
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;method.class&#8221; </span>- classe do método chamado;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;method.id&#8221; </span>- identificador do método chamado;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;equipment.variable&#8221; </span>- variável de equipamento sobre a qual o método será chamado;
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">&#8221;equipment.ids&#8221; </span>- identificadores fixos dos equipamentos sobre os quais o método será chamado.</li></ul>
+     </dd></dl>
+                                                                                                    
+                                                                                                    
+   <!--l. 86--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu44.html" >next</a>] [<a 
+href="mpase33.html" >front</a>] [<a 
+href="mpaap3.html#mpase38.html" >up</a>] </p></div>
+<!--l. 86--><p class="indent" >   <a 
+ id="tailmpase33.html"></a>  
+</body></html> 

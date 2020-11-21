@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>1 Introduo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach2.html" >next</a>] [<a 
+href="#tailmpach1.html">tail</a>] [<a 
+href="mpapa1.html#mpach1.html" >up</a>] </p></div>
+   <h2 class="chapterHead"><span class="titlemark">Capítulo&#x00A0;1</span><br /><a 
+ id="x5-40001"></a>Introdução</h2>
+<!--l. 4--><p class="noindent" >Este manual descreve a utilização do sistema MPA (Módulo de Procedimentos Automatizados). O MPA é uma infraestrutura
+para desenvolvimento de aplicações de controle de processos industriais. Particularmente, o MPA foi desenvolvido objetivando a
+automação das plataformas de petróleo da PETROBRAS S/A.
+<!--l. 12--><p class="indent" >   O MPA é formado por um servidor de execução e um ambiente de desenvolvimento integrado para definição e gerência das
+aplicações de controle. O servidor é um processo no sistema operacional da plataforma sendo controlada (<span 
+class="cmti-10">e.g.</span>&#x00A0;no sistema
+OpenVMS da P-31) que contém o executor de manobras de operação. O servidor recebe comandos de controle do
+aplicativo através de uma interface de rede. Esses comandos permitem realizar operações no executor, tais como,
+iniciar a uma manobra de operação ou alterar condições de equipamentos através de seus pontos de controle. O
+executor de manobras é responsável por realizar manobras de operação sobre os equipamentos da plataforma,
+conforme especificado pelo operador. Para tanto, o executor interage com o ambiente de automação através de
+uma ponte de comunicação (<span 
+class="cmti-10">i.e.</span>&#x00A0;<span 
+class="cmti-10">bridge</span>) que pode acessar diretamente um PLC, ou indiretamente através de um
+sistema supervisório, que além de permite acesso ao ambiente de automação também fornece telas de operação que
+podem ser usadas pelas manobras para interagir com o operador. A versão do MPA apresentada neste manual foi
+desenvolvida com duas pontes de comunicação: a versão para plataforma Microsoft Windows fornece uma ponte de
+comunicação baseada no padrão OPC-DA (OLE for Process Control - Data Access Custom Interface); a versão para a
+plataforma OpenVMS Alpha fornece uma ponte de comunicação com o supervisório VXL. Pontes de comunicação
+adicionais podem ser adicionadas ao MPA para permitir acesso ao ambiente de automação utlizando abordagens
+especializadas.
+<!--l. 21--><p class="indent" >   Toda interação com o ambiente de automação no MPA é feita através de <span 
+class="cmbx-10">pontos de controle</span>. Os pontos de controle são
+variáveis que podem assumir valores lógicos, numéricos ou inclusive textuais. Em geral, os pontos de controle
+representam sensores que informam as condições dos equipamentos, ou atuadores que permitem alterar essas
+condições. Como exemplo, suponha uma válvula que pode estar aberta ou fechada. Nesse caso, pode haver um
+ponto de controle que assume valores lógicos para indicar se a válvula está aberta ou fechada, além de permitir
+abrir ou fechar a válvula através de alterações no seu valor. Outro exemplo seria um sensor de pressão. Nesse
+caso, um ponto de controle que assume valores numéricos pode ser utilizado para permitir a leitura da pressão
+percebida pelo sensor. Note que neste último caso, não faz sentido alterar o valor do ponto de controle, pois não é
+possível alterar a pressão real de um ambiente através de um sensor. A ponte de comunicação é responsável
+por traduzir os pontos de controle para o ambiente de automação. Isso é tipicamente feito fazendo com que os
+nomes dos pontos de controle no MPA sejam nomes de itens de dado no servidor OPC ou tags no supervisório
+VXL.
+<!--l. 32--><p class="indent" >   A utilização do MPA consiste basicamente no desenvolvimento e execução de uma aplicação de automação. Essa aplicação do
+MPA é composta pela definição dos pontos de controle de equipamentos a serem manipulados e a especificação de um conjunto
+manobras de operação sobre esses equipamentos. O desenvolvimento de uma aplicação MPA é feito através do seu ambiente de
+desenvolvimento integrado (IDE), que oferece ferramentas como editores de tabelas e diagramas, compiladores, depuradores, entre
+outros. Através dessa IDE é possível implantar a aplicação desenvolvida diretamente em um servidor de execução através de
+uma interface de rede. A aplicação pode então ser executada no executor dentro do servidor, que efetivamente realizará a
+automação dos equipamentos. A utilização e os recursos da IDE e do servidor de execução do MPA são o tópico deste
+manual. Ao final do manual, alguns tópicos relacionados à pré-configuração do MPA e outros tópicos avançados são
+apresentados.
+   <div class="sectionTOCS">
+   &#x00A0;<span class="sectionToc" >1.1 <a 
+href="mpase1.html#x6-50001.1">Estrutura do Texto</a></span>
+   </div>
+                                                                                                    
+                                                                                                    
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach2.html" >next</a>] [<a 
+href="mpach1.html" >front</a>] [<a 
+href="mpapa1.html#mpach1.html" >up</a>] </p></div>
+<!--l. 1--><p class="indent" >   <a 
+ id="tailmpach1.html"></a>  
+</body></html> 

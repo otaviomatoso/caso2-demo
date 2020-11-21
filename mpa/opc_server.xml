@@ -1,0 +1,12 @@
+<Matrikon.OPC.Simulation>
+    <CSimRootDevLink description="Sim Server Root"/>
+    <PSTAliasGroup>
+        <PSTAliasGroup name="ufsc">
+            <PSTAlias name="ALFA" itemPath="" dataType="5"/>
+            <PSTAlias name="KPcontrolador" itemPath="" dataType="5"/>
+            <PSTAlias name="v1_abertura" itemPath="" dataType="5"/>
+            <PSTAlias name="v2_abertura" itemPath="" dataType="5"/>
+            <PSTAlias name="forcarALFA" itemPath="" dataType="11"/>
+        </PSTAliasGroup>
+    </PSTAliasGroup>
+</Matrikon.OPC.Simulation>

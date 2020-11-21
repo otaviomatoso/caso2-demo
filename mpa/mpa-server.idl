@@ -1,0 +1,68 @@
+module MPA {
+
+	module Monitor {
+
+		exception PointAccessError {
+			string tag;
+			string error;
+		};
+
+		interface ApplicationMonitor {
+			any getPointValue(in string tag) raises (PointAccessError);
+			void setPointValue(in string tag, in any value) raises (PointAccessError);
+		};
+
+	};
+
+};
+
+module MPA {
+
+	module Diagrams {
+
+		interface ControlDiagram {};
+		interface DiagramApplication : ControlDiagram {
+			boolean start();
+			boolean stop();
+		};
+
+		typedef string DiagramID;
+		enum DiagramStatus { executing, stopped, suspended };
+		typedef long ElementID;
+		typedef sequence<ElementID> ElementIDSeq;
+
+		struct RegisteredDiagram {
+			DiagramID id;
+			string name;
+			string description;
+			boolean isApplication;
+			long threads;
+			ElementIDSeq breaks;
+			DiagramStatus status;
+			string creation;
+
+			ControlDiagram diagram;
+		};
+		typedef sequence<RegisteredDiagram> RegisteredDiagramSeq;
+
+		interface DiagramConfigurator {
+			RegisteredDiagramSeq describeDiagrams();
+		};
+
+	};
+
+};
+
+module MPA {
+
+	module Server {
+
+		interface ServerManager {
+			readonly attribute Monitor::ApplicationMonitor monitor;
+			readonly attribute Diagrams::DiagramConfigurator diagrams;
+		};
+
+	};
+
+};
+

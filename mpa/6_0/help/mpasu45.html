@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Tipos de Pontos de Controle</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 38--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu49.html" >next</a>] [<a 
+href="mpasu44.html" >prev</a>] [<a 
+href="mpasu44.html#tailmpasu44.html" >prev-tail</a>] [<a 
+href="mpaap2.html#tailmpasu45.html">tail</a>] [<a 
+href="mpase41.html#mpasu48.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">C.1.2   </span> <a 
+ id="x112-163000C.1.2"></a>Tipos de Pontos de Controle</h4>
+<!--l. 39--><p class="noindent" >Além dos tipos de valores básicos, o MPA também define um tipo de ponto de controle para cada um dos tipos de valores
+descritos anteriormente. Esses tipos de pontos são automaticamente mapeados para os tipos dos pontos do sistema supervisório
+utilizado pelo MPA de forma transparente ao desenvolvedor de diagramas ou pré-configurador. Ou seja, se o sistema
+supervisório manipula tipos como inteiro com e sem sinal, números em ponto flutuante de precisão simples e
+dupla, todos esses tipos são automaticamente mapeados para os tipos básicos do MPA. Através desses tipos, o
+MPA permite especificar quais tipos de pontos de controle que um equipamento deve apresentar. Tomemos por
+exemplo, a classe de equipamentos <span 
+class="cmss-10">V</span><span 
+class="cmss-10">álvula Choke</span>. Se for definido que essa classe apresente um atributo do tipo
+<span 
+class="cmss-10">BOOLEAN</span><span 
+class="cmss-10">_POINT </span>que especifica o ponto de controle utilizado para fazer um pulso de abertura na válvula choke, então
+todas as instâncias da classe <span 
+class="cmss-10">V</span><span 
+class="cmss-10">álvula Choke </span>devem definir um ponto de controle lógico que permita realizar esse
+comando na válvula através da manipulação deste. A seguir, é dada uma lista dos tipos de pontos de controle do
+MPA:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">BOOLEAN</span><span 
+class="cmbx-10">_POINT</span> </dt><dd 
+class="description">Ponto de controle que assume valores lógicos, ou seja, assume apenas os valores verdadeiro (<span 
+class="cmss-10">true</span>)
+     e falso (<span 
+class="cmss-10">false</span>).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INTEGER</span><span 
+class="cmbx-10">_POINT</span> </dt><dd 
+class="description">Ponto de controle que assume valores numéricos inteiros, ou seja, números sem parte fracionária.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">REAL</span><span 
+class="cmbx-10">_POINT</span> </dt><dd 
+class="description">Ponto de controle que assume valores numéricos reais, ou seja, números com parte fracionária.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">STRING</span><span 
+class="cmbx-10">_POINT</span> </dt><dd 
+class="description">Ponto de controle que assume valores textuais, ou seja, seqüências de caracteres.</dd></dl>
+<!--l. 63--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu49.html" >next</a>] [<a 
+href="mpasu44.html" >prev</a>] [<a 
+href="mpasu44.html#tailmpasu44.html" >prev-tail</a>] [<a 
+href="mpasu45.html" >front</a>] [<a 
+href="mpase41.html#mpasu48.html" >up</a>] </p></div>
+<!--l. 63--><p class="indent" >   <a 
+ id="tailmpasu45.html"></a>  
+</body></html> 

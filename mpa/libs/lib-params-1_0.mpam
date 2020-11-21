@@ -1,0 +1,95 @@
+class{ id = "arquivo_parametros", name = "Arquivo de Parâmetros", group = "",
+	bases = {},
+	description = [[Classe que modela um arquivo de parâmetros para uma classe ou conjunto de classes.]],
+	code =[[
+	]],
+	attributes = {
+		{	id = "nome_arquivo", name = "Nome do Arquivo", type = "STRING", access = "",
+			description = [[Nome do arquivo onde serão armazenados os parâmetros.]],
+		},
+		{	id = "classids", name = "Lista de Identificadores das Classes", type = "STRING[]", access = "",
+			description = [[Lista de Identificadores de classes cujos parâmetros serão armazenadas no arquivo.]],
+		},
+	},
+	methods = {
+		{ id = "salvar", name = "Salvar",
+			description = [[Salva o valor atual dos parâmetros em arquivo.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [=[ function(self)
+--abre arquivo para escrita/sobrescrita
+				local fname = self.nome_arquivo
+
+				io.output(fname)
+
+				local _HEADER_LINE = "return {\n"
+				local _CLASSID_LINE_FMT = "\t%s = {\n"
+				local _INSTANCE_LINE_FMT = "\t\t[%q] = {\n"
+				local _PARAM_LINE_FMT = "\t\t\t%s = '%s',\n"
+
+				io.write(_HEADER_LINE)
+				--itera em self.classids
+				for cid, classid in ipairs(self.classids) do
+					io.write(_CLASSID_LINE_FMT:format(classid))
+					--itera sobre instancias
+					for id, instance in instancesof(classid) do
+						io.write(_INSTANCE_LINE_FMT:format(tostring(id)))
+						local _, attrs = next(instance)
+						for attrid, value in pairs(attrs) do
+							local valor = getpoint(tostring(value))
+print(value, valor)
+							io.write(_PARAM_LINE_FMT:format(tostring(attrid), tostring(valor or value)))
+						end
+						io.write("\t\t},\n")
+					end
+					io.write("\t},\n")
+				end
+				io.write("}\n")
+
+				io.close()
+			end]=],
+		},
+		{ id = "carregar", name = "Carregar",
+			description = [[Carrega o valor dos parâmetors dos arquivos e atribui aos seus elementos.]],
+			parameters = {
+			},
+			results = {
+			},
+			code = [=[ function(self)
+				local func, err = loadfile(self.nome_arquivo)
+				if type(func) ~= 'function' then error(err) end
+
+				--carrega arquivo como tabela _PARAMS
+				local _PARAMS = func()
+
+			--itera sobre primeiro nível (nome de classes)
+				for classid, instances in pairs(_PARAMS) do
+print(classid)
+					--itera sobre segundo nível obtendo instâncias
+					for id, params in pairs(instances) do
+print(id)
+						--itera sobre parâmetros e carrega no identificador correspondente
+						for attrid, value in pairs(params) do
+							local inst = getinstance(classid, id)
+							local attr = tostring(inst[attrid])
+print(attrid, value, attr, type(attr))
+							if type(attr) == "string" then
+								local valor = getpoint(attr)
+								if valor ~= nil then
+print("setpoint", attr, value)
+									setpoint(attr, value)
+								else
+print("attrid", attrid, value)
+									inst[attrid] = value
+								end
+							end
+						end
+					end
+				end
+			end]=],
+		},
+	},
+}
+

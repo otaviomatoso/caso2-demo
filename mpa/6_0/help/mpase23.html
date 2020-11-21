@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Aba de Monitorao</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase22.html" >prev</a>] [<a 
+href="mpase22.html#tailmpase22.html" >prev-tail</a>] [<a 
+href="mpase19.html#tailmpase23.html">tail</a>] [<a 
+href="mpase24.html#mpase25.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">8.2   </span> <a 
+ id="x85-1180008.2"></a>Aba de Monitoração</h3>
+<!--l. 59--><p class="noindent" >Um recurso útil para o desenvolvedor de aplicações MPA é o monitoramento de execução dos diagramas de controle. Assim como
+a depuração visual, o monitoramento permite verificar a corretude das manobras descritas através dos diagramas de controle. A
+aba <span 
+class="cmss-10">Monitora</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>exibe as mensagens de monitoramento de execução de diagramas que são recebidas do servidor de execução.
+Esta tabela tem quatro colunas, que informam o horário de recebimento da mensagem, o nome do diagrama, a
+linha de execução que originou a mensagem e um texto descritivo. A figura <a 
+href="#x85-118001r2">8.2<!--tex4ht:ref: fig: mn_messagelist --></a> mostra um exemplo da lista de
+mensagens.
+<!--l. 65--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x85-118001r2"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 65--><p class="noindent" ><img 
+src="images/mn_messagelist.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;8.2: </span><span  
+class="content"> <span 
+class="cmr-8">Lista de messages de acompanhamento.</span></span></div><!--tex4ht:label?: x85-118001r2 -->
+                                                                                                    
+                                                                                                    
+<!--l. 65--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 67--><p class="indent" >   A IDE permite o monitoramento de diagramas em diferentes níveis de detalhe, o que é feito através da coluna
+<span 
+class="cmss-10">Monitoramento </span>da tabela da aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>no painel inferior. Há cinco opções de monitoramento, como descritas a
+seguir:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Sem Monitoramento</span> </dt><dd 
+class="description">Esta  opção  desabilita  toda  forma  de  monitoramento  de  execução  do  diagrama,  incluindo
+     possíveis erros da execução.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Apenas Erros</span> </dt><dd 
+class="description">Esta opção habilita o monitoramento de situações de erro na execução do diagrama, como uma soma de
+     dois valores não numéricos ou uma divisão por zero. Todas as mensagens de monitoramento de erros são exibidas
+     com o fundo amarelo e o texto da mensagem é apresentado na cor vermelha.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Acompanhamento</span> </dt><dd 
+class="description">Esta opção habilita o recebimento das mensagens de acompanhamento que são explicitamente
+     definidas na construção dos diagramas. O texto das mensagens de acompanhamento é exibido na cor azul.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Elementos do Diagrama</span> </dt><dd 
+class="description">Esta é a opção de maior nível de detalhe, pois ela permite acompanhar passo a passo
+     a  execução  dos  elementos  do  diagrama  de  controle.  Para  cada  elemento  que  compõe  os  diagramas  é  gerada
+     uma mensagem diferente que indica o que foi feito pelo elemento. As mensagens geradas seguem uma estrutura
+     intuitiva e similar à linguagem de programação Lua, sobre a qual o MPA está construído. Todas as mensagens de
+     monitoramento dos elementos do diagrama são exibidas com o fundo azul claro. As mensagens com o texto na cor
+     cinza indicam que o elemento já foi concluído. As mensagens com o texto na cor verde indicam que o elemento
+     ainda está em execução. As mensagens com o texto na cor amarela indicam que o elemento atingiu um ponto de
+     parada. Note, que quando um diagrama contém mais de uma linha de execução concorrente haverá mais de um
+     elemento em execução para aquele diagrama. Além disso, comandos de iteração sobre equipamentos permanecem
+     em execução (com o texto na cor verde) até o final da última iteração.</dd></dl>
+<!--l. 94--><p class="indent" >   Assim como a tabela de diagramas da aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão</span>, a lista de mensagens também botões laterais que permitem executar
+ações sobre a lista de mensagens, assim como definir o seu comportamento. A seguir é feita uma descrição dos botões da lista de
+mensagens.
+   <div class="paragraphTOCS">
+   </div>
+<!--l. 97--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x85-1190008.2"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ão de Excluir Mensagens</span></span>
+   O primeiro botão é utilizado para limpar a caixa de mensagens recebidas do servidor. Após a exclusão dessas mensagens não é
+possível adicioná-las novamente ao buffer de mensagens, entretanto, é possível definir um arquivo onde as mensagens
+excluídas são armazenadas. Neste caso, as mensagens removidas da caixa de mensagem são armazenadas neste
+arquivo.
+<!--l. 103--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x85-1200008.2"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ão de Rolagem Autom</span><span 
+class="cmbx-10">ática</span></span>
+   O segundo botão permite ativar/desativar a rolagem automática da lista de mensagens, de forma que as últimas mensagens
+recebidas estejam sempre visíveis.. Caso esse botão esteja pressionado, a lista de mensagens é rolada automaticamente de forma a
+sempre permitir a visualização da última mensagem recebida. Nota-se que caso o rolamento automático esteja ativado, mesmo que
+o usuário utilize a barra de rolagem para visualizar as mensagens anteriores, ao receber uma nova mensagem ela será adicionada à
+lista e esta será rolada de forma a exibir as últimas mensagens. Além disso, caso o <span 
+class="cmti-10">buffer </span>de mensagens esteja cheio, as
+mensagens serão deslocadas dentro do <span 
+class="cmti-10">buffer</span>, dando a impressão de que a lista de mensagem esteja com o rolamento
+automático.
+<!--l. 110--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x85-1210008.2"></a><span 
+class="cmbx-10">Bot</span><span 
+class="cmbx-10">ão de Salvamento de Mensagens Exclu</span><span 
+class="cmbx-10">ídas</span></span>
+   O botão mais abaixo permite ativar/desativar o salvamento automático das mensagens excluídas da lista de mensagens para o
+arquivo de armazenamento definido através do comando <span 
+class="cmss-10">Editar </span><span 
+class="cmsy-10">&#x2192; </span><span 
+class="cmss-10">Prefer</span><span 
+class="cmss-10">ências</span>. Caso esse botão esteja pressionado, o salvamento
+automático é ativado. Neste caso, todas as mensagens que forem retiradas do <span 
+class="cmti-10">buffer </span>sejam armazenadas num arquivo de
+mensagens, inclusive quando o <span 
+class="cmti-10">buffer </span>é explicitamente esvaziado.
+                                                                                                    
+                                                                                                    
+   <!--l. 99--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase22.html" >prev</a>] [<a 
+href="mpase22.html#tailmpase22.html" >prev-tail</a>] [<a 
+href="mpase23.html" >front</a>] [<a 
+href="mpase24.html#mpase25.html" >up</a>] </p></div>
+<!--l. 99--><p class="indent" >   <a 
+ id="tailmpase23.html"></a>   
+</body></html> 

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Escolha</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 463--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu30.html" >next</a>] [<a 
+href="mpasu24.html" >prev</a>] [<a 
+href="mpasu24.html#tailmpasu24.html" >prev-tail</a>] [<a 
+href="#tailmpasu25.html">tail</a>] [<a 
+href="mpasu23.html#mpasu29.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.3   </span> <a 
+ id="x55-790006.3.3"></a>Escolha</h4>
+<!--l. 465--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Escolha </span>permite que se ramifique o fluxo dependendo de uma certa condição lógica, isto é, de um
+resultado cujo valor pode ser verdadeiro ou falso. A <span 
+class="cmbx-10">Escolha </span>é representada por um losango azul como na figura
+<a 
+href="#x55-79001r16">6.16<!--tex4ht:ref: fig: fc_rotulos_escolha --></a>.
+<!--l. 468--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x55-79001r16"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 468--><p class="noindent" ><img 
+src="images/fc_rotulos_escolha.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.16: </span><span  
+class="content"> <span 
+class="cmr-8">As ramifica</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ões </span><span 
+class="cmss-8">V </span><span 
+class="cmr-8">e </span><span 
+class="cmss-8">F </span><span 
+class="cmr-8">determinam a sequ</span><span 
+class="cmr-8">ência do fluxo ap</span><span 
+class="cmr-8">ós a Escolha.</span></span></div><!--tex4ht:label?: x55-79001r16 -->
+                                                                                                    
+                                                                                                    
+<!--l. 468--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 470--><p class="indent" >   A decisão do objeto <span 
+class="cmbx-10">Escolha </span>é feita pelo resultado de uma ação similar a executada pelos elementos <span 
+class="cmbx-10">Comando</span>. Portanto
+essa decisão pode ser com base na avaliação de uma expressão, ou pelo resultado de uma chamada de função auxiliar, ou
+operação sobre um ponto ou equipamento, ou até chamada de diagrama-função. Essas alterativas são apresentadas no diálogo de
+seleção de ação que é exibido clicar no botão de definição de ação no painel contextual ao selecionar um elemento <span 
+class="cmss-10">Escolha</span>. Em
+qualquer um dos casos, o resultado final da condição precisa ser do tipo lógico, portanto apenas funções, operações sobre pontos
+ou equipamentos e diagramas-função que retornem um valor lógico são listados no diálogo. Isso é feito para evitar que o usuário
+possa selecionar uma opção inválida para o executor de diagramas. A seguir são apresentados os detalhes dessas
+opções.
+   <h5 class="subsubsectionHead"><a 
+ id="x55-800006.3.3"></a>Ação de Avaliação de Expressão</h5>
+<!--l. 479--><p class="noindent" >Um exemplo do uso de uma expressão em um objeto <span 
+class="cmbx-10">Escolha </span>é apresentado na figura <a 
+href="#x55-80001r17">6.17<!--tex4ht:ref: fig: fc_definicao_expressao --></a>. O resultado da expressão <span 
+class="cmss-10">abertura </span><span 
+class="cmmi-10">&#x003C;</span>
+<span 
+class="cmss-10">min </span>determinará se a execução seguirá pela ligação com rótulo <span 
+class="cmss-10">V </span>ou <span 
+class="cmss-10">F</span>.
+<!--l. 482--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x55-80001r17"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 482--><p class="noindent" ><img 
+src="images/fc_definicao_expressao.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.17: </span><span  
+class="content"> <span 
+class="cmr-8">Configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de uma express</span><span 
+class="cmr-8">ão no elemento de composi</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão Escolha.</span></span></div><!--tex4ht:label?: x55-80001r17 -->
+                                                                                                    
+                                                                                                    
+<!--l. 482--><p class="indent" >   </div><hr class="endfigure">
+   <h5 class="subsubsectionHead"><a 
+ id="x55-810006.3.3"></a>Ação sobre Diagramas, Funções e Equipamentos</h5>
+<!--l. 486--><p class="noindent" >Os outros três tipos de configuração para o elemento Escolha são muito semelhantes entre si e aos correspondentes do elemento de
+composição Comando (veja seção <a 
+href="mpasu24.html#x53-730006.3.2">6.3.2<!--tex4ht:ref: sec: command_element --></a>). A diferença é que, no caso do elemento Escolha, as chamadas têm sempre que retornar
+um valor do tipo lógico, valor este que é usado para a tomada de decisão pelo executor do fluxo. Sendo assim, os elementos de
+interface para definição dos valores de retorno não são exibidos.
+<!--l. 490--><p class="indent" >   Note o exemplo da figura <a 
+href="#x55-81001r18">6.18<!--tex4ht:ref: fig: fc_chamada_funcao_escolha --></a> que ilustra a chamada de uma operação sobre um equipamento cuja referência está armazanada
+na variável <span 
+class="cmss-10">v</span>.
+<!--l. 492--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x55-81001r18"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 492--><p class="noindent" ><img 
+src="images/fc_chamada_funcao_escolha.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.18: </span><span  
+class="content"> <span 
+class="cmr-8">A opera</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão sobre um equipamento.</span></span></div><!--tex4ht:label?: x55-81001r18 -->
+                                                                                                    
+                                                                                                    
+<!--l. 492--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 494--><p class="indent" >   As ramificações a partir da escolha são feitas através do elemento de composição <span 
+class="cmbx-10">Liga</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span>, sendo que é necessário definir uma
+descrição específica para determinar qual ramo é executado caso o resultado seja verdadeiro ou falso. Para o resultado verdadeiro,
+a ligação deve ter a descrição <span 
+class="cmss-10">V </span>e para o resultado falso a descrição deve ser <span 
+class="cmss-10">F</span>.
+                                                                                                    
+                                                                                                    
+   <!--l. 497--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu30.html" >next</a>] [<a 
+href="mpasu24.html" >prev</a>] [<a 
+href="mpasu24.html#tailmpasu24.html" >prev-tail</a>] [<a 
+href="mpasu25.html" >front</a>] [<a 
+href="mpasu23.html#mpasu29.html" >up</a>] </p></div>
+<!--l. 497--><p class="indent" >   <a 
+ id="tailmpasu25.html"></a>   
+</body></html> 

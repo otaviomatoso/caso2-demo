@@ -1,0 +1,901 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Definio de Classes de Pontos</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 130--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase44.html" >next</a>] [<a 
+href="mpase39.html" >prev</a>] [<a 
+href="mpase39.html#tailmpase39.html" >prev-tail</a>] [<a 
+href="mpaap3.html#tailmpase40.html">tail</a>] [<a 
+href="mpase40.html#mpasu51.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">C.3   </span> <a 
+ id="x116-167000C.3"></a>Definição de Classes de Pontos</h3>
+<!--l. 132--><p class="noindent" >Também é possível definir novas classes de ponto além das pré-definidas para cada tipo básico. A definição de classes de ponto é
+feita de forma idêntica à definição de classes de equipamento, inclusive através do mesmo construtor <span 
+class="cmss-10">class</span>. Entretanto, as classes
+de ponto devem herdar de outra class de ponto, como por exemplo as classes de ponto padrão definidas no MPA. Dessa
+forma, a classe implicitamente herda uma implementação que permite com que cada ponto dessa classe possa
+acessar a sua ponte de comunicação através do campo <span 
+class="cmss-10">self.bridge</span>. A figura <a 
+href="#x116-167001r3">C.3<!--tex4ht:ref: fig: exemplo_classe_ponto --></a> ilustra a definição de uma classes de
+ponto que faz tradução para unidade de engenharia de acordo com valores definidos na configuração da planta.
+<hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x116-167001r3"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.3: </span><span  
+class="content">Exemplo de definição de classe de ponto.</span></div><!--tex4ht:label?: x116-167001r3 -->
+<!--l. 138--><div class="lstinputlisting">
+<a 
+ id="x116-167002"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167003r1"></a></span><span 
+class="cmss-8x-x-87">class</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">ENG</span><span 
+class="cmssi-8x-x-87">_UNIT</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Ponto</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">em</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">engenharia</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167006r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Ponto</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">cujo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">valores</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">s</span><span 
+class="cmssi-8x-x-87">ão</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">convertidos</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">para</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">engenharia</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167007r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167008r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">bases</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">_POINT</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167009r7"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167010r8"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">attributes</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167011r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">maxUnidEq</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167012r10"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">M</span><span 
+class="cmssi-8x-x-87">áximo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">da</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Equipamento</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167013r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">INTEGER</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167014r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">minUnidEq</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167015r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">M</span><span 
+class="cmssi-8x-x-87">ínimo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">da</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Equipamento</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167016r14"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">INTEGER</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167017r15"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">maxUnidEng</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167018r16"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">M</span><span 
+class="cmssi-8x-x-87">áximo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">da</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Engenharia</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167019r17"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167020r18"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">minUnidEng</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167021r19"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">M</span><span 
+class="cmssi-8x-x-87">ínimo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">da</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Unidade</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Engenharia</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167022r20"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167023r21"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167024r22"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">...</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167025r23"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167026r24"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167027r25"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">methods</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167028r26"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">read</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167029r27"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Ler</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167030r28"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">results</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Valor</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Corrente</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167031r29"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">L</span><span 
+class="cmssi-8x-x-87">ê</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">o</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">valor</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">atual</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">ponto</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167032r30"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167033r31"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">local</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">assert</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">bridge</span><span 
+class="cmss-8x-x-87">:</span><span 
+class="cmss-8x-x-87">get</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">tostring</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">)))</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167034r32"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEq</span><span 
+class="cmss-8x-x-87">)/</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167035r33"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">maxUnidEq</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEq</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167036r34"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">return</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEng</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">+</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167037r35"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">maxUnidEng</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEng</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167038r36"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">]]</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167039r37"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">write</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167040r38"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Escrever</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167041r39"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">parameters</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">REAL</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Novo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Valor</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167042r40"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Escreve</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">o</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">novo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">valor</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">ponto</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167043r41"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167044r42"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEng</span><span 
+class="cmss-8x-x-87">)/</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167045r43"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">maxUnidEng</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEng</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167046r44"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">assert</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">bridge</span><span 
+class="cmss-8x-x-87">:</span><span 
+class="cmss-8x-x-87">set</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">tostring</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">),</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167047r45"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEq</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">+</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">value</span><span 
+class="cmsy-7">*</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">maxUnidEq</span><span 
+class="cmsy-7">-</span><span 
+class="cmss-8x-x-87">self</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">minUnidEq</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167048r46"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">]]</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167049r47"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x116-167050r48"></a></span><span 
+class="cmsy-7">}</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 138--><p class="indent" >   </div><hr class="endfigure">
+                                                                                                    
+                                                                                                    
+   <!--l. 140--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase44.html" >next</a>] [<a 
+href="mpase39.html" >prev</a>] [<a 
+href="mpase39.html#tailmpase39.html" >prev-tail</a>] [<a 
+href="mpase40.html" >front</a>] [<a 
+href="mpase40.html#mpasu51.html" >up</a>] </p></div>
+<!--l. 140--><p class="indent" >   <a 
+ id="tailmpase40.html"></a>  
+</body></html> 

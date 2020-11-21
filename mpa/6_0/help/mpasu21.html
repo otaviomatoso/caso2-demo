@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Atributos do Diagrama</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 169--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase15.html" >next</a>] [<a 
+href="mpasu20.html" >prev</a>] [<a 
+href="mpasu20.html#tailmpasu20.html" >prev-tail</a>] [<a 
+href="mpasu20.html#tailmpasu21.html">tail</a>] [<a 
+href="mpase14.html#mpasu22.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.2.4   </span> <a 
+ id="x47-690006.2.4"></a>Atributos do Diagrama</h4>
+<!--l. 172--><p class="noindent" >Além de manipular os elementos de composição, a elaboração de um diagrama também consiste na definição de alguns atributos
+do diagrama. Esses atributos são definidos através do painel contextual quando nenhum elemento do diagrama está
+selecionado.
+<!--l. 175--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x47-69001r7"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 175--><p class="noindent" ><img 
+src="images/fc_flow_edit_dialog.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.7: </span><span  
+class="content"> <span 
+class="cmr-8">Painel de configura</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão de diagrama</span></span></div><!--tex4ht:label?: x47-69001r7 -->
+                                                                                                    
+                                                                                                    
+<!--l. 175--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 177--><p class="indent" >   O painel contextual permite a definição dos seguintes atributos de um diagrama:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Nome do diagrama</span> </dt><dd 
+class="description">Nome pelo qual o diagrama será referenciado dentro do projeto.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Tipo do diagrama</span> </dt><dd 
+class="description">Um diagrama pode ser do tipo aplicação ou do tipo função. Um diagrama-aplicação só possui
+     uma única instância de execução no servidor (apesar de poder ter várias sub-tarefas concorrentes), enquanto um
+     diagrama-função pode ter várias execuções concorrentes. Diagramas-aplicação podem ser iniciados ou encerrados,
+     enquanto  diagramas-função  podem  ser  chamados,  assim  como  funções,  e  receber  parâmetros  e/ou  retornar
+     resultados.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Diagrama de Interrup</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão</span> </dt><dd 
+class="description">O usuário é capaz de determinar um outro diagrama a ser executado após a interrupção
+     do diagrama. Interrupção essa que pode ser ocasionada tanto manualmente pelo operador, através da aba <span 
+class="cmss-10">Execu</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão</span>
+     (veja seção <a 
+href="mpach8.html#x83-1160008">8<!--tex4ht:ref: cha: manager --></a>), quanto programaticamente, através de um comando que interrompa o diagrama, como explicado na
+     subseção sobre operações sobre diagramas (seção <a 
+href="mpasu24.html#x53-730006.3.2">6.3.2<!--tex4ht:ref: sec: command_element --></a>). Todos os tipos de diagrama podem ter um diagrama de
+     interrupção, mas somente diagramas-função que não recebam parâmetros podem ser definidos como diagramas de
+     interrupção de outros diagramas.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fun</span><span 
+class="cmbx-10">ç</span><span 
+class="cmbx-10">ão de Erro</span> </dt><dd 
+class="description">A função que deve ser chamada caso algum erro ocorra durante a execução do diagrama. Apenas as
+     funções auxiliares que recebem um único parâmetro do tipo texto podem ser definidas como função de erro. Se
+     houver um erro na execução do diagrama, essa função será chamada recebendo como parâmetro uma mensagem
+     textual descrevendo o erro do diagrama.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Vari</span><span 
+class="cmbx-10">áveis Globais</span> </dt><dd 
+class="description"> As variáveis globais do diagrama podem ser definidas através de uma tabela no painel contextual, como
+     pode ser visto também na figura <a 
+href="#x47-69001r7">6.7<!--tex4ht:ref: fig: fc_flow_edit_dialog --></a>. Acima da tabela, há botões para adicionar, remover ou reposicionar a linha com foco
+     da tabela. Uma nova linha aparece sempre no final da tabela para permitir a entrada de dados para uma nova variável
+     global. Os botões com setas são utilizados para mudar a ordem das linhas das tabelas. O botão com a seta para cima move a
+     linha selecionada uma posição para cima. Já o botão com a seta para baixo move a linha selecionada uma posição para
+     baixo. Cada linha representa uma variável global e apresenta em suas colunas os dados que devem ser definidos para as
+     mesmas (veja a seção <a 
+href="mpasu24.html#x53-750006.3.2">6.3.2<!--tex4ht:ref: sec: atribuicao --></a> para mais detalhes sobre as expressões que podem ser usadas na definição de
+     globais):
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">Vari</span><span 
+class="cmbx-10">ável</span> </dt><dd 
+class="description">Deve ser um identificador válido (letras, <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">_</span></span></span> ou algarismos, desde que não começe com um algarismo).
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Tipo</span> </dt><dd 
+class="description">Ao editar essa célula é apresentado um diálogo para seleção do tipo. Este diálogo também apresenta uma
+         caixa de seleção a ser utilizada para indicar se o valor da variável é uma lista de valores ou não.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Valor</span> </dt><dd 
+class="description">O preenchimento desse campo varia de acordo com o tipo selecionado. Quando o tipo for um tipo básico, o
+         valor pode ser o próprio valor ou uma expressão, como <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">24*60</span></span></span> ou <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">x+2</span></span></span> (fazendo referência a globais definidas
+         em linhas prévias). Quando o tipo for uma classe de ponto ou equipamento, o campo listará as instâncias
+         configuradas na classe em questão. Se o tipo for indicado como uma lista de valores, deve-se utilizar chaves
+         e separar os valores ou tags de instâncias da lista usando vírgula ou ponto-e-vírgula, como em <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{1,2,3}</span></span></span> ou
+         <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{LIC-01,LIC-02,LIC-03}</span></span></span>. Uma lista vazia pode ser criada com a expressão <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-10">{}</span></span></span>.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Descr.</span> </dt><dd 
+class="description">Texto livre que pode ser usado para descrever o uso da variável no diagrama.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Modo</span> </dt><dd 
+class="description">Só pode ser alterado no caso de fluxos-função. O modo indica se a global é um parâmetro ou valor de
+         retorno do diagrama, ou mesmo se funciona como ambos.</dd></dl>
+     <!--l. 219--><p class="noindent" >Variáveis globais são compartilhadas por todas as linhas de execução de um diagrama, mas não são compartilhadas por
+     diferentes instâncias de execução do mesmo diagrama (no caso de diagramas-função).
+     </dd></dl>
+                                                                                                    
+                                                                                                    
+   <!--l. 223--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase15.html" >next</a>] [<a 
+href="mpasu20.html" >prev</a>] [<a 
+href="mpasu20.html#tailmpasu20.html" >prev-tail</a>] [<a 
+href="mpasu21.html" >front</a>] [<a 
+href="mpase14.html#mpasu22.html" >up</a>] </p></div>
+<!--l. 223--><p class="indent" >   <a 
+ id="tailmpasu21.html"></a>  
+</body></html> 

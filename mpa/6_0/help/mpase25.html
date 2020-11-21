@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Interface de Rede</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 55--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach12.html" >next</a>] [<a 
+href="mpase23.html#tailmpase25.html">tail</a>] [<a 
+href="mpase30.html#mpase31.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">11.1   </span> <a 
+ id="x91-12700011.1"></a>Interface de Rede</h3>
+<!--l. 58--><p class="noindent" >Toda a gerência do servidor de execução é feita remotamente através da IDE do MPA. Por esta razão é necessário definir uma
+interface de rede adequada a essa comunicação. Isso é feito através dos parâmetros <span 
+class="cmss-10">host </span>e <span 
+class="cmss-10">port</span>.
+<!--l. 62--><p class="indent" >   O parâmetro <span 
+class="cmss-10">host </span>define a interface de rede à qual o servidor deve ser associado, ou seja, o endereço IP ou
+nome de uma das interfaces de rede disponíveis na máquina servidora. O parâmetro <span 
+class="cmss-10">port </span>define a porta dessa
+interface de rede que o executor deve disponibilizar para conexões de IDEs MPA. Por exemplo, para permitir a
+conexão através da interface de rede com endereço 10.20.30.40 através da porta 8080 pode-se utilizar o seguinte
+comando:
+<!--l. 66--><p class="indent" >   <span 
+class="cmss-10">mpa-run.exe </span><span 
+class="cmsy-10">--</span><span 
+class="cmss-10">host 10.20.30.40 </span><span 
+class="cmsy-10">--</span><span 
+class="cmss-10">port 8080</span>
+<!--l. 68--><p class="indent" >   Ou adicionar ao arquivo de parâmetros de configuração o seguinte:
+<!--l. 70--><p class="indent" >   <span 
+class="cmss-10">HOST = &#8221;10.20.30.40&#8221;;</span>
+<!--l. 72--><p class="indent" >   <span 
+class="cmss-10">PORT = 8080;</span>
+<!--l. 74--><p class="indent" >   Note que o valor do parâmetro <span 
+class="cmss-10">port </span>no arquivo de parâmetros não vem entre aspas, pois como o valor é numérico esse recurso
+não se faz necessário. Caso nenhum valor seja especificado para o parâmetro <span 
+class="cmss-10">host</span>, seu valor <span 
+class="cmti-10">default </span>é <span 
+class="cmss-10">localhost</span>. O valor <span 
+class="cmti-10">default </span>do
+parâmetro <span 
+class="cmss-10">port </span>é 9090.
+                                                                                                    
+                                                                                                    
+   <!--l. 78--><div class="crosslinks"><p class="noindent">[<a 
+href="mpach12.html" >next</a>] [<a 
+href="mpase25.html" >front</a>] [<a 
+href="mpase30.html#mpase31.html" >up</a>] </p></div>
+<!--l. 78--><p class="indent" >   <a 
+ id="tailmpase25.html"></a>  
+</body></html> 

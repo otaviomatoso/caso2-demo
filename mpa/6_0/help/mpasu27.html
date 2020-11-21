@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Executor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 559--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase16.html" >next</a>] [<a 
+href="mpasu26.html" >prev</a>] [<a 
+href="mpasu26.html#tailmpasu26.html" >prev-tail</a>] [<a 
+href="mpasu24.html#tailmpasu27.html">tail</a>] [<a 
+href="mpasu23.html#mpasu31.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.3.5   </span> <a 
+ id="x57-830006.3.5"></a>Executor</h4>
+<!--l. 562--><p class="noindent" >O elemento de composição <span 
+class="cmbx-10">Executor </span>é representado graficamente por um círculo, como ilustrado na figura <a 
+href="#x57-83001r24">6.24<!--tex4ht:ref: fig: fc_executor --></a>, e permite a
+criação de linhas de execução concorrentes. Sempre que o fluxo atinge um objeto Executor uma nova linha de
+execução independente é criada para executar cada um dos ramos do fluxo que saem deste elemento. Após a criação
+das linhas de execução concorrentes, a execução do ramo do fluxo que atingiu o Executor é suspensa e pode ser
+recuperada após o término da execução das linhas, como será visto na seção <a 
+href="mpasu28.html#x58-840006.3.6">6.3.6<!--tex4ht:ref: sec: espera --></a>. Na figura <a 
+href="#x57-83001r24">6.24<!--tex4ht:ref: fig: fc_executor --></a>, o elemento
+executor cria três linhas de execução concorrentes, sendo que cada uma executa um dos ramos do fluxo que saem
+dele.
+<!--l. 567--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x57-83001r24"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 567--><p class="noindent" ><img 
+src="images/fc_executor.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.24: </span><span  
+class="content"> <span 
+class="cmr-8">O elemento de composi</span><span 
+class="cmr-8">ç</span><span 
+class="cmr-8">ão Executor.</span></span></div><!--tex4ht:label?: x57-83001r24 -->
+                                                                                                    
+                                                                                                    
+<!--l. 567--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 569--><p class="indent" >   O <span 
+class="cmbx-10">Executor </span>é comumente utilizado após um <span 
+class="cmbx-10">Iterador </span>quando deseja-se que um mesmo conjunto de comandos seja executado
+concorrentemente para diferentes instâncias de uma mesma classe. Um exemplo similar ao apresentado na seção <a 
+href="mpasu26.html#x56-820006.3.4">6.3.4<!--tex4ht:ref: sec: iterador --></a> é
+exemplificado na figura <a 
+href="#x57-83002r25">6.25<!--tex4ht:ref: fig: fc_exemplo_executor --></a>.
+<!--l. 572--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x57-83002r25"></a>
+                                                                                                    
+                                                                                                    
+<!--l. 572--><p class="noindent" ><img 
+src="images/fc_exemplo_executor.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;6.25: </span><span  
+class="content"> <span 
+class="cmr-8">Exemplo de uso do elemento executor.</span></span></div><!--tex4ht:label?: x57-83002r25 -->
+                                                                                                    
+                                                                                                    
+<!--l. 572--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 574--><p class="indent" >   Há diferenças importantes entre os dois casos:
+     <ul class="itemize1">
+     <li class="itemize">Os elementos de composição a partir do Executor executam concorrentemente. Não há nenhuma espera para que
+     os comandos começem a atuar sobre cada um dos tanques, uma vez que ao atingir o elemento Executor uma nova
+     linha de execução independente é criada e aquele laço de iteração é encerrado, fazendo com que o Iterador avançe
+     para a próxima iteração.
+     </li>
+     <li class="itemize">A sequência do fluxo (<span 
+class="cmti-10">i.e.</span>&#x00A0;a partir da Ligação <span 
+class="cmss-10">F</span>) é independente da execução do ramo do fluxo que segue o
+     Executor, portanto não há sincronismo entre esses ramos. O elemento de composição <span 
+class="cmss-10">Tanques em fechamento </span>é
+     processado normalmente enquanto os comandos após o <span 
+class="cmbx-10">Executor </span>são executados concorrentemente. Vale ressaltar
+     que não há garantias quanto à ordem de execução das linhas concorrentes criadas pelo objeto Executor.
+     </li>
+     <li class="itemize">Os ramos originados em um objeto <span 
+class="cmbx-10">Executor </span>formam <span 
+class="cmbx-10">ramos de fluxo independentes</span>, portanto não podem se
+     ligar com outros ramos do fluxo. Se houver alguma ligação entre ramos independentes, a verificação do fluxo irá
+     informar o usuário dessa construção ilegal.
+     </li>
+     <li class="itemize">Cada linha de execução concorrente tem um contexto independente das demais, para onde as variáveis locais
+     pré-existentes são copiadas, eliminando o compartilhamento. Além disso, é possível criar novas variáveis nesses
+     contextos. Isso é útil para impedir que o processamento feito por uma linha de execução interfira na execução
+     das demais, mesmo que elas executem o mesmo ramo do fluxo. Em contrapartida, as variáveis globais do fluxo
+     continuam sendo compartilhadas entre as linhas de execução.
+     </li></ul>
+                                                                                                    
+                                                                                                    
+   <!--l. 599--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase16.html" >next</a>] [<a 
+href="mpasu26.html" >prev</a>] [<a 
+href="mpasu26.html#tailmpasu26.html" >prev-tail</a>] [<a 
+href="mpasu27.html" >front</a>] [<a 
+href="mpasu23.html#mpasu31.html" >up</a>] </p></div>
+<!--l. 599--><p class="indent" >   <a 
+ id="tailmpasu27.html"></a>  
+</body></html> 

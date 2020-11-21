@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Definio de Funes Auxiliares</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 140--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap4.html" >next</a>] [<a 
+href="mpase40.html" >prev</a>] [<a 
+href="mpase40.html#tailmpase40.html" >prev-tail</a>] [<a 
+href="mpase38.html#tailmpase41.html">tail</a>] [<a 
+href="mpase40.html#mpase44.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">C.4   </span> <a 
+ id="x117-168000C.4"></a>Definição de Funções Auxiliares</h3>
+<!--l. 142--><p class="noindent" >Funções auxiliares são definidas através do construtor <span 
+class="cmss-10">func</span>. Cada definição especifica o nome da função e um identificador. A
+definição de uma função auxiliar também inclui uma lista de parâmetros, contendo o nome e o tipo de valor de cada parâmetro.
+Além disso, a definição de uma função de equipamento também contém uma descrição e a definição de um valor de
+retorno, com nome e tipo. Os tipos dos parâmetros e valor de retorno das funções só podem ser tipos básicos
+ou equipamentos (definido através do identificador da classe de equipamento). A figura <a 
+href="#x117-168001r4">C.4<!--tex4ht:ref: fig: exemplo_func_aux --></a> ilustra a definição
+de uma função auxiliar (de nome <span 
+class="cmbx-10">esperar</span>) e de uma função não disponível para diagramas (de nome <span 
+class="cmbx-10">limite</span>).
+<hr class="figure"><div class="figure" 
+>
+                                                                                                    
+                                                                                                    
+<a 
+ id="x117-168001r4"></a>
+                                                                                                    
+                                                                                                    
+<br /> <div class="caption" 
+><span class="id">Figura&#x00A0;C.4: </span><span  
+class="content">Exemplo de definição de uma função auxiliar.</span></div><!--tex4ht:label?: x117-168001r4 -->
+<!--l. 149--><div class="lstinputlisting">
+<a 
+ id="x117-168002"></a>
+  <span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168003r1"></a></span><span 
+class="cmss-8x-x-87">func</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168004r2"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">id</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">esperar</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168005r3"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Esperar</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168006r4"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">parameters</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">{{</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">name</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Tempo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">Espera</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">type</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">INTEGER</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">}}</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168007r5"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">description</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">Faz</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">uma</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pausa</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">na</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">execucao</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">diagrama</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168008r6"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmssi-8x-x-87">sleep</span><span 
+class="cmssi-8x-x-87">&#8221;</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmsy-7">-</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">a</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">implementa</span><span 
+class="cmssi-8x-x-87">ç</span><span 
+class="cmssi-8x-x-87">ão</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">é</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">a</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pr</span><span 
+class="cmssi-8x-x-87">ópria</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">fun</span><span 
+class="cmssi-8x-x-87">ç</span><span 
+class="cmssi-8x-x-87">ão</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#8217;</span><span 
+class="cmssi-8x-x-87">sleep</span><span 
+class="cmssi-8x-x-87">&#8217;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168009r7"></a></span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmsy-7">-</span><span 
+class="cmsy-7">-</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">oferecida</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">pelo</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">ambiente</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">de</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">execu</span><span 
+class="cmssi-8x-x-87">ç</span><span 
+class="cmssi-8x-x-87">ão</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">do</span><span 
+class="cmssi-8x-x-87">&#x00A0;</span><span 
+class="cmssi-8x-x-87">MPA</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168010r8"></a></span><span 
+class="cmsy-7">}</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168011r9"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168012r10"></a></span><span 
+class="cmss-8x-x-87">code</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">=</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">[[</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168013r11"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">function</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">limite</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">valor</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">minimo</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">maximo</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168014r12"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">return</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">math</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">min</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">maximo</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">math</span><span 
+class="cmss-8x-x-87">.</span><span 
+class="cmss-8x-x-87">max</span><span 
+class="cmss-8x-x-87">(</span><span 
+class="cmss-8x-x-87">minimo</span><span 
+class="cmss-8x-x-87">,</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">valor</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">)</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168015r13"></a></span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><span 
+class="cmssbx-10x-x-70">end</span><span 
+class="cmss-8x-x-87">&#x00A0;</span><br /><span class="label"><a 
+ id="x117-168016r14"></a></span><span 
+class="cmss-8x-x-87">]]</span>
+  
+</div>
+                                                                                                    
+                                                                                                    
+<!--l. 149--><p class="indent" >   </div><hr class="endfigure">
+                                                                                                    
+                                                                                                    
+   <!--l. 152--><div class="crosslinks"><p class="noindent">[<a 
+href="mpaap4.html" >next</a>] [<a 
+href="mpase40.html" >prev</a>] [<a 
+href="mpase40.html#tailmpase40.html" >prev-tail</a>] [<a 
+href="mpase41.html" >front</a>] [<a 
+href="mpase40.html#mpase44.html" >up</a>] </p></div>
+<!--l. 152--><p class="indent" >   <a 
+ id="tailmpase41.html"></a>  
+</body></html> 

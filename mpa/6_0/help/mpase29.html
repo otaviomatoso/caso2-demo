@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Configurao Inicial</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 281--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase34.html" >next</a>] [<a 
+href="mpase28.html" >prev</a>] [<a 
+href="mpase28.html#tailmpase28.html" >prev-tail</a>] [<a 
+href="mpase24.html#tailmpase29.html">tail</a>] [<a 
+href="mpase30.html#mpase33.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">11.5   </span> <a 
+ id="x96-14400011.5"></a>Configuração Inicial</h3>
+<!--l. 284--><p class="noindent" >É possível carregar uma configuração de planta e diagramas na iniciação do servidor de execução. Isto é feito através dos
+parâmetros <span 
+class="cmss-10">load </span>e <span 
+class="cmss-10">execute</span>. O parâmetro <span 
+class="cmss-10">load </span>permite especificar um arquivo onde um projeto de aplicação foi previamente
+exportado (veja comando <span 
+class="cmss-10">Enviar Aplica</span><span 
+class="cmss-10">ç</span><span 
+class="cmss-10">ão </span>na seção&#x00A0;<a 
+href="mpasu4.html#x18-300003.2.4">3.2.4<!--tex4ht:ref: sec: menu_executor --></a>). Esse arquivo é então carregado no servidor de execução no momento
+de sua iniciação. Opcionalmente, é possível definir um diagrama de controle a ser executado após a carga desse arquivo. Isto é
+feito através do parâmetro <span 
+class="cmss-10">execute</span>.
+<!--l. 291--><p class="indent" >   Tipicamente, o diagrama de controle especificado através do parâmetro <span 
+class="cmss-10">execute </span>é o diagrama que inicia ou encerra os demais
+diagramas de acordo com a configuração de um conjunto de equipamentos especiais utilizados pelo operador da plataforma para
+controlar os diagramas. Isso permite que o operador da plataforma possa controlar os diagramas de controle do MPA através da
+própria interface do operador com o sistema supervisório. Um exemplo desse tipo de uso é a utilização de botoeiras para controlar
+a execução de diagramas. Como exemplo, suponha que se deseje carregar a configuração de planta e diagramas exportada no
+arquivo <span 
+class="cmss-10">C:</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">MPA</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Plantas</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">P31</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Config.lua </span>e executar o diagrama de controle <span 
+class="cmss-10">Gerencia</span><span 
+class="cmss-10">_Modulos</span>. Neste caso pode-se utilizar o
+seguinte comando:
+<!--l. 297--><p class="indent" >   <span 
+class="cmss-10">mpa-run.exe </span><span 
+class="cmsy-10">--</span><span 
+class="cmss-10">load C:</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">MPA</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Plantas</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">P31</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Config.lua </span><span 
+class="cmsy-10">--</span><span 
+class="cmss-10">execute Gerencia</span><span 
+class="cmss-10">_Modulos</span>
+<!--l. 299--><p class="indent" >   Ou adicionar ao arquivo de parâmetros de configuração o seguinte:
+<!--l. 301--><p class="indent" >   <span 
+class="cmss-10">LOAD = &#8221;C:</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">MPA</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Plantas</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">P31</span><span 
+class="cmsy-10">\</span><span 
+class="cmss-10">Config.lua&#8221;;</span>
+<!--l. 303--><p class="indent" >   <span 
+class="cmss-10">EXECUTE = &#8221;Gerencia</span><span 
+class="cmss-10">_Modulos&#8221;;</span>
+                                                                                                    
+                                                                                                    
+   <!--l. 305--><div class="crosslinks"><p class="noindent">[<a 
+href="mpase34.html" >next</a>] [<a 
+href="mpase28.html" >prev</a>] [<a 
+href="mpase28.html#tailmpase28.html" >prev-tail</a>] [<a 
+href="mpase29.html" >front</a>] [<a 
+href="mpase30.html#mpase33.html" >up</a>] </p></div>
+<!--l. 305--><p class="indent" >   <a 
+ id="tailmpase29.html"></a>  
+</body></html> 

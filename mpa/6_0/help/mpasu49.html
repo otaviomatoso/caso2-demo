@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Funes do Executor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 271--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu48.html" >prev</a>] [<a 
+href="mpasu48.html#tailmpasu48.html" >prev-tail</a>] [<a 
+href="mpasu46.html#tailmpasu49.html">tail</a>] [<a 
+href="mpaap4.html# " >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">C.5.2   </span> <a 
+ id="x121-171000C.5.2"></a>Funções do Executor</h4>
+<!--l. 274--><p class="noindent" >O ambiente de execução de diagramas MPA, fornece um conjunto de operações que podem ser utilizadas para realizar operações
+como interromper a execução por um período de tempo, ou consultar se um diagrama está em execução ou não. A seguir, é dada
+uma lista de todas as operações fornecidas pelo ambiente de execução do MPA para auxiliar a implementação de funções
+auxiliares ou funções sobre equipamentos.
+     <dl class="description"><dt class="description">
+<span 
+class="cmssbx-10">instancesof(classid)</span> </dt><dd 
+class="description">Permite obter um iterador a ser utilizado num <span 
+class="cmss-10">for </span>que permite iterar sobre todas as instâncias da
+     classe com o identificador <span 
+class="cmss-10">classid</span>. As variáveis de iteração recebem respectivamente o identificador da instância
+     (<span 
+class="cmti-10">i.e.</span>&#x00A0;equipamento ou ponto) e a instância propriamente dita.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">getinstance(classid, id)</span> </dt><dd 
+class="description">Permite obter a instância cujo identificador é <span 
+class="cmss-10">id </span>da classe com o identificador <span 
+class="cmss-10">classid</span>.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">getdiagrams()</span> </dt><dd 
+class="description">Permite obter uma lista contendo os nomes dos diagramas presentes no executor.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">diagramstatus(id)</span> </dt><dd 
+class="description">Devolve uma string informando o estado do diagrama de nome <span 
+class="cmss-10">id</span>. Os valores possíveis são <span 
+class="cmss-10">&#8221;running&#8221;</span>
+     e <span 
+class="cmss-10">&#8221;stopped&#8221;</span>. Caso o diagrama informado não exista, é devolvido o valor <span 
+class="cmss-10">nil </span>e uma mensagem de erro.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">startdiagram(id)</span> </dt><dd 
+class="description">Permite agendar o diagrama de nome <span 
+class="cmss-10">id </span>para execução. Essa função devolve o valor <span 
+class="cmss-10">true </span>caso o diagrama
+     esteja pronto para ser executado. Caso contrário é devolvido <span 
+class="cmss-10">nil </span>e uma mensagem de erro.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">stopdiagram(id)</span> </dt><dd 
+class="description">Permite encerrar a execução do diagrama de nome <span 
+class="cmss-10">id</span>. Essa função devolve o valor <span 
+class="cmss-10">true </span>caso o diagrama
+     seja encerrado. Caso contrário é devolvido <span 
+class="cmss-10">nil </span>e uma mensagem de erro.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">getpoint(tag)</span> </dt><dd 
+class="description">Permite  acessar  diretamente  o  valor  do  ponto  de  controle  <span 
+class="cmss-10">tag  </span>no  supevisório  através  da  ponte  de
+     comunicação. Esta função devolve o valor do ponto de controle, ou o valor <span 
+class="cmss-10">nil </span>seguido de uma mensagem de erro.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">setpoint(tag, value)</span> </dt><dd 
+class="description">Permite alterar o valor do ponto de controle <span 
+class="cmss-10">tag </span>para o valor <span 
+class="cmss-10">value </span>no supevisório através da ponte
+     de comunicação. Esta função devolve <span 
+class="cmss-10">true </span>em caso de sucesso, ou o valor <span 
+class="cmss-10">nil </span>seguido de uma mensagem de erro em
+     caso de falha.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">getbridge(tag)</span> </dt><dd 
+class="description">Permite obter a ponte associada a um ponto dado seu tag ou, se nenhum tag for fornecido, a ponte <span 
+class="cmti-10">default</span>
+     é devolvida, pois é definida para todos os pontos que não casam com nenhum padrão definido pelas demais pontes.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">sleep(time)</span> </dt><dd 
+class="description">Permite suspender a execução de um diagrama pelo período de tempo definido pelo parâmetro <span 
+class="cmss-10">time </span>em
+     segundos.
+     </dd><dt class="description">
+<span 
+class="cmssbx-10">time()</span> </dt><dd 
+class="description">Permite obter um contador de segundos do sistema. O valor devolvido é um valor real cuja precisão varia entre
+     sistemas mas é sempre maior que milisegundos.</dd></dl>
+                                                                                                    
+                                                                                                    
+   <!--l. 324--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu48.html" >prev</a>] [<a 
+href="mpasu48.html#tailmpasu48.html" >prev-tail</a>] [<a 
+href="mpasu49.html" >front</a>] [<a 
+href="mpaap4.html# " >up</a>] </p></div>
+<!--l. 324--><p class="indent" >   <a 
+ id="tailmpasu49.html"></a>  
+</body></html> 

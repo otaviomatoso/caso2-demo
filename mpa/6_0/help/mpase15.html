@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Diagramas de Fluxo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 242--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu35.html" >next</a>] [<a 
+href="mpase14.html" >prev</a>] [<a 
+href="mpase14.html#tailmpase14.html" >prev-tail</a>] [<a 
+href="mpasu22.html#tailmpase15.html">tail</a>] [<a 
+href="mpach6.html#mpasu23.html" >up</a>] </p></div>
+   <h3 class="sectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x49-710006.3"></a>Diagramas de Fluxo</h3>
+<!--l. 245--><p class="noindent" >De forma similar aos fluxogramas elaborados por programadores de computadores para representar um
+algoritmo<span class="footnote-mark"><a 
+href="mpa50.html#fn2x7"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x49-71001f2"></a> , os
+diagramas de fluxo do MPA estabelecem a sequência de ações e decisões a serem executadas para realização de uma
+manobra de operação. A seguir é apresentado textualmente um exemplo dos passos que um fluxo do MPA pode
+definir:
+     <ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x49-71003x1"><a 
+ id="x49-710021"></a> Abra o tanque T1;
+     </li>
+     <li 
+  class="enumerate" id="x49-71005x2">Espere 5 minutos;
+     </li>
+     <li 
+  class="enumerate" id="x49-71007x3">Se a pressão da válvula V1 for maior que 10 volte ao passo <a 
+href="#x49-710021">1<!--tex4ht:ref: ite: passo1 --></a>.</li></ol>
+<!--l. 254--><p class="indent" >   O MPA atualmente define sete elementos de composição de fluxos com semânticas distintas. Apesar de contarem com
+uma variedade pequena de elementos, os fluxos do MPA podem realizar uma enorme gama de operações, tais
+como:
+     <ul class="itemize1">
+     <li class="itemize">Atribuir valores a variáveis<span class="footnote-mark"><a 
+href="mpa51.html#fn3x7"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x49-71008f3"></a> .
+     </li>
+     <li class="itemize">Executar uma função auxiliar implementada previamente durante a pré-configuração da planta.
+     </li>
+     <li class="itemize">Executar uma das operações sobre configurações da planta, de acordo com as definições das classes de equipamento
+     ou ponto relacionada.
+     </li>
+     <li class="itemize">Iniciar ou encerrar a execução de outros fluxos do mesmo projeto.
+     </li>
+     <li class="itemize">Iterar sobre todas as configurações de um determinado tipo (<span 
+class="cmti-10">i.e.</span>&#x00A0;classe de ponto ou equipamento) ou sobre os
+     elementos de uma lista.
+     </li>
+     <li class="itemize">Alterar o curso de execução do fluxo de acordo com o resultado de uma expressão lógica, uma função auxiliar ou
+     uma operação sobre ponto ou equipamento.
+     </li>
+     <li class="itemize">Criar linhas de execução concorrentes para execução de dois ou mais ramos do fluxo.
+     </li>
+     <li class="itemize">Sincronizar linhas de execução concorrentes para execução de comandos após o término das linhas de execução
+     concorrentes.
+     </li></ul>
+<!--l. 285--><p class="indent" >   No restante desta seção apresentaremos os elementos de composição utilizados na confecção de fluxos de controle do MPA,
+assim como suas respectivas funcionalidades e restrições.
+                                                                                                    
+                                                                                                    
+   <div class="subsectionTOCS">
+   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.1 <a 
+href="mpasu23.html#x52-720006.3.1">Ligação</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.2 <a 
+href="mpasu24.html#x53-730006.3.2">Comando</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu24.html#x53-740006.3.2" id="QQ2-53-93">Seleção de Operação</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu24.html#x53-750006.3.2" id="QQ2-53-95">Ação de Avaliação de Expressão</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu24.html#x53-760006.3.2" id="QQ2-53-97">Ação sobre Diagramas</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu24.html#x53-770006.3.2" id="QQ2-53-99">Ação sobre Função</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu24.html#x53-780006.3.2" id="QQ2-53-101">Ação sobre Ponto ou Equipamento</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.3 <a 
+href="mpasu25.html#x55-790006.3.3">Escolha</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu25.html#x55-800006.3.3" id="QQ2-55-104">Ação de Avaliação de Expressão</a></span>
+<br />   &#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="mpasu25.html#x55-810006.3.3" id="QQ2-55-106">Ação sobre Diagramas, Funções e Equipamentos</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.4 <a 
+href="mpasu26.html#x56-820006.3.4">Iterador</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.5 <a 
+href="mpasu27.html#x57-830006.3.5">Executor</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.6 <a 
+href="mpasu28.html#x58-840006.3.6">Espera por Execução</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.7 <a 
+href="mpasu29.html#x59-850006.3.7">Conector</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.8 <a 
+href="mpasu30.html#x60-860006.3.8">Anotações</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >6.3.9 <a 
+href="mpasu31.html#x61-870006.3.9">Exemplos de Fluxos</a></span>
+   </div>
+
+
+
+
+
+
+
+
+                                                                                                    
+                                                                                                    
+   <!--l. 720--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu35.html" >next</a>] [<a 
+href="mpase14.html" >prev</a>] [<a 
+href="mpase14.html#tailmpase14.html" >prev-tail</a>] [<a 
+href="mpase15.html" >front</a>] [<a 
+href="mpach6.html#mpasu23.html" >up</a>] </p></div>
+<!--l. 720--><p class="indent" >   <a 
+ id="tailmpase15.html"></a>  
+</body></html> 

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html xml:lang="pt" > 
+<head><title>Divergncia de Transies</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,imgdir:images/ --> 
+<meta name="src" content="mpa.tex"> 
+<meta name="date" content="2018-04-11 09:30:00"> 
+<link rel="stylesheet" type="text/css" href="mpa.css"> 
+</head><body 
+>
+   <!--l. 798--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu37.html" >prev</a>] [<a 
+href="mpasu37.html#tailmpasu37.html" >prev-tail</a>] [<a 
+href="mpasu34.html#tailmpasu38.html">tail</a>] [<a 
+href="mpasu35.html#mpasu40.html" >up</a>] </p></div>
+   <h4 class="subsectionHead"><span class="titlemark">6.4.7   </span> <a 
+ id="x69-1000006.4.7"></a>Divergência de Transições</h4>
+<!--l. 800--><p class="noindent" >A divergência de transações é um elemento de composição em forma de &#8220;T&#8221; de cabeça pra baixo que permite juntar a saída de
+uma transação às entradas de uma ou mais transações. A divergência pode ser de três tipos diferentes: simples, com precedência
+ou paralela. O tipo da divergência pode ser definida através do menu de contexto que é exibido ao clicar com o botão direito
+sobre a divergência.
+<!--l. 804--><p class="indent" >   Uma divergência simples ou com precedência permitem descrever várias transições cuja entrada é um mesmo passo. No caso
+desses tipos de divergência, apenas as ligações abaixo da divergência podem apresentar condições. Contudo, na divergência
+simples, apenas uma única condição pode ser verdadeira quando o passo predecessor estiver ativo, caso contrário um erro é
+lançado durante a execução do diagrama SFC.
+<!--l. 808--><p class="indent" >   Na divergência com precedência é permitido que mais de uma condição seja verdadeira quando o passo predecessor estiver
+ativo, contudo, apenas a transação de maior prioridade cuja condição é verdadeira seja ativada permitindo a ativação do passo
+sucessor. A precedência das transições pode ser definida com um número inteiro seguido de um &#8220;:&#8221; antes da condição na
+descrição da linha da transição. Caso a precedência não seja definida explicitamente usando esse formato, cada
+linha de transição tem maior precedência sobre as demais que estejam a sua direita e sejam oriundas da mesma
+divergência.
+<!--l. 812--><p class="indent" >   Uma divergência paralela permite descrever uma transição que quando ativada permite a ativação de dois ou mais
+passos sucessores. No caso da convergência paralela, apenas a ligação acima da divergência pode apresentar uma
+condição.
+                                                                                                    
+                                                                                                    
+   <!--l. 815--><div class="crosslinks"><p class="noindent">[<a 
+href="mpasu37.html" >prev</a>] [<a 
+href="mpasu37.html#tailmpasu37.html" >prev-tail</a>] [<a 
+href="mpasu38.html" >front</a>] [<a 
+href="mpasu35.html#mpasu40.html" >up</a>] </p></div>
+<!--l. 815--><p class="indent" >   <a 
+ id="tailmpasu38.html"></a>  
+</body></html> 
