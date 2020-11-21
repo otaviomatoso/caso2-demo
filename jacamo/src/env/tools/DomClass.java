@@ -75,7 +75,15 @@ public class DomClass {
         listaInformacoesSaidaGerais.add("MaxExportGasRate");
     }
 
-    public static String checkWell(String well, String file) throws SAXException, IOException, ParserConfigurationException, TransformerException {
+    private static void setFile(Document documento) throws SAXException, IOException, ParserConfigurationException, TransformerException{
+      System.out.println("AQUIIIIII");
+      // Document documento = criaDocument(file);
+      Element eWells = (Element) documento.getElementsByTagName(nomeTagEntradaPocos).item(0);
+  		Element eWell = (Element) eWells.getElementsByTagName(nomeTagEntradaPoco).item(0);
+  		eWell.getParentNode().removeChild(eWell);
+  	}
+
+    public static String checkWell(String well, String file, int count) throws SAXException, IOException, ParserConfigurationException, TransformerException {
         Document documento = criaDocument(file);
         documento.getDocumentElement().normalize();
 
@@ -96,9 +104,17 @@ public class DomClass {
                 eElement.insertBefore(criaPoco(documento, well), node.getLastChild());
               }
             }
+            System.out.println("\n\nVALOR DE COUNT: " + count + "\n\n");
+            if(count==2){ setFile(documento); }
             geraArquivo(documento, file);
             return ("File " + file + " does not contain well " + well + " yet. Adding its values...");
           }
+          // String[] arquivoSplit1 = arquivo.split(".gln");
+          // String aux = arquivoSplit1[0];
+          // String[] arquivoSplit2 = aux.split("TST");
+          // int indice = Integer.parseInt(arquivoSplit2[1]);
+          // // Apaga poco null apenas quando estiver no TST2
+          // if (indice == 2){ apagaPoco(documento); }
     }
 
     private static Node criaPoco(Document doc, String nome) {

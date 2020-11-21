@@ -6,7 +6,8 @@ url("http://localhost:1880/brsiop"). // (local) url dummy brsiop
 username("jomi"). // BR-SiOP usuario
 password("hubner"). // BR-SiOP senha
 gln("TST.gln"). // arquivo GLN de entrada para otimização
-otm("otm.gln"). // arquivo GLN de saída, com os resultados da otimização
+otm_in("otm-in.gln"). // arquivo GLN de saída, com os resultados da otimização
+otm_out("otm-out.gln"). // arquivo GLN de saída, com os resultados da otimização
 pocos([]). // lista de poços
 
 /* Initial goals */
@@ -31,7 +32,7 @@ pocos([]). // lista de poços
 
 -!login <- .print("erro ao realizar login no sistema BR-SiOP").
 
-+!run_tab_glc[scheme(s1)] : token(T) & gln(Gln) & otm(Otm) & pocos(Lista)
++!run_tab_glc[scheme(s1)] : token(T) & gln(Gln) & pocos(Lista) // & otm_in(OtmIn)
   <- .print("pedindo ao ag_marlim dados sobre a analise de sensibilidade...");
      .send(ag_marlim, askOne, as(Poco, As), as(Poco, As));
      .print("nome do poco: ", Poco);
@@ -40,14 +41,16 @@ pocos([]). // lista de poços
 		 -+pocos(NL);
      checkWell(Poco, Gln, R);
      .print(R);
+     // pocoVazio(Poco, Gln);
      !upload_brsiop(Gln);
      // !upload_brsiop(As); // por ser grande, arquivo AS já está no servidor
-     Tab_glc =.. [tab_glc,[T,Poco,Gln,As,Otm],[]];
+     // Tab_glc =.. [tab_glc,[T,Poco,Gln,As,OtmIn],[]];
+     Tab_glc =.. [tab_glc,[T,Poco,Gln,As],[]];
      .print("executando TAB/GLC...");
      act(Tab_glc, JobId);   // aplicação TAB/GLC do BR-SiOP
      .print("ID de execucao: ", JobId);
      !espera_exec(JobId); // espera o fim da execução
-     !download_brsiop(Otm);
+     !download_brsiop(Gln);
      .print("arquivo GLN foi atualizado com dados do poco (", Poco, ")");
   .
 
@@ -56,10 +59,10 @@ pocos([]). // lista de poços
 +!run_glc[scheme(s1)] : pocos(Lista) & .length(Lista,N) & N < 2
   <- .print("lista atual de pocos: ", Lista);
      .print("nao ha pocos suficientes para realizar a otimizacao. Reiniciando processo...");
-     .resetGoal("espera_teste");
+     !!restart;
   .
 
-+!run_glc[scheme(s1)] : token(T) & gln(In) & otm(Out)
++!run_glc[scheme(s1)] : token(T) & gln(In) & otm_out(Out) //& otm_in(In)
    <- .print("preparando para executar a otimizacao...");
       !upload_brsiop(In);
       GLC =.. [glc,[T,In,Out],[]];
@@ -70,6 +73,8 @@ pocos([]). // lista de poços
       !download_brsiop(Out);
       .print("fim do processo de otimizacao");
    .
+
++!restart <- resetGoal("espera_teste").
 
 +!upload_brsiop(Arquivo) : token(T)
   <- .print("upload do arquivo: ", Arquivo);
