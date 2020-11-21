@@ -137,7 +137,7 @@ public class DomClass {
                 }
             }
         });
-        Document document = builder.parse(new File(System.getProperty("user.dir") + "/../marlim/" + arquivo)); // + ".gln"));
+        Document document = builder.parse(new File(System.getProperty("user.dir") + "/../files/" + arquivo)); // + ".gln"));
         return document;
     }
 
@@ -150,7 +150,7 @@ public class DomClass {
         DOMSource source = new DOMSource(doc);
 
         String userDir = System.getProperty("user.dir");
-        File myFile = new File(userDir + "/../marlim/" + file);
+        File myFile = new File(userDir + "/../files/" + file);
         StreamResult output = new StreamResult(myFile);
         transf.transform(source, output);
     }

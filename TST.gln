@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE optimization SYSTEM "gasliftnew-v1.dtd">
+
+<optimization name="teste" type="GASLIFTNEW" inconsistentoutput="TRUE">
+  <tabdir></tabdir>
+  <unit>teste</unit>
+  <wells>
+    <well>
+      <Status>ENABLED</Status>
+      <QglFixed></QglFixed>
+      <QglMin></QglMin>
+      <QglMax></QglMax>
+      <QglRatesArray>
+      </QglRatesArray>
+      <QglRatesMin></QglRatesMin>
+      <QglRatesMax></QglRatesMax>
+      <QglWhpRatesArray>
+      </QglWhpRatesArray>
+      <QglWhpRatesMin></QglWhpRatesMin>
+      <QglWhpRatesMax></QglWhpRatesMax>
+      <QglQoRatesMatrix>
+      </QglQoRatesMatrix>
+      <PHeadFixed></PHeadFixed>
+      <PHeadMin></PHeadMin>
+      <PHeadMax></PHeadMax>
+      <GOR></GOR>
+      <WC></WC>
+      <Potential>0.0</Potential>
+      <AllowsEmerging>false</AllowsEmerging>
+      <QglReference></QglReference>
+      <PHeadReference></PHeadReference>
+      <QoReference></QoReference>
+    </well>
+  </wells>
+  <outputs outputsSa="NONE">
+  </outputs>
+  <MaxLiquidCapacityArray>
+    <step id="0">1.0</step>
+  </MaxLiquidCapacityArray>
+  <MaxWaterTreatmentCapacityArray>
+    <step id="0">2.0</step>
+  </MaxWaterTreatmentCapacityArray>
+  <CompressionCapacityArray>
+    <step id="0">3.0</step>
+  </CompressionCapacityArray>
+  <MaxFlareGasArray>
+    <step id="0">4.0</step>
+  </MaxFlareGasArray>
+  <FuelGasArray>
+    <step id="0">5.0</step>
+  </FuelGasArray>
+  <MaxExportGasRateArray>
+    <step id="0">7.0</step>
+  </MaxExportGasRateArray>
+  <MinExportGasRateArray>
+    <step id="0">6.0</step>
+  </MinExportGasRateArray>
+  <FixedFlareGas>false</FixedFlareGas>
+  <TotalOilRateReference></TotalOilRateReference>
+  <ProducedGasReference></ProducedGasReference>
+  <ConsumedGasLiftReference></ConsumedGasLiftReference>
+  <TotalGasReference></TotalGasReference>
+  <ProducedWaterReference></ProducedWaterReference>
+  <ProducedLiquidReference></ProducedLiquidReference>
+  <TotalFlareReference></TotalFlareReference>
+  <FuelGasReference></FuelGasReference>
+  <ExportGasRateReference></ExportGasRateReference>
+  <ProductionLossReference></ProductionLossReference>
+  <EfficiencyReference></EfficiencyReference>
+  <IUGAReference></IUGAReference>
+</optimization>

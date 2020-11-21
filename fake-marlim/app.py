@@ -17,11 +17,12 @@ def runAs():
     # print('\n')
     # print(content.decode('utf-8'))
     file = f'{request.get_data().decode("utf-8")}.as'
+    print(file)
     src = f'{os.getcwd()}\\as\\{file}'
-    print(src)
     os.chdir('../files')
     dst = f'{os.getcwd()}\\{file}'
-    print(dst)
+    os.chdir('../fake-marlim')
+    # print(dst)
     copyfile(src, dst)
     return file
     # return content.decode('utf-8')

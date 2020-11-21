@@ -14,9 +14,9 @@
 <group-specification id="agbr">
  <roles>
   <role id="marlim"  min="1" max="1"/>
-  <!-- <role id="brsiop"  min="1" max="1"/>
-  <role id="chatbot"  min="1" max="1"/>
-  <role id="controle"  min="1" max="1"/> -->
+  <role id="brsiop"  min="1" max="1"/>
+  <!-- <role id="chatbot"  min="1" max="1"/> -->
+  <!-- <role id="controle"  min="1" max="1"/> -->
  </roles>
 </group-specification>
 
@@ -28,7 +28,7 @@
      <plan operator="sequence">
        <goal id="espera_teste" />
        <goal id="analise_sensibilidade" />
-       <!-- <goal id="run_tab_glc" /> -->
+       <goal id="run_tab_glc" />
        <!-- <goal id="run_glc" /> -->
        <!-- <goal id="contatar_eng" /> -->
        <!-- <goal id="atuar_planta" /> -->
@@ -38,14 +38,14 @@
      <goal id="espera_teste" />
      <goal id="analise_sensibilidade" />
    </mission>
-   <!-- <mission id="mBrsiop" min="1" max="1">
+   <mission id="mBrsiop" min="1" max="1">
      <goal id="run_tab_glc" />
-     <goal id="run_glc" />
+     <!-- <goal id="run_glc" /> -->
    </mission>
-   <mission id="mChatbot" min="1" max="1">
+   <!-- <mission id="mChatbot" min="1" max="1">
      <goal id="contatar_eng" />
-   </mission>
-   <mission id="mControle" min="1" max="1">
+   </mission> -->
+   <!-- <mission id="mControle" min="1" max="1">
      <goal id="atuar_planta" />
    </mission> -->
  </scheme>
@@ -53,9 +53,9 @@
 
 <normative-specification>
   <norm id="n1"  type="obligation"   role="marlim"    mission="mMarlim" />
-  <!-- <norm id="n2"  type="obligation"   role="brsiop"    mission="mBrsiop" />
-  <norm id="n3"  type="obligation"   role="chatbot"   mission="mChatbot" />
-  <norm id="n4"  type="obligation"   role="controle"  mission="mControle" /> -->
+  <norm id="n2"  type="obligation"   role="brsiop"    mission="mBrsiop" />
+  <!-- <norm id="n3"  type="obligation"   role="chatbot"   mission="mChatbot" /> -->
+  <!-- <norm id="n4"  type="obligation"   role="controle"  mission="mControle" /> -->
 </normative-specification>
 
 </organisational-specification>

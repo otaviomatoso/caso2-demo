@@ -2,6 +2,8 @@ jacamo/.gradle/*
 jacamo/build/*
 jacamo/log/zk.log
 
+files/*
+
 .settings
 .DS_Store
 .classpath
