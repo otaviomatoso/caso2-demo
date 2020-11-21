@@ -1,0 +1,14 @@
+jacamo/.gradle/*
+jacamo/build/*
+jacamo/log/zk.log
+
+.settings
+.DS_Store
+.classpath
+.project
+
+bin
+target
+marlim/*
+
+e_r_r_o_r.txt

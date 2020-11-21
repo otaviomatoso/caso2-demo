@@ -1,21 +1,21 @@
 mas main {
 
-    agent ag_brsiop : brsiop.asl
+    agent ag_marlim : marlim.asl
 
-    workspace tools {
+    /* workspace tools {
         artifact dom : tools.DomArtifact() {
           focused-by: ag_brsiop
         }
-    }
+    } */
     workspace dummy {
-        artifact brsiop : jacamo.rest.util.DummyArt() {
-          focused-by: ag_brsiop
+        artifact marlim : jacamo.rest.util.DummyArt() {
+          focused-by: ag_marlim
         }
     }
 
     organisation sorg : otm.xml {
         group sgrp : agbr {
-            players : ag_brsiop   brsiop
+            players : ag_marlim   marlim
             responsible-for : s1
             //debug
         }

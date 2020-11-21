@@ -1,7 +1,8 @@
 // CASO 2 - DEMO
 
 /* Initial beliefs and rules */
-url("http://node-red:1880/marlim"). // (docker) url dummy marlim
+// url("http://node-red:1880/marlim"). // (docker) url dummy marlim
+url("http://localhost:1880/marlim"). // (local) url dummy marlim
 
 /* Initial goals */
 !start.
@@ -14,7 +15,7 @@ url("http://node-red:1880/marlim"). // (docker) url dummy marlim
 
 +!espera_teste[scheme(s1)]
 	<- .print("esperando teste na plataforma");
-		 .wait({+novo_teste(Poco)[source(marlim)]}); // novo_teste é um sinal emitido pelo dummy
+		 .wait({+novo_teste(Poco)[source(percept)]}); // novo_teste é um sinal emitido pelo dummy
 		 -+teste(Poco);
 		 .print("teste detectado no poco (", Poco, ")");
 	.
