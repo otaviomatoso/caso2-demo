@@ -27,16 +27,16 @@
    <goal id="otimizacao">
      <plan operator="sequence">
        <goal id="espera_teste" />
-       <!-- <goal id="run_marlim" />
-       <goal id="run_tab_glc" />
-       <goal id="run_glc" />
-       <goal id="contatar_eng" />
-       <goal id="atuar_planta" /> -->
+       <goal id="analise_sensibilidade" />
+       <!-- <goal id="run_tab_glc" /> -->
+       <!-- <goal id="run_glc" /> -->
+       <!-- <goal id="contatar_eng" /> -->
+       <!-- <goal id="atuar_planta" /> -->
      </plan>
    </goal>
    <mission id="mMarlim" min="1" max="1">
      <goal id="espera_teste" />
-     <!-- <goal id="run_marlim" /> -->
+     <goal id="analise_sensibilidade" />
    </mission>
    <!-- <mission id="mBrsiop" min="1" max="1">
      <goal id="run_tab_glc" />

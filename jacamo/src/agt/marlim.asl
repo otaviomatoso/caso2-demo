@@ -20,10 +20,10 @@ url("http://localhost:1880/marlim"). // (local) url dummy marlim
 		 .print("teste detectado no poco (", Poco, ")");
 	.
 
-+!run_marlim[scheme(s1)] : teste(Poco)
++!analise_sensibilidade[scheme(s1)] : teste(Poco)
 	<- .print("executando a analise de sensibilidade para o poco (", Poco, ")");
-		 Run_as =.. [run_as,[Poco],[]]; // run_as é operação no marlim dummy
-		 act(Run_as, Res); // Res = resposta da operacao (nome do arquivo AS gerado)
+		 RunAs =.. [runAs,[Poco],[]]; // run_as é operação no marlim dummy
+		 act(RunAs, Res); // Res = resposta da operacao (nome do arquivo AS gerado)
 		 .print("analise de sensibilidade finalizada");
 		 .print("arquivo (", Res, ") gerado");
 		 -+as(Poco,Res); // crença da analise de sensibilidade, com nome do poço e nome do arquivo AS
