@@ -1,0 +1,1488 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE optimization SYSTEM "gasliftnew-v1.dtd">
+
+<optimization inconsistentoutput='false' name='teste' type='GASLIFTNEW'>
+  <tabdir></tabdir>
+  <unit>teste</unit>
+  <wells>
+    <well name='a'>
+      <Status>ENABLED</Status>
+      <QglFixed></QglFixed>
+      <QglMin>40000</QglMin>
+      <QglMax>210000</QglMax>
+      <QglRatesArray>
+        <step id='0'>40000</step>
+        <step id='1'>45000</step>
+        <step id='2'>50000</step>
+        <step id='3'>55000</step>
+        <step id='4'>60000</step>
+        <step id='5'>65000</step>
+        <step id='6'>70000</step>
+        <step id='7'>75000</step>
+        <step id='8'>80000</step>
+        <step id='9'>85000</step>
+        <step id='10'>90000</step>
+        <step id='11'>95000</step>
+        <step id='12'>100000</step>
+        <step id='13'>105000</step>
+        <step id='14'>110000</step>
+        <step id='15'>115000</step>
+        <step id='16'>120000</step>
+        <step id='17'>125000</step>
+        <step id='18'>130000</step>
+        <step id='19'>135000</step>
+        <step id='20'>140000</step>
+        <step id='21'>145000</step>
+        <step id='22'>150000</step>
+        <step id='23'>155000</step>
+        <step id='24'>160000</step>
+        <step id='25'>165000</step>
+        <step id='26'>170000</step>
+        <step id='27'>175000</step>
+        <step id='28'>180000</step>
+        <step id='29'>210000</step>
+      </QglRatesArray>
+      <QglRatesMin>40000</QglRatesMin>
+      <QglRatesMax>210000</QglRatesMax>
+      <QglWhpRatesArray>
+        <step id='0'>2.5</step>
+        <step id='1'>5</step>
+        <step id='2'>7.5</step>
+        <step id='3'>10</step>
+        <step id='4'>12.5</step>
+        <step id='5'>15</step>
+        <step id='6'>17.5</step>
+        <step id='7'>20</step>
+        <step id='8'>22.5</step>
+        <step id='9'>25</step>
+        <step id='10'>27.5</step>
+        <step id='11'>30</step>
+        <step id='12'>32.5</step>
+        <step id='13'>35</step>
+        <step id='14'>37.5</step>
+        <step id='15'>40</step>
+        <step id='16'>42.5</step>
+        <step id='17'>45</step>
+        <step id='18'>47.5</step>
+        <step id='19'>50</step>
+        <step id='20'>52.5</step>
+        <step id='21'>55</step>
+        <step id='22'>57.5</step>
+        <step id='23'>60</step>
+        <step id='24'>62.5</step>
+        <step id='25'>65</step>
+        <step id='26'>67.5</step>
+        <step id='27'>70</step>
+        <step id='28'>72.5</step>
+        <step id='29'>75</step>
+      </QglWhpRatesArray>
+      <QglWhpRatesMin>2.5</QglWhpRatesMin>
+      <QglWhpRatesMax>75</QglWhpRatesMax>
+      <QglQoRatesMatrix>
+        <matrix id='0'>
+          <step id='0'>594.97987724079</step>
+          <step id='1'>594.87465604695</step>
+          <step id='2'>594.5657497898</step>
+          <step id='3'>593.15930120987</step>
+          <step id='4'>588.89860708045</step>
+          <step id='5'>582.53477618359</step>
+          <step id='6'>574.5388101171</step>
+          <step id='7'>564.93508351534</step>
+          <step id='8'>553.95604029237</step>
+          <step id='9'>541.98041239057</step>
+          <step id='10'>529.09089658919</step>
+          <step id='11'>515.55661942034</step>
+          <step id='12'>330.50592385142</step>
+          <step id='13'>314.0079566115</step>
+          <step id='14'>297.80328942721</step>
+          <step id='15'>281.8239468331</step>
+          <step id='16'>266.27339267054</step>
+          <step id='17'>251.47159429315</step>
+          <step id='18'>237.59540857756</step>
+          <step id='19'>224.52318357396</step>
+          <step id='20'>211.34356537939</step>
+          <step id='21'>198.91380907962</step>
+          <step id='22'>186.96271670085</step>
+          <step id='23'>175.62867261517</step>
+          <step id='24'>164.7055683736</step>
+          <step id='25'>154.09451777391</step>
+          <step id='26'>143.78904504689</step>
+          <step id='27'>133.951909199</step>
+          <step id='28'>124.58708216941</step>
+          <step id='29'>115.66754471618</step>
+        </matrix>
+        <matrix id='1'>
+          <step id='0'>594.18544918285</step>
+          <step id='1'>594.08529598229</step>
+          <step id='2'>593.7997185831</step>
+          <step id='3'>592.47343278579</step>
+          <step id='4'>588.38758442458</step>
+          <step id='5'>582.16883489094</step>
+          <step id='6'>574.40752495781</step>
+          <step id='7'>565.0195902922</step>
+          <step id='8'>554.24016969348</step>
+          <step id='9'>542.45829197927</step>
+          <step id='10'>529.73634173353</step>
+          <step id='11'>516.40257207665</step>
+          <step id='12'>343.46755800163</step>
+          <step id='13'>327.03442889799</step>
+          <step id='14'>310.91253893729</step>
+          <step id='15'>295.13322118912</step>
+          <step id='16'>279.57661359014</step>
+          <step id='17'>264.3558409904</step>
+          <step id='18'>249.81856370678</step>
+          <step id='19'>236.25595001994</step>
+          <step id='20'>223.35173301583</step>
+          <step id='21'>210.36453767727</step>
+          <step id='22'>197.95382657448</step>
+          <step id='23'>186.23165867</step>
+          <step id='24'>175.02107653177</step>
+          <step id='25'>164.17259446905</step>
+          <step id='26'>153.86401457948</step>
+          <step id='27'>143.82276127997</step>
+          <step id='28'>134.00244835422</step>
+          <step id='29'>124.65504757931</step>
+        </matrix>
+        <matrix id='2'>
+          <step id='0'>593.36383093873</step>
+          <step id='1'>593.26838373193</step>
+          <step id='2'>593.00171075212</step>
+          <step id='3'>591.7737279356</step>
+          <step id='4'>587.86240356525</step>
+          <step id='5'>581.77880051911</step>
+          <step id='6'>574.20114500918</step>
+          <step id='7'>565.05361824708</step>
+          <step id='8'>554.43404054758</step>
+          <step id='9'>542.86292699841</step>
+          <step id='10'>530.31968384909</step>
+          <step id='11'>517.14334376128</step>
+          <step id='12'>503.24638329546</step>
+          <step id='13'>338.6878772269</step>
+          <step id='14'>322.66965990654</step>
+          <step id='15'>307.12497818065</step>
+          <step id='16'>291.72940003487</step>
+          <step id='17'>276.36724651144</step>
+          <step id='18'>261.60333741715</step>
+          <step id='19'>247.22666725394</step>
+          <step id='20'>233.85812553205</step>
+          <step id='21'>221.22241161643</step>
+          <step id='22'>208.43385345899</step>
+          <step id='23'>196.1241402223</step>
+          <step id='24'>184.48404565346</step>
+          <step id='25'>173.41190822058</step>
+          <step id='26'>162.714440291</step>
+          <step id='27'>152.42835464939</step>
+          <step id='28'>142.55083574393</step>
+          <step id='29'>132.9978192416</step>
+        </matrix>
+        <matrix id='3'>
+          <step id='0'>592.51494206409</step>
+          <step id='1'>592.42255174213</step>
+          <step id='2'>592.17245029591</step>
+          <step id='3'>590.99015986326</step>
+          <step id='4'>587.29945408932</step>
+          <step id='5'>581.3697410614</step>
+          <step id='6'>573.98000352457</step>
+          <step id='7'>565.00671919815</step>
+          <step id='8'>554.65844002788</step>
+          <step id='9'>543.21080853723</step>
+          <step id='10'>530.96014144449</step>
+          <step id='11'>517.84823727126</step>
+          <step id='12'>504.09189350791</step>
+          <step id='13'>489.63741355897</step>
+          <step id='14'>332.77718928487</step>
+          <step id='15'>317.60876583795</step>
+          <step id='16'>302.46503880273</step>
+          <step id='17'>287.30948644986</step>
+          <step id='18'>272.38867067469</step>
+          <step id='19'>257.94002294023</step>
+          <step id='20'>243.75426730171</step>
+          <step id='21'>230.78123016661</step>
+          <step id='22'>218.25594621571</step>
+          <step id='23'>205.59372589078</step>
+          <step id='24'>193.38161174693</step>
+          <step id='25'>181.90668951469</step>
+          <step id='26'>170.90433754484</step>
+          <step id='27'>160.2910143926</step>
+          <step id='28'>150.06341178457</step>
+          <step id='29'>140.22342016269</step>
+        </matrix>
+        <matrix id='4'>
+          <step id='0'>591.64067300088</step>
+          <step id='1'>591.55150045243</step>
+          <step id='2'>591.2671297183</step>
+          <step id='3'>590.24214818822</step>
+          <step id='4'>586.63470230391</step>
+          <step id='5'>580.91205300149</step>
+          <step id='6'>573.70484366713</step>
+          <step id='7'>564.93150374231</step>
+          <step id='8'>554.783732084</step>
+          <step id='9'>543.48918616818</step>
+          <step id='10'>531.41219840075</step>
+          <step id='11'>518.45116758307</step>
+          <step id='12'>504.89420511096</step>
+          <step id='13'>490.6050382762</step>
+          <step id='14'>342.1257866693</step>
+          <step id='15'>326.67985036805</step>
+          <step id='16'>311.43152558261</step>
+          <step id='17'>296.82758005403</step>
+          <step id='18'>282.21456442637</step>
+          <step id='19'>267.68309924615</step>
+          <step id='20'>253.35851679167</step>
+          <step id='21'>239.61391790165</step>
+          <step id='22'>226.86656735624</step>
+          <step id='23'>214.52234349864</step>
+          <step id='24'>201.9417540655</step>
+          <step id='25'>189.85265942523</step>
+          <step id='26'>178.35026545163</step>
+          <step id='27'>167.48805757377</step>
+          <step id='28'>157.00155492008</step>
+          <step id='29'>146.82870473946</step>
+        </matrix>
+        <matrix id='5'>
+          <step id='0'>590.73567420063</step>
+          <step id='1'>590.65000098087</step>
+          <step id='2'>590.42194128321</step>
+          <step id='3'>589.45383389995</step>
+          <step id='4'>586.01930311974</step>
+          <step id='5'>580.44551606441</step>
+          <step id='6'>573.37321188454</step>
+          <step id='7'>564.82322566363</step>
+          <step id='8'>554.84704177785</step>
+          <step id='9'>543.73188673533</step>
+          <step id='10'>531.80645610031</step>
+          <step id='11'>519.0142377255</step>
+          <step id='12'>505.58775596931</step>
+          <step id='13'>491.47166512732</step>
+          <step id='14'>476.89615667215</step>
+          <step id='15'>335.17113233346</step>
+          <step id='16'>319.98838979441</step>
+          <step id='17'>305.14021525627</step>
+          <step id='18'>290.63678492778</step>
+          <step id='19'>275.96039927302</step>
+          <step id='20'>262.10271575513</step>
+          <step id='21'>248.1323096089</step>
+          <step id='22'>234.72016705591</step>
+          <step id='23'>222.22245540179</step>
+          <step id='24'>210.04664176537</step>
+          <step id='25'>197.48115575665</step>
+          <step id='26'>185.57249776607</step>
+          <step id='27'>174.20040350861</step>
+          <step id='28'>163.35060416987</step>
+          <step id='29'>152.85896313409</step>
+        </matrix>
+        <matrix id='6'>
+          <step id='0'>589.84716648962</step>
+          <step id='1'>589.7644294882</step>
+          <step id='2'>589.55318265713</step>
+          <step id='3'>588.66037117406</step>
+          <step id='4'>585.39099261935</step>
+          <step id='5'>579.93626318397</step>
+          <step id='6'>572.96632442395</step>
+          <step id='7'>564.64415656768</step>
+          <step id='8'>554.84792666556</step>
+          <step id='9'>543.92652181063</step>
+          <step id='10'>532.12457323414</step>
+          <step id='11'>519.50679840585</step>
+          <step id='12'>506.24474487612</step>
+          <step id='13'>492.39391923803</step>
+          <step id='14'>477.87532515186</step>
+          <step id='15'>342.67727282709</step>
+          <step id='16'>327.642407092</step>
+          <step id='17'>312.9042401858</step>
+          <step id='18'>298.26578403631</step>
+          <step id='19'>283.90327207656</step>
+          <step id='20'>269.59363215782</step>
+          <step id='21'>255.42726360471</step>
+          <step id='22'>241.99195308244</step>
+          <step id='23'>229.24508520307</step>
+          <step id='24'>216.91489888241</step>
+          <step id='25'>204.90176380811</step>
+          <step id='26'>192.35107955755</step>
+          <step id='27'>180.66396527326</step>
+          <step id='28'>169.4375154894</step>
+          <step id='29'>158.57929966181</step>
+        </matrix>
+        <matrix id='7'>
+          <step id='0'>588.93645614139</step>
+          <step id='1'>588.85669558046</step>
+          <step id='2'>588.65634895717</step>
+          <step id='3'>587.85950756909</step>
+          <step id='4'>584.71059441024</step>
+          <step id='5'>579.3869490233</step>
+          <step id='6'>572.55730518841</step>
+          <step id='7'>564.43278907011</step>
+          <step id='8'>554.83268246355</step>
+          <step id='9'>544.04328676695</step>
+          <step id='10'>532.42442950329</step>
+          <step id='11'>519.94759315483</step>
+          <step id='12'>506.87695692689</step>
+          <step id='13'>493.12005005318</step>
+          <step id='14'>478.76761374674</step>
+          <step id='15'>463.89615057281</step>
+          <step id='16'>334.46933593049</step>
+          <step id='17'>319.79208549909</step>
+          <step id='18'>305.24656267085</step>
+          <step id='19'>291.01258065181</step>
+          <step id='20'>276.70370495429</step>
+          <step id='21'>262.63286405231</step>
+          <step id='22'>248.77473809057</step>
+          <step id='23'>235.34598378183</step>
+          <step id='24'>222.85492889666</step>
+          <step id='25'>210.96915732018</step>
+          <step id='26'>199.06339532576</step>
+          <step id='27'>186.69813527382</step>
+          <step id='28'>175.17737988011</step>
+          <step id='29'>164.04609574786</step>
+        </matrix>
+        <matrix id='8'>
+          <step id='0'>588.04175421638</step>
+          <step id='1'>587.96468854076</step>
+          <step id='2'>587.77483990355</step>
+          <step id='3'>586.96609275348</step>
+          <step id='4'>584.02335843241</step>
+          <step id='5'>578.84250174507</step>
+          <step id='6'>572.11663110594</step>
+          <step id='7'>564.17162652744</step>
+          <step id='8'>554.76386233256</step>
+          <step id='9'>544.13257998191</step>
+          <step id='10'>532.67811072255</step>
+          <step id='11'>520.33867330304</step>
+          <step id='12'>507.41790487643</step>
+          <step id='13'>493.7981153765</step>
+          <step id='14'>479.62197283634</step>
+          <step id='15'>464.91139833801</step>
+          <step id='16'>340.77846467765</step>
+          <step id='17'>326.08522593412</step>
+          <step id='18'>311.50149204541</step>
+          <step id='19'>297.27656001438</step>
+          <step id='20'>283.19439657186</step>
+          <step id='21'>269.14065009167</step>
+          <step id='22'>255.12103212179</step>
+          <step id='23'>241.54600989585</step>
+          <step id='24'>228.52816526459</step>
+          <step id='25'>216.2522185387</step>
+          <step id='26'>204.28306640609</step>
+          <step id='27'>192.03953874833</step>
+          <step id='28'>180.44093334671</step>
+          <step id='29'>169.13518555686</step>
+        </matrix>
+        <matrix id='9'>
+          <step id='0'>587.10932389693</step>
+          <step id='1'>586.98825516854</step>
+          <step id='2'>586.76071835908</step>
+          <step id='3'>586.05715218068</step>
+          <step id='4'>583.29626228521</step>
+          <step id='5'>578.24286965111</step>
+          <step id='6'>571.6746296919</step>
+          <step id='7'>563.79402080581</step>
+          <step id='8'>554.63780605523</step>
+          <step id='9'>544.19323501261</step>
+          <step id='10'>532.86840180361</step>
+          <step id='11'>520.68273373581</step>
+          <step id='12'>507.89441691139</step>
+          <step id='13'>494.40788345702</step>
+          <step id='14'>480.36580140581</step>
+          <step id='15'>465.82693534652</step>
+          <step id='16'>450.65770745622</step>
+          <step id='17'>331.71291069577</step>
+          <step id='18'>317.24815398267</step>
+          <step id='19'>303.04055770644</step>
+          <step id='20'>288.87545615165</step>
+          <step id='21'>274.98855122805</step>
+          <step id='22'>261.00165399257</step>
+          <step id='23'>247.34638853967</step>
+          <step id='24'>234.00956199795</step>
+          <step id='25'>221.41453280618</step>
+          <step id='26'>209.35011446653</step>
+          <step id='27'>197.53957845698</step>
+          <step id='28'>185.1267758014</step>
+          <step id='29'>173.46805836837</step>
+        </matrix>
+        <matrix id='10'>
+          <step id='0'>586.0726377157</step>
+          <step id='1'>586.00068025554</step>
+          <step id='2'>585.82740315192</step>
+          <step id='3'>585.18976110835</step>
+          <step id='4'>582.55311749261</step>
+          <step id='5'>577.53745325294</step>
+          <step id='6'>571.17812723899</step>
+          <step id='7'>563.47594389415</step>
+          <step id='8'>554.40841902599</step>
+          <step id='9'>544.185230801</step>
+          <step id='10'>533.00049140628</step>
+          <step id='11'>520.94727494067</step>
+          <step id='12'>508.322742788</step>
+          <step id='13'>494.96371360905</step>
+          <step id='14'>481.07459646617</step>
+          <step id='15'>466.7534932293</step>
+          <step id='16'>451.6820454316</step>
+          <step id='17'>336.8778796264</step>
+          <step id='18'>322.38148817746</step>
+          <step id='19'>308.20484286019</step>
+          <step id='20'>294.11819464584</step>
+          <step id='21'>280.30515773543</step>
+          <step id='22'>266.28913964967</step>
+          <step id='23'>252.56963939304</step>
+          <step id='24'>239.1260028818</step>
+          <step id='25'>226.20125246047</step>
+          <step id='26'>213.99080753663</step>
+          <step id='27'>202.06459256932</step>
+          <step id='28'>190.03207040961</step>
+          <step id='29'>177.86005776816</step>
+        </matrix>
+        <matrix id='11'>
+          <step id='0'>585.13260540634</step>
+          <step id='1'>585.06314172065</step>
+          <step id='2'>584.89919616021</step>
+          <step id='3'>584.29320896356</step>
+          <step id='4'>581.77819718658</step>
+          <step id='5'>576.90190276215</step>
+          <step id='6'>570.67024191229</step>
+          <step id='7'>563.08989151705</step>
+          <step id='8'>554.22448304761</step>
+          <step id='9'>544.15804061482</step>
+          <step id='10'>533.10800526375</step>
+          <step id='11'>521.25368742335</step>
+          <step id='12'>508.70678405666</step>
+          <step id='13'>495.46970849382</step>
+          <step id='14'>481.75829289313</step>
+          <step id='15'>467.52382820807</step>
+          <step id='16'>452.69085764978</step>
+          <step id='17'>341.48701840499</step>
+          <step id='18'>327.11748767677</step>
+          <step id='19'>312.96368855144</step>
+          <step id='20'>298.81169942371</step>
+          <step id='21'>284.98941141445</step>
+          <step id='22'>271.19753136488</step>
+          <step id='23'>257.43129294799</step>
+          <step id='24'>243.77216616687</step>
+          <step id='25'>230.78199438782</step>
+          <step id='26'>218.2255583671</step>
+          <step id='27'>206.20236775058</step>
+          <step id='28'>194.38441075087</step>
+          <step id='29'>181.98200552595</step>
+        </matrix>
+        <matrix id='12'>
+          <step id='0'>584.17455356531</step>
+          <step id='1'>584.10641721119</step>
+          <step id='2'>583.94822342091</step>
+          <step id='3'>583.38402705775</step>
+          <step id='4'>580.99965688535</step>
+          <step id='5'>576.2556933966</step>
+          <step id='6'>570.11871553233</step>
+          <step id='7'>562.69486959628</step>
+          <step id='8'>553.98821802749</step>
+          <step id='9'>544.05824941378</step>
+          <step id='10'>533.19424159387</step>
+          <step id='11'>521.50085265124</step>
+          <step id='12'>509.02506207917</step>
+          <step id='13'>495.93049366074</step>
+          <step id='14'>482.39094738776</step>
+          <step id='15'>468.26548478042</step>
+          <step id='16'>453.58077313669</step>
+          <step id='17'>345.57270587753</step>
+          <step id='18'>331.3356066404</step>
+          <step id='19'>317.13581346493</step>
+          <step id='20'>303.1549294437</step>
+          <step id='21'>289.16336643663</step>
+          <step id='22'>275.50106210418</step>
+          <step id='23'>261.81832490992</step>
+          <step id='24'>248.20583573364</step>
+          <step id='25'>234.97787049205</step>
+          <step id='26'>222.18882966859</step>
+          <step id='27'>209.9847800696</step>
+          <step id='28'>198.05514621794</step>
+          <step id='29'>186.02928082718</step>
+        </matrix>
+        <matrix id='13'>
+          <step id='0'>583.27916786342</step>
+          <step id='1'>583.14683692774</step>
+          <step id='2'>582.99334913122</step>
+          <step id='3'>582.46217516873</step>
+          <step id='4'>580.2075617132</step>
+          <step id='5'>575.59013716781</step>
+          <step id='6'>569.54470495996</step>
+          <step id='7'>562.25065596295</step>
+          <step id='8'>553.70332440517</step>
+          <step id='9'>543.9349684661</step>
+          <step id='10'>533.19094337602</step>
+          <step id='11'>521.63145403366</step>
+          <step id='12'>509.27480152587</step>
+          <step id='13'>496.35230354599</step>
+          <step id='14'>482.96922151004</step>
+          <step id='15'>468.92987456631</step>
+          <step id='16'>454.43380489473</step>
+          <step id='17'>439.29828318197</step>
+          <step id='18'>335.2211284894</step>
+          <step id='19'>320.98933857857</step>
+          <step id='20'>307.02056143018</step>
+          <step id='21'>293.11302253394</step>
+          <step id='22'>279.44514743109</step>
+          <step id='23'>265.74193715287</step>
+          <step id='24'>252.19273755936</step>
+          <step id='25'>238.85333679883</step>
+          <step id='26'>225.95103034774</step>
+          <step id='27'>213.42510284213</step>
+          <step id='28'>201.40663833045</step>
+          <step id='29'>189.58687133314</step>
+        </matrix>
+        <matrix id='14'>
+          <step id='0'>582.43301409627</step>
+          <step id='1'>582.13464604737</step>
+          <step id='2'>581.98751335354</step>
+          <step id='3'>581.48352957722</step>
+          <step id='4'>579.40122789326</step>
+          <step id='5'>574.90101074805</step>
+          <step id='6'>568.95408263183</step>
+          <step id='7'>561.77687903547</step>
+          <step id='8'>553.41525323151</step>
+          <step id='9'>543.79909797956</step>
+          <step id='10'>533.16105830453</step>
+          <step id='11'>521.71620214353</step>
+          <step id='12'>509.47494703832</step>
+          <step id='13'>496.71394106657</step>
+          <step id='14'>483.40185115873</step>
+          <step id='15'>469.53815442659</step>
+          <step id='16'>455.1806099047</step>
+          <step id='17'>440.28509387376</step>
+          <step id='18'>338.59029824515</step>
+          <step id='19'>324.54523975344</step>
+          <step id='20'>310.45203532556</step>
+          <step id='21'>296.62439776784</step>
+          <step id='22'>282.8895125316</step>
+          <step id='23'>269.44750501821</step>
+          <step id='24'>255.83952072485</step>
+          <step id='25'>242.35841726329</step>
+          <step id='26'>229.37749658308</step>
+          <step id='27'>216.62147816028</step>
+          <step id='28'>204.47693726019</step>
+          <step id='29'>192.56262805488</step>
+        </matrix>
+        <matrix id='15'>
+          <step id='0'>581.52266574756</step>
+          <step id='1'>581.16179244819</step>
+          <step id='2'>581.02129641222</step>
+          <step id='3'>580.54522682112</step>
+          <step id='4'>578.57783987371</step>
+          <step id='5'>574.19032524575</step>
+          <step id='6'>568.24379935123</step>
+          <step id='7'>561.30463055042</step>
+          <step id='8'>553.06536058425</step>
+          <step id='9'>543.59633802613</step>
+          <step id='10'>533.08865840051</step>
+          <step id='11'>521.76458941272</step>
+          <step id='12'>509.63756526718</step>
+          <step id='13'>496.9864060387</step>
+          <step id='14'>483.78195065483</step>
+          <step id='15'>470.08992213956</step>
+          <step id='16'>455.91659515123</step>
+          <step id='17'>441.16861403582</step>
+          <step id='18'>341.68981858059</step>
+          <step id='19'>327.61093324483</step>
+          <step id='20'>313.6944650271</step>
+          <step id='21'>299.72550687895</step>
+          <step id='22'>286.11352047978</step>
+          <step id='23'>272.58300408373</step>
+          <step id='24'>259.17116319701</step>
+          <step id='25'>245.73333878919</step>
+          <step id='26'>232.49270356439</step>
+          <step id='27'>219.65147447678</step>
+          <step id='28'>207.24414203617</step>
+          <step id='29'>195.21926208856</step>
+        </matrix>
+        <matrix id='16'>
+          <step id='0'>580.61931605623</step>
+          <step id='1'>580.16251288403</step>
+          <step id='2'>580.04574792772</step>
+          <step id='3'>579.60068962884</step>
+          <step id='4'>577.64195044774</step>
+          <step id='5'>573.46371176457</step>
+          <step id='6'>567.61283418769</step>
+          <step id='7'>560.77550791854</step>
+          <step id='8'>552.67359665916</step>
+          <step id='9'>543.35713678768</step>
+          <step id='10'>532.98335676233</step>
+          <step id='11'>521.77943139304</step>
+          <step id='12'>509.76438576572</step>
+          <step id='13'>497.22146439375</step>
+          <step id='14'>484.12468375603</step>
+          <step id='15'>470.55553396675</step>
+          <step id='16'>456.60194068712</step>
+          <step id='17'>442.05253641957</step>
+          <step id='18'>344.40944053077</step>
+          <step id='19'>330.4383103855</step>
+          <step id='20'>316.46963379253</step>
+          <step id='21'>302.71371236196</step>
+          <step id='22'>288.96088803839</step>
+          <step id='23'>275.52433062888</step>
+          <step id='24'>262.19251174719</step>
+          <step id='25'>248.62718306396</step>
+          <step id='26'>235.32172981398</step>
+          <step id='27'>222.40114238713</step>
+          <step id='28'>209.73946506148</step>
+          <step id='29'>197.60083682021</step>
+        </matrix>
+        <matrix id='17'>
+          <step id='0'>579.72320635531</step>
+          <step id='1'>579.17035264378</step>
+          <step id='2'>579.04534214283</step>
+          <step id='3'>578.62679025326</step>
+          <step id='4'>576.75911406255</step>
+          <step id='5'>572.66936415096</step>
+          <step id='6'>566.9629243826</step>
+          <step id='7'>560.23283041574</step>
+          <step id='8'>552.26518075615</step>
+          <step id='9'>543.09979535106</step>
+          <step id='10'>532.84636005506</step>
+          <step id='11'>521.75968230811</step>
+          <step id='12'>509.8571380872</step>
+          <step id='13'>497.42466679104</step>
+          <step id='14'>484.44581755253</step>
+          <step id='15'>470.99001383521</step>
+          <step id='16'>457.15933950373</step>
+          <step id='17'>442.8839688729</step>
+          <step id='18'>427.60489423934</step>
+          <step id='19'>332.89604579397</step>
+          <step id='20'>319.04584359949</step>
+          <step id='21'>305.26639220011</step>
+          <step id='22'>291.71170228055</step>
+          <step id='23'>278.10731787131</step>
+          <step id='24'>264.78102953784</step>
+          <step id='25'>251.33932369072</step>
+          <step id='26'>237.88100608784</step>
+          <step id='27'>224.89833574329</step>
+          <step id='28'>212.11611257745</step>
+          <step id='29'>199.82274965242</step>
+        </matrix>
+        <matrix id='18'>
+          <step id='0'>578.85726328106</step>
+          <step id='1'>578.17276241071</step>
+          <step id='2'>578.05286012522</step>
+          <step id='3'>577.56745899094</step>
+          <step id='4'>575.88206966969</step>
+          <step id='5'>571.90920538092</step>
+          <step id='6'>566.29254149354</step>
+          <step id='7'>559.64188631026</step>
+          <step id='8'>551.82844844624</step>
+          <step id='9'>542.8051277417</step>
+          <step id='10'>532.6742896165</step>
+          <step id='11'>521.70940459699</step>
+          <step id='12'>509.92149355744</step>
+          <step id='13'>497.6088843246</step>
+          <step id='14'>484.73931871899</step>
+          <step id='15'>471.39026463793</step>
+          <step id='16'>457.67538993072</step>
+          <step id='17'>443.54534199613</step>
+          <step id='18'>428.58132761156</step>
+          <step id='19'>335.25173755994</step>
+          <step id='20'>321.30451949408</step>
+          <step id='21'>307.65955091642</step>
+          <step id='22'>294.04151108083</step>
+          <step id='23'>280.61589410127</step>
+          <step id='24'>267.09808791059</step>
+          <step id='25'>253.72856074555</step>
+          <step id='26'>240.29479877679</step>
+          <step id='27'>227.24365018968</step>
+          <step id='28'>214.41314031008</step>
+          <step id='29'>201.93419229775</step>
+        </matrix>
+        <matrix id='19'>
+          <step id='0'>577.95322981286</step>
+          <step id='1'>577.07131853756</step>
+          <step id='2'>576.95656468968</step>
+          <step id='3'>576.59319761584</step>
+          <step id='4'>575.00373816742</step>
+          <step id='5'>571.12704508449</step>
+          <step id='6'>565.60687418031</step>
+          <step id='7'>558.95987921439</step>
+          <step id='8'>551.36054395542</step>
+          <step id='9'>542.48005217265</step>
+          <step id='10'>532.47997631854</step>
+          <step id='11'>521.6333444756</step>
+          <step id='12'>509.96782949602</step>
+          <step id='13'>497.76723900356</step>
+          <step id='14'>485.00349792433</step>
+          <step id='15'>471.85881268345</step>
+          <step id='16'>458.15198241002</step>
+          <step id='17'>444.14726675372</step>
+          <step id='18'>429.42683782401</step>
+          <step id='19'>337.16042025184</step>
+          <step id='20'>323.41475547433</step>
+          <step id='21'>309.81447372632</step>
+          <step id='22'>296.31195195982</step>
+          <step id='23'>282.7994953176</step>
+          <step id='24'>269.46210566552</step>
+          <step id='25'>256.17640150047</step>
+          <step id='26'>242.55130267425</step>
+          <step id='27'>229.47481412074</step>
+          <step id='28'>216.5866658731</step>
+          <step id='29'>203.97631203497</step>
+        </matrix>
+        <matrix id='20'>
+          <step id='0'>576.96726378661</step>
+          <step id='1'>576.03652279826</step>
+          <step id='2'>575.92506716824</step>
+          <step id='3'>575.58663783912</step>
+          <step id='4'>574.10131358597</step>
+          <step id='5'>570.34214968057</step>
+          <step id='6'>564.90407222312</step>
+          <step id='7'>558.35578245968</step>
+          <step id='8'>550.8702759387</step>
+          <step id='9'>542.12139109257</step>
+          <step id='10'>532.26370171637</step>
+          <step id='11'>521.54220104087</step>
+          <step id='12'>509.99055502145</step>
+          <step id='13'>497.89719683127</step>
+          <step id='14'>485.23755072516</step>
+          <step id='15'>472.19209357495</step>
+          <step id='16'>458.5910878279</step>
+          <step id='17'>444.70551023588</step>
+          <step id='18'>430.14637220346</step>
+          <step id='19'>338.89152206804</step>
+          <step id='20'>325.37783864967</step>
+          <step id='21'>311.80102653721</step>
+          <step id='22'>298.38087977262</step>
+          <step id='23'>284.96393067045</step>
+          <step id='24'>271.5345529181</step>
+          <step id='25'>258.28020193371</step>
+          <step id='26'>244.88919613048</step>
+          <step id='27'>231.60192330085</step>
+          <step id='28'>218.68489553594</step>
+          <step id='29'>205.99729502244</step>
+        </matrix>
+        <matrix id='21'>
+          <step id='0'>576.05019833569</step>
+          <step id='1'>575.01749414918</step>
+          <step id='2'>574.91018140256</step>
+          <step id='3'>574.59061627064</step>
+          <step id='4'>573.15066262402</step>
+          <step id='5'>569.51276855785</step>
+          <step id='6'>564.20139093243</step>
+          <step id='7'>557.73109195449</step>
+          <step id='8'>550.3653670525</step>
+          <step id='9'>541.74901425289</step>
+          <step id='10'>532.03234380085</step>
+          <step id='11'>521.42788963686</step>
+          <step id='12'>509.98693502625</step>
+          <step id='13'>497.98399627176</step>
+          <step id='14'>485.4406726781</step>
+          <step id='15'>472.49436317424</step>
+          <step id='16'>459.00424994684</step>
+          <step id='17'>445.22160088504</step>
+          <step id='18'>430.79897689386</step>
+          <step id='19'>340.64902973813</step>
+          <step id='20'>327.11610001194</step>
+          <step id='21'>313.69046292129</step>
+          <step id='22'>300.20843434985</step>
+          <step id='23'>286.92560606988</step>
+          <step id='24'>273.59980040244</step>
+          <step id='25'>260.25106809873</step>
+          <step id='26'>246.93541852894</step>
+          <step id='27'>233.63290149729</step>
+          <step id='28'>220.696969313</step>
+          <step id='29'>207.93037245978</step>
+        </matrix>
+        <matrix id='22'>
+          <step id='0'>575.13305244043</step>
+          <step id='1'>573.98116996747</step>
+          <step id='2'>573.87747721605</step>
+          <step id='3'>573.57472495074</step>
+          <step id='4'>572.21071075899</step>
+          <step id='5'>568.65293925328</step>
+          <step id='6'>563.41191020126</step>
+          <step id='7'>557.07711971034</step>
+          <step id='8'>549.71702591199</step>
+          <step id='9'>541.36054854565</step>
+          <step id='10'>531.77898435895</step>
+          <step id='11'>521.24137943967</step>
+          <step id='12'>509.95825661982</step>
+          <step id='13'>498.05712017482</step>
+          <step id='14'>485.61431178125</step>
+          <step id='15'>472.76525948178</step>
+          <step id='16'>459.37111634938</step>
+          <step id='17'>445.69626270023</step>
+          <step id='18'>431.40114298447</step>
+          <step id='19'>342.17172038618</step>
+          <step id='20'>328.69065714679</step>
+          <step id='21'>315.34852127878</step>
+          <step id='22'>302.06243500313</step>
+          <step id='23'>288.64757745374</step>
+          <step id='24'>275.41416210827</step>
+          <step id='25'>262.22104937603</step>
+          <step id='26'>248.88512783311</step>
+          <step id='27'>235.56877437537</step>
+          <step id='28'>222.61999120811</step>
+          <step id='29'>209.79645987481</step>
+        </matrix>
+        <matrix id='23'>
+          <step id='0'>574.17894237195</step>
+          <step id='1'>572.89038496907</step>
+          <step id='2'>572.80467152714</step>
+          <step id='3'>572.51845057325</step>
+          <step id='4'>571.27437888917</step>
+          <step id='5'>567.77484908402</step>
+          <step id='6'>562.69060604638</step>
+          <step id='7'>556.44052344316</step>
+          <step id='8'>549.18251350948</step>
+          <step id='9'>540.95695930291</step>
+          <step id='10'>531.49207962819</step>
+          <step id='11'>521.03093705198</step>
+          <step id='12'>509.90391646964</step>
+          <step id='13'>498.09870989746</step>
+          <step id='14'>485.75810603506</step>
+          <step id='15'>473.00763827157</step>
+          <step id='16'>459.70274813196</step>
+          <step id='17'>446.12897279325</step>
+          <step id='18'>431.95552513841</step>
+          <step id='19'>343.59534383223</step>
+          <step id='20'>330.26979960889</step>
+          <step id='21'>316.87788880686</step>
+          <step id='22'>303.61935471691</step>
+          <step id='23'>290.39539158113</step>
+          <step id='24'>277.0223650874</step>
+          <step id='25'>263.92264823135</step>
+          <step id='26'>250.81376072079</step>
+          <step id='27'>237.41915503345</step>
+          <step id='28'>224.45319700007</step>
+          <step id='29'>211.59563771188</step>
+        </matrix>
+        <matrix id='24'>
+          <step id='0'>573.23722073149</step>
+          <step id='1'>571.86286944235</step>
+          <step id='2'>571.76545134927</step>
+          <step id='3'>571.49258415545</step>
+          <step id='4'>570.34532723192</step>
+          <step id='5'>566.9317522017</step>
+          <step id='6'>561.9460132557</step>
+          <step id='7'>555.76446922829</step>
+          <step id='8'>548.61554181667</step>
+          <step id='9'>540.53551141718</step>
+          <step id='10'>531.19503891086</step>
+          <step id='11'>520.84579440854</step>
+          <step id='12'>509.82411568654</step>
+          <step id='13'>498.11713165082</step>
+          <step id='14'>485.87285988294</step>
+          <step id='15'>473.21192666742</step>
+          <step id='16'>459.99817996253</step>
+          <step id='17'>446.52254671594</step>
+          <step id='18'>432.46518024055</step>
+          <step id='19'>344.95988091216</step>
+          <step id='20'>331.64163701248</step>
+          <step id='21'>318.42718641964</step>
+          <step id='22'>305.10572474644</step>
+          <step id='23'>291.89724714569</step>
+          <step id='24'>278.65775825271</step>
+          <step id='25'>265.41434769826</step>
+          <step id='26'>252.39071107468</step>
+          <step id='27'>239.22044453438</step>
+          <step id='28'>226.20539534387</step>
+          <step id='29'>213.31644265285</step>
+        </matrix>
+        <matrix id='25'>
+          <step id='0'>572.23315472924</step>
+          <step id='1'>570.83454947225</step>
+          <step id='2'>570.74042959702</step>
+          <step id='3'>570.48023238641</step>
+          <step id='4'>569.38920605499</step>
+          <step id='5'>566.10667485106</step>
+          <step id='6'>561.17431072318</step>
+          <step id='7'>555.09251767464</step>
+          <step id='8'>548.04209435466</step>
+          <step id='9'>539.96588506121</step>
+          <step id='10'>530.77620546611</step>
+          <step id='11'>520.62569870031</step>
+          <step id='12'>509.70521895527</step>
+          <step id='13'>498.11077654813</step>
+          <step id='14'>485.95796999233</step>
+          <step id='15'>473.38637021393</step>
+          <step id='16'>460.25930228303</step>
+          <step id='17'>446.87819113336</step>
+          <step id='18'>432.92681007301</step>
+          <step id='19'>346.34802840524</step>
+          <step id='20'>332.98749089496</step>
+          <step id='21'>319.73151091273</step>
+          <step id='22'>306.45582206774</step>
+          <step id='23'>293.28012553464</step>
+          <step id='24'>280.13877873378</step>
+          <step id='25'>266.87706709248</step>
+          <step id='26'>253.84190681751</step>
+          <step id='27'>240.75439738972</step>
+          <step id='28'>227.81128554829</step>
+          <step id='29'>214.95455081456</step>
+        </matrix>
+        <matrix id='26'>
+          <step id='0'>571.28214176777</step>
+          <step id='1'>569.79396174063</step>
+          <step id='2'>569.70012342059</step>
+          <step id='3'>569.47415527571</step>
+          <step id='4'>568.34165988816</step>
+          <step id='5'>565.27021462661</step>
+          <step id='6'>560.42734482454</step>
+          <step id='7'>554.37217885181</step>
+          <step id='8'>547.43984781972</step>
+          <step id='9'>539.50099723307</step>
+          <step id='10'>530.43371369792</step>
+          <step id='11'>520.39345589709</step>
+          <step id='12'>509.57586446009</step>
+          <step id='13'>498.0771910371</step>
+          <step id='14'>486.01319503023</step>
+          <step id='15'>473.52948069088</step>
+          <step id='16'>460.4880055354</step>
+          <step id='17'>447.1977160431</step>
+          <step id='18'>433.37351748082</step>
+          <step id='19'>418.76184929581</step>
+          <step id='20'>334.16974110544</step>
+          <step id='21'>320.9762462626</step>
+          <step id='22'>307.80992149485</step>
+          <step id='23'>294.59756245479</step>
+          <step id='24'>281.47731218152</step>
+          <step id='25'>268.40880772853</step>
+          <step id='26'>255.21062700301</step>
+          <step id='27'>242.20062569469</step>
+          <step id='28'>229.24287298378</step>
+          <step id='29'>216.4519014962</step>
+        </matrix>
+        <matrix id='27'>
+          <step id='0'>570.33406502463</step>
+          <step id='1'>568.76861821103</step>
+          <step id='2'>568.63210416979</step>
+          <step id='3'>568.34974454411</step>
+          <step id='4'>567.37190339598</step>
+          <step id='5'>564.41251709699</step>
+          <step id='6'>559.66010695277</step>
+          <step id='7'>553.66032690662</step>
+          <step id='8'>546.83466506645</step>
+          <step id='9'>539.00493722402</step>
+          <step id='10'>530.06938129203</step>
+          <step id='11'>520.13933223397</step>
+          <step id='12'>509.4218135532</step>
+          <step id='13'>498.0171795611</step>
+          <step id='14'>486.03817299711</step>
+          <step id='15'>473.64113743175</step>
+          <step id='16'>460.68424949746</step>
+          <step id='17'>447.48429899651</step>
+          <step id='18'>433.76081674516</step>
+          <step id='19'>419.27347528422</step>
+          <step id='20'>335.68100865752</step>
+          <step id='21'>322.1367362797</step>
+          <step id='22'>308.99613358896</step>
+          <step id='23'>295.88728630057</step>
+          <step id='24'>282.69803489655</step>
+          <step id='25'>269.70806422834</step>
+          <step id='26'>256.70532302151</step>
+          <step id='27'>243.54989846153</step>
+          <step id='28'>230.59671096678</step>
+          <step id='29'>217.7836373974</step>
+        </matrix>
+        <matrix id='28'>
+          <step id='0'>569.35252343696</step>
+          <step id='1'>567.6345541589</step>
+          <step id='2'>567.54904182782</step>
+          <step id='3'>567.32568812391</step>
+          <step id='4'>566.40624956503</step>
+          <step id='5'>563.50482341142</step>
+          <step id='6'>558.77119702008</step>
+          <step id='7'>552.94706718552</step>
+          <step id='8'>546.22131721289</step>
+          <step id='9'>538.49890211709</step>
+          <step id='10'>529.68091558479</step>
+          <step id='11'>519.85962727144</step>
+          <step id='12'>509.24250312424</step>
+          <step id='13'>497.92848967868</step>
+          <step id='14'>486.03467366842</step>
+          <step id='15'>473.72290910112</step>
+          <step id='16'>460.85052794369</step>
+          <step id='17'>447.73765843841</step>
+          <step id='18'>434.10990494904</step>
+          <step id='19'>419.74210377408</step>
+          <step id='20'>337.06487248961</step>
+          <step id='21'>323.48277116194</step>
+          <step id='22'>310.09920645996</step>
+          <step id='23'>297.04906342708</step>
+          <step id='24'>283.90922495755</step>
+          <step id='25'>270.8569702608</step>
+          <step id='26'>257.8679045914</step>
+          <step id='27'>244.93305840567</step>
+          <step id='28'>231.86962194596</step>
+          <step id='29'>219.03416473959</step>
+        </matrix>
+        <matrix id='29'>
+          <step id='0'>563.15762564947</step>
+          <step id='1'>561.22181310465</step>
+          <step id='2'>561.1573369679</step>
+          <step id='3'>560.96479344538</step>
+          <step id='4'>560.31761874778</step>
+          <step id='5'>557.93538035033</step>
+          <step id='6'>553.72037860479</step>
+          <step id='7'>548.26432183783</step>
+          <step id='8'>541.97023618184</step>
+          <step id='9'>534.78864836907</step>
+          <step id='10'>526.73524504539</step>
+          <step id='11'>517.62407912398</step>
+          <step id='12'>507.58872842775</step>
+          <step id='13'>496.82648269515</step>
+          <step id='14'>485.43508179663</step>
+          <step id='15'>473.60634525565</step>
+          <step id='16'>461.20733880401</step>
+          <step id='17'>448.58123798675</step>
+          <step id='18'>435.47166669932</step>
+          <step id='19'>421.71190405162</step>
+          <step id='20'>344.66465019244</step>
+          <step id='21'>331.33514408546</step>
+          <step id='22'>317.92509308526</step>
+          <step id='23'>304.55085992647</step>
+          <step id='24'>291.2384080191</step>
+          <step id='25'>277.75750566839</step>
+          <step id='26'>264.44191643185</step>
+          <step id='27'>251.15866581911</step>
+          <step id='28'>237.92772413702</step>
+          <step id='29'>225.06666552013</step>
+        </matrix>
+      </QglQoRatesMatrix>
+      <PHeadFixed></PHeadFixed>
+      <PHeadMin>2.5</PHeadMin>
+      <PHeadMax>75</PHeadMax>
+      <GOR>79</GOR>
+      <WC>34.1</WC>
+      <Potential></Potential>
+      <QglReference></QglReference>
+      <PHeadReference></PHeadReference>
+      <QoReference></QoReference>
+      <AllowsEmerging></AllowsEmerging>
+    </well>
+    <well name='b'>
+      <Status>ENABLED</Status>
+      <QglFixed></QglFixed>
+      <QglMin>0</QglMin>
+      <QglMax>200000</QglMax>
+      <QglRatesArray>
+        <step id='0'>0</step>
+        <step id='1'>20000</step>
+        <step id='2'>40000</step>
+        <step id='3'>60000</step>
+        <step id='4'>80000</step>
+        <step id='5'>100000</step>
+        <step id='6'>120000</step>
+        <step id='7'>140000</step>
+        <step id='8'>160000</step>
+        <step id='9'>180000</step>
+        <step id='10'>200000</step>
+      </QglRatesArray>
+      <QglRatesMin>0</QglRatesMin>
+      <QglRatesMax>200000</QglRatesMax>
+      <QglWhpRatesArray>
+        <step id='0'>20</step>
+        <step id='1'>25</step>
+        <step id='2'>30</step>
+        <step id='3'>35</step>
+        <step id='4'>40</step>
+        <step id='5'>45</step>
+        <step id='6'>50</step>
+        <step id='7'>55</step>
+        <step id='8'>60</step>
+        <step id='9'>65</step>
+        <step id='10'>70</step>
+        <step id='11'>75</step>
+        <step id='12'>80</step>
+        <step id='13'>85</step>
+        <step id='14'>90</step>
+        <step id='15'>95</step>
+        <step id='16'>100</step>
+        <step id='17'>105</step>
+        <step id='18'>110</step>
+        <step id='19'>115</step>
+        <step id='20'>120</step>
+        <step id='21'>125</step>
+        <step id='22'>130</step>
+        <step id='23'>135</step>
+        <step id='24'>140</step>
+      </QglWhpRatesArray>
+      <QglWhpRatesMin>20</QglWhpRatesMin>
+      <QglWhpRatesMax>140</QglWhpRatesMax>
+      <QglQoRatesMatrix>
+        <matrix id='0'>
+          <step id='0'>4114.2945840912</step>
+          <step id='1'>4037.542982675</step>
+          <step id='2'>3954.1328674893</step>
+          <step id='3'>3865.2079229823</step>
+          <step id='4'>3769.7089289147</step>
+          <step id='5'>3665.4483599203</step>
+          <step id='6'>3555.7337465412</step>
+          <step id='7'>3438.0704652177</step>
+          <step id='8'>3311.2967669019</step>
+          <step id='9'>3177.839410847</step>
+          <step id='10'>3035.2269645331</step>
+          <step id='11'>2880.7797643131</step>
+          <step id='12'>2710.0138836242</step>
+          <step id='13'>2534.0671245906</step>
+          <step id='14'>2345.4658694144</step>
+          <step id='15'>2138.6408508593</step>
+          <step id='16'>1917.2984853559</step>
+          <step id='17'>1674.2884870277</step>
+          <step id='18'>1388.9007688874</step>
+          <step id='19'>1030.413916079</step>
+          <step id='20'>0</step>
+          <step id='21'>0</step>
+          <step id='22'>0</step>
+          <step id='23'>0</step>
+          <step id='24'>0</step>
+        </matrix>
+        <matrix id='1'>
+          <step id='0'>4108.8146633881</step>
+          <step id='1'>4033.2462932463</step>
+          <step id='2'>3951.286716586</step>
+          <step id='3'>3863.9641508875</step>
+          <step id='4'>3770.1949642907</step>
+          <step id='5'>3668.0213447836</step>
+          <step id='6'>3560.7544846515</step>
+          <step id='7'>3446.9909597977</step>
+          <step id='8'>3324.6845881422</step>
+          <step id='9'>3195.5710359446</step>
+          <step id='10'>3056.5573508125</step>
+          <step id='11'>2908.5992477116</step>
+          <step id='12'>2744.6781414612</step>
+          <step id='13'>2575.8136819393</step>
+          <step id='14'>2397.4003727104</step>
+          <step id='15'>2204.3474143116</step>
+          <step id='16'>2000.0430176925</step>
+          <step id='17'>1787.6708244181</step>
+          <step id='18'>1542.9155172398</step>
+          <step id='19'>1279.5728355864</step>
+          <step id='20'>975.72797896947</step>
+          <step id='21'>0</step>
+          <step id='22'>0</step>
+          <step id='23'>0</step>
+          <step id='24'>0</step>
+        </matrix>
+        <matrix id='2'>
+          <step id='0'>4102.9573390228</step>
+          <step id='1'>4028.5018946867</step>
+          <step id='2'>3947.8822719082</step>
+          <step id='3'>3862.0190329188</step>
+          <step id='4'>3769.9142306481</step>
+          <step id='5'>3669.7030613607</step>
+          <step id='6'>3564.6871968097</step>
+          <step id='7'>3453.5432830155</step>
+          <step id='8'>3334.3457313063</step>
+          <step id='9'>3208.8226403392</step>
+          <step id='10'>3075.5798624336</step>
+          <step id='11'>2933.3702078679</step>
+          <step id='12'>2776.1925678285</step>
+          <step id='13'>2612.9745162656</step>
+          <step id='14'>2442.4141814264</step>
+          <step id='15'>2262.5288514455</step>
+          <step id='16'>2068.4640313523</step>
+          <step id='17'>1872.1292966717</step>
+          <step id='18'>1653.1380143958</step>
+          <step id='19'>1424.7719372712</step>
+          <step id='20'>1182.8035828151</step>
+          <step id='21'>923.41350879113</step>
+          <step id='22'>670.94034554593</step>
+          <step id='23'>0</step>
+          <step id='24'>0</step>
+        </matrix>
+        <matrix id='3'>
+          <step id='0'>4096.7416520599</step>
+          <step id='1'>4023.3493338225</step>
+          <step id='2'>3943.9134305508</step>
+          <step id='3'>3859.44897745</step>
+          <step id='4'>3768.9529010094</step>
+          <step id='5'>3670.5394034994</step>
+          <step id='6'>3567.6100002033</step>
+          <step id='7'>3458.8691663896</step>
+          <step id='8'>3342.5329007887</step>
+          <step id='9'>3220.2792582347</step>
+          <step id='10'>3090.9364809151</step>
+          <step id='11'>2953.2368733465</step>
+          <step id='12'>2804.2163764955</step>
+          <step id='13'>2645.4234194883</step>
+          <step id='14'>2481.783535113</step>
+          <step id='15'>2310.16813001</step>
+          <step id='16'>2126.7899852831</step>
+          <step id='17'>1942.2286092817</step>
+          <step id='18'>1745.5842131875</step>
+          <step id='19'>1531.9067305332</step>
+          <step id='20'>1315.6706658721</step>
+          <step id='21'>1090.4304968286</step>
+          <step id='22'>869.50343402904</step>
+          <step id='23'>662.44162274928</step>
+          <step id='24'>486.77800800585</step>
+        </matrix>
+        <matrix id='4'>
+          <step id='0'>4090.1837141693</step>
+          <step id='1'>4017.8103369963</step>
+          <step id='2'>3939.4653890713</step>
+          <step id='3'>3856.3247781824</step>
+          <step id='4'>3767.3519868981</step>
+          <step id='5'>3670.655846932</step>
+          <step id='6'>3569.956689339</step>
+          <step id='7'>3463.0813916093</step>
+          <step id='8'>3349.3886604567</step>
+          <step id='9'>3230.1591295238</step>
+          <step id='10'>3104.2889053048</step>
+          <step id='11'>2970.5566743963</step>
+          <step id='12'>2828.9553574282</step>
+          <step id='13'>2673.0083072081</step>
+          <step id='14'>2514.935248907</step>
+          <step id='15'>2349.8912080863</step>
+          <step id='16'>2177.9157315723</step>
+          <step id='17'>1999.0322545211</step>
+          <step id='18'>1813.4321640421</step>
+          <step id='19'>1614.5283503576</step>
+          <step id='20'>1414.4259260774</step>
+          <step id='21'>1211.6490866482</step>
+          <step id='22'>1006.910590377</step>
+          <step id='23'>815.44780497619</step>
+          <step id='24'>634.71459836568</step>
+        </matrix>
+        <matrix id='5'>
+          <step id='0'>4083.0276915619</step>
+          <step id='1'>4011.9080952482</step>
+          <step id='2'>3934.6055235439</step>
+          <step id='3'>3852.6952583582</step>
+          <step id='4'>3765.0985501549</step>
+          <step id='5'>3669.9662186361</step>
+          <step id='6'>3571.0923179523</step>
+          <step id='7'>3466.2544141191</step>
+          <step id='8'>3354.9549982985</step>
+          <step id='9'>3238.5047304272</step>
+          <step id='10'>3115.7745730294</step>
+          <step id='11'>2985.8886371405</step>
+          <step id='12'>2848.4402251528</step>
+          <step id='13'>2697.5327099914</step>
+          <step id='14'>2544.3197613338</step>
+          <step id='15'>2384.9140726372</step>
+          <step id='16'>2220.5450131397</step>
+          <step id='17'>2048.1904241501</step>
+          <step id='18'>1871.4119611858</step>
+          <step id='19'>1686.4562154457</step>
+          <step id='20'>1495.2603711215</step>
+          <step id='21'>1305.3795808257</step>
+          <step id='22'>1114.1779997706</step>
+          <step id='23'>931.95043577479</step>
+          <step id='24'>764.19408076343</step>
+        </matrix>
+        <matrix id='6'>
+          <step id='0'>4075.8562896331</step>
+          <step id='1'>4005.6833759855</step>
+          <step id='2'>3929.3384721768</step>
+          <step id='3'>3848.5904442713</step>
+          <step id='4'>3762.2340905358</step>
+          <step id='5'>3668.6367617514</step>
+          <step id='6'>3571.4450658771</step>
+          <step id='7'>3468.5359242265</step>
+          <step id='8'>3360.0526330153</step>
+          <step id='9'>3245.5474831127</step>
+          <step id='10'>3125.7018028634</step>
+          <step id='11'>2999.21079112</step>
+          <step id='12'>2865.6069653384</step>
+          <step id='13'>2719.3322876281</step>
+          <step id='14'>2570.5053749325</step>
+          <step id='15'>2419.4076932427</step>
+          <step id='16'>2260.1367566945</step>
+          <step id='17'>2091.6448185105</step>
+          <step id='18'>1921.7205284589</step>
+          <step id='19'>1747.7345108315</step>
+          <step id='20'>1563.7535211217</step>
+          <step id='21'>1383.2838989899</step>
+          <step id='22'>1204.3922440457</step>
+          <step id='23'>1027.3534311424</step>
+          <step id='24'>863.43647486765</step>
+        </matrix>
+        <matrix id='7'>
+          <step id='0'>4068.3770571624</step>
+          <step id='1'>3999.1227528166</step>
+          <step id='2'>3923.7257522549</step>
+          <step id='3'>3843.9942242518</step>
+          <step id='4'>3758.8699250328</step>
+          <step id='5'>3666.6386705648</step>
+          <step id='6'>3571.1416294269</step>
+          <step id='7'>3470.0142919999</step>
+          <step id='8'>3364.5653652907</step>
+          <step id='9'>3251.3960192944</step>
+          <step id='10'>3134.235129133</step>
+          <step id='11'>3010.8651431464</step>
+          <step id='12'>2880.8090582584</step>
+          <step id='13'>2738.6816708557</step>
+          <step id='14'>2594.5679098447</step>
+          <step id='15'>2448.0915921441</step>
+          <step id='16'>2292.9967516165</step>
+          <step id='17'>2130.1927211473</step>
+          <step id='18'>1965.9595123213</step>
+          <step id='19'>1798.5962454386</step>
+          <step id='20'>1622.8052325476</step>
+          <step id='21'>1449.7500300325</step>
+          <step id='22'>1278.2373978544</step>
+          <step id='23'>1107.8546575586</step>
+          <step id='24'>947.38565967619</step>
+        </matrix>
+        <matrix id='8'>
+          <step id='0'>4059.5388297454</step>
+          <step id='1'>3992.2579608488</step>
+          <step id='2'>3917.765899081</step>
+          <step id='3'>3838.9891095789</step>
+          <step id='4'>3755.0185035729</step>
+          <step id='5'>3664.1491734457</step>
+          <step id='6'>3570.0362712238</step>
+          <step id='7'>3470.6289766191</step>
+          <step id='8'>3367.0692652663</step>
+          <step id='9'>3256.0813417309</step>
+          <step id='10'>3141.3347608957</step>
+          <step id='11'>3020.7923729804</step>
+          <step id='12'>2894.0858066227</step>
+          <step id='13'>2756.5897919739</step>
+          <step id='14'>2619.1728709775</step>
+          <step id='15'>2473.1291272028</step>
+          <step id='16'>2322.4020139212</step>
+          <step id='17'>2164.5486602099</step>
+          <step id='18'>2005.2507488204</step>
+          <step id='19'>1843.5197311565</step>
+          <step id='20'>1676.8775835609</step>
+          <step id='21'>1507.6207072299</step>
+          <step id='22'>1341.7852416534</step>
+          <step id='23'>1179.3162606838</step>
+          <step id='24'>1020.4382291771</step>
+        </matrix>
+        <matrix id='9'>
+          <step id='0'>4051.507894638</step>
+          <step id='1'>3985.1041352872</step>
+          <step id='2'>3911.4684331875</step>
+          <step id='3'>3833.3912807459</step>
+          <step id='4'>3750.728649398</step>
+          <step id='5'>3661.0156977621</step>
+          <step id='6'>3568.1634116535</step>
+          <step id='7'>3470.5198566728</step>
+          <step id='8'>3368.7617229567</step>
+          <step id='9'>3259.8192491528</step>
+          <step id='10'>3147.3190256906</step>
+          <step id='11'>3029.3867283027</step>
+          <step id='12'>2906.3414168766</step>
+          <step id='13'>2775.3540286439</step>
+          <step id='14'>2638.1255653623</step>
+          <step id='15'>2495.5905038874</step>
+          <step id='16'>2348.7660764701</step>
+          <step id='17'>2195.3502672412</step>
+          <step id='18'>2040.3411115036</step>
+          <step id='19'>1883.4786254925</step>
+          <step id='20'>1724.4564433632</step>
+          <step id='21'>1558.2875150426</step>
+          <step id='22'>1397.5053770905</step>
+          <step id='23'>1239.691081973</step>
+          <step id='24'>1084.5959973291</step>
+        </matrix>
+        <matrix id='10'>
+          <step id='0'>4043.2416315032</step>
+          <step id='1'>3977.6612761319</step>
+          <step id='2'>3904.8746102138</step>
+          <step id='3'>3827.6335557947</step>
+          <step id='4'>3745.9813214439</step>
+          <step id='5'>3657.4559951742</step>
+          <step id='6'>3565.742999422</step>
+          <step id='7'>3469.7442994706</step>
+          <step id='8'>3369.7047438796</step>
+          <step id='9'>3262.6856617016</step>
+          <step id='10'>3152.277270051</step>
+          <step id='11'>3037.3397903388</step>
+          <step id='12'>2919.0933153874</step>
+          <step id='13'>2790.9552515687</step>
+          <step id='14'>2655.0477011046</step>
+          <step id='15'>2515.8384788875</step>
+          <step id='16'>2372.478792852</step>
+          <step id='17'>2224.2182297657</step>
+          <step id='18'>2071.9817459519</step>
+          <step id='19'>1919.1358260175</step>
+          <step id='20'>1764.434744938</step>
+          <step id='21'>1603.3074266637</step>
+          <step id='22'>1446.820269327</step>
+          <step id='23'>1293.0534209868</step>
+          <step id='24'>1141.4703142115</step>
+        </matrix>
+      </QglQoRatesMatrix>
+      <PHeadFixed></PHeadFixed>
+      <PHeadMin>20</PHeadMin>
+      <PHeadMax>140</PHeadMax>
+      <GOR>221.645657</GOR>
+      <WC>0.01</WC>
+      <Potential></Potential>
+      <QglReference></QglReference>
+      <PHeadReference></PHeadReference>
+      <QoReference></QoReference>
+      <AllowsEmerging></AllowsEmerging>
+    </well>
+  </wells>
+  <outputs>
+    <output>
+      <OutputStatus>OPTIMAL</OutputStatus>
+      <wells>
+        <welloutput name='a'>
+          <ProductionStateOptimal>true</ProductionStateOptimal>
+          <QglOptimal>80000</QglOptimal>
+          <PHeadOptimal>7</PHeadOptimal>
+          <QoOptimal>1047.193</QoOptimal>
+          <QgOptimal>107860.866</QgOptimal>
+          <QwOptimal>0</QwOptimal>
+        </welloutput>
+        <welloutput name='b'>
+          <ProductionStateOptimal>true</ProductionStateOptimal>
+          <QglOptimal>80000</QglOptimal>
+          <PHeadOptimal>7</PHeadOptimal>
+          <QoOptimal>1047.193</QoOptimal>
+          <QgOptimal>107860.866</QgOptimal>
+          <QwOptimal>0</QwOptimal>
+        </welloutput>
+      </wells>
+      <TotalOilRateOptimal>12315.425</TotalOilRateOptimal>
+      <ProducedGasOptimal>2287098.612</ProducedGasOptimal>
+      <ConsumedGasLiftOptimal>1208918.876</ConsumedGasLiftOptimal>
+      <TotalGasOptimal>3496017.487</TotalGasOptimal>
+      <ProducedWaterOptimal>351.014</ProducedWaterOptimal>
+      <ProducedLiquidOptimal></ProducedLiquidOptimal>
+      <FlareGasOptimal>0.001</FlareGasOptimal>
+      <ExportGasRateOptimal>2287098.611</ExportGasRateOptimal>
+      <ProductionLossOptimal></ProductionLossOptimal>
+      <EfficiencyOptimal></EfficiencyOptimal>
+      <IUGAOptimal></IUGAOptimal>
+      <MaxLiquidCapacity>1</MaxLiquidCapacity>
+      <MaxWaterTreatmentCapacity>2</MaxWaterTreatmentCapacity>
+      <CompressionCapacity>3</CompressionCapacity>
+      <MaxFlareGas>4</MaxFlareGas>
+      <FuelGas>5</FuelGas>
+      <MaxExportGasRate>7</MaxExportGasRate>
+    </output>
+  </outputs>
+  <MaxLiquidCapacityArray>
+    <step id='0'>1</step>
+  </MaxLiquidCapacityArray>
+  <MaxWaterTreatmentCapacityArray>
+    <step id='0'>2</step>
+  </MaxWaterTreatmentCapacityArray>
+  <CompressionCapacityArray>
+    <step id='0'>3</step>
+  </CompressionCapacityArray>
+  <MaxFlareGasArray>
+    <step id='0'>4</step>
+  </MaxFlareGasArray>
+  <FuelGasArray>
+    <step id='0'>5</step>
+  </FuelGasArray>
+  <MaxExportGasRateArray>
+    <step id='0'>7</step>
+  </MaxExportGasRateArray>
+  <MinExportGasRateArray>
+    <step id='0'>6</step>
+  </MinExportGasRateArray>
+  <FixedFlareGas>false</FixedFlareGas>
+  <TotalOilRateReference></TotalOilRateReference>
+  <ProducedGasReference></ProducedGasReference>
+  <ConsumedGasLiftReference></ConsumedGasLiftReference>
+  <TotalGasReference></TotalGasReference>
+  <ProducedWaterReference></ProducedWaterReference>
+  <ProducedLiquidReference></ProducedLiquidReference>
+  <TotalFlareReference></TotalFlareReference>
+  <FuelGasReference></FuelGasReference>
+  <ExportGasRateReference></ExportGasRateReference>
+  <ProductionLossReference></ProductionLossReference>
+  <EfficiencyReference></EfficiencyReference>
+  <IUGAReference></IUGAReference>
+</optimization>

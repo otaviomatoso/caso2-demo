@@ -16,7 +16,7 @@
   <role id="marlim"  min="1" max="1"/>
   <role id="brsiop"  min="1" max="1"/>
   <role id="chatbot"  min="1" max="1"/>
-  <!-- <role id="controle"  min="1" max="1"/> -->
+  <role id="controle"  min="1" max="1"/>
  </roles>
 </group-specification>
 
@@ -31,7 +31,7 @@
        <goal id="run_tab_glc" />
        <goal id="run_glc" />
        <goal id="contactar_eng" />
-       <!-- <goal id="atuar_planta" /> -->
+       <goal id="atuar_planta" />
      </plan>
    </goal>
    <mission id="mMarlim" min="1" max="1">
@@ -45,9 +45,9 @@
    <mission id="mChatbot" min="1" max="1">
      <goal id="contactar_eng" />
    </mission>
-   <!-- <mission id="mControle" min="1" max="1">
+   <mission id="mControle" min="1" max="1">
      <goal id="atuar_planta" />
-   </mission> -->
+   </mission>
  </scheme>
 </functional-specification>
 
@@ -55,7 +55,7 @@
   <norm id="n1"  type="obligation"   role="marlim"    mission="mMarlim" />
   <norm id="n2"  type="obligation"   role="brsiop"    mission="mBrsiop" />
   <norm id="n3"  type="obligation"   role="chatbot"   mission="mChatbot" />
-  <!-- <norm id="n4"  type="obligation"   role="controle"  mission="mControle" /> -->
+  <norm id="n4"  type="obligation"   role="controle"  mission="mControle" />
 </normative-specification>
 
 </organisational-specification>

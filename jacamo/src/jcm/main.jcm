@@ -3,6 +3,7 @@ mas main {
     agent ag_marlim : marlim.asl
     agent ag_brsiop : brsiop.asl
     agent ag_bot    : bot.asl
+    agent ag_mpa    : mpa.asl
 
     workspace tools {
         artifact dom : tools.DomArtifact() {
@@ -19,6 +20,9 @@ mas main {
         artifact brsiop : jacamo.rest.util.DummyArt() {
           focused-by: ag_brsiop
         }
+        artifact mpa : jacamo.rest.util.DummyArt() {
+          focused-by: ag_mpa
+        }
     }
 
     organisation sorg : otm.xml {
@@ -26,6 +30,7 @@ mas main {
             players : ag_marlim   marlim
                       ag_brsiop   brsiop
                       ag_bot      chatbot
+                      ag_mpa      controle
             responsible-for : s1
             //debug
         }

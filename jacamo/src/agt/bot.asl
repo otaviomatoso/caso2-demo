@@ -4,6 +4,7 @@
 // url("http://node-red:1880/ag_eng"). // (docker) url dummy ag_eng
 url("http://localhost:1880/ag_eng"). // (local) url dummy ag_eng
 ultimo_lista(L, U) :- .length(L, N) & .nth(N-1, L, U).
+otm_out("otm-out.gln").
 
 /* Initial goals */
 !start.
@@ -15,6 +16,7 @@ ultimo_lista(L, U) :- .length(L, N) & .nth(N-1, L, U).
 	<- .print("contactando engenheiro...");
 		 .send(Ag_eng, signal, "novos resultados de otimizacao disponiveis");
 		 .wait({+validacao_eng}); // aguarda validacao do engenheiro
+		 .print("validacao cantou!!!");
 	.
 
 -!contactar_eng <-	.print("erro ao contatar engenheiro").

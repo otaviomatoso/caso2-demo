@@ -76,7 +76,6 @@ public class DomClass {
     }
 
     private static void setFile(Document documento) throws SAXException, IOException, ParserConfigurationException, TransformerException{
-      System.out.println("AQUIIIIII");
       // Document documento = criaDocument(file);
       Element eWells = (Element) documento.getElementsByTagName(nomeTagEntradaPocos).item(0);
   		Element eWell = (Element) eWells.getElementsByTagName(nomeTagEntradaPoco).item(0);
@@ -104,7 +103,6 @@ public class DomClass {
                 eElement.insertBefore(criaPoco(documento, well), node.getLastChild());
               }
             }
-            System.out.println("\n\nVALOR DE COUNT: " + count + "\n\n");
             if(count==2){ setFile(documento); }
             geraArquivo(documento, file);
             return ("File " + file + " does not contain well " + well + " yet. Adding its values...");
