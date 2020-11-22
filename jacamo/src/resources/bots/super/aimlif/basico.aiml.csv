@@ -1,0 +1,37 @@
+0,$OLA,*,*,<random>#Newline  			<li>Ola.</li>#Newline  			<li>Ola#Comma tudo bem?</li>#Newline  			<li>Oi#Comma humano.</li>#Newline        <li>Oi#Comma como vai?</li>#Newline  		</random>,basico.aiml
+0,$OI,*,*,<srai>OLA</srai>,basico.aiml
+0,OLA *,*,*,<srai>$OLA</srai>,basico.aiml
+0,^ <SET>BOM_DIA</SET> ^,*,*,<star index="2"/><random>#Newline  			<li>#Comma mano</li>#Newline  			<li>#Comma querido</li>#Newline  			<li>#Comma jovem</li>#Newline  			<li>#Comma senhor</li>#Newline  			<li>#Comma colega</li>#Newline  		</random>,basico.aiml
+0,^ TUDO BOM ^,*,*,<random>#Newline  			<li>Tudo e com voce?</li>#Newline  			<li>Tranquilo e ai?</li>#Newline  			<li>De boa e contigo?</li>#Newline  			<li>Suave e ai?</li>#Newline  			<li>Tranquilo e contigo?</li>#Newline  		</random>,basico.aiml
+0,^ TD BEM ^,*,*,<srai>TUDO BOM</srai>,basico.aiml
+0,^ TD BOM ^,*,*,<srai>TUDO BOM</srai>,basico.aiml
+0,^ TUDO BEM ^,*,*,<srai>TUDO BOM</srai>,basico.aiml
+0,SIM,^ <SET>TUDO_BEM</SET>,*,<random>#Newline    			<li>Que bom :)</li>#Newline    			<li>Otimo.</li>#Newline    			<li>Boa</li>#Newline    			<li>Top</li>#Newline    		</random>,basico.aiml
+0,AHAM,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TUDO,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TAMBEM,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TBM,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TRANQUILO,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,SUAVE,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,DE BOA,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,DIBAS,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,BEM,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TUDO BEM,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,OK,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,INDO,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,TUDO CERTO,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,BUENAS,^ <SET>TUDO_BEM</SET>,*,<srai>SIM</srai>,basico.aiml
+0,NAO,^ <SET>TUDO_BEM</SET>,*,<random>#Newline          <li>Que pena :/</li>#Newline          <li>Puts</li>#Newline          <li>Affs</li>#Newline          <li>Poxa</li>#Newline        </random>,basico.aiml
+0,RUIM,^ <SET>TUDO_BEM</SET>,*,<srai>NAO</srai>,basico.aiml
+0,MAL,^ <SET>TUDO_BEM</SET>,*,<srai>NAO</srai>,basico.aiml
+0,HORRIVEL,^ <SET>TUDO_BEM</SET>,*,<srai>NAO</srai>,basico.aiml
+0,PESSIMO,^ <SET>TUDO_BEM</SET>,*,<srai>NAO</srai>,basico.aiml
+0,$TCHAU,*,*,Tchau meu amigo,basico.aiml
+0,TENHO SAUDADE DE *,*,*,Eu tambem estou com saudade de <star/>,basico.aiml
+0,^ SOU O * E TENHO * ANOS ^,*,*,Ola <star index="2"/>. Voce tem <star index="3"/> anos.,basico.aiml
+0,GUARDE MEU NOME * E MINHA IDADE *,*,*,<think>	<!-- silencioso -->#Newline  			<set name="nome_usuario"><star/></set>#Newline  			<set name="idade_usuario"><star index="2"/></set>#Newline  		</think>#Newline  		Ok#Comma chefe. Esta guardado.,basico.aiml
+0,^ QUAL MEU NOME ^,*,*,<condition name="nome_usuario">#Newline  			<li value="*">Seu nome eh <get name="nome_usuario"/>.</li>#Newline  			<li>Voce nao me disse o seu nome ainda.</li>#Newline  		</condition>,basico.aiml
+0,^ É * ^,VOCE NAO ME DISSE O SEU NOME AINDA,*,Agora sei que seu nome eh <set name="nome_usuario"><star index="2"/></set>.,basico.aiml
+0,^ QUAL SEU NOME ^,*,*,Meu nome eh <bot name="name"/>.,basico.aiml
+0,^ QUAL MINHA IDADE ^,*,*,<condition name="idade_usuario">#Newline  			<li value="*">Voce tem <get name="idade_usuario"/> anos.</li>#Newline  			<li>Voce nao me disse a sua idade ainda.</li>#Newline  		</condition>,basico.aiml
+0,REPITA ^,*,*,<star/>,basico.aiml

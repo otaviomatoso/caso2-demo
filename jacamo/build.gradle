@@ -18,10 +18,9 @@ repositories {
 
     maven { url "http://jacamo.sourceforge.net/maven2" }
     maven { url "https://raw.github.com/jacamo-lang/mvn-repo/master" }
-
-    /*flatDir {
+    flatDir {
        dirs 'lib'
-    }*/
+    }
 }
 
 dependencies {
@@ -30,7 +29,7 @@ dependencies {
   compile group: 'org.jacamo', name: 'jacamo-rest', version: '0.6-SNAPSHOT'
 
   // directory libs'
-  //compile fileTree(dir: 'lib', include: ['*.jar'])
+  compile fileTree(dir: 'lib', include: ['*.jar'])
 
 }
 
@@ -51,11 +50,47 @@ task run (type: JavaExec, dependsOn: 'classes') {
     group      ' JaCaMo'
     description 'runs the JaCaMo platform'
     doFirst {
+        delete '../files/a.as'
+        delete '../files/a.mr2'
+        delete '../files/b.as'
+        delete '../files/b.mr2'
+        delete '../files/c.as'
+        delete '../files/c.mr2'
         mkdir 'log'
     }
     main 'jacamo.infra.JaCaMoLauncher'
     args 'src/jcm/main.jcm'
     classpath sourceSets.main.runtimeClasspath
+}
+
+task update (type: Copy){
+    description 'copies custom aiml to resources folder'
+    doFirst {
+        delete  'src/resources/bots/super/aiml/basic_conversation.aiml',
+                'src/resources/bots/super/aiml/basico.aiml',
+                'src/resources/bots/super/aiml/data.aiml',
+                'src/resources/bots/super/aiml/petrobot.aiml',
+                'src/resources/bots/super/config/properties.txt',
+                'src/resources/bots/super/sets/tudo_bem.txt',
+                'src/resources/bots/super/sets/bom_dia.txt',
+                'src/resources/bots/super/sets/setar.txt'
+        mkdir 'log'
+    }
+    copy{
+      from 'src/aiml_customizados/'
+      include '*.aiml'
+      into 'src/resources/bots/super/aiml'
+    }
+    copy{
+      from 'src/aiml_customizados/'
+      include 'bom_dia.txt', 'setar.txt', 'tudo_bem.txt'
+      into 'src/resources/bots/super/sets'
+    }
+    copy{
+      from 'src/aiml_customizados/'
+      include 'properties.txt'
+      into 'src/resources/bots/super/config'
+    }
 }
 
 task copyToLib(type: Copy) {

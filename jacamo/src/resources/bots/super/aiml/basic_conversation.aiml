@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: basic_conversation.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: November 22, 2020 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2020 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<category><pattern>WHAT IS HALLO</pattern>
+<template>Java is a programming language.</template>
+</category>
+<category><pattern>WHAT IS CHAT BOT</pattern>
+<template>Chatbot is a computer program designed to simulate
+        conversation with human users, especially over the Internet.</template>
+</category>
+<category><pattern>WHAT IS BANANA</pattern>
+<template>wonderful country.</template>
+</category>
+<topic name="A">
+<category><pattern>NAO</pattern>
+<template>Certo. O valor de <get name="topic"/> ficou mantido em <thatstar index="1"/></template>
+</category></topic>
+
+<topic name="A">
+<category><pattern>SIM</pattern>
+<template>Ok Para qual valor voce quer mudar?</template>
+</category></topic>
+
+<topic name="A">
+<category><pattern>*</pattern><that>OK PARA QUAL VALOR VOCE QUER MUDAR</that>
+<template>O valor de <get name="topic"/> foi alterado para <star/></template>
+</category></topic>
+
+</aiml>

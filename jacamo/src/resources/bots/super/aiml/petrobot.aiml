@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: petrobot.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: November 22, 2020 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2020 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<category><pattern>^ <SET>SETAR</SET> O VALOR DE * ^ POCO * ^</pattern>
+<template>XSET_<star index="3"/>_<star index="5"/></template>
+</category>
+<category><pattern>^ <SET>SETAR</SET> * ^ POCO * ^</pattern>
+<template><srai>^ <star index="2"/> O VALOR DE <star index="3"/> DO POCO <star index="5"/> ^</srai></template>
+</category>
+<category><pattern>SET MPA</pattern>
+<template>XSETMPA</template>
+</category>
+<category><pattern>^ QUAL O VALOR DE * ^</pattern>
+<template><think>
+        <set name="variavel"><star index="2"/></set>
+        <set name="topic">valor</set>
+        <condition name="variavel">
+    			<li value="valvulaA">
+            <condition name="valvulaA">
+              <li value="unknown"><set name="abertura"><bot name="valvulaA"/></set></li>
+              <li><set name="abertura"><get name="valvulaA"/></set></li>
+            </condition>
+          </li>
+    			<li value="valvulaB">
+            <condition name="valvulaB">
+              <li value="unknown"><set name="abertura"><bot name="valvulaB"/></set></li>
+              <li><set name="abertura"><get name="valvulaB"/></set></li>
+            </condition>
+          </li>
+    			<li value="valvulaC">
+            <condition name="valvulaC">
+              <li value="unknown"><set name="abertura"><bot name="valvulaC"/></set></li>
+              <li><set name="abertura"><get name="valvulaC"/></set></li>
+            </condition>
+          </li>
+    			<li value="valvulaD">
+            <condition name="valvulaD">
+              <li value="unknown"><set name="abertura"><bot name="valvulaD"/></set></li>
+              <li><set name="abertura"><get name="valvulaD"/></set></li>
+            </condition>
+          </li>
+          <li><set name="topic">unknown</set></li>
+    		</condition>
+      </think>
+
+      <condition name="topic">
+        <li value="valor">O valor de <star index="2"/> é <get name="abertura"/>. Você quer mudá-lo?</li>
+        <li>Ainda não tenho conhecimento desta variável.</li>
+      </condition></template>
+</category>
+<category><pattern>^ QUAL O VALOR DA * ^</pattern>
+<template><srai>^ QUAL O VALOR DE <star index="2"/> ^</srai></template>
+</category>
+<category><pattern>^ QUANTO ESTA O VALOR DE * ^</pattern>
+<template><srai>^ QUAL O VALOR DE <star index="2"/> ^</srai></template>
+</category>
+<category><pattern>^ QUANTO ESTA O VALOR DA * ^</pattern>
+<template><srai>^ QUAL O VALOR DE <star index="2"/> ^</srai></template>
+</category>
+<category><pattern>^ SABE O VALOR DA * ^</pattern>
+<template><srai>^ QUAL O VALOR DE <star index="2"/> ^</srai></template>
+</category>
+<category><pattern>^ SABE O VALOR DE * ^</pattern>
+<template><srai>^ QUAL O VALOR DE <star index="2"/> ^</srai></template>
+</category>
+<topic name="VALOR">
+<category><pattern>NAO</pattern>
+<template><think><set name="topic">unknown</set></think>
+    		Certo. O valor de <get name="variavel"/> ficou mantido em <get name="abertura"/>.</template>
+</category></topic>
+
+<topic name="VALOR">
+<category><pattern>SIM</pattern>
+<template><think><set name="topic">escolhe_valor</set></think>
+    		Ok Para qual valor voce quer mudar?</template>
+</category></topic>
+
+<topic name="ESCOLHE_VALOR">
+<category><pattern>^ NAO SEI ^</pattern>
+<template><think><set name="topic">unknown</set></think>
+        Quando você souber me avisa. Por enquanto o valor ficará mantido em <get name="abertura"/>.</template>
+</category></topic>
+
+<topic name="ESCOLHE_VALOR">
+<category><pattern>^ SEI LA ^</pattern>
+<template><srai>^ NAO SEI ^</srai></template>
+</category></topic>
+
+<topic name="ESCOLHE_VALOR">
+<category><pattern>*</pattern>
+<template><think><set name="topic">unknown</set></think>
+        <condition name="variavel">
+          <li value="valvulaA">O valor de valvulaA agora é <set name="valvulaA"><star/></set></li>
+          <li value="valvulaB">O valor de valvulaB agora é <set name="valvulaB"><star/></set></li>
+          <li value="valvulaC">O valor de valvulaC agora é <set name="valvulaC"><star/></set></li>
+          <li value="valvulaD">O valor de valvulaD agora é <set name="valvulaD"><star/></set></li>
+        </condition></template>
+</category></topic>
+
+<category><pattern>XNOVAOTIMIZACAO</pattern>
+<template>Fim de otimização. Novo resultado do BR-SiOP disponível com novas informações dos poços e da plataforma.</template>
+</category>
+<category><pattern>^ RESUMO ^ POCO * ^</pattern>
+<template><think><set name="topic">unknown</set></think>
+  		<!-- Jóia, será feito uma nova otimização. -->
+      XRESUMOPOCO_<uppercase><star index="3"/></uppercase></template>
+</category>
+<category><pattern>^ INFORMACOES ^ POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="3"/> ^</srai></template>
+</category>
+<category><pattern>^ INFO ^ POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="3"/> ^</srai></template>
+</category>
+<category><pattern>^ ESTADO ^ POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="3"/> ^</srai></template>
+</category>
+<category><pattern>^ STATUS ^ POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="3"/> ^</srai></template>
+</category>
+<category><pattern>^ RESULTADO ^ POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="3"/> ^</srai></template>
+</category>
+<category><pattern>POCO * ^</pattern>
+<template><srai>^ RESUMO POCO <star index="1"/> ^</srai></template>
+</category>
+<category><pattern>^ RESUMO GERAL ^</pattern>
+<template><think><set name="topic">unknown</set></think>
+  		<!-- Jóia, será feito uma nova otimização. -->
+      XRESUMOGERAL</template>
+</category>
+<category><pattern>^ INFORMACOES GERAIS ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ INFORMACOES PLATAFORMA ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ RESUMO PLATAFORMA ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ RESULTADO PLATAFORMA ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ RESULTADO GERAL ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ INFO GERAL ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ ESTADO GERAL ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ STATUS GERAL ^</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>$PLATAFORMA</pattern>
+<template><srai>^ RESUMO GERAL ^</srai></template>
+</category>
+<category><pattern>^ REFAZER OTIMIZACAO ^</pattern>
+<template>XREOTIMIZAR</template>
+</category>
+<category><pattern>^ REOTIMIZAR ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ REOTIMIZA ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ REFAZ OTIMIZACAO ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZA NOVAMENTE ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZAR NOVAMENTE ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZAR MAIS UMA VEZ ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZA MAIS UMA VEZ ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZA DE NOVO ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+<category><pattern>^ OTIMIZAR DE NOVO ^</pattern>
+<template><srai>^ REFAZER OTIMIZACAO ^</srai></template>
+</category>
+</aiml>

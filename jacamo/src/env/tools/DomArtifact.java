@@ -17,19 +17,21 @@ public class DomArtifact extends Artifact {
 
     @OPERATION
     void checkWell(String well, String file, OpFeedbackParam<String> output) throws SAXException, IOException, ParserConfigurationException, TransformerException {
-        // getObsProperty("cont");
         count = count + 1;
-        // c.updateValue(n+1);
-        // getObsProperty("status").updateValue("open");
         output.set(DomClass.checkWell(well, file, count));
-        // n = getObsProperty("cont").intValue();
-        // System.out.println("Valor de n = " + n);
-        // if(n==2){
-        //   dom.setFile(file);
-        // }
     }
-    // @OPERATION
-    // void setFile(String file, OpFeedbackParam<Double> result) throws SAXException, IOException, ParserConfigurationException, TransformerException {
-    //     output.set(DomClass.setWell(file));
-    // }
+
+    @OPERATION
+  	void extraiInformacao(Object entrada, Object arquivo, OpFeedbackParam<String> saida) throws ParserConfigurationException, SAXException, IOException {
+  		String entradaStr = entrada.toString();
+  		String arquivoStr = arquivo.toString();
+  		String resposta = DomClass.extraiInformacao(entradaStr, arquivoStr);
+  		saida.set(resposta);
+  	}
+    
+  	@OPERATION
+  	void extraiSaida(Object entradaPoco, Object entradaTag, Object arquivo, OpFeedbackParam<Double> saida) throws ParserConfigurationException, SAXException, IOException {
+  		Double resposta = DomClass.extraiInformacao(entradaPoco.toString(), entradaTag.toString(), arquivo.toString());
+  		saida.set(resposta);
+  	}
 }

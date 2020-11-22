@@ -1,0 +1,7 @@
+0,DIA,*,*,Hoje é <date format="%A" jformat="EEEEEEEEEE"/>,data.aiml
+0,ANO,*,*,Estamos em <date format="%Y" jformat="YYYY"/>,data.aiml
+0,MES,*,*,Estamos em <date format="%B" jformat="MMMMMMMMM"/>,data.aiml
+0,HORAS,*,*,Agora são <date format="%I:%M %p" jformat="h:mm a"/>,data.aiml
+0,DATA,*,*,Hoje é <date format="%B %d#Comma %Y" jformat="MMMMMMMMM dd#Comma YYYY"/>,data.aiml
+0,DATA E HORA,*,*,A data e hora é <date/>,data.aiml
+0,QUANTOS DIAS ATE O NATAL,*,*,<interval>#Newline<jformat>MMMMMMMMM dd</jformat>#Newline<style>days</style>#Newline<from><date jformat="MMMMMMMMM dd"/></from>#Newline<to>December 25</to>#Newline</interval> dias ate o Natal.,data.aiml

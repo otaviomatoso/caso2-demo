@@ -1,0 +1,42 @@
+0,^ <SET>SETAR</SET> O VALOR DE * ^ POCO * ^,*,*,XSET_<star index="3"/>_<star index="5"/>,petrobot.aiml
+0,^ <SET>SETAR</SET> * ^ POCO * ^,*,*,<srai>^ <star index="2"/> O VALOR DE <star index="3"/> DO POCO <star index="5"/> ^</srai>,petrobot.aiml
+0,SET MPA,*,*,XSETMPA,petrobot.aiml
+0,^ QUAL O VALOR DE * ^,*,*,<think>#Newline        <set name="variavel"><star index="2"/></set>#Newline        <set name="topic">valor</set>#Newline        <condition name="variavel">#Newline    			<li value="valvulaA">#Newline            <condition name="valvulaA">#Newline              <li value="unknown"><set name="abertura"><bot name="valvulaA"/></set></li>#Newline              <li><set name="abertura"><get name="valvulaA"/></set></li>#Newline            </condition>#Newline          </li>#Newline    			<li value="valvulaB">#Newline            <condition name="valvulaB">#Newline              <li value="unknown"><set name="abertura"><bot name="valvulaB"/></set></li>#Newline              <li><set name="abertura"><get name="valvulaB"/></set></li>#Newline            </condition>#Newline          </li>#Newline    			<li value="valvulaC">#Newline            <condition name="valvulaC">#Newline              <li value="unknown"><set name="abertura"><bot name="valvulaC"/></set></li>#Newline              <li><set name="abertura"><get name="valvulaC"/></set></li>#Newline            </condition>#Newline          </li>#Newline    			<li value="valvulaD">#Newline            <condition name="valvulaD">#Newline              <li value="unknown"><set name="abertura"><bot name="valvulaD"/></set></li>#Newline              <li><set name="abertura"><get name="valvulaD"/></set></li>#Newline            </condition>#Newline          </li>#Newline          <li><set name="topic">unknown</set></li>#Newline    		</condition>#Newline      </think>#Newline#Newline      <condition name="topic">#Newline        <li value="valor">O valor de <star index="2"/> é <get name="abertura"/>. Você quer mudá-lo?</li>#Newline        <li>Ainda não tenho conhecimento desta variável.</li>#Newline      </condition>,petrobot.aiml
+0,^ QUAL O VALOR DA * ^,*,*,<srai>^ QUAL O VALOR DE <star index="2"/> ^</srai>,petrobot.aiml
+0,^ QUANTO ESTA O VALOR DE * ^,*,*,<srai>^ QUAL O VALOR DE <star index="2"/> ^</srai>,petrobot.aiml
+0,^ QUANTO ESTA O VALOR DA * ^,*,*,<srai>^ QUAL O VALOR DE <star index="2"/> ^</srai>,petrobot.aiml
+0,^ SABE O VALOR DA * ^,*,*,<srai>^ QUAL O VALOR DE <star index="2"/> ^</srai>,petrobot.aiml
+0,^ SABE O VALOR DE * ^,*,*,<srai>^ QUAL O VALOR DE <star index="2"/> ^</srai>,petrobot.aiml
+0,NAO,*,VALOR,<think><set name="topic">unknown</set></think>#Newline    		Certo. O valor de <get name="variavel"/> ficou mantido em <get name="abertura"/>.,petrobot.aiml
+0,SIM,*,VALOR,<think><set name="topic">escolhe_valor</set></think>#Newline    		Ok Para qual valor voce quer mudar?,petrobot.aiml
+0,^ NAO SEI ^,*,ESCOLHE_VALOR,<think><set name="topic">unknown</set></think>#Newline        Quando você souber me avisa. Por enquanto o valor ficará mantido em <get name="abertura"/>.,petrobot.aiml
+0,^ SEI LA ^,*,ESCOLHE_VALOR,<srai>^ NAO SEI ^</srai>,petrobot.aiml
+0,*,*,ESCOLHE_VALOR,<think><set name="topic">unknown</set></think>#Newline        <condition name="variavel">#Newline          <li value="valvulaA">O valor de valvulaA agora é <set name="valvulaA"><star/></set></li>#Newline          <li value="valvulaB">O valor de valvulaB agora é <set name="valvulaB"><star/></set></li>#Newline          <li value="valvulaC">O valor de valvulaC agora é <set name="valvulaC"><star/></set></li>#Newline          <li value="valvulaD">O valor de valvulaD agora é <set name="valvulaD"><star/></set></li>#Newline        </condition>,petrobot.aiml
+0,XNOVAOTIMIZACAO,*,*,Fim de otimização. Novo resultado do BR-SiOP disponível com novas informações dos poços e da plataforma.,petrobot.aiml
+0,^ RESUMO ^ POCO * ^,*,*,<think><set name="topic">unknown</set></think>#Newline  		<!-- Jóia#Comma será feito uma nova otimização. -->#Newline      XRESUMOPOCO_<uppercase><star index="3"/></uppercase>,petrobot.aiml
+0,^ INFORMACOES ^ POCO * ^,*,*,<srai>^ RESUMO POCO <star index="3"/> ^</srai>,petrobot.aiml
+0,^ INFO ^ POCO * ^,*,*,<srai>^ RESUMO POCO <star index="3"/> ^</srai>,petrobot.aiml
+0,^ ESTADO ^ POCO * ^,*,*,<srai>^ RESUMO POCO <star index="3"/> ^</srai>,petrobot.aiml
+0,^ STATUS ^ POCO * ^,*,*,<srai>^ RESUMO POCO <star index="3"/> ^</srai>,petrobot.aiml
+0,^ RESULTADO ^ POCO * ^,*,*,<srai>^ RESUMO POCO <star index="3"/> ^</srai>,petrobot.aiml
+0,POCO * ^,*,*,<srai>^ RESUMO POCO <star index="1"/> ^</srai>,petrobot.aiml
+0,^ RESUMO GERAL ^,*,*,<think><set name="topic">unknown</set></think>#Newline  		<!-- Jóia#Comma será feito uma nova otimização. -->#Newline      XRESUMOGERAL,petrobot.aiml
+0,^ INFORMACOES GERAIS ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ INFORMACOES PLATAFORMA ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ RESUMO PLATAFORMA ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ RESULTADO PLATAFORMA ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ RESULTADO GERAL ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ INFO GERAL ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ ESTADO GERAL ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ STATUS GERAL ^,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,$PLATAFORMA,*,*,<srai>^ RESUMO GERAL ^</srai>,petrobot.aiml
+0,^ REFAZER OTIMIZACAO ^,*,*,XREOTIMIZAR,petrobot.aiml
+0,^ REOTIMIZAR ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ REOTIMIZA ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ REFAZ OTIMIZACAO ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZA NOVAMENTE ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZAR NOVAMENTE ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZAR MAIS UMA VEZ ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZA MAIS UMA VEZ ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZA DE NOVO ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml
+0,^ OTIMIZAR DE NOVO ^,*,*,<srai>^ REFAZER OTIMIZACAO ^</srai>,petrobot.aiml

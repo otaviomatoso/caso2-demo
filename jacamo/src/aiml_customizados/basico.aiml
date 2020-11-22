@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ver tags that, topic, sraix -->
+<!-- topic eh usado pra mesma entrada em contextos diferentes (cafe e cha) -->
+
+<!-- site do tutorial python: https://www.devdungeon.com/content/ai-chat-bot-python-aiml -->
+<!-- video do tutorial https://www.youtube.com/watch?v=EbS_64I258I -->
+<!-- site do tutorial java: https://howtodoinjava.com/ai/java-aiml-chatbot-example/ -->
+<!-- aiml features https://medium.com/pandorabots-blog/introducing-aiml-rich-media-tags-cbdc79210a2f -->
+
+
+<aiml>
+
+  <category><pattern>$OLA</pattern>
+  	<template>
+  		<random>
+  			<li>Ola.</li>
+  			<li>Ola, tudo bem?</li>
+  			<li>Oi, humano.</li>
+        <li>Oi, como vai?</li>
+  		</random>
+  	</template>
+  </category>
+  <category><pattern>$OI</pattern>
+  	<template><srai>OLA</srai></template>
+  </category>
+  <category><pattern>OLA *</pattern>	<!-- * captura 1 ou mais palavras -->
+  	<template><srai>$OLA</srai></template>
+  </category>
+
+  <category><pattern>^ <set>bom_dia</set> ^</pattern>
+  	<template>
+  		<star index="2"/><random>
+  			<li>, mano</li>
+  			<li>, querido</li>
+  			<li>, jovem</li>
+  			<li>, senhor</li>
+  			<li>, colega</li>
+  		</random>
+  	</template>
+  </category>
+  <!-- <category><pattern>^ <set>bom_dia</set> ^</pattern>
+  	<template><srai><set>bom_dia</set></srai></template>
+  </category> -->
+
+  <category><pattern>^ TUDO BOM ^</pattern>
+  	<template>
+      <random>
+  			<li>Tudo e com voce?</li>
+  			<li>Tranquilo e ai?</li>
+  			<li>De boa e contigo?</li>
+  			<li>Suave e ai?</li>
+  			<li>Tranquilo e contigo?</li>
+  		</random>
+  	</template>
+  </category>
+  <category><pattern>^ TD BEM ^</pattern><template><srai>TUDO BOM</srai></template></category>
+  <category><pattern>^ TD BOM ^</pattern><template><srai>TUDO BOM</srai></template></category>
+  <category><pattern>^ TUDO BEM ^</pattern><template><srai>TUDO BOM</srai></template></category>
+
+    <category><pattern>SIM</pattern>
+      <that>^ <set>tudo_bem</set></that>
+      <template>
+        <random>
+    			<li>Que bom :)</li>
+    			<li>Otimo.</li>
+    			<li>Boa</li>
+    			<li>Top</li>
+    		</random>
+      </template>
+    </category>
+    <category><pattern>AHAM</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TUDO</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TAMBEM</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TBM</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TRANQUILO</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>SUAVE</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>DE BOA</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>DIBAS</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>BEM</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TUDO BEM</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>OK</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>INDO</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>TUDO CERTO</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+    <category><pattern>BUENAS</pattern><that>^ <set>tudo_bem</set></that><template><srai>SIM</srai></template></category>
+
+    <category><pattern>NAO</pattern>
+      <that>^ <set>tudo_bem</set></that>
+      <template>
+        <random>
+          <li>Que pena :/</li>
+          <li>Puts</li>
+          <li>Affs</li>
+          <li>Poxa</li>
+        </random>
+      </template>
+    </category>
+    <category><pattern>RUIM</pattern><that>^ <set>tudo_bem</set></that><template><srai>NAO</srai></template></category>
+    <category><pattern>MAL</pattern><that>^ <set>tudo_bem</set></that><template><srai>NAO</srai></template></category>
+    <category><pattern>HORRIVEL</pattern><that>^ <set>tudo_bem</set></that><template><srai>NAO</srai></template></category>
+    <category><pattern>PESSIMO</pattern><that>^ <set>tudo_bem</set></that><template><srai>NAO</srai></template></category>
+
+
+  <category><pattern>$TCHAU</pattern>
+  	<template>Tchau meu amigo</template>
+  </category>
+
+
+  <category><pattern>TENHO SAUDADE DE *</pattern>
+  	<template>Eu tambem estou com saudade de <star></star></template>
+  </category>
+
+  <category><pattern>^ SOU O * E TENHO * ANOS ^</pattern>
+  	<template>Ola <star index="2"/>. Voce tem <star index="3"/> anos.</template>
+  </category>
+
+  <category><pattern>GUARDE MEU NOME * E MINHA IDADE *</pattern>
+  	<template>
+  		<think>	<!-- silencioso -->
+  			<set name="nome_usuario"><star/></set>
+  			<set name="idade_usuario"><star index="2"/></set>
+  		</think>
+  		Ok, chefe. Esta guardado.
+  	</template>
+  </category>
+
+  <category><pattern>^ QUAL MEU NOME ^</pattern>
+  	<template>
+  		<condition name="nome_usuario">
+  			<li value="*">Seu nome eh <get name="nome_usuario" />.</li>
+  			<li>Voce nao me disse o seu nome ainda.</li>
+  		</condition>
+  	</template>
+  </category>
+
+  <category><pattern>^ É * ^</pattern>
+    <that>VOCE NAO ME DISSE O SEU NOME AINDA</that>
+    <template>
+      Agora sei que seu nome eh <set name="nome_usuario"><star index="2"/></set>.
+    </template>
+  </category>
+
+  <category><pattern>^ QUAL SEU NOME ^</pattern>
+    <template>Meu nome eh <bot name="name"/>.</template>
+  </category>
+
+  <category><pattern>^ QUAL MINHA IDADE ^</pattern>
+  	<template>
+  		<condition name="idade_usuario">
+  			<li value="*">Voce tem <get name="idade_usuario" /> anos.</li>
+  			<li>Voce nao me disse a sua idade ainda.</li>
+  		</condition>
+  	</template>
+  </category>
+
+  <category><pattern>REPITA ^</pattern>
+  	<template><star/></template>
+  </category>
+
+</aiml>

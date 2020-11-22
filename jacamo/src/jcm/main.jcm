@@ -2,10 +2,14 @@ mas main {
 
     agent ag_marlim : marlim.asl
     agent ag_brsiop : brsiop.asl
+    agent ag_bot    : bot.asl
 
     workspace tools {
         artifact dom : tools.DomArtifact() {
-          focused-by: ag_brsiop
+          focused-by: ag_brsiop, ag_bot
+        }
+        artifact graphmaster : tools.Graphmaster() {
+          focused-by : ag_bot
         }
     }
     workspace dummy {
@@ -21,6 +25,7 @@ mas main {
         group sgrp : agbr {
             players : ag_marlim   marlim
                       ag_brsiop   brsiop
+                      ag_bot      chatbot
             responsible-for : s1
             //debug
         }

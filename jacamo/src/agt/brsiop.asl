@@ -60,6 +60,7 @@ pocos([]). // lista de poços
   <- .print("lista atual de pocos: ", Lista);
      .print("nao ha pocos suficientes para realizar a otimizacao. Reiniciando processo...");
      !!restart;
+     .wait(200);
   .
 
 +!run_glc[scheme(s1)] : token(T) & gln(In) & otm_out(Out) //& otm_in(In)
@@ -72,6 +73,7 @@ pocos([]). // lista de poços
       !espera_exec(JobId); // espera o fim da execução
       !download_brsiop(Out);
       .print("fim do processo de otimizacao");
+      // !!restart;
    .
 
 +!restart <- resetGoal("espera_teste").

@@ -170,4 +170,101 @@ public class DomClass {
         StreamResult output = new StreamResult(myFile);
         transf.transform(source, output);
     }
+
+    public static String extraiInformacao(String poco, String arquivo) throws ParserConfigurationException, SAXException, IOException {
+  		// String currentDir = System.getProperty("user.dir").replace("\\", "/");
+  		String retorno = "";
+
+  		Document document = criaDocument(arquivo);
+  		// Document document = criaDocument(currentDir, arquivo);
+  		document.getDocumentElement().normalize();
+  		Element root = document.getDocumentElement();
+
+  		if(poco.isEmpty()) {
+  			//Pega todas as saidas
+  			NodeList nList = document.getElementsByTagName(nomeTagSaidaGeral);
+  			for (int temp = 0; temp < nList.getLength(); temp++){
+  				Node node = nList.item(temp);
+  				if (node.getNodeType() == Node.ELEMENT_NODE){
+  				    Element eElement = (Element) node;
+  				    for (String s : listaInformacoesSaidaGerais) {
+  				    	retorno = retorno + s + " = " + eElement.getElementsByTagName(s).item(0).getTextContent() + "\n";
+  				    }
+  				}
+  			}
+  		}else {
+  			NodeList nList = document.getElementsByTagName(nomeTagSaidaPocos);
+  			int numeroPocosEncontrados = 0;
+  			for (int temp = 0; temp < nList.getLength(); temp++){
+  				Node node = nList.item(temp);
+  				if (node.getNodeType() == Node.ELEMENT_NODE){
+  				    Element eElement = (Element) node;
+  				    String nomePoco = eElement.getAttribute("name");
+  				    if(nomePoco.equalsIgnoreCase(poco)) {
+  				    	numeroPocosEncontrados++;
+  				    	// System.out.println("Poco " + nomePoco + ":\n");
+  					    for (String s : listaInformacoesSaidaPoco) {
+  					    	retorno = retorno + s + " = " + eElement.getElementsByTagName(s).item(0).getTextContent() + "\n";
+  					    }
+  				    }
+  				}
+  			}
+  			if(numeroPocosEncontrados == 0) {
+  				return "Nenhum poco encontrado com este nome\n";
+  			}
+  		}
+  		return retorno;
+  	}
+
+  	public static Double extraiInformacao(String poco, String tag, String arquivo) throws ParserConfigurationException, SAXException, IOException {
+  		// String currentDir = System.getProperty("user.dir").replace("\\", "/");
+  		double retorno = 0;
+
+  		Document document = criaDocument(arquivo);
+  		// Document document = criaDocument(currentDir, "TST" + (indice));
+  		document.getDocumentElement().normalize();
+  		Element root = document.getDocumentElement();
+
+  		if(poco.isEmpty()) {
+  			NodeList nList = document.getElementsByTagName(nomeTagSaidaGeral);
+  			for (int temp = 0; temp < nList.getLength(); temp++){
+  				Node node = nList.item(temp);
+  				if (node.getNodeType() == Node.ELEMENT_NODE){
+  					Element eElement = (Element) node;
+  					for (String s : listaInformacoesSaidaGerais) {
+  						if (s.equals(tag)){
+  							retorno = Double.parseDouble(eElement.getElementsByTagName(s).item(0).getTextContent());
+  						}
+  					}
+  				}
+  			}
+  		}else {
+  			NodeList nList = document.getElementsByTagName(nomeTagSaidaPocos);
+  			int numeroPocosEncontrados = 0;
+  			int numeroTagsEncontradas = 0;
+  			for (int temp = 0; temp < nList.getLength(); temp++){
+  				Node node = nList.item(temp);
+  				if (node.getNodeType() == Node.ELEMENT_NODE){
+  					Element eElement = (Element) node;
+  					String nomePoco = eElement.getAttribute("name");
+  					if(nomePoco.equalsIgnoreCase(poco)) {
+  						numeroPocosEncontrados++;
+  						for (String s : listaInformacoesSaidaPoco) {
+  							if (s.equalsIgnoreCase(tag)){
+  								numeroTagsEncontradas++;
+  								retorno = Double.parseDouble(eElement.getElementsByTagName(s).item(0).getTextContent());
+  							}
+  						}
+  					}
+  				}
+  			}
+  			if(numeroPocosEncontrados == 0) {
+  				return -1.0;
+  			}
+  			if(numeroTagsEncontradas == 0) {
+  				return -2.0;
+  			}
+  		}
+  		return retorno;
+  	}
 }
