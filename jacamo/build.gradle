@@ -50,18 +50,39 @@ task run (type: JavaExec, dependsOn: 'classes') {
     group      ' JaCaMo'
     description 'runs the JaCaMo platform'
     doFirst {
-        delete '../files/a.as'
-        delete '../files/a.mr2'
-        delete '../files/b.as'
-        delete '../files/b.mr2'
-        delete '../files/c.as'
-        delete '../files/c.mr2'
+        delete fileTree('../files') {
+          include '**/*.mr2',
+                  '**/*.as',
+                  '**/*.gln'
+        }
+        copy{
+          from '../TST.gln'
+          into '../files/'
+        }
         mkdir 'log'
     }
     main 'jacamo.infra.JaCaMoLauncher'
     args 'src/jcm/main.jcm'
     classpath sourceSets.main.runtimeClasspath
 }
+
+// task run (type: JavaExec, dependsOn: 'classes') {
+//     group      ' JaCaMo'
+//     description 'runs the JaCaMo platform'
+//     doFirst {
+//         delete '../files/a.as'
+//         delete '../files/a.mr2'
+//         delete '../files/b.as'
+//         delete '../files/b.mr2'
+//         delete '../files/c.as'
+//         delete '../files/c.mr2'
+//         delete '../files/otm-out.gln'
+//         mkdir 'log'
+//     }
+//     main 'jacamo.infra.JaCaMoLauncher'
+//     args 'src/jcm/main.jcm'
+//     classpath sourceSets.main.runtimeClasspath
+// }
 
 task update (type: Copy){
     description 'copies custom aiml to resources folder'

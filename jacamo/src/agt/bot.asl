@@ -16,10 +16,9 @@ otm_out("otm-out.gln").
 	<- .print("contactando engenheiro...");
 		 .send(Ag_eng, signal, "novos resultados de otimizacao disponiveis");
 		 .wait({+validacao_eng}); // aguarda validacao do engenheiro
-		 .print("validacao cantou!!!");
 	.
 
--!contactar_eng <-	.print("erro ao contatar engenheiro").
+-!contactar_eng <-	.print("erro ao contactar engenheiro").
 
 // Se receber uma mensagem sobre um novo teste
 +mensagem(M) : url(Ag_eng)

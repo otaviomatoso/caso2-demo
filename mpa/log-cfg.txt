@@ -2884,3 +2884,13 @@ stack traceback:
 2020/11/21 23:30:20 [setup]     processing application loaded from ./app/exported.mpaa
 2020/11/21 23:30:20 [assert]    automation engine ... OK
 2020/11/21 23:30:20 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)
+2020/11/25 10:37:13 [assert]    logging settings ... OK
+2020/11/25 10:37:13 [assert]    control server ... OK
+2020/11/25 10:37:14 [setup]     bridge 'opc(server=Matrikon.OPC.Simulation,async)' successfully loaded
+2020/11/25 10:37:14 [assert]    communication bridge ... OK
+2020/11/25 10:37:14 [setup]     execution tag write time is 3
+2020/11/25 10:37:14 [assert]    state replication ... OK
+2020/11/25 10:37:14 [setup]     pre-configuration loaded from ./app/exported.mpam
+2020/11/25 10:37:14 [setup]     processing application loaded from ./app/exported.mpaa
+2020/11/25 10:37:14 [assert]    automation engine ... OK
+2020/11/25 10:37:14 [setup]     MODO DE DEMONSTRAÇÂO POR 2 HORAS! (unable to find license)

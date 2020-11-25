@@ -2,6 +2,8 @@ jacamo/.gradle/*
 jacamo/build/*
 jacamo/log/zk.log
 
+jacamo/src/resources/bots/super/aiml/*
+
 files/*
 
 .settings
